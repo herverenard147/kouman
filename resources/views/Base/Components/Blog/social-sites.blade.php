@@ -19,11 +19,11 @@ $sites = [
 ?>
 @foreach ($sites as $item)
     <div class="flex items-center mt-4">
-        <img src="{{ asset($item['img']) }}" class="h-16 rounded-md shadow dark:shadow-gray-800" alt="">
+        <img src="{{ asset($item['img']) }}" class="h-16 rounded-md shadow" alt="">
 
         <div class="ms-3">
-            <a href="" class="font-medium hover:text-green-600"><?php echo $item['title']; ?></a>
-            <p class="text-sm text-slate-400"><?php echo $item['date']; ?></p>
+            <a href="" class="font-medium hover:text-green-600">{{$item['title']}}</a>
+            <p class="text-sm text-slate-400">{{$item['date']}}</p>
         </div>
     </div>
 @endforeach

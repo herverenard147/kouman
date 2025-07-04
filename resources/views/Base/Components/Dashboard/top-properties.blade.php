@@ -51,7 +51,7 @@ $properties = [
     <div class="{{$item['style']}}">
         <div class="flex items-center">
             <div class="relative md:shrink-0">
-                <img src="{{ asset($item['img']) }}" class="object-cover size-14 min-w-[56px] rounded-md shadow dark:shadow-gray-700" alt="">
+                <img src="{{ asset($item['img']) }}" class="object-cover size-14 min-w-[56px] rounded-md shadow" alt="">
             </div>
 
             <div class="ms-2">

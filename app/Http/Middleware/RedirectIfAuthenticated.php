@@ -23,10 +23,16 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                return match($guard) {
+                    'partenaire' => redirect()->route('partenaire.dashboard'),
+                    'client' => redirect()->route('client.dashboard'),
+                    'admin' => redirect()->route('admin.dashboard'),
+                    default => redirect(RouteServiceProvider::HOME),
+                };
             }
         }
 
         return $next($request);
     }
+
 }

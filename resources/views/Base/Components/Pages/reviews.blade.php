@@ -10,7 +10,7 @@ $reviews = [
         'img' => '/images/client/05.jpg',
         'name' => 'Barbara McIntosh',
         'title' => "Student",
-        'desc' => "There are so many things I had to do with my old software that I just don't do at all with Hously. Suspicious but I can't say I don't love it.",
+        'desc' => "There are so many things I had to do with my old software that I just don't do at all with Kouman. Suspicious but I can't say I don't love it.",
     ],
     [
         'img' => '/images/client/02.jpg',
@@ -46,7 +46,7 @@ $reviews = [
         'img' => '/images/client/05.jpg',
         'name' => 'Barbara McIntosh',
         'title' => "Student",
-        'desc' => "There are so many things I had to do with my old software that I just don't do at all with Hously. Suspicious but I can't say I don't love it.",
+        'desc' => "There are so many things I had to do with my old software that I just don't do at all with Kouman. Suspicious but I can't say I don't love it.",
     ],
     [
         'img' => '/images/client/02.jpg',
@@ -82,7 +82,7 @@ $reviews = [
         'img' => '/images/client/05.jpg',
         'name' => 'Barbara McIntosh',
         'title' => "Student",
-        'desc' => "There are so many things I had to do with my old software that I just don't do at all with Hously. Suspicious but I can't say I don't love it.",
+        'desc' => "There are so many things I had to do with my old software that I just don't do at all with Kouman. Suspicious but I can't say I don't love it.",
     ],
     [
         'img' => '/images/client/02.jpg',
@@ -95,9 +95,9 @@ $reviews = [
 
 <?php foreach ($reviews as $item): ?>
 <div class="xl:w-1/4 lg:w-1/3 md:w-1/2 p-3 picture-item">
-    <div class="bg-white dark:bg-slate-900 rounded-lg shadow dark:shadow-gray-800 p-6">
-        <div class="flex items-center pb-6 border-b border-gray-100 dark:border-gray-800">
-            <img src="{{ asset($item['img']) }}" class="size-16 rounded-full shadow dark:shadow-gray-800" alt="">
+    <div class="bg-white rounded-lg shadow p-6">
+        <div class="flex items-center pb-6 border-b border-gray-100">
+            <img src="{{ asset($item['img']) }}" class="size-16 rounded-full shadow" alt="">
 
             <div class="ps-4">
                 <a href="" class="text-lg hover:text-green-600 duration-500 ease-in-out"><?php echo $item['name']; ?></a>

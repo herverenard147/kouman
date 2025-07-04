@@ -9,16 +9,16 @@
                 <h5 class="text-lg font-semibold">Terms & Conditions</h5>
 
                 <ul class="tracking-[0.5px] inline-block sm:mt-0 mt-3">
-                    <li class="inline-block capitalize text-[16px] font-medium duration-500 dark:text-white/70 hover:text-green-600 dark:hover:text-white"><a href="{{route('index')}}">Hously</a></li>
-                    <li class="inline-block text-base text-slate-950 dark:text-white/70 mx-0.5 ltr:rotate-0 rtl:rotate-180"><i class="mdi mdi-chevron-right"></i></li>
-                    <li class="inline-block capitalize text-[16px] font-medium text-green-600 dark:text-white" aria-current="page">Terms</li>
+                    <li class="inline-block capitalize text-[16px] font-medium duration-500 hover:text-green-600"><a href="{{route('partenaire.dashboard')}}">Kouman</a></li>
+                    <li class="inline-block text-base text-slate-950 mx-0.5 ltr:rotate-0 rtl:rotate-180"><i class="mdi mdi-chevron-right"></i></li>
+                    <li class="inline-block capitalize text-[16px] font-medium text-green-600" aria-current="page">Terms</li>
                 </ul>
             </div>
 
             <div class="container relative mt-6">
                 <div class="md:flex justify-center">
                     <div class="lg:w-4/5 w-full">
-                        <div class="p-6 bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-md">
+                        <div class="p-6 bg-white shadow rounded-md">
                             <h5 class="text-lg font-semibold mb-4">Introduction :</h5>
                             <p class="text-slate-400">It seems that only fragments of the original text remain in the Lorem Ipsum texts used today. One may speculate that over the course of time certain letters were added or deleted at various positions within the text.</p>
 
@@ -41,7 +41,7 @@
                             <h5 class="text-lg font-semibold mt-6">Users Question & Answer :</h5>
 
                             <div id="accordion-collapse" data-accordion="collapse" class="mt-6">
-                                <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden mt-4">
+                                <div class="relative shadow rounded-md overflow-hidden mt-4">
                                     <h2 class="text-base font-semibold" id="accordion-collapse-heading-1">
                                         <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
                                             <span>How does it work ?</span>
@@ -52,12 +52,12 @@
                                     </h2>
                                     <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
                                         <div class="p-5">
-                                            <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                            <p class="text-slate-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden mt-4">
+                                <div class="relative shadow rounded-md overflow-hidden mt-4">
                                     <h2 class="text-base font-semibold" id="accordion-collapse-heading-2">
                                         <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
                                             <span>Do I need a designer to use Kouman?</span>
@@ -68,12 +68,12 @@
                                     </h2>
                                     <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
                                         <div class="p-5">
-                                            <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                            <p class="text-slate-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden mt-4">
+                                <div class="relative shadow rounded-md overflow-hidden mt-4">
                                     <h2 class="text-base font-semibold" id="accordion-collapse-heading-3">
                                         <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
                                             <span>What do I need to do to start selling ?</span>
@@ -84,12 +84,12 @@
                                     </h2>
                                     <div id="accordion-collapse-body-3" class="hidden" aria-labelledby="accordion-collapse-heading-3">
                                         <div class="p-5">
-                                            <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                            <p class="text-slate-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden mt-4">
+                                <div class="relative shadow rounded-md overflow-hidden mt-4">
                                     <h2 class="text-base font-semibold" id="accordion-collapse-heading-4">
                                         <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-4" aria-expanded="false" aria-controls="accordion-collapse-body-4">
                                             <span>What happens when I receive an order ?</span>
@@ -100,7 +100,7 @@
                                     </h2>
                                     <div id="accordion-collapse-body-4" class="hidden" aria-labelledby="accordion-collapse-heading-4">
                                         <div class="p-5">
-                                            <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                            <p class="text-slate-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
                                         </div>
                                     </div>
                                 </div>

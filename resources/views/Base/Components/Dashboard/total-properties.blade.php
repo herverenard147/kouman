@@ -38,7 +38,7 @@ $properties = [
 ];
 ?>
 @foreach ($properties as $item)
-    <div class="relative overflow-hidden rounded-md shadow dark:shadow-gray-700 bg-white dark:bg-slate-900">
+    <div class="relative overflow-hidden rounded-md shadow bg-white">
         <div class="p-5 flex items-center justify-between">
             <span class="me-3">
                 <span class="text-slate-400 block">{{$item['title']}}</span>
@@ -47,7 +47,7 @@ $properties = [
                 </span>
             </span>
 
-            <span class="flex justify-center items-center rounded-md size-12 min-w-[48px] bg-slate-50 dark:bg-slate-800 shadow shadow-gray-100 dark:shadow-gray-700 text-green-600">
+            <span class="flex justify-center items-center rounded-md size-12 min-w-[48px] bg-slate-50 shadow shadow-gray-100 text-green-600">
                 <i class="{{$item['icon']}}"></i>
             </span>
         </div>

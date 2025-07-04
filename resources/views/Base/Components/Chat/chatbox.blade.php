@@ -8,7 +8,7 @@ $clients = [
         'message' => 'Hello',
         'status' => 'online',
         'unread' => 0,
-        'style' => 'flex items-center p-2 rounded-md relative bg-gray-50 dark:bg-slate-800',
+        'style' => 'flex items-center p-2 rounded-md relative bg-gray-50',
         'class' => 'text-slate-400 truncate',
     ],
     [
@@ -18,8 +18,8 @@ $clients = [
         'message' => 'Hi, How are you?',
         'status' => 'offline',
         'unread' => 2,
-        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 dark:hover:bg-slate-800 mt-1.5',
-        'class' => 'text-slate-900 dark:text-white font-medium truncate',
+        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 mt-1.5',
+        'class' => 'text-slate-900 font-medium truncate',
     ],
     [
         'img' => '/images/client/03.jpg',
@@ -28,7 +28,7 @@ $clients = [
         'message' => 'Heyy',
         'status' => 'offline',
         'unread' => 0,
-        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 dark:hover:bg-slate-800 mt-1.5',
+        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 mt-1.5',
         'class' => 'text-slate-400 truncate',
     ],
     [
@@ -38,7 +38,7 @@ $clients = [
         'message' => 'Hey, How are you sir?',
         'status' => 'offline',
         'unread' => 0,
-        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 dark:hover:bg-slate-800 mt-1.5',
+        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 mt-1.5',
         'class' => 'text-slate-400 truncate',
     ],
     [
@@ -48,7 +48,7 @@ $clients = [
         'message' => 'Good Afternoon',
         'status' => 'online',
         'unread' => 0,
-        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 dark:hover:bg-slate-800 mt-1.5',
+        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 mt-1.5',
         'class' => 'text-slate-400 truncate',
     ],
     [
@@ -58,7 +58,7 @@ $clients = [
         'message' => 'Good Morning sir, how can i help you?',
         'status' => 'online',
         'unread' => 0,
-        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 dark:hover:bg-slate-800 mt-1.5',
+        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 mt-1.5',
         'class' => 'text-slate-400 truncate',
     ],
     [
@@ -68,7 +68,7 @@ $clients = [
         'message' => 'Please give me appointment',
         'status' => 'online',
         'unread' => 0,
-        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 dark:hover:bg-slate-800 mt-1.5',
+        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 mt-1.5',
         'class' => 'text-slate-400 truncate',
     ],
     [
@@ -78,7 +78,7 @@ $clients = [
         'message' => 'Hii',
         'status' => 'offline',
         'unread' => 0,
-        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 dark:hover:bg-slate-800 mt-1.5',
+        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 mt-1.5',
         'class' => 'text-slate-400 truncate',
     ],
     [
@@ -88,7 +88,7 @@ $clients = [
         'message' => 'Hello Sir',
         'status' => 'offline',
         'unread' => 0,
-        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 dark:hover:bg-slate-800 mt-1.5',
+        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 mt-1.5',
         'class' => 'text-slate-400 truncate',
     ],
     [
@@ -98,7 +98,7 @@ $clients = [
         'message' => 'How are you sir?',
         'status' => 'offline',
         'unread' => 0,
-        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 dark:hover:bg-slate-800 mt-1.5',
+        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 mt-1.5',
         'class' => 'text-slate-400 truncate',
     ],
     [
@@ -108,7 +108,7 @@ $clients = [
         'message' => 'Hello please give me answer.',
         'status' => 'online',
         'unread' => 0,
-        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 dark:hover:bg-slate-800 mt-1.5',
+        'style' => 'flex items-center p-2 rounded-md relative hover:bg-gray-50 mt-1.5',
         'class' => 'text-slate-400 truncate',
     ],
 ];
@@ -116,7 +116,7 @@ $clients = [
 @foreach ($clients as $item)
     <a href="#" class="{{$item['style']}}">
         <div class="relative">
-            <img src="{{ asset($item['img']) }}" class="size-11 rounded-full shadow dark:shadow-gray-700" alt="">
+            <img src="{{ asset($item['img']) }}" class="size-11 rounded-full shadow" alt="">
             @if ($item['status'] === 'online')
                 <span class="absolute top-0.5 start-0.5 flex items-center justify-center bg-green-600 text-white text-[10px] font-bold rounded-full size-2 after:content-[''] after:absolute after:h-2 after:w-2 after:bg-green-600 after:top-0 after:end-0 after:rounded-full after:animate-ping"></span>
             @elseif ($item['unread'] >= 0)

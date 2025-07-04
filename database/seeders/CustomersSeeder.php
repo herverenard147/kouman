@@ -27,6 +27,7 @@ class CustomersSeeder extends Seeder
                 'joining_date' => $faker->date(),
                 'created_at' => now(),
                 'updated_at' => now(),
+                'mdp' => 'biengvh',
             ]);
         }
     }

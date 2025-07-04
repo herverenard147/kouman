@@ -38,7 +38,7 @@ $datas = [
             <span class="text-slate-400">{{$item['title']}}</span>
             <span class="text-slate-400">{{$item['percentage']}}</span>
         </div>
-        <div class="w-full bg-gray-100 dark:bg-gray-800 rounded-full h-[6px]">
+        <div class="w-full bg-gray-100 rounded-full h-[6px]">
             <div class="bg-green-600 h-[6px] rounded-full" style="width: {{$item['width']}}"></div>
         </div>
     </div>

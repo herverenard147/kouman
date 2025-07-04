@@ -7,8 +7,8 @@
             <!-- Start Content -->
             <div class="flex justify-between items-center">
                 <div>
-                    <h5 class="text-xl font-semibold">Hello, Calvin</h5>
-                    <h6 class="text-slate-400">Welcome back!</h6>
+                    <h5 class="text-xl font-semibold">Salut, {{ $user->nom_entreprise }}</h5>
+                    <h6 class="text-slate-400">Content de vous revoir!</h6>
                 </div>
             </div>
 
@@ -20,12 +20,12 @@
 
             <div class="grid lg:grid-cols-12 grid-cols-1 mt-6 gap-6">
                 <div class="lg:col-span-8">
-                    <div class="relative overflow-hidden rounded-md shadow dark:shadow-gray-700 bg-white dark:bg-slate-900">
-                        <div class="p-6 flex items-center justify-between border-b border-gray-100 dark:border-gray-800">
+                    <div class="relative overflow-hidden rounded-md shadow bg-white">
+                        <div class="p-6 flex items-center justify-between border-b border-gray-100">
                             <h6 class="text-lg font-semibold">Revenue Analytics</h6>
 
                             <div class="position-relative">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="yearchart">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white rounded outline-none border border-gray-100 focus:border-gray-200 focus:ring-0" id="yearchart">
                                     <option value="Y" selected>Yearly</option>
                                     <option value="M">Monthly</option>
                                     <option value="W">Weekly</option>
@@ -38,12 +38,12 @@
                 </div>
 
                 <div class="lg:col-span-4">
-                    <div class="relative overflow-hidden rounded-md shadow dark:shadow-gray-700 bg-white dark:bg-slate-900">
-                        <div class="p-6 flex items-center justify-between border-b border-gray-100 dark:border-gray-800">
+                    <div class="relative overflow-hidden rounded-md shadow bg-white">
+                        <div class="p-6 flex items-center justify-between border-b border-gray-100">
                             <h6 class="text-lg font-semibold">Sales Data</h6>
 
                             <div class="position-relative">
-                                <select class="form-select form-input w-full py-2 h-10 bg-white dark:bg-slate-900 dark:text-slate-200 rounded outline-none border border-gray-100 focus:border-gray-200 dark:border-gray-800 dark:focus:border-gray-700 focus:ring-0" id="yearchart">
+                                <select class="form-select form-input w-full py-2 h-10 bg-white rounded outline-none border border-gray-100 focus:border-gray-200 focus:ring-0" id="yearchart">
                                     <option value="Y" selected>Yearly</option>
                                     <option value="M">Monthly</option>
                                     <option value="W">Weekly</option>
@@ -64,8 +64,8 @@
 
             <div class="grid lg:grid-cols-12 grid-cols-1 mt-6 gap-6">
                 <div class="xl:col-span-3 lg:col-span-6 order-1">
-                    <div class="relative overflow-hidden rounded-md shadow dark:shadow-gray-700 bg-white dark:bg-slate-900">
-                        <div class="p-6 flex items-center justify-between border-b border-gray-100 dark:border-gray-800">
+                    <div class="relative overflow-hidden rounded-md shadow bg-white">
+                        <div class="p-6 flex items-center justify-between border-b border-gray-100">
                             <h6 class="text-lg font-semibold">Area Map</h6>
 
                             <span class="text-slate-400">Last update 5 days ago</span>
@@ -78,8 +78,8 @@
                 </div>
 
                 <div class="xl:col-span-6 lg:col-span-12 xl:order-2 order-3">
-                    <div class="relative overflow-hidden rounded-md shadow dark:shadow-gray-700 bg-white dark:bg-slate-900">
-                        <div class="p-6 flex items-center justify-between border-b border-gray-100 dark:border-gray-800">
+                    <div class="relative overflow-hidden rounded-md shadow bg-white">
+                        <div class="p-6 flex items-center justify-between border-b border-gray-100">
                             <h6 class="text-lg font-semibold">Recent Transections</h6>
 
                             <a href="" class="btn btn-link font-normal text-slate-400 hover:text-green-600 after:bg-green-600 transition duration-500">View orders <i class="mdi mdi-arrow-right ms-1"></i></a>
@@ -109,8 +109,8 @@
                 </div>
 
                 <div class="xl:col-span-3 lg:col-span-6 xl:order-3 order-2">
-                    <div class="relative overflow-hidden rounded-md shadow dark:shadow-gray-700 bg-white dark:bg-slate-900">
-                        <div class="p-6 flex items-center justify-between border-b border-gray-100 dark:border-gray-800">
+                    <div class="relative overflow-hidden rounded-md shadow bg-white">
+                        <div class="p-6 flex items-center justify-between border-b border-gray-100">
                             <h6 class="text-lg font-semibold">Top Properties</h6>
 
                             <a href="" class="btn btn-link font-normal text-slate-400 hover:text-green-600 after:bg-green-600 transition duration-500">See More <i class="mdi mdi-arrow-right ms-1"></i></a>

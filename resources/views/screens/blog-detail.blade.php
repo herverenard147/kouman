@@ -1,10 +1,10 @@
-<?php
-// Include the common navlink content
-ob_start();
-$navlink_content = ob_get_clean(); // Capture the navlink content
 
-// Optionally define the Hero block content
-ob_start();
+
+@extends('Layout.base')
+@section('title', 'Blog Detail')
+@section('content')
+
+<?php
 
 $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
@@ -86,11 +86,10 @@ if ($article === null) {
     exit;
 }
 ?>
-
     <div class="container-fluid relative px-3">
         <div class="layout-specing">
             <!-- Start Content -->
-            <div class="md:flex justify-between items-center">
+            {{-- <div class="md:flex justify-between items-center">
                 <h5 class="text-lg font-semibold">
                 <?php
                     if (!empty($article['title'])) {
@@ -104,15 +103,15 @@ if ($article === null) {
                 </h5>
 
                 <ul class="tracking-[0.5px] inline-block sm:mt-0 mt-3">
-                    <li class="inline-block capitalize text-[16px] font-medium duration-500 dark:text-white/70 hover:text-green-600 dark:hover:text-white"><a href="{{route('index')}}">Hously</a></li>
-                    <li class="inline-block text-base text-slate-950 dark:text-white/70 mx-0.5 ltr:rotate-0 rtl:rotate-180"><i class="mdi mdi-chevron-right"></i></li>
-                    <li class="inline-block capitalize text-[16px] font-medium text-green-600 dark:text-white" aria-current="page">Blog Detail</li>
+                    <li class="inline-block capitalize text-[16px] font-medium duration-500 hover:text-green-600"><a href="{{route('index')}}">Kouman</a></li>
+                    <li class="inline-block text-base text-slate-950 mx-0.5 ltr:rotate-0 rtl:rotate-180"><i class="mdi mdi-chevron-right"></i></li>
+                    <li class="inline-block capitalize text-[16px] font-medium text-green-600" aria-current="page">Blog Detail</li>
                 </ul>
-            </div>
+            </div> --}}
 
-            <div class="grid lg:grid-cols-12 md:grid-cols-2 grid-cols-1 gap-6 mt-6">
+            {{-- <div class="grid lg:grid-cols-12 md:grid-cols-2 grid-cols-1 gap-6 mt-6">
                 <div class="lg:col-span-8 md:order-1 order-2">
-                    <div class="relative overflow-hidden bg-white dark:bg-slate-900 rounded-md shadow dark:shadow-gray-700">
+                    <div class="relative overflow-hidden bg-white rounded-md shadow">
 
                         <img src=" @if (!empty($article['img']))
                             {{asset($article['img'])}}
@@ -126,7 +125,7 @@ if ($article === null) {
                         </div>
                     </div>
 
-                    <div class="bg-white dark:bg-slate-900 rounded-md p-6 shadow dark:shadow-gray-700 mt-6">
+                    <div class="bg-white rounded-md p-6 shadow mt-6">
                         <h5 class="text-lg font-semibold">Leave A Comment:</h5>
 
                         <form class="mt-8">
@@ -169,13 +168,13 @@ if ($article === null) {
                 </div><!--end col-->
 
                 <div class="lg:col-span-4 md:order-2 order-1">
-                    <div class="bg-white dark:bg-slate-900 rounded-md p-6 shadow dark:shadow-gray-700">
+                    <div class="bg-white rounded-md p-6 shadow">
                         <form>
                             <div>
                                 <label for="searchname" class="font-medium text-lg">Search Properties</label>
                                 <div class="relative mt-2">
                                     <i class="mdi mdi-magnify text-lg absolute top-[6px] start-3"></i>
-                                    <input name="search" id="searchname" type="text" class="form-input border border-slate-100 dark:border-slate-800 ps-10" placeholder="Search">
+                                    <input name="search" id="searchname" type="text" class="form-input border border-slate-100 ps-10" placeholder="Search">
                                 </div>
                             </div>
                         </form>
@@ -187,18 +186,19 @@ if ($article === null) {
 
                         <h5 class="font-medium text-lg mt-[30px]">Social sites</h5>
                         <ul class="list-none mt-4">
-                            <li class="inline"><a href="" class="btn btn-icon btn-sm border border-gray-100 dark:border-gray-800 rounded-md text-slate-400 hover:border-green-600 hover:text-white hover:bg-green-600"><i data-feather="facebook" class="size-4"></i></a></li>
-                            <li class="inline"><a href="" class="btn btn-icon btn-sm border border-gray-100 dark:border-gray-800 rounded-md text-slate-400 hover:border-green-600 hover:text-white hover:bg-green-600"><i data-feather="instagram" class="size-4"></i></a></li>
-                            <li class="inline"><a href="" class="btn btn-icon btn-sm border border-gray-100 dark:border-gray-800 rounded-md text-slate-400 hover:border-green-600 hover:text-white hover:bg-green-600"><i data-feather="twitter" class="size-4"></i></a></li>
-                            <li class="inline"><a href="" class="btn btn-icon btn-sm border border-gray-100 dark:border-gray-800 rounded-md text-slate-400 hover:border-green-600 hover:text-white hover:bg-green-600"><i data-feather="linkedin" class="size-4"></i></a></li>
-                            <li class="inline"><a href="" class="btn btn-icon btn-sm border border-gray-100 dark:border-gray-800 rounded-md text-slate-400 hover:border-green-600 hover:text-white hover:bg-green-600"><i data-feather="github" class="size-4"></i></a></li>
-                            <li class="inline"><a href="" class="btn btn-icon btn-sm border border-gray-100 dark:border-gray-800 rounded-md text-slate-400 hover:border-green-600 hover:text-white hover:bg-green-600"><i data-feather="youtube" class="size-4"></i></a></li>
-                            <li class="inline"><a href="" class="btn btn-icon btn-sm border border-gray-100 dark:border-gray-800 rounded-md text-slate-400 hover:border-green-600 hover:text-white hover:bg-green-600"><i data-feather="gitlab" class="size-4"></i></a></li>
+                            <li class="inline"><a href="" class="btn btn-icon btn-sm border border-gray-100 rounded-md text-slate-400 hover:border-green-600 hover:text-white hover:bg-green-600"><i data-feather="facebook" class="size-4"></i></a></li>
+                            <li class="inline"><a href="" class="btn btn-icon btn-sm border border-gray-100 rounded-md text-slate-400 hover:border-green-600 hover:text-white hover:bg-green-600"><i data-feather="instagram" class="size-4"></i></a></li>
+                            <li class="inline"><a href="" class="btn btn-icon btn-sm border border-gray-100 rounded-md text-slate-400 hover:border-green-600 hover:text-white hover:bg-green-600"><i data-feather="twitter" class="size-4"></i></a></li>
+                            <li class="inline"><a href="" class="btn btn-icon btn-sm border border-gray-100 rounded-md text-slate-400 hover:border-green-600 hover:text-white hover:bg-green-600"><i data-feather="linkedin" class="size-4"></i></a></li>
+                            <li class="inline"><a href="" class="btn btn-icon btn-sm border border-gray-100 rounded-md text-slate-400 hover:border-green-600 hover:text-white hover:bg-green-600"><i data-feather="github" class="size-4"></i></a></li>
+                            <li class="inline"><a href="" class="btn btn-icon btn-sm border border-gray-100 rounded-md text-slate-400 hover:border-green-600 hover:text-white hover:bg-green-600"><i data-feather="youtube" class="size-4"></i></a></li>
+                            <li class="inline"><a href="" class="btn btn-icon btn-sm border border-gray-100 rounded-md text-slate-400 hover:border-green-600 hover:text-white hover:bg-green-600"><i data-feather="gitlab" class="size-4"></i></a></li>
                         </ul><!--end icon-->
                     </div>
                 </div><!--end col-->
-            </div><!--end grid-->
+            </div> --}}
+            <!--end grid-->
             <!-- End Content -->
         </div>
     </div><!--end container-->
-@extends('Layout.base')
+@endsection

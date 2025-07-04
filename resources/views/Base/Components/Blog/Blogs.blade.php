@@ -59,7 +59,7 @@ $blogs = [
 ];
 ?>
 @foreach ($blogs as $item)
-    <div class="group relative h-fit hover:-mt-[5px] overflow-hidden bg-white dark:bg-slate-900 rounded-xl shadow dark:shadow-gray-700 transition-all duration-500">
+    <div class="group relative h-fit hover:-mt-[5px] overflow-hidden bg-white rounded-xl shadow transition-all duration-500">
         <div class="relative overflow-hidden">
             <img src="{{ asset($item['img']) }}" class="" alt="">
             <div class="absolute end-4 top-4">
@@ -70,14 +70,14 @@ $blogs = [
         <div class="relative p-6">
             <div class="">
                 <div class="flex justify-between mb-4">
-                    <span class="text-slate-400 text-sm"><i class="mdi mdi-calendar-month align-middle text-base text-slate-900 dark:text-white me-2"></i>{{ $item['date']}}</span>
-                    <span class="text-slate-400 text-sm ms-3"><i class="mdi mdi-clock-outline align-middle text-base text-slate-900 dark:text-white me-2"></i>5 min read</span>
+                    <span class="text-slate-400 text-sm"><i class="mdi mdi-calendar-month align-middle text-base text-slate-900 me-2"></i>{{ $item['date']}}</span>
+                    <span class="text-slate-400 text-sm ms-3"><i class="mdi mdi-clock-outline align-middle text-base text-slate-900 me-2"></i>5 min read</span>
                 </div>
 
-                <a href="blog-detail.php?id={{ $item['id']}}" class="title text-xl font-medium hover:text-green-600 duration-500 ease-in-out">{{ $item['title']}}</a>
+                <a href="{{route('partenaire.blog-detail',['id' => $item['id']])}}" class="title text-xl font-medium hover:text-green-600 duration-500 ease-in-out">{{ $item['title']}}</a>
 
                 <div class="mt-3">
-                    <a href="blog-detail.php?id={{ $item['id']}}" class="btn btn-link hover:text-green-600 after:bg-green-600 duration-500 ease-in-out">Read More <i class="mdi mdi-chevron-right"></i></a>
+                    <a href="{{route('partenaire.blog-detail',['id' => $item['id']])}}" class="btn btn-link hover:text-green-600 after:bg-green-600 duration-500 ease-in-out">Read More <i class="mdi mdi-chevron-right"></i></a>
                 </div>
             </div>
         </div>

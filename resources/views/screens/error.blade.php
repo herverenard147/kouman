@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <p class="mb-0 text-slate-400">© <script>document.write(new Date().getFullYear())</script> Hously. Design & Develop with <i class="mdi mdi-heart text-red-600"></i> by <a href="https://shreethemes.in/" target="_blank" class="text-reset">Shreethemes</a>.</p>
+                        <p class="mb-0 text-slate-400">© <script>document.write(new Date().getFullYear())</script> Kouman. Design & Develop with <i class="mdi mdi-heart text-red-600"></i> by <a href="https://shreethemes.in/" target="_blank" class="text-reset">Shreethemes</a>.</p>
                     </div>
                 </div>
             </div><!--end grid-->

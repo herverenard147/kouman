@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class FamilleTypeHebergements extends Model
+{
+    protected $table = 'familles_types_hebergement';
+    protected $fillable = [
+        'nomFamille'
+    ];
+    protected $primaryKey = 'idFamilleType';
+
+    public function types()
+    {
+        return $this->hasMany(TypeHebergement::class, 'idFamilleType');
+    }
+}

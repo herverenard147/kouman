@@ -1,9 +1,9 @@
 <!-- Footer Start -->
-<footer class="shadow dark:shadow-gray-700 bg-white dark:bg-slate-900 px-6 py-4">
+<footer class="shadow bg-white px-6 py-4">
     <div class="container-fluid">
         <div class="grid grid-cols-1">
-            <div class="sm:text-start text-center mx-md-2">
-                <p class="mb-0 text-slate-400">© <script>document.write(new Date().getFullYear())</script> Hously. Design & Develop with <i class="mdi mdi-heart text-red-600"></i> by <a href="https://shreethemes.in/" target="_blank" class="text-reset">Shreethemes</a>.</p>
+            <div class="px-6 py-2 bg-slate-50 text-center">
+                <p class="mb-0 text-slate-400">© <script>document.write(new Date().getFullYear())</script> Kouman. Designed by <a href="https://kwlegaltech.com/" target="_blank" class="text-reset">KW Legal & Tech</a>.</p>
             </div><!--end col-->
         </div><!--end grid-->
     </div><!--end container-->

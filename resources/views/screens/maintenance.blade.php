@@ -24,7 +24,7 @@
             <div class="grid grid-cols-1 mt-8">
                 <div class="text-center subcribe-form">
                     <form class="relative mx-auto max-w-xl">
-                        <input type="email" id="subemail" name="name" class="pt-4 pe-40 pb-4 ps-6 w-full h-[50px] outline-none text-black dark:text-white rounded-md bg-white/70 dark:bg-slate-900/70 border dark:border-gray-700" placeholder="Enter your email id..">
+                        <input type="email" id="subemail" name="name" class="pt-4 pe-40 pb-4 ps-6 w-full h-[50px] outline-none text-black rounded-md bg-white/70 border" placeholder="Enter your email id..">
                         <button type="submit" class="btn absolute top-[2px] end-[3px] h-[46px] bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md">Subcribe Now</button>
                     </form><!--end form-->
                 </div>
