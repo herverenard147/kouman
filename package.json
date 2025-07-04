@@ -5,7 +5,7 @@
     "scripts": {
         "build": "vite build",
         "dev": "vite",
-        "postinstall": "xcopy node_modules\\@mdi\\font public\\libs\\@mdi\\font /E /I /Y"
+        "postinstall": "cp -r node_modules/@mdi/font public/libs/@mdi/font"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
