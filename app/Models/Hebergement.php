@@ -67,7 +67,7 @@ class Hebergement extends Model
 
     public function equipements()
     {
-        return $this->belongsToMany(Equipements::class, 'hebergement_equipements', 'idHebergement', 'idEquipement')
+        return $this->belongsToMany(Equipement::class, 'hebergement_equipements', 'idHebergement', 'idEquipement')
                     ->using(HebergementEquipement::class);
     }
     public function imagePrincipale()
@@ -77,5 +77,9 @@ class Hebergement extends Model
     public function prixSaisonniers()
     {
         return $this->hasMany(PrixHebergement::class, 'idHebergement', 'idHebergement');
+    }
+    public function telephones()
+    {
+        return $this->morphMany(Telephone::class, 'phoneable');
     }
 }

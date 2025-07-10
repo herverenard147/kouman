@@ -14,12 +14,10 @@ return new class extends Migration
         Schema::create('disponibilites', function (Blueprint $table) {
             $table->id('idDisponibilite');
             $table->date('dateDebut');
-            $table->unsignedBigInteger( 'idHebergement');
             $table->date('dateFin');
             $table->boolean('estDisponible')->default(true);
+            $table->foreignId('idHebergement')->constrained('hebergements')->onDelete('cascade');
             $table->timestamps();
-
-            $table->foreign('idHebergement')->references('idHebergement')->on('hebergements');
         });
     }
 

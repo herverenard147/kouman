@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Choisir une localisation</title>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        input {
+            margin: 5px 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Choisissez votre localisation</h2>
+
+
+<!-- Champs affichés --><form id="form-localisation">
+    <label>Adresse :</label>
+    <input type="text" id="adresse" name="adresse" readonly><br>
+
+    <label>Ville :</label>
+    <input type="text" id="ville" name="ville" readonly><br>
+
+    <label>Pays :</label>
+    <input type="text" id="pays" name="pays" readonly><br>
+
+    <label>Code postal :</label>
+    <input type="text" id="codePostal" name="codePostal" readonly><br>
+
+    <label>Latitude :</label>
+    <input type="text" id="lat" name="lat" readonly><br>
+
+    <label>Longitude :</label>
+    <input type="text" id="lng" name="lng" readonly><br>
+
+    <button type="button" onclick="openMapWindow()">📍 Choisir une localisation</button>
+</form>
+
+<script>
+    function openMapWindow() {
+        window.open('/carte-localisation.html', 'Choisir une position', 'width=800,height=600');
+    }
+
+    // Fonction appelée par la fenêtre enfant
+    window.addEventListener("message", function(event) {
+        if (event.origin !== window.location.origin) return;
+
+        const data = event.data;
+        if (data && data.type === "localisation") {
+            document.getElementById('adresse').value = data.adresse;
+            document.getElementById('ville').value = data.ville;
+            document.getElementById('pays').value = data.pays;
+            document.getElementById('codePostal').value = data.codePostal;
+            document.getElementById('lat').value = data.lat;
+            document.getElementById('lng').value = data.lng;
+        }
+    });
+</script>
+
+
+<!-- API Google Maps -->
+<!-- <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=places">
+</script> -->
+
+</body>
+</html>

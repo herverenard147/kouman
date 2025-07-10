@@ -16,6 +16,7 @@ class StoreHebergementRequest extends FormRequest
 
     public function rules(): array
     {
+        // dd($this->all());
         return [
             'nom' => [
                 'required',
@@ -26,8 +27,8 @@ class StoreHebergementRequest extends FormRequest
                         $query->where('id', Auth::guard('partenaire')->user()->id)
                     ),
             ],
-            'idType' => ['required', 'exists:types_hebergement,idType'],
-            'familyType' => ['required', 'exists:familles_types_hebergement,idFamilleType'],
+            'idType' => ['required', 'exists:types_hebergement,id'],
+            'familyType' => ['required', 'exists:familles_types_hebergement,id'],
             'description' => ['nullable', 'string'],
             'prixParNuit' => ['required', 'numeric', 'min:0'],
             'devise' => ['required', 'string', 'in:EUR,USD,GBP,CAD,AUD,CFA'],
@@ -52,13 +53,14 @@ class StoreHebergementRequest extends FormRequest
                 },
             ],
             'equipements' => ['nullable', 'array'],
-            'equipements.*' => ['exists:equipements,idEquipement'],
+            'equipements.*' => ['exists:equipements,id'],
             'images' => ['required', 'array', 'min:1'],
             'images.*' => ['image', 'mimes:jpeg,png,jpg,mp4', 'max:10240'],
             'prixSaisonniers' => ['nullable', 'array'],
             'prixSaisonniers.*.dateDebut' => ['nullable', 'date', 'after:today'],
             'prixSaisonniers.*.dateFin' => ['nullable', 'date', 'after_or_equal:prixSaisonniers.*.dateDebut'],
             'prixSaisonniers.*.prixParNuit' => ['nullable', 'numeric', 'min:0'],
+            'telephones.*.numero' => ['required', 'phone:CI,FR,US', 'max:20'],
         ];
     }
 

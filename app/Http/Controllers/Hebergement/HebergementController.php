@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Hebergement;
 
-use App\Models\Equipements;
+use App\Models\Equipement;
 use App\Models\Hebergement;
 use Illuminate\Http\Request;
 use App\Models\Localisations;
@@ -34,8 +34,9 @@ class HebergementController extends Controller
     public function create()
     {
         $familles = FamilleTypeHebergements::with('types')->get();
-        $equipements = Equipements::all();
+        $equipements = Equipement::all();
         $politiques = PolitiquesAnnulation::all();
+        // dd($familles, $equipements, $politiques);
         return view('screens.add.hebergement.hebergement-add', compact('familles', 'equipements', 'politiques'));
     }
 
@@ -45,7 +46,7 @@ class HebergementController extends Controller
     public function store(StoreHebergementRequest $request)
     {
 
-        // dd($request->all());
+        dd($request->all());
 
         // dd($request->all());
         $validated = $request->validated();
@@ -70,13 +71,19 @@ class HebergementController extends Controller
             'prixParNuit' => $request->prixParNuit,
             'devise' => $request->devise,
             'idLocalisation' => $localisation->idLocalisation,
-            'id' => Auth::guard('partenaire')->id(), // Assumes partenaire is linked to user
+            'idPartenaire' => Auth::guard('partenaire')->id(), // Assumes partenaire is linked to user
             'nombreChambres' => $request->nombreChambres,
             'capaciteMax' => $request->capaciteMax,
             'idPolitiqueAnnulation' => $request->idPolitiqueAnnulation,
             'heureArrivee' => $request->heureArrivee,
             'heureDepart' => $request->heureDepart,
         ]);
+
+        foreach ($request->input('telephones', []) as $telData) {
+            $hebergement->telephones()->create([
+                'numero' => $telData['numero']
+            ]);
+        }
         // Associer les équipements
         if ($request->equipements) {
             $hebergement->equipements()->sync($request->equipements);
@@ -98,29 +105,20 @@ class HebergementController extends Controller
                 ]);
             }
         }
-        foreach ($request->file('images') as $index => $image) {
-            $path = $image->store('hebergements', 'public');
-            $images = ImagesHebergement::create([
-                'idHebergement' => $hebergement->idHebergement,
-                'url' => $path,
-                'estPrincipale' => $index === 0, // Première image principale
-            ]);
-        }
-
-                // Sauvegarder les prix saisonniers
-            if ($request->prixSaisonniers) {
-                foreach ($request->prixSaisonniers as $prix) {
-                    if ($prix['dateDebut'] && $prix['dateFin'] && $prix['prixParNuit']) {
-                        PrixHebergement::create([
-                            'idHebergement' => $hebergement->idHebergement,
-                            'dateDebut' => $prix['dateDebut'],
-                            'dateFin' => $prix['dateFin'],
-                            'prixParNuit' => $prix['prixParNuit'],
-                            'devise' => $request->devise,
+            // Sauvegarder les prix saisonniers
+        if ($request->prixSaisonniers) {
+            foreach ($request->prixSaisonniers as $prix) {
+                if ($prix['dateDebut'] && $prix['dateFin'] && $prix['prixParNuit']) {
+                    PrixHebergement::create([
+                        'idHebergement' => $hebergement->idHebergement,
+                        'dateDebut' => $prix['dateDebut'],
+                        'dateFin' => $prix['dateFin'],
+                        'prixParNuit' => $prix['prixParNuit'],
+                        'devise' => $request->devise,
                     ]);
                 }
             }
-                    // dd($request->prixSaisonniers);
+                // dd($request->prixSaisonniers);
         }
 
         return redirect()->route('partenaire.add.hebergement')->with('success', 'Hébergement ajouté avec succès !');
@@ -165,7 +163,7 @@ class HebergementController extends Controller
         ->where('id', Auth::guard('partenaire')->id()) // Correction : 'id' → 'idPartenaire'
         ->findOrFail($id);
         $familles = FamilleTypeHebergements::with('types')->get();
-        $equipements = Equipements::all();
+        $equipements = Equipement::all();
         $politiques = PolitiquesAnnulation::all();
         // dd($hebergement, $familles, $equipements, $politiques);
         return view('screens.add.hebergement.hebergement-update', compact('hebergement', 'familles', 'equipements', 'politiques'));

@@ -13,12 +13,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('types_hebergement', function (Blueprint $table) {
-            $table->id('idType');
+            $table->id();
             $table->string('nomType', 100);
             $table->timestamps();
-            $table->unsignedBigInteger('idFamilleType');
 
-            $table->foreign('idFamilleType')->references('idFamilleType')->on('familles_types_hebergement');
+            $table->foreignId('idFamilleType')->constrained('familles_types_hebergement')->onDelete('cascade');
         });
 
         // Insérer les types initiaux

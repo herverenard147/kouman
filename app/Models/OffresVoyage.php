@@ -24,4 +24,8 @@ class OffresVoyage extends Model
     {
         return $this->belongsTo(Partenaire::class, 'id');
     }
+    public function telephones()
+    {
+        return $this->morphMany(Telephone::class, 'phoneable');
+    }
 }

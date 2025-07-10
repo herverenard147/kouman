@@ -47,7 +47,7 @@
         </main>
 
         <div class="fixed bottom-3 end-3 z-[9999]">
-            <a href="" class="back-button btn btn-icon bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md"><i data-feather="arrow-left" class="size-4"></i></a>
+            <a href="{{route('partenaire.login')}}" class="back-button btn btn-icon bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md"><i data-feather="arrow-left" class="size-4"></i></a>
         </div>
 
         <!-- Switcher -->

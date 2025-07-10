@@ -12,13 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('images_hebergements', function (Blueprint $table) {
-            $table->id('idImage');
-            $table->unsignedBigInteger( 'idHebergement');
+            $table->id();
             $table->string('url', 255);
             $table->boolean('estPrincipale')->default(false);
+            $table->foreignId('idHebergement')->constrained('hebergements')->onDelete('cascade');
             $table->timestamps();
-
-            $table->foreign('idHebergement')->references('idHebergement')->on('hebergements')->onDelete('cascade');
         });
     }
 

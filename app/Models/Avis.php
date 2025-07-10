@@ -7,10 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Avis extends Model
 {
     protected $table = 'avis';
-    protected $primaryKey = 'idAvis';
     protected $fillable = [
-        'idHebergement',
-        'idUtilisateur',
         'note',
         'commentaire',
         'dateAvis'
@@ -18,11 +15,11 @@ class Avis extends Model
 
     public function hebergement()
     {
-        return $this->belongsTo(Hebergement::class, 'idHebergement');
+        return $this->belongsTo(Hebergement::class);
     }
 
     public function utilisateur()
     {
-        return $this->belongsTo(Client::class, 'idUtilisateur');
+        return $this->belongsTo(Client::class);
     }
 }

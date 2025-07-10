@@ -10,7 +10,6 @@ class FamilleTypeHebergements extends Model
     protected $fillable = [
         'nomFamille'
     ];
-    protected $primaryKey = 'idFamilleType';
 
     public function types()
     {

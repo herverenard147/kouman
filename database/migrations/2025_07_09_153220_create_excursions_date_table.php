@@ -11,15 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('prix_hebergements', function (Blueprint $table) {
+        Schema::create('excursion_dates', function (Blueprint $table) {
             $table->id();
-            $table->date('dateDebut');
-            $table->date('dateFin');
-            $table->decimal('prixParNuit', 10, 2);
-            $table->string('devise', 3)->default('EUR');
+            $table->foreignId('idExcursion')->constrained('excursions')->onDelete('cascade');
+            $table->date('date');
+            $table->time('heure_debut')->nullable();
+            $table->integer('places_disponibles')->unsigned()->default(0);
             $table->timestamps();
-
-            $table->foreignId('idHebergement')->constrained('hebergements')->onDelete('cascade');
         });
     }
 
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('prix_hebergements');
+        Schema::dropIfExists('excursion_dates');
     }
 };

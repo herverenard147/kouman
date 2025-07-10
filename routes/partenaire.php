@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Auth\AuthenticatedPartenaireController;
+use App\Http\Controllers\Excursion\ExcursionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PartenaireController;
@@ -65,22 +66,33 @@ Route::middleware(['auth:partenaire'])
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 
+        Route::group(['prefix' => 'hebergement'], function(){
 
-        Route::get('hebergement', [HebergementController::class, 'index'])->name('partenaire.hebergement');
-        Route::get('hebergement-detail/{id}', [HebergementController::class, 'show'])->name('partenaire.hebergement-detail.show');
+            Route::get('/', [HebergementController::class, 'index'])->name('partenaire.hebergement');
+            Route::get('detail/{id}', [HebergementController::class, 'show'])->name('partenaire.hebergement-detail.show');
 
-        Route::get('hebergement-update/{id}', [HebergementController::class, 'edit'])->name('partenaire.hebergement-detail.edit');
-        Route::put('hebergement-update/{id}', [HebergementController::class, 'update'])->name('partenaire.hebergement-detail.update');
+            Route::get('update/{id}', [HebergementController::class, 'edit'])->name('partenaire.hebergement-detail.edit');
+            Route::put('update/{id}', [HebergementController::class, 'update'])->name('partenaire.hebergement-detail.update');
+            Route::delete('delette/{id}', [HebergementController::class, 'destroy'])->name('partenaire.hebergement.destroy');
+            // Route::delete('images-hebergement/{id}', [ImageHebergementController::class, 'destroy']);
+        });
 
+        Route::group(['prefix' => 'excursion'], function(){
 
-        Route::delete('hebergement-delette/{id}', [HebergementController::class, 'destroy'])->name('partenaire.hebergement.destroy');
-        // Route::delete('images-hebergement/{id}', [ImageHebergementController::class, 'destroy']);
+            Route::get('/', [HebergementController::class, 'index'])->name('partenaire.excursion');
+            Route::get('detail/{id}', [HebergementController::class, 'show'])->name('partenaire.excursion-detail.show');
+
+            Route::get('update/{id}', [HebergementController::class, 'edit'])->name('partenaire.excursion-detail.edit');
+            Route::put('update/{id}', [HebergementController::class, 'update'])->name('partenaire.excursion-detail.update');
+            Route::delete('delette/{id}', [HebergementController::class, 'destroy'])->name('partenaire.excursion.destroy');
+            // Route::delete('images-hebergement/{id}', [ImageHebergementController::class, 'destroy']);
+        });
 
         Route::get('review', fn() => view('screens.review'))->name('partenaire.review');
 
         Route::group(['prefix' => 'add'], function () {
             Route::get('event', fn() => view('screens.add.event'))->name('partenaire.add.event');
-            Route::get('excursion', fn() => view('screens.add.excursion'))->name('partenaire.add.excursion');
+            Route::get('excursion', [ExcursionController::class, 'createExcursion'])->name('partenaire.add.excursion');
             Route::get('hebergement', [HebergementController::class, 'create'])->name('partenaire.add.hebergement');
             Route::get('vol', fn() => view('screens.add.vol'))->name('partenaire.add.vol');
             Route::get('/types-par-famille/{idFamille}', [TypeHebergementController::class, 'getTypesByFamille']);
@@ -88,5 +100,10 @@ Route::middleware(['auth:partenaire'])
             Route::post('hebergement', [HebergementController::class, 'store'])->name('partenaire.add.hebergement.store');
 
         });
-
+        Route::get('/popup-localisation', function () {
+            return view('popup.localisation');
+        })->name('popup.localisation');
+        Route::get('/localisation-popup', function () {
+            return view('popup.localisation-popup'); // le fichier où se trouve ton script
+        })->name('partenaire.localisation.popup');
 });

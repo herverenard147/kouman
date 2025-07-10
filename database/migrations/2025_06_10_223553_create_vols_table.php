@@ -8,8 +8,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('vols', function (Blueprint $table) {
-            $table->id('idVol');
-            $table->unsignedBigInteger('id');
+            $table->id();
+            // $table->unsignedBigInteger('id');
             $table->string('compagnie', 100);
             $table->string('numeroVol', 20);
             $table->string('villeDepart', 100);

@@ -7,10 +7,7 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class HebergementEquipement extends Pivot
 {
     protected $table = 'hebergement_equipements';
-    protected $primaryKey = [
-        'idHebergement',
-        'idEquipement'
-    ];
+
     public $incrementing = false;
 
     protected $fillable = [
@@ -25,6 +22,6 @@ class HebergementEquipement extends Pivot
 
     public function equipement()
     {
-        return $this->belongsTo(Equipements::class, 'idEquipement');
+        return $this->belongsTo(Equipement::class, 'idEquipement');
     }
 }

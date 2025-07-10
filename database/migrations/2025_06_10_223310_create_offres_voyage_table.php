@@ -8,9 +8,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('offres_voyage', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-            $table->id('idOffreVoyage');
-            $table->unsignedBigInteger('id');
+            // $table->engine = 'InnoDB';
+            $table->id();
             $table->string('titre', 255);
             $table->text('description')->nullable();
             $table->decimal('prix', 10, 2);
@@ -22,7 +21,7 @@ return new class extends Migration
             $table->enum('statut', ['actif', 'inactif'])->default('actif');
             $table->timestamps();
 
-            $table->foreign('id')->references('id')->on('partenaires');
+            $table->foreignId('idPartenaire')->constrained('partenaires')->onDelete('cascade');
         });
     }
 

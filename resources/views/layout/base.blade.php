@@ -28,7 +28,7 @@
         <link rel="stylesheet" href="{{asset('css/tailwind.css')}}">
         <link rel="stylesheet" href="{{asset('css/output.css')}}" />
 
-
+    @stack('styles')
 </head>
 
 <body class="font-body text-base text-black">
@@ -92,5 +92,6 @@
         <script src="{{asset('libs/simplebar/simplebar.min.js')}}"></script>
         <script src="{{asset('js/plugins.init.js')}}"></script>
         <script src="{{asset('js/app.js')}}"></script>
+        @stack('scripts')
     </body>
 </html>

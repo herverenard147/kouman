@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('familles_types_hebergement', function (Blueprint $table) {
-            $table->id('idFamilleType');
+            $table->id();
             $table->string('nomFamille', 100);
             $table->timestamps();
         });

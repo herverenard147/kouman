@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('hebergement_equipements', function (Blueprint $table) {
-            $table->foreignId('idHebergement')->constrained('hebergements')->onDelete('cascade');
-            $table->foreignId('idEquipement')->constrained('equipements')->onDelete('cascade');
-            $table->primary(['idHebergement', 'idEquipement']);
+        Schema::create('telephones', function (Blueprint $table) {
+            $table->id();
+            $table->string('numero');
+
+            // Champs de la relation polymorphe
+            $table->morphs('phoneable'); // crée phoneable_id et phoneable_type
+
             $table->timestamps();
         });
+
     }
 
     /**
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('hebergement_equipements');
+        Schema::dropIfExists('telephone');
     }
 };

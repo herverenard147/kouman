@@ -62,7 +62,7 @@
                             <div class="text-center">
                                 <span class="text-slate-400 me-2">Vous n'avez pas de compte ?</span> <a href="{{route('partenaire.register.index')}}" class="text-black font-medium">Créer un compte</a>
                             </div>
-                            @if ( Route::currentRouteName() !== 'partenaire.login')
+                            @if ( Route::currentRouteName() !== 'partenaire.login' )
                                 <div class="text-center">
                                     <span class="text-slate-400 me-2">Êtes vous un partenaire ?</span> <a href="{{route('partenaire.login')}}" class="text-black font-medium">Connectez-vous ici</a>
                                 </div>

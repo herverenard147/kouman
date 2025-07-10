@@ -69,7 +69,7 @@
                                 <select name="familyType" id="familyType" class="form-select w-full border border-gray-300 rounded-md p-2 @error('familyType') border-red-500 @enderror" required>
                                     <option value="" disabled {{ old('familyType') ? '' : 'selected' }}>-- Sélectionner une famille --</option>
                                     @foreach($familles as $famille)
-                                        <option value="{{ $famille->idFamilleType }}" {{ old('familyType') == $famille->idFamilleType ? 'selected' : '' }}>{{ $famille->nomFamille }}</option>
+                                        <option value="{{ $famille->id }}" {{ old('familyType') == $famille->id ? 'selected' : '' }}>{{ $famille->nomFamille }}</option>
                                     @endforeach
                                 </select>
                                 @error('familyType')
@@ -126,7 +126,7 @@
                                 <select name="idPolitiqueAnnulation" id="politiqueAnnulation" class="form-select w-full border border-gray-300 rounded-md p-2 @error('idPolitiqueAnnulation') border-red-500 @enderror" >
                                     <option value="" selected>Aucune</option>
                                     @foreach($politiques as $politique)
-                                        <option value="{{ $politique->idPolitique }}" {{ old('idPolitiqueAnnulation') == $politique->idPolitique ? 'selected' : '' }}>{{ $politique->nom }}</option>
+                                        <option value="{{ $politique->id }}" {{ old('idPolitiqueAnnulation') == $politique->id ? 'selected' : '' }}>{{ $politique->nom }}</option>
                                     @endforeach
                                 </select>
                                 @error('idPolitiqueAnnulation')
@@ -165,7 +165,11 @@
                                     <span class="text-red-600 text-sm">{{ $message }}</span>
                                 @enderror
                             </div>
-
+                            <div class="md:col-span-4 col-span-12">
+                                <button type="button" onclick="openMapPopup()" class="btn bg-green-600 text-white rounded-md px-4 py-2">
+                                    Ajouter ma localisation
+                                </button>
+                            </div>
                             <div class="md:col-span-4 col-span-12">
                                 <label for="latitude" class="font-medium">Latitude <strong>*</strong>:</label>
                                 <input name="latitude" id="latitude" type="number" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror" placeholder="Latitude" value="{{ old('latitude') }}" required>
@@ -233,8 +237,8 @@
                                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                                     @foreach($equipements as $equipement)
                                         <div class="flex items-center">
-                                            <input type="checkbox" name="equipements[]" id="equipement_{{ $equipement->idEquipement }}" value="{{ $equipement->idEquipement }}" class="form-checkbox @error('equipements') border-red-500 @enderror" {{ in_array($equipement->idEquipement, old('equipements', [])) ? 'checked' : '' }}>
-                                            <label for="equipement_{{ $equipement->idEquipement }}" class="ms-2">{{ $equipement->nom }}</label>
+                                            <input type="checkbox" name="equipements[]" id="equipement_{{ $equipement->id }}" value="{{ $equipement->id }}" class="form-checkbox @error('equipements') border-red-500 @enderror" {{ in_array($equipement->id, old('equipements', [])) ? 'checked' : '' }}>
+                                            <label for="equipement_{{ $equipement->id }}" class="ms-2">{{ $equipement->nom }}</label>
                                         </div>
                                     @endforeach
                                 </div>
@@ -242,6 +246,27 @@
                                     <span class="text-red-600 text-sm">{{ $message }}</span>
                                 @enderror
                             </div>
+
+                            <div class="col-span-12">
+                                <label class="font-semibold block mb-2">Numéros de téléphone :</label>
+                                <div id="telephones-container">
+                                    <div class="grid grid-cols-12 gap-2 mb-2">
+                                        <div class="md:col-span-4 col-span-4">
+                                            <input name="telephones[0][numero]" type="text" class="form-input @error('telephones.0.numero') border-red-500 @enderror" placeholder="+2250700000000" value="{{ old('telephones.0.numero') }}">
+                                            @error('telephones.0.numero')
+                                                <span class="text-red-600 text-sm">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                @error('telephones.*.numero')
+                                    <span class="text-red-600 text-sm">{{ $message }}</span>
+                                @enderror
+                                <button type="button" id="add-telephone" class="btn bg-white text-gray-800 border border-gray-300 hover:bg-gray-100 rounded-md mt-2">
+                                    Ajouter un numéro
+                                </button>
+                            </div>
+
 
                             <div class="col-span-12">
                                 <label class="font-semibold block mb-2">Prix saisonniers (optionnel) :</label>
@@ -424,7 +449,7 @@
                 typePartenaire.innerHTML = '<option value="" disabled selected>-- Sélectionner un type --</option>';
                 data.forEach(type => {
                     const option = document.createElement('option');
-                    option.value = type.idType;      // adapte selon ta clé primaire dans ta table
+                    option.value = type.id;      // adapte selon ta clé primaire dans ta table
                     option.textContent = type.nomType;  // adapte selon le champ nom dans ta table
                     typePartenaire.appendChild(option);
                 });
@@ -482,6 +507,60 @@
     document.addEventListener('DOMContentLoaded', () => {
         updateTypePartenaireDropdown();
     });
+
+    let telephoneIndex = 1;
+
+    document.getElementById('add-telephone').addEventListener('click', function () {
+        const container = document.getElementById('telephones-container');
+
+        const newBlock = document.createElement('div');
+        newBlock.className = 'grid grid-cols-12 gap-2 mb-2';
+        newBlock.innerHTML = `
+            <div class="md:col-span-4 col-span-12">
+                <input name="telephones[${telephoneIndex}][numero]" type="text" class="form-input" placeholder="+2250700000000">
+            </div>
+            <div class="md:col-span-3 col-span-4">
+                <button type="button" class="remove-block btn text-red-600 border border-red-300 hover:bg-red-50 rounded-md px-2 py-1 w-full">
+                    Retirer
+                </button>
+            </div>
+        `;
+
+        container.appendChild(newBlock);
+        telephoneIndex++;
+    });
+
+    document.addEventListener('click', function (e) {
+        if (e.target && e.target.classList.contains('remove-block')) {
+            e.target.closest('.grid').remove();
+        }
+    });
+
+
+function openMapPopup() {
+    const width = 600;
+    const height = 500;
+    const left = (screen.width / 2) - (width / 2);
+    const top = (screen.height / 2) - (height / 2);
+
+    const mapWindow = window.open(
+        "/partenaire/popup-localisation", // à créer dans Laravel
+        "Localisation",
+        `width=${width},height=${height},top=${top},left=${left}`
+    );
+
+    // Recevoir la position depuis la popup
+     window.addEventListener('message', function (event) {
+        if (event.origin !== window.location.origin) return;
+
+        const { latitude, longitude, adresse, ville, pays } = event.data;
+        document.getElementById('latitude').value = latitude;
+        document.getElementById('longitude').value = longitude;
+        document.getElementById('adresse').value = adresse;
+        document.getElementById('ville').value = ville;
+        document.getElementById('pays').value = pays;
+    }, false);
+}
 </script>
 
 <!-- JAVASCRIPTS -->

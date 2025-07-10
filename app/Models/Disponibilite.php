@@ -6,9 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Disponibilite extends Model
 {
-    protected $fillable = ['type_service', 'service_id', 'date', 'disponible'];
-    protected $casts = [
-        'date' => 'datetime',
-        'disponible' => 'boolean',
+    protected $table = 'disponibilites';
+    protected $fillable = [
+        'dateDebut',
+        'dateFin',
+        'estDisponible'
     ];
+
+    public function hebergement()
+    {
+        return $this->belongsTo(Hebergement::class);
+    }
 }

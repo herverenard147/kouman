@@ -127,7 +127,7 @@
                     </div>
                 @endif
 
-                <form method="POST" action="{{ route('partenaire.register.store') }}" class="space-y-6">
+                <form method="POST" action="{{ route('partenaire.register.store') }}"  class="space-y-6">
                     @csrf
 
                     <div class="grid md:grid-cols-2 gap-6">

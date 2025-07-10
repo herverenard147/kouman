@@ -4,17 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Equipements extends Model
+class Equipement extends Model
 {
     protected $table = 'equipements';
     protected $fillable = [
-        'nom'
+        'nom',
+        'type'
     ];
-    protected $primaryKey = 'idEquipement';
 
     public function hebergements()
     {
         return $this->belongsToMany(Hebergement::class, 'hebergement_equipements', 'idEquipement', 'idHebergement')
                     ->using(HebergementEquipement::class);
+    }
+
+    public function excursions()
+    {
+        return $this->belongsToMany(Excursion::class, 'equipements_excursions', 'idEquipement', 'idExcursion');
     }
 }

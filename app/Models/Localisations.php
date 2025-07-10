@@ -11,11 +11,10 @@ class Localisations extends Model
         'ville',
         'pays',
         'codePostal',
-        'latitude',
+        'adresse',
         'longitude',
-        'adresse'
+        'latitude',
     ];
-    protected $primaryKey = 'idLocalisation';
 
     public function hebergements()
     {

@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('evenements', function (Blueprint $table) {
             $table->id();
-            $table->string('nom', 100);
-            $table->string('lieu', 100);
-            $table->date('date');
+            $table->string('titre', 150);
+            $table->text('description')->nullable();
+            $table->decimal('duree', 5, 2); // Durée en heures
             $table->decimal('prix', 10, 2);
-            $table->string('type', 50);
-            $table->integer('nb_billets');
-            $table->foreignId('partenaire_id')->constrained('partenaires');
+            $table->string('devise', 3);
+            $table->integer('capacite_max')->unsigned()->default(1);
+            // $table->foreignId('partenaire_id')->constrained('partenaires')->onDelete('cascade');
+            // $table->foreignId('localisation_id')->nullable()->constrained('localisations')->onDelete('set null');
+            $table->enum('statut', ['brouillon', 'actif', 'complet', 'annule'])->default('brouillon');
             $table->timestamps();
         });
     }

@@ -45,7 +45,7 @@
                 <a href="{{route('partenaire.favorite-hebergement')}}"><i class="mdi mdi-home-heart me-2"></i>Favorite Properties</a>
             </li>
 
-            <li>
+            {{-- <li>
                 <a href="{{route('partenaire.chat')}}"><i class="mdi mdi-chat-outline me-2"></i>Chat</a>
             </li>
 
@@ -88,7 +88,7 @@
                 <div class="sidebar-submenu">
                     <ul>
                         <li><a href="{{route('partenaire.login')}}">Connexion</a></li>
-                        {{-- <li><a href="{{route('signup')}}">Signup</a></li> --}}
+                        <li><a href="{{route('signup')}}">Signup</a></li>
                         <li><a href="{{route('partenaire.signup-success')}}">Signup Success</a></li>
                         <li><a href="{{route('partenaire.reset-password')}}">Reset Password</a></li>
                         <li><a href="{{route('partenaire.lock-screen')}}">Lockscreen</a></li>
@@ -118,7 +118,7 @@
                 </span>
 
                 <span class="mdi mdi-home-city-outline text-[160px] absolute top-1/2 -translate-y-1/2 start-0 end-0 mx-auto text-center opacity-[0.02] text-white z-0"></span>
-            </li>
+            </li> --}}
         </ul>
         <!-- sidebar-menu  -->
     </div>

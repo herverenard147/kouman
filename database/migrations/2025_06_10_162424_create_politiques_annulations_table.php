@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('politiques_annulation', function (Blueprint $table) {
-            $table->id('idPolitique');
+            $table->id();
             $table->string('nom', 100);
             $table->text('description')->nullable();
             $table->timestamps();
