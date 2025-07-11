@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class TypeHebergement extends Model
 {
     protected $table = 'types_hebergement';
-    protected $primaryKey = 'idType';
     protected $fillable = [
         'nomType',
         'idFamilleType'
@@ -20,6 +19,6 @@ class TypeHebergement extends Model
 
     public function hebergements()
     {
-        return $this->hasMany(Hebergement::class, 'idType');
+        return $this->hasMany(Hebergement::class, 'id');
     }
 }

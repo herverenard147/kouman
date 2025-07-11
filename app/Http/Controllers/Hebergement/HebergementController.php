@@ -46,7 +46,7 @@ class HebergementController extends Controller
     public function store(StoreHebergementRequest $request)
     {
 
-        dd($request->all());
+        // dd($request->all());
 
         // dd($request->all());
         $validated = $request->validated();
@@ -70,7 +70,7 @@ class HebergementController extends Controller
             'description' => $request->description,
             'prixParNuit' => $request->prixParNuit,
             'devise' => $request->devise,
-            'idLocalisation' => $localisation->idLocalisation,
+            'idLocalisation' => $localisation->id,
             'idPartenaire' => Auth::guard('partenaire')->id(), // Assumes partenaire is linked to user
             'nombreChambres' => $request->nombreChambres,
             'capaciteMax' => $request->capaciteMax,
@@ -140,7 +140,7 @@ class HebergementController extends Controller
         ])
         ->where('id', Auth::guard('partenaire')->id())
         ->findOrFail($id);
-        // dd($hebergement);
+        // dd($hebergement->imagePrincipale()->firstOrCreate());
         return view('screens.add.hebergement.hebergement-detail', compact('hebergement'));
     }
 

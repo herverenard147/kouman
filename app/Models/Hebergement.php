@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Hebergement extends Model
 {
     protected $table = 'hebergements';
-    protected $primaryKey = 'idHebergement';
     protected $fillable = [
         'nom',
         'idType',
@@ -15,7 +14,7 @@ class Hebergement extends Model
         'prixParNuit',
         'devise',
         'idLocalisation',
-        'id',
+        'idPartenaire',
         'noteMoyenne',
         'nombreChambres',
         'nombreSallesDeBain',
@@ -28,8 +27,9 @@ class Hebergement extends Model
 
     public function partenaire()
     {
-        return $this->belongsTo(Partenaire::class, 'id');
+        return $this->belongsTo(Partenaire::class);
     }
+    
     public function type()
     {
         return $this->belongsTo(TypeHebergement::class, 'idType');
@@ -70,14 +70,17 @@ class Hebergement extends Model
         return $this->belongsToMany(Equipement::class, 'hebergement_equipements', 'idHebergement', 'idEquipement')
                     ->using(HebergementEquipement::class);
     }
+
     public function imagePrincipale()
     {
-        return $this->hasOne(ImagesHebergement::class, 'idHebergement', 'idHebergement')->where('estPrincipale', true);
+        return $this->hasOne(ImagesHebergement::class, 'idHebergement', 'id')->where('estPrincipale', true);
     }
+
     public function prixSaisonniers()
     {
-        return $this->hasMany(PrixHebergement::class, 'idHebergement', 'idHebergement');
+        return $this->hasMany(PrixHebergement::class, 'idHebergement', 'id');
     }
+
     public function telephones()
     {
         return $this->morphMany(Telephone::class, 'phoneable');

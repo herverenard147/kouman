@@ -11,7 +11,6 @@ class PolitiquesAnnulation extends Model
         'nom',
         'description'
     ];
-    protected $primaryKey = 'idPolitique';
 
     public function hebergements()
     {

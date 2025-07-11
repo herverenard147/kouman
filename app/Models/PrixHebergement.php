@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class PrixHebergement extends Model
 {
     protected $table = 'prix_hebergements';
-    protected $primaryKey = 'idPrix';
     protected $fillable = [
         'idHebergement',
         'dateDebut',

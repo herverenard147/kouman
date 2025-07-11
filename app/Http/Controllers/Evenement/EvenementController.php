@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Excursion;
+namespace App\Http\Controllers\Evenement;
 
 
 use App\Models\Equipement;
@@ -16,24 +16,24 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rule;
 
-class ExcursionController extends Controller
+class EvenementController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth:partenaire');
     }
 
-
     public function createExcursion()
     {
-        $equipements = Equipement::whereIn('type', ['excursion', 'inclus', 'optionnel'])->orWhereNull('type')->get();
-        return view('partenaire.excursion.create', compact('equipements'));
+        $equipements = Equipement::all();
+        return view('screens.add.excursion.excursion-add', compact('equipements'));
     }
 
-    public function storeExcursion(Request $request)
+   public function storeExcursion(Request $request)
     {
         $partenaire = Auth::guard('partenaire')->user();
 
+        // Validation
         $validated = $request->validate([
             'titre' => [
                 'required',
@@ -42,13 +42,13 @@ class ExcursionController extends Controller
                 Rule::unique('excursions')->where('partenaire_id', $partenaire->idPartenaire),
             ],
             'description' => 'nullable|string',
-            'date' => 'required|date|after_or_equal:today',
+            'date' => 'nullable|date|after_or_equal:today',
             'heure_debut' => [
                 'nullable',
                 'date_format:H:i',
                 function ($attribute, $value, $fail) use ($request) {
                     if ($request->date === now()->toDateString() && $value < now()->format('H:i')) {
-                        $fail("L'heure de début doit être postérieure à l'heure actuelle pour une excursion aujourd'hui.");
+                        $fail("L'heure de début doit être postérieure à l'heure actuelle.");
                     }
                 },
             ],
@@ -61,49 +61,67 @@ class ExcursionController extends Controller
             'adresse' => 'nullable|string|max:255',
             'equipements' => 'nullable|array',
             'equipements.*' => 'exists:equipements,idEquipement',
+            'telephones.*.numero' => 'nullable|string|max:20',
             'images.*' => 'nullable|image|mimes:jpeg,png|max:10240',
         ]);
 
+        // Création de l'excursion
         $excursion = Excursion::create([
             'titre' => $validated['titre'],
-            'description' => $validated['description'],
+            'description' => $validated['description'] ?? null,
+            'date' => $validated['date'] ?? null,
+            'heure_debut' => $validated['heure_debut'] ?? null,
             'duree' => $validated['duree'],
             'prix' => $validated['prix'],
             'devise' => $validated['devise'],
             'capacite_max' => $validated['capacite_max'],
-            'partenaire_id' => $partenaire->id,
+            'partenaire_id' => $partenaire->idPartenaire,
             'statut' => 'brouillon',
         ]);
 
-        $localisationData = array_filter([
-            'ville' => $request->ville,
-            'pays' => $request->pays,
-            'adresse' => $request->adresse,
-        ]);
-        if (!empty($localisationData)) {
-            $localisation = Localisations::create($localisationData);
+        // Sauvegarde des numéros de téléphone
+        foreach ($request->input('telephones', []) as $telData) {
+            if (!empty($telData['numero'])) {
+                $excursion->telephones()->create([
+                    'numero' => $telData['numero']
+                ]);
+            }
+        }
+
+        // Sauvegarde localisation
+        if ($request->filled(['ville', 'pays', 'adresse'])) {
+            $localisation = Localisations::create([
+                'ville' => $request->ville,
+                'pays' => $request->pays,
+                'adresse' => $request->adresse,
+            ]);
             $excursion->localisation_id = $localisation->idLocalisation;
             $excursion->save();
         }
 
-        ExcursionDate::create([
-            'idExcursion' => $excursion->id,
-            'date' => $request->date,
-            'heure_debut' => $request->heure_debut,
-            'places_disponibles' => $request->capacite_max,
-        ]);
+        // Création des dates disponibles
+        if ($request->date) {
+            ExcursionDate::create([
+                'idExcursion' => $excursion->id,
+                'date' => $request->date,
+                'heure_debut' => $request->heure_debut,
+                'places_disponibles' => $request->capacite_max,
+            ]);
+        }
 
-        if ($request->equipements) {
+        // Équipements
+        if ($request->has('equipements')) {
             $excursion->equipements()->attach($request->equipements);
         }
 
+        // Images
         if ($request->hasFile('images')) {
-            $newImages = $request->file('images');
-            if (count($newImages) > 10) {
+            $images = $request->file('images');
+            if (count($images) > 10) {
                 return back()->withErrors(['images' => 'Vous ne pouvez pas ajouter plus de 10 images.'])->withInput();
             }
 
-            foreach ($newImages as $index => $image) {
+            foreach ($images as $index => $image) {
                 $path = $image->store('excursions', 'public');
                 ImageExcursion::create([
                     'idExcursion' => $excursion->id,
@@ -111,13 +129,9 @@ class ExcursionController extends Controller
                     'estPrincipale' => $index === 0,
                 ]);
             }
-        } else {
-            Log::info('Aucune image reçue dans la requête.', ['files' => $request->allFiles()]);
         }
 
-        return redirect()->route('partenaire.dashboard')
-            ->with('success', 'Excursion ajoutée avec succès.');
+        return redirect()->route('partenaire.add.excursion')->with('success', 'Excursion ajoutée avec succès.');
     }
-
 
 }

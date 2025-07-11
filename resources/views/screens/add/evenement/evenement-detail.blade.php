@@ -1,5 +1,5 @@
 @extends('layout.base')
-@section('title', 'Détail propriété')
+@section('title', 'Property Detail')
 @section('content')
     <div class="container-fluid relative px-3">
         <div class="layout-specing">
@@ -116,61 +116,61 @@
 
 
             <div class="md:flex mt-4">
-                <!-- Image principale -->
-                <div class="lg:w-1/2 md:w-1/2 p-1">
-                    <div class="group relative overflow-hidden rounded-md shadow h-full">
-                        <img
-                            src="{{ $hebergement->imagePrincipale->estPrincipale ? asset('storage/' . $hebergement->imagePrincipale->url) : asset('/images/property/single/1.jpg') }}"
-                            alt="Image principale de {{ $hebergement->nom }}"
-                            class="w-full h-full object-cover"
-                        >
+    <!-- Image principale -->
+    <div class="lg:w-1/2 md:w-1/2 p-1">
+        <div class="group relative overflow-hidden rounded-md shadow h-full">
+            <img
+                src="{{ $hebergement->imagePrincipale ? asset('storage/' . $hebergement->imagePrincipale->url) : asset('/images/property/single/1.jpg') }}"
+                alt="Image principale de {{ $hebergement->nom }}"
+                class="w-full h-full object-cover"
+            >
+            <div class="absolute inset-0 group-hover:bg-slate-900/70 duration-500 ease-in-out"></div>
+            <div class="absolute top-1/2 -translate-y-1/2 start-0 end-0 text-center invisible group-hover:visible">
+                <a
+                    href="{{ $hebergement->imagePrincipale ? asset('storage/' . $hebergement->imagePrincipale->url) : asset('/images/property/single/1.jpg') }}"
+                    class="btn btn-icon bg-green-600 hover:bg-green-700 text-white rounded-full lightbox"
+                >
+                    <i class="mdi mdi-camera-outline"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Images secondaires -->
+    <div class="lg:w-1/2 md:w-1/2">
+        @php
+            // Jusqu’à 9 images secondaires (max total : 10 images avec la principale)
+            $imagesSecondaires = $hebergement->images->where('estPrincipale', false)->take(9);
+            $totalSecondaires = $imagesSecondaires->count();
+        @endphp
+
+        <div class="grid grid-cols-2 gap-2">
+            @foreach ($imagesSecondaires as $image)
+                <div class="p-1">
+                    <div class="group relative overflow-hidden rounded-md shadow">
+                        <img src="{{ asset('storage/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-48 object-cover">
                         <div class="absolute inset-0 group-hover:bg-slate-900/70 duration-500 ease-in-out"></div>
                         <div class="absolute top-1/2 -translate-y-1/2 start-0 end-0 text-center invisible group-hover:visible">
-                            <a
-                                href="{{ $hebergement->imagePrincipale ? asset('storage/' . $hebergement->imagePrincipale->url) : asset('/images/property/single/1.jpg') }}"
-                                class="btn btn-icon bg-green-600 hover:bg-green-700 text-white rounded-full lightbox"
-                            >
+                            <a href="{{ asset('storage/' . $image->url) }}" class="btn btn-icon bg-green-600 hover:bg-green-700 text-white rounded-full lightbox">
                                 <i class="mdi mdi-camera-outline"></i>
                             </a>
                         </div>
                     </div>
                 </div>
+            @endforeach
 
-                <!-- Images secondaires -->
-                <div class="lg:w-1/2 md:w-1/2">
-                    @php
-                        // Jusqu’à 9 images secondaires (max total : 10 images avec la principale)
-                        $imagesSecondaires = $hebergement->images->where('estPrincipale', false)->take(9);
-                        $totalSecondaires = $imagesSecondaires->count();
-                    @endphp
-
-                    <div class="grid grid-cols-2 gap-2">
-                        @foreach ($imagesSecondaires as $image)
-                            <div class="p-1">
-                                <div class="group relative overflow-hidden rounded-md shadow">
-                                    <img src="{{ asset('storage/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-48 object-cover">
-                                    <div class="absolute inset-0 group-hover:bg-slate-900/70 duration-500 ease-in-out"></div>
-                                    <div class="absolute top-1/2 -translate-y-1/2 start-0 end-0 text-center invisible group-hover:visible">
-                                        <a href="{{ asset('storage/' . $image->url) }}" class="btn btn-icon bg-green-600 hover:bg-green-700 text-white rounded-full lightbox">
-                                            <i class="mdi mdi-camera-outline"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        @endforeach
-
-                        {{-- @for ($i = $totalSecondaires; $i < 9; $i++)
-                            <div class="p-1">
-                                <div class="group relative overflow-hidden rounded-md shadow">
-                                    <img src="{{ asset('/images/property/single/placeholder.jpg') }}" alt="Image placeholder" class="w-full h-48 object-cover">
-                                </div>
-                            </div>
-                        @endfor --}}
+            {{-- @for ($i = $totalSecondaires; $i < 9; $i++)
+                <div class="p-1">
+                    <div class="group relative overflow-hidden rounded-md shadow">
+                        <img src="{{ asset('/images/property/single/placeholder.jpg') }}" alt="Image placeholder" class="w-full h-48 object-cover">
                     </div>
                 </div>
-            </div>
+            @endfor --}}
+        </div>
+    </div>
+</div>
 
-  
+
             <div class="grid lg:grid-cols-12 md:grid-cols-2 gap-6 mt-6">
                 <!-- Section détails -->
                 <div class="lg:col-span-8">
@@ -261,7 +261,7 @@
 
                         <div class="flex">
                             <div class="p-1 w-1/2">
-                                <a href="{{route('partenaire.hebergement-detail.edit', ['id' => $hebergement->id])}}" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md w-full">Modifier</a>
+                                <a href="{{route('partenaire.hebergement-detail.edit', ['id' => $hebergement->idHebergement])}}" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md w-full">Modifier</a>
                             </div>
                             <div class="p-1 w-1/2">
                                 {{-- <form action="{{route('partenaire.hebergement.destroy', ['id' => $hebergement->idHebergement])}}" method="post">
@@ -278,7 +278,7 @@
                         <div class="bg-white rounded-lg p-6 w-full max-w-md">
                             <h3 class="text-lg font-semibold mb-4">Confirmer la suppression</h3>
                             <p class="text-gray-600 mb-6">Êtes-vous sûr de vouloir supprimer l'hébergement "{{ $hebergement->nom }}" ? Cette action est irréversible.</p>
-                            <form action="{{ route('partenaire.hebergement.destroy', $hebergement->id) }}" method="POST">
+                            <form action="{{ route('partenaire.hebergement.destroy', $hebergement->idHebergement) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <div class="flex justify-end space-x-4">

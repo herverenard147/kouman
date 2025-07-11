@@ -88,10 +88,21 @@ Route::middleware(['auth:partenaire'])
             // Route::delete('images-hebergement/{id}', [ImageHebergementController::class, 'destroy']);
         });
 
+        Route::group(['prefix' => 'evenement'], function(){
+
+            Route::get('/', [HebergementController::class, 'index'])->name('partenaire.evenement');
+            Route::get('detail/{id}', [HebergementController::class, 'show'])->name('partenaire.evenement-detail.show');
+
+            Route::get('update/{id}', [HebergementController::class, 'edit'])->name('partenaire.evenement-detail.edit');
+            Route::put('update/{id}', [HebergementController::class, 'update'])->name('partenaire.evenement-detail.update');
+            Route::delete('delette/{id}', [HebergementController::class, 'destroy'])->name('partenaire.evenement.destroy');
+            // Route::delete('images-hebergement/{id}', [ImageHebergementController::class, 'destroy']);
+        });
+
         Route::get('review', fn() => view('screens.review'))->name('partenaire.review');
 
         Route::group(['prefix' => 'add'], function () {
-            Route::get('event', fn() => view('screens.add.event'))->name('partenaire.add.event');
+            Route::get('event', fn() => view('screens.add.evenement.evenement-add'))->name('partenaire.add.event');
             Route::get('excursion', [ExcursionController::class, 'createExcursion'])->name('partenaire.add.excursion');
             Route::get('hebergement', [HebergementController::class, 'create'])->name('partenaire.add.hebergement');
             Route::get('vol', fn() => view('screens.add.vol'))->name('partenaire.add.vol');

@@ -30,7 +30,7 @@
                     </ul>
                 </div>
             @endif
-            <form action="{{ route('partenaire.hebergement-detail.update', $hebergement->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('partenaire.hebergement-detail.update', $hebergement->idHebergement) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="container relative">
@@ -177,7 +177,7 @@
                                     <div class="md:col-span-4 col-span-12">
                                         <label for="idPolitiqueAnnulation" class="font-medium">Politique d'annulation :</label>
                                         <select name="idPolitiqueAnnulation" id="politiqueAnnulation" class="form-select w-full border border-gray-300 rounded-md p-2 @error('idPolitiqueAnnulation') border-red-500 @enderror">
-                                            <option value="{{ $hebergement->idPolitiqueAnnulation }}" selected>{{ $hebergement->politiqueAnnulation->nom ?? 'aucun' }}</option>
+                                            <option value="{{ $hebergement->idPolitiqueAnnulation }}" selected>{{ $hebergement->politiqueAnnulation->nom }}</option>
                                             @foreach($politiques as $politique)
                                                 <option value="{{ $politique->idPolitique }}" {{ old('idPolitiqueAnnulation', $hebergement->idPolitiqueAnnulation) == $politique->idPolitique ? 'selected' : '' }}>{{ $politique->nom }}</option>
                                             @endforeach
@@ -334,7 +334,7 @@
                                         </button>
                                     </div>
                                     <div class="md:col-span-12 col-span-12 flex justify-end space-x-4">
-                                        <a href="{{route('partenaire.hebergement-detail.show', ['id' => $hebergement->id])}}" class="btn bg-red-700 hover:bg-red-600 text-white rounded-md px-4 py-2">Annuler</a>
+                                        <a href="{{route('partenaire.hebergement-detail.show', ['id' => $hebergement->idHebergement])}}" class="btn bg-red-700 hover:bg-red-600 text-white rounded-md px-4 py-2">Annuler</a>
                                         <button type="submit" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md px-4 py-2">Mettre à jour</button>
                                     </div>
                                 </div>

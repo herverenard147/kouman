@@ -26,7 +26,7 @@
                                 <!-- Liste des hébergements -->
                                 @break
                             @case('agence_voyage')
-                                 <li><a href="{{ route('partenaire.add.offre_voyage') }}">Ajouter une offre de voyage</a></li>
+                                 <li><a href="{{ route('partenaire.add.vol') }}">Ajouter une offre de voyage</a></li>
                                  <li><a href="{{route('partenaire.add.event')}}">Événement</a></li>
                                 <!-- Liste des offres de voyage -->
                                 @break

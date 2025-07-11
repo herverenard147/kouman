@@ -37,7 +37,7 @@
                 <!-- Nom et lien -->
                 <div class="mb-4">
                     <a
-                        href="{{ route('partenaire.hebergement-detail.show', ['id' => $hebergement->id]) }}"
+                        href="{{ route('partenaire.hebergement-detail.show', ['id' => $hebergement->idHebergement]) }}"
                         class="text-lg font-semibold text-gray-800 hover:text-green-600 transition-colors duration-200"
                     >
                         {{ $hebergement->nom }}

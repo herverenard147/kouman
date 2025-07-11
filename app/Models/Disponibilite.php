@@ -8,6 +8,7 @@ class Disponibilite extends Model
 {
     protected $table = 'disponibilites';
     protected $fillable = [
+        'idHebergement',
         'dateDebut',
         'dateFin',
         'estDisponible'

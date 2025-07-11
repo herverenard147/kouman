@@ -22,4 +22,9 @@ class Equipement extends Model
     {
         return $this->belongsToMany(Excursion::class, 'equipements_excursions', 'idEquipement', 'idExcursion');
     }
+
+    public function evenements()
+    {
+        return $this->belongsToMany(Evenement::class, 'equipements_evenements', 'idEquipement', 'idEvenement');
+    }
 }

@@ -123,7 +123,7 @@
 
                             <div class="md:col-span-4 col-span-12">
                                 <label for="idPolitiqueAnnulation" class="font-medium">Politique d'annulation:</label>
-                                <select name="idPolitiqueAnnulation" id="politiqueAnnulation" class="form-select w-full border border-gray-300 rounded-md p-2 @error('idPolitiqueAnnulation') border-red-500 @enderror" >
+                                <select name="idPolitiqueAnnulation" id="idPolitiqueAnnulation" class="form-select w-full border border-gray-300 rounded-md p-2 @error('idPolitiqueAnnulation') border-red-500 @enderror" >
                                     <option value="" selected>Aucune</option>
                                     @foreach($politiques as $politique)
                                         <option value="{{ $politique->id }}" {{ old('idPolitiqueAnnulation') == $politique->id ? 'selected' : '' }}>{{ $politique->nom }}</option>
@@ -172,7 +172,7 @@
                             </div>
                             <div class="md:col-span-4 col-span-12">
                                 <label for="latitude" class="font-medium">Latitude <strong>*</strong>:</label>
-                                <input name="latitude" id="latitude" type="number" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror" placeholder="Latitude" value="{{ old('latitude') }}" required>
+                                <input name="latitude" id="latitude" type="texxt" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror" placeholder="Latitude" value="{{ old('latitude') }}" required>
                                 @error('latitude')
                                     <span class="text-red-600 text-sm">{{ $message }}</span>
                                 @enderror
@@ -180,7 +180,7 @@
 
                             <div class="md:col-span-4 col-span-12">
                                 <label for="longitude" class="font-medium">Longitude <strong>*</strong>:</label>
-                                <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror" placeholder="Longitude" value="{{ old('longitude') }}" required>
+                                <input name="longitude" id="longitude" type="text" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror" placeholder="Longitude" value="{{ old('longitude') }}" required>
                                 @error('longitude')
                                     <span class="text-red-600 text-sm">{{ $message }}</span>
                                 @enderror
@@ -549,18 +549,18 @@ function openMapPopup() {
         `width=${width},height=${height},top=${top},left=${left}`
     );
 
-    // Recevoir la position depuis la popup
-     window.addEventListener('message', function (event) {
-        if (event.origin !== window.location.origin) return;
-
-        const { latitude, longitude, adresse, ville, pays } = event.data;
-        document.getElementById('latitude').value = latitude;
-        document.getElementById('longitude').value = longitude;
-        document.getElementById('adresse').value = adresse;
-        document.getElementById('ville').value = ville;
-        document.getElementById('pays').value = pays;
-    }, false);
 }
+// Recevoir la position depuis la popup
+ window.addEventListener('message', function (event) {
+    if (event.origin !== window.location.origin) return;
+
+    const { latitude, longitude, adresse, ville, pays } = event.data;
+    document.getElementById('latitude').value = latitude;
+    document.getElementById('longitude').value = longitude;
+    document.getElementById('adresse').value = adresse;
+    document.getElementById('ville').value = ville;
+    document.getElementById('pays').value = pays;
+}, false);
 </script>
 
 <!-- JAVASCRIPTS -->

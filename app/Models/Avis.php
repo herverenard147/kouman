@@ -8,6 +8,7 @@ class Avis extends Model
 {
     protected $table = 'avis';
     protected $fillable = [
+        'idHebergement',
         'note',
         'commentaire',
         'dateAvis'
