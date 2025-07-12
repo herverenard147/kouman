@@ -27,7 +27,7 @@ class ExcursionController extends Controller
     public function createExcursion()
     {
         $equipements = Equipement::whereIn('type', ['excursion', 'inclus', 'optionnel'])->orWhereNull('type')->get();
-        return view('partenaire.excursion.create', compact('equipements'));
+        return view('screens.add.excursion.excursion-add', compact('equipements'));
     }
 
     public function storeExcursion(Request $request)

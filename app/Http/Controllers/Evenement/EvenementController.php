@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Evenement;
 
 
 use App\Models\Equipement;
-use App\Models\Excursion;
-use App\Models\ImageExcursion;
+use App\Models\Evenement;
+use App\Models\ImageEvenement;
 use App\Models\Localisation;
-use App\Models\ExcursionDate;
+use App\Models\EvenementDate;
 use App\Models\Localisations;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -23,13 +23,13 @@ class EvenementController extends Controller
         $this->middleware('auth:partenaire');
     }
 
-    public function createExcursion()
+    public function createEvenement()
     {
         $equipements = Equipement::all();
-        return view('screens.add.excursion.excursion-add', compact('equipements'));
+        return view('screens.add.evenement.evenement-add', compact('equipements'));
     }
 
-   public function storeExcursion(Request $request)
+   public function storeEvenement(Request $request)
     {
         $partenaire = Auth::guard('partenaire')->user();
 
@@ -39,7 +39,7 @@ class EvenementController extends Controller
                 'required',
                 'string',
                 'max:150',
-                Rule::unique('excursions')->where('partenaire_id', $partenaire->idPartenaire),
+                Rule::unique('evenements')->where('partenaire_id', $partenaire->idPartenaire),
             ],
             'description' => 'nullable|string',
             'date' => 'nullable|date|after_or_equal:today',
@@ -65,8 +65,8 @@ class EvenementController extends Controller
             'images.*' => 'nullable|image|mimes:jpeg,png|max:10240',
         ]);
 
-        // Création de l'excursion
-        $excursion = Excursion::create([
+        // Création de l'evenement
+        $evenement = Evenement::create([
             'titre' => $validated['titre'],
             'description' => $validated['description'] ?? null,
             'date' => $validated['date'] ?? null,
@@ -82,7 +82,7 @@ class EvenementController extends Controller
         // Sauvegarde des numéros de téléphone
         foreach ($request->input('telephones', []) as $telData) {
             if (!empty($telData['numero'])) {
-                $excursion->telephones()->create([
+                $evenement->telephones()->create([
                     'numero' => $telData['numero']
                 ]);
             }
@@ -95,14 +95,14 @@ class EvenementController extends Controller
                 'pays' => $request->pays,
                 'adresse' => $request->adresse,
             ]);
-            $excursion->localisation_id = $localisation->idLocalisation;
-            $excursion->save();
+            $evenement->localisation_id = $localisation->idLocalisation;
+            $evenement->save();
         }
 
         // Création des dates disponibles
         if ($request->date) {
-            ExcursionDate::create([
-                'idExcursion' => $excursion->id,
+            EvenementDate::create([
+                'idEvenement' => $evenement->id,
                 'date' => $request->date,
                 'heure_debut' => $request->heure_debut,
                 'places_disponibles' => $request->capacite_max,
@@ -111,7 +111,7 @@ class EvenementController extends Controller
 
         // Équipements
         if ($request->has('equipements')) {
-            $excursion->equipements()->attach($request->equipements);
+            $evenement->equipements()->attach($request->equipements);
         }
 
         // Images
@@ -122,16 +122,16 @@ class EvenementController extends Controller
             }
 
             foreach ($images as $index => $image) {
-                $path = $image->store('excursions', 'public');
-                ImageExcursion::create([
-                    'idExcursion' => $excursion->id,
+                $path = $image->store('evenements', 'public');
+                ImageEvenement::create([
+                    'idEvenement' => $evenement->id,
                     'url' => $path,
                     'estPrincipale' => $index === 0,
                 ]);
             }
         }
 
-        return redirect()->route('partenaire.add.excursion')->with('success', 'Excursion ajoutée avec succès.');
+        return redirect()->route('partenaire.add.evenement')->with('success', 'Evenement ajoutée avec succès.');
     }
 
 }

@@ -71,7 +71,7 @@ class RegisteredPartenaireController extends Controller
                 'type' => 'required|in:hotel,agence_voyage,compagnie_aerienne,residence',
                 'téléphone' => ['required', 'string', 'max:100'],
                 'adresse' => ['required', 'string', 'max:100'],
-                'siteWeb' => ['required', 'url', 'max:100'],
+                'siteWeb' => ['nullable', 'url', 'max:100'],
                 'AcceptT&C' => ['required', 'accepted']
                 // Tu peux décommenter si nécessaire :
                 // 'statut' => ['required', 'string', 'max:100'],

@@ -1,5 +1,5 @@
 @extends('layout.base')
-@section('title', 'Détail propriété')
+@section('title', 'Détail de {{ $hebergement->nom }}')
 @section('content')
     <div class="container-fluid relative px-3">
         <div class="layout-specing">
@@ -170,7 +170,7 @@
                 </div>
             </div>
 
-  
+
             <div class="grid lg:grid-cols-12 md:grid-cols-2 gap-6 mt-6">
                 <!-- Section détails -->
                 <div class="lg:col-span-8">

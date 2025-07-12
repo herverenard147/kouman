@@ -178,7 +178,7 @@
 
                         <div>
                             <label class="font-semibold block mb-2" for="siteWeb">Site Web :</label>
-                            <input name="siteWeb" id="siteWeb" type="url" class="form-input w-full @error('siteWeb') border-red-500 @enderror" placeholder="https://exemple.com" value="{{ old('siteWeb') }}" required>
+                            <input name="siteWeb" id="siteWeb" type="url" class="form-input w-full @error('siteWeb') border-red-500 @enderror" placeholder="https://exemple.com" value="{{ old('siteWeb') }}">
                             @error('siteWeb')
                                 <span class="text-red-600 text-sm">{{ $message }}</span>
                             @enderror

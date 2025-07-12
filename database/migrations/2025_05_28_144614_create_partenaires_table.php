@@ -18,7 +18,7 @@ return new class extends Migration
             $table->enum('type', ['hotel', 'agence_voyage', 'compagnie_aerienne', 'residence']);
             $table->string('téléphone', 100);
             $table->string('adresse', 100);
-            $table->string('siteWeb', 100);
+            $table->string('siteWeb', 100)->nullable();
             $table->string('statut', 100);
             $table->string('mot_de_passe', 255);
             $table->rememberToken();

@@ -1,16 +1,16 @@
 @extends('layout.base')
+@section('title', 'Ajouter un événement')
 
 @section('content')
 <div class="container relative">
     <div class="grid md:grid-cols-1 grid-cols-1 gap-6 mt-6">
-        <h5 class="text-lg font-semibold mb-6">Ajouter une nouvelle excursion</h5>
-        {{-- <form action="{{ route('partenaire.excursion.store') }}" method="POST" enctype="multipart/form-data"> --}}
-            <form action="">
+        <h5 class="text-lg font-semibold mb-6">Ajouter un nouvel événement</h5>
+        <form action="{{ route('partenaire.add.event.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <!-- Section Images -->
             <div class="rounded-md shadow p-6 bg-white h-fit mb-5">
                 <div>
-                    <p class="font-medium mb-4">Téléchargez les images de votre excursion (max 10 images, 10MB chacune, JPG/PNG)</p>
+                    <p class="font-medium mb-4">Téléchargez les images de votre événement (max 10 images, 10MB chacune, JPG/PNG)</p>
                     <div id="preview-box" class="preview-box flex flex-wrap gap-4 overflow-x-auto max-h-60 bg-gray-50 p-4 rounded-md shadow-inner text-center text-slate-400">
                         Supports JPG et PNG. Taille max : 10MB.
                     </div>
@@ -29,8 +29,8 @@
                 <div class="grid grid-cols-12 gap-5">
                     <!-- Titre -->
                     <div class="col-span-12">
-                        <label for="titre" class="font-medium">Titre de l'excursion :</label>
-                        <input name="titre" id="titre" type="text" class="form-input mt-2 @error('titre') border-red-500 @enderror" placeholder="Titre de l'excursion" value="{{ old('titre') }}" required>
+                        <label for="titre" class="font-medium">Titre de l'événement :</label>
+                        <input name="titre" id="titre" type="text" class="form-input mt-2 @error('titre') border-red-500 @enderror" placeholder="Titre de l'événement" value="{{ old('titre') }}" required>
                         @error('titre')
                             <span class="text-red-600 text-sm">{{ $message }}</span>
                         @enderror
@@ -38,15 +38,15 @@
                     <!-- Description -->
                     <div class="col-span-12">
                         <label for="description" class="font-medium">Description :</label>
-                        <textarea name="description" id="description" class="form-input mt-2 @error('description') border-red-500 @enderror" placeholder="Description de l'excursion">{{ old('description') }}</textarea>
+                        <textarea name="description" id="description" class="form-input mt-2 @error('description') border-red-500 @enderror" placeholder="Description de l'événement">{{ old('description') }}</textarea>
                         @error('description')
                             <span class="text-red-600 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
                     <!-- Date -->
                     <div class="col-span-6">
-                        <label for="date" class="font-medium">Date de l'excursion :</label>
-                        <input name="date" id="date" type="date" class="form-input mt-2 @error('date') border-red-500 @enderror" value="{{ old('date') }}">
+                        <label for="date" class="font-medium">Date de l'événement :</label>
+                        <input name="date" id="date" type="date" class="form-input mt-2 @error('date') border-red-500 @enderror" value="{{ old('date') }}" required>
                         @error('date')
                             <span class="text-red-600 text-sm">{{ $message }}</span>
                         @enderror
@@ -62,7 +62,7 @@
                     <!-- Durée -->
                     <div class="col-span-6">
                         <label for="duree" class="font-medium">Durée (en heures) :</label>
-                        <input name="duree" id="duree" type="number" step="0.1" min="0.5" max="24" class="form-input mt-2 @error('duree') border-red-500 @enderror" value="{{ old('duree') }}" required>
+                        <input name="duree" id="duree" type="number" step="0.1" min="0.5" max="24" class="form-input mt-2 @error('duree') border-red-500 @enderror" value="{{ old('duree') }}">
                         @error('duree')
                             <span class="text-red-600 text-sm">{{ $message }}</span>
                         @enderror
@@ -113,41 +113,21 @@
                             <span class="text-red-600 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="md:col-span-4 col-span-12">
-                        <label for="adresse" class="font-medium">Adresse (point de départ) :</label>
+                    <div class="col-span-12">
+                        <label for="adresse" class="font-medium">Adresse :</label>
                         <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror" value="{{ old('adresse') }}">
                         @error('adresse')
                             <span class="text-red-600 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="md:col-span-4 col-span-12">
-                        <label for="latitude" class="font-medium">Latitude <strong>*</strong>:</label>
-                        <input name="latitude" id="latitude" type="number" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror" placeholder="Latitude" value="{{ old('latitude') }}" required>
-                        @error('latitude')
-                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="md:col-span-4 col-span-12">
-                        <label for="longitude" class="font-medium">Longitude <strong>*</strong>:</label>
-                        <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror" placeholder="Longitude" value="{{ old('longitude') }}" required>
-                        @error('longitude')
-                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                        @enderror
-                    </div>
-                    <div class="md:col-span-4 col-span-12">
-                        <button type="button" onclick="openMapPopup()" class="btn bg-green-600 text-white rounded-md px-4 py-2">
-                            Ajouter ma localisation
-                        </button>
-                    </div>
                     <!-- Équipements -->
                     <div class="col-span-12">
                         <label class="font-medium">Équipements inclus :</label>
                         <div class="mt-2">
-                            @foreach($equipements as $equipement)
+                            @foreach(\App\Models\Equipement::whereIn('type', ['evenement', 'inclus', 'optionnel'])->orWhereNull('type')->get() as $equipement)
                                 <label class="inline-flex items-center mr-4">
                                     <input type="checkbox" name="equipements[]" value="{{ $equipement->idEquipement }}" class="form-checkbox" {{ in_array($equipement->idEquipement, old('equipements', [])) ? 'checked' : '' }}>
-                                    <span class="ml-2">{{ $equipement->nom }}</span>
+                                    <span class="ml-2">{{ $equipement->nom }} {{ $equipement->type ? "({$equipement->type})" : '' }}</span>
                                 </label>
                             @endforeach
                         </div>
@@ -155,32 +135,10 @@
                             <span class="text-red-600 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
-
-                    <div class="col-span-12">
-                        <label class="font-semibold block mb-2">Numéros de téléphone :</label>
-                        <div id="telephones-container">
-                            <div class="grid grid-cols-12 gap-2 mb-2">
-                                <div class="md:col-span-4 col-span-4">
-                                    <input name="telephones[0][numero]" type="text" class="form-input @error('telephones.0.numero') border-red-500 @enderror" placeholder="+2250700000000" value="{{ old('telephones.0.numero') }}">
-                                    @error('telephones.0.numero')
-                                        <span class="text-red-600 text-sm">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                        @error('telephones.*.numero')
-                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                        @enderror
-                        <button type="button" id="add-telephone" class="btn bg-white text-gray-800 border border-gray-300 hover:bg-gray-100 rounded-md mt-2">
-                            Ajouter un numéro
-                        </button>
-                    </div>
-
-
                     <!-- Boutons -->
                     <div class="col-span-12 flex justify-end space-x-4">
                         <a href="{{ route('partenaire.dashboard') }}" class="btn bg-gray-500 hover:bg-gray-600 text-white rounded-md px-4 py-2">Annuler</a>
-                        <button type="submit" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md px-4 py-2">Ajouter l'excursion</button>
+                        <button type="submit" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md px-4 py-2">Ajouter l'événement</button>
                     </div>
                 </div>
             </div>
@@ -202,7 +160,6 @@ function handleImageChange() {
     const currentCount = selectedFiles.length;
     const errors = [];
 
-    // Valider chaque fichier individuellement
     const validFiles = newFiles.filter(file => {
         if (selectedFiles.some(f => f.name === file.name && f.size === file.size)) {
             errors.push(`Le fichier "${file.name}" est déjà sélectionné.`);
@@ -219,7 +176,6 @@ function handleImageChange() {
         return true;
     });
 
-    // Vérifier la limite totale
     if (currentCount + validFiles.length > maxImages) {
         const allowedCount = maxImages - currentCount;
         if (allowedCount > 0) {
@@ -231,10 +187,8 @@ function handleImageChange() {
         }
     }
 
-    // Afficher les erreurs
     displayErrors(errors);
 
-    // Ajouter les fichiers valides
     validFiles.forEach(file => {
         selectedFiles.push(file);
         addImageToPreview(file);
@@ -331,24 +285,25 @@ function displayErrors(errors) {
     }
 }
 
-// Validation côté client
 document.querySelector('form').addEventListener('submit', function (e) {
     const errors = [];
     const today = new Date().toISOString().split('T')[0];
-    const dateExcursion = document.getElementById('date').value;
+    const dateEvenement = document.getElementById('date').value;
     const heureDebut = document.getElementById('heure_debut').value;
-    const duree = parseFloat(document.getElementById('duree').value);
+    const duree = parseFloat(document.getElementById('duree').value) || 0;
     const capaciteMax = parseInt(document.getElementById('capacite_max').value);
 
-    if (dateExcursion && dateExcursion < today) {
-        errors.push("La date de l'excursion doit être aujourd'hui ou postérieure.");
+    if (!dateEvenement) {
+        errors.push("La date de l'événement est requise.");
+    } else if (dateEvenement < today) {
+        errors.push("La date de l'événement doit être aujourd'hui ou postérieure.");
     }
 
-    if (heureDebut && dateExcursion === today) {
+    if (heureDebut && dateEvenement === today) {
         const now = new Date();
         const currentTime = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
         if (heureDebut < currentTime) {
-            errors.push("L'heure de début doit être postérieure à l'heure actuelle pour une excursion aujourd'hui.");
+            errors.push("L'heure de début doit être postérieure à l'heure actuelle pour un événement aujourd'hui.");
         }
     }
 
@@ -382,59 +337,6 @@ document.querySelector('form').addEventListener('submit', function (e) {
         form.querySelector('.form-errors').appendChild(errorDiv);
     }
 });
-
- let telephoneIndex = 1;
-
-    document.getElementById('add-telephone').addEventListener('click', function () {
-        const container = document.getElementById('telephones-container');
-
-        const newBlock = document.createElement('div');
-        newBlock.className = 'grid grid-cols-12 gap-2 mb-2';
-        newBlock.innerHTML = `
-            <div class="md:col-span-4 col-span-12">
-                <input name="telephones[${telephoneIndex}][numero]" type="text" class="form-input" placeholder="+2250700000000">
-            </div>
-            <div class="md:col-span-3 col-span-4">
-                <button type="button" class="remove-block btn text-red-600 border border-red-300 hover:bg-red-50 rounded-md px-2 py-1 w-full">
-                    Retirer
-                </button>
-            </div>
-        `;
-
-        container.appendChild(newBlock);
-        telephoneIndex++;
-    });
-
-    document.addEventListener('click', function (e) {
-        if (e.target && e.target.classList.contains('remove-block')) {
-            e.target.closest('.grid').remove();
-        }
-    });
-
-function openMapPopup() {
-    const width = 600;
-    const height = 500;
-    const left = (screen.width / 2) - (width / 2);
-    const top = (screen.height / 2) - (height / 2);
-
-    const mapWindow = window.open(
-        "/partenaire/localisation-popup", // à créer dans Laravel
-        "Localisation",
-        `width=${width},height=${height},top=${top},left=${left}`
-    );
-
-    // Recevoir la position depuis la popup
-     window.addEventListener('message', function (event) {
-        if (event.origin !== window.location.origin) return;
-
-        const { latitude, longitude, adresse, ville, pays } = event.data;
-        document.getElementById('latitude').value = latitude;
-        document.getElementById('longitude').value = longitude;
-        document.getElementById('adresse').value = adresse;
-        document.getElementById('ville').value = ville;
-        document.getElementById('pays').value = pays;
-    }, false);
-}
 </script>
 @endpush
 @endsection

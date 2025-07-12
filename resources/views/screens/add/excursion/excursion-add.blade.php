@@ -1,4 +1,5 @@
 @extends('layout.base')
+@section('title', 'Ajouter une excursion')
 
 @section('content')
 <div class="container relative">

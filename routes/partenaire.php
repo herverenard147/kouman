@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PartenaireController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\RegisteredPartenaireController;
+use App\Http\Controllers\Evenement\EvenementController;
 use App\Http\Controllers\Hebergement\HebergementController;
 use App\Http\Controllers\Hebergement\TypeHebergementController;
 
@@ -102,8 +103,10 @@ Route::middleware(['auth:partenaire'])
         Route::get('review', fn() => view('screens.review'))->name('partenaire.review');
 
         Route::group(['prefix' => 'add'], function () {
-            Route::get('event', fn() => view('screens.add.evenement.evenement-add'))->name('partenaire.add.event');
+            Route::get('event', [EvenementController::class, 'createEvenement'])->name('partenaire.add.event');
+            Route::post('event', [EvenementController::class, 'storeEvenement'])->name('partenaire.add.event.store');
             Route::get('excursion', [ExcursionController::class, 'createExcursion'])->name('partenaire.add.excursion');
+            Route::post('excursion', [ExcursionController::class, 'storeExcursion'])->name('partenaire.add.excursion.store');
             Route::get('hebergement', [HebergementController::class, 'create'])->name('partenaire.add.hebergement');
             Route::get('vol', fn() => view('screens.add.vol'))->name('partenaire.add.vol');
             Route::get('/types-par-famille/{idFamille}', [TypeHebergementController::class, 'getTypesByFamille']);
