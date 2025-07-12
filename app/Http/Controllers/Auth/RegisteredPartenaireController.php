@@ -69,9 +69,9 @@ class RegisteredPartenaireController extends Controller
                 'email' => ['required', 'string', 'email', 'max:100', 'unique:partenaires,email'],
                 'mot_de_passe' => ['required', 'confirmed', Rules\Password::defaults()],
                 'type' => 'required|in:hotel,agence_voyage,compagnie_aerienne,residence',
-                'téléphone' => ['required', 'string', 'max:100'],
+                'téléphone' => ['required', 'string', 'max:100', 'unique:partenaires,téléphone'],
                 'adresse' => ['required', 'string', 'max:100'],
-                'siteWeb' => ['nullable', 'url', 'max:100'],
+                'siteWeb' => ['nullable', 'url', 'max:100', 'unique:partenaires,siteWeb'],
                 'AcceptT&C' => ['required', 'accepted']
                 // Tu peux décommenter si nécessaire :
                 // 'statut' => ['required', 'string', 'max:100'],
@@ -98,6 +98,7 @@ class RegisteredPartenaireController extends Controller
                 'téléphone.required' => 'Le numéro de téléphone est requis.',
                 'téléphone.string' => 'Le numéro de téléphone doit être une chaîne de caractères.',
                 'téléphone.max' => 'Le numéro de téléphone ne doit pas dépasser 100 caractères.',
+                'téléphone.unique' => 'Ce numéro de téléphone est déjà utilisé.',
 
                 'adresse.required' => 'L\'adresse est requise.',
                 'adresse.string' => 'L\'adresse doit être une chaîne de caractères.',
@@ -106,6 +107,7 @@ class RegisteredPartenaireController extends Controller
                 'siteWeb.required' => 'L\'URL du site web est requise.',
                 'siteWeb.url' => 'L\'URL du site web doit être valide (ex. https://exemple.com).',
                 'siteWeb.max' => 'L\'URL du site web ne doit pas dépasser 100 caractères.',
+                'siteWeb.unique' => 'Cet URL est déjà utilisé.',
 
                 'AcceptT&C.required' => 'Vous devez accepter les termes et conditions.',
                 'AcceptT&C.accepted' => 'Vous devez accepter les termes et conditions.',

@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('partenaires', function (Blueprint $table) {
             $table->id();
             $table->string('nom_entreprise', 100);
-            $table->string('email', 100);
+            $table->string('email', 100)->unique();
             $table->enum('type', ['hotel', 'agence_voyage', 'compagnie_aerienne', 'residence']);
-            $table->string('téléphone', 100);
+            $table->string('téléphone', 100)->unique();
             $table->string('adresse', 100);
-            $table->string('siteWeb', 100)->nullable();
+            $table->string('siteWeb', 100)->nullable()->unique();
             $table->string('statut', 100);
             $table->string('mot_de_passe', 255);
             $table->rememberToken();
