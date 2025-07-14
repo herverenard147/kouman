@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 class Vol extends Model
 {
     protected $table = 'vols';
-    protected $primaryKey = 'idVol';
     protected $fillable = [
         'id',
         'numeroVol',

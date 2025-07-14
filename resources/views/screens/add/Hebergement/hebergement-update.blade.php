@@ -179,7 +179,7 @@
                                         <select name="idPolitiqueAnnulation" id="politiqueAnnulation" class="form-select w-full border border-gray-300 rounded-md p-2 @error('idPolitiqueAnnulation') border-red-500 @enderror">
                                             <option value="{{ $hebergement->idPolitiqueAnnulation }}" selected>{{ $hebergement->politiqueAnnulation->nom ?? 'aucun' }}</option>
                                             @foreach($politiques as $politique)
-                                                <option value="{{ $politique->idPolitique }}" {{ old('idPolitiqueAnnulation', $hebergement->idPolitiqueAnnulation) == $politique->idPolitique ? 'selected' : '' }}>{{ $politique->nom }}</option>
+                                                <option value="{{ $politique->id }}" {{ old('idPolitiqueAnnulation', $hebergement->idPolitiqueAnnulation) == $politique->id ? 'selected' : '' }}>{{ $politique->nom }}</option>
                                             @endforeach
                                         </select>
                                         @error('idPolitiqueAnnulation')

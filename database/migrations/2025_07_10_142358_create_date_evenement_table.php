@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('date_evenement', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('idEvenement')->constrained('evenements')->onDelete('cascade');
+            $table->date('date');
+            $table->time('heure_debut')->nullable();
             $table->timestamps();
         });
     }

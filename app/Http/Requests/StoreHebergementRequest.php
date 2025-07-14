@@ -24,7 +24,7 @@ class StoreHebergementRequest extends FormRequest
                 'max:255',
                 Rule::unique('hebergements', 'nom')
                     ->where(fn ($query) =>
-                        $query->where('id', Auth::guard('partenaire')->user()->id)
+                        $query->where('idPartenaire', Auth::guard('partenaire')->user()->id)
                     ),
             ],
             'idType' => ['required', 'exists:types_hebergement,id'],
@@ -32,7 +32,7 @@ class StoreHebergementRequest extends FormRequest
             'description' => ['nullable', 'string'],
             'prixParNuit' => ['required', 'numeric', 'min:0'],
             'devise' => ['required', 'string', 'in:EUR,USD,GBP,CAD,AUD,CFA'],
-            'idPolitiqueAnnulation' => ['nullable', 'exists:politiques_annulation,idPolitique'],
+            'idPolitiqueAnnulation' => ['nullable', 'exists:politiques_annulation,id'],
             'ville' => ['required', 'string', 'max:100'],
             'pays' => ['required', 'string', 'max:100'],
             'codePostal' => ['required', 'string', 'max:20'],
@@ -43,6 +43,7 @@ class StoreHebergementRequest extends FormRequest
             'nombreSallesDeBain' => ['required', 'integer', 'min:1'],
             'capaciteMax' => ['required', 'integer', 'min:1'],
             'heureArrivee' => ['nullable', 'date_format:H:i'],
+            'numeroDeTel' => ['required', 'string', 'regex:/^[0-9]{8,15}$/'],
             'heureDepart' => [
                 'nullable',
                 'date_format:H:i',

@@ -39,7 +39,7 @@ class ExcursionController extends Controller
                 'required',
                 'string',
                 'max:150',
-                Rule::unique('excursions')->where('partenaire_id', $partenaire->idPartenaire),
+                Rule::unique('excursions')->where('id', $partenaire->idPartenaire),
             ],
             'description' => 'nullable|string',
             'date' => 'required|date|after_or_equal:today',
@@ -62,6 +62,15 @@ class ExcursionController extends Controller
             'equipements' => 'nullable|array',
             'equipements.*' => 'exists:equipements,idEquipement',
             'images.*' => 'nullable|image|mimes:jpeg,png|max:10240',
+            'itineraire' => 'nullable|string',
+            'nom_guide' => 'nullable|string|max:150',
+            'langues' => 'nullable|array',
+            'langues.*' => 'string|max:50',
+            'recurrence' => 'nullable|in:ponctuelle,quotidienne,hebdomadaire,mensuelle',
+            'age_minimum' => 'nullable|integer|min:0',
+            'conditions' => 'nullable|string',
+            'paiements' => 'nullable|array',
+            'paiements.*' => 'string|max:50',
         ]);
 
         $excursion = Excursion::create([
@@ -73,6 +82,15 @@ class ExcursionController extends Controller
             'capacite_max' => $validated['capacite_max'],
             'partenaire_id' => $partenaire->id,
             'statut' => 'brouillon',
+
+            'itineraire' => $request->itineraire,
+            'nom_guide' => $request->nom_guide,
+            'langues' => $request->filled('langues') ? implode(',', $request->langues) : null,
+            'recurrence' => $request->recurrence ?? 'ponctuelle',
+            'age_minimum' => $request->age_minimum ?? 0,
+            'conditions' => $request->conditions,
+            'moyens_paiement' => $request->filled('paiements') ? implode(',', $request->paiements) : null,
+
         ]);
 
         $localisationData = array_filter([
@@ -118,6 +136,83 @@ class ExcursionController extends Controller
         return redirect()->route('partenaire.dashboard')
             ->with('success', 'Excursion ajoutée avec succès.');
     }
+
+    public function edit(Excursion $excursion)
+    {
+        // $this->authorize('update', $excursion); // facultatif
+
+        $excursion = Excursion::with(['equipements', 'localisation'])->findOrFail($excursion->id);
+        $equipements = Equipement::all();
+        return view('partenaire.excursion-detail.edit', compact('excursion', 'equipements'));
+    }
+
+    public function update(Request $request, Excursion $excursion)
+    {
+        $partenaire = Auth::guard('partenaire')->user();
+
+        $validated = $request->validate([
+            'titre' => [
+                'required', 'string', 'max:150',
+                Rule::unique('excursions')->ignore($excursion->id)->where(fn ($q) => $q->where('partenaire_id', $partenaire->idPartenaire))
+            ],
+            'description' => 'nullable|string',
+            'date' => 'required|date|after_or_equal:today',
+            'heure_debut' => 'nullable|date_format:H:i',
+            'duree' => 'required|numeric|min:0.5|max:24',
+            'prix' => 'required|numeric|min:0',
+            'devise' => 'required|in:CFA,EUR,USD,GBP,CAD,AUD',
+            'capacite_max' => 'required|integer|min:1',
+            'ville' => 'nullable|string|max:255',
+            'pays' => 'nullable|string|max:255',
+            'adresse' => 'nullable|string|max:255',
+            'itineraire' => 'nullable|string',
+            'nom_guide' => 'nullable|string|max:150',
+            'langues' => 'nullable|array',
+            'langues.*' => 'string|max:50',
+            'recurrence' => 'nullable|in:ponctuelle,quotidienne,hebdomadaire,mensuelle',
+            'age_minimum' => 'nullable|integer|min:0',
+            'conditions' => 'nullable|string',
+            'paiements' => 'nullable|array',
+            'paiements.*' => 'string|max:50',
+            'equipements' => 'nullable|array',
+            'equipements.*' => 'exists:equipements,idEquipement',
+            'latitude' => 'required|numeric',
+            'longitude' => 'required|numeric',
+            'images.*' => 'nullable|image|mimes:jpeg,jpg,png|max:10240',
+            'telephones' => 'nullable|array',
+            'telephones.*.numero' => 'nullable|string|max:20',
+        ]);
+
+        $excursion->update([
+            'titre' => $validated['titre'],
+            'description' => $validated['description'] ?? null,
+            'duree' => $validated['duree'],
+            'prix' => $validated['prix'],
+            'devise' => $validated['devise'],
+            'capacite_max' => $validated['capacite_max'],
+            'itineraire' => $request->itineraire,
+            'nom_guide' => $request->nom_guide,
+            'langues' => $request->filled('langues') ? implode(',', $request->langues) : null,
+            'recurrence' => $request->recurrence ?? 'ponctuelle',
+            'age_minimum' => $request->age_minimum ?? 0,
+            'conditions' => $request->conditions,
+            'moyens_paiement' => $request->filled('paiements') ? implode(',', $request->paiements) : null,
+        ]);
+
+        $excursion->localisation->update([
+            'ville' => $request->ville,
+            'pays' => $request->pays,
+            'adresse' => $request->adresse,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+        ]);
+        $excursion->equipements()->sync($request->equipements ?? []);
+
+        // facultatif : modifier localisation ou dates si besoin ici...
+
+        return redirect()->route('partenaire.dashboard')->with('success', 'Excursion modifiée avec succès.');
+    }
+
 
 
 }

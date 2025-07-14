@@ -39,7 +39,7 @@ class EvenementController extends Controller
                 'required',
                 'string',
                 'max:150',
-                Rule::unique('evenements')->where('partenaire_id', $partenaire->idPartenaire),
+                Rule::unique('evenements')->where('id', $partenaire->idPartenaire),
             ],
             'description' => 'nullable|string',
             'date' => 'nullable|date|after_or_equal:today',
@@ -75,7 +75,7 @@ class EvenementController extends Controller
             'prix' => $validated['prix'],
             'devise' => $validated['devise'],
             'capacite_max' => $validated['capacite_max'],
-            'partenaire_id' => $partenaire->idPartenaire,
+            'idPartenaire' => $partenaire->idPartenaire,
             'statut' => 'brouillon',
         ]);
 

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ComparaisonPrix extends Model
 {
+    protected $table = 'comparaison_prix'; 
     protected $fillable = [
         'client_id',
         'date_comparaison',

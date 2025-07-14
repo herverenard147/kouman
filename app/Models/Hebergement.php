@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Hebergement extends Model
 {
+
+    use HasFactory;
     protected $table = 'hebergements';
     protected $fillable = [
         'nom',
@@ -16,6 +19,7 @@ class Hebergement extends Model
         'idLocalisation',
         'idPartenaire',
         'noteMoyenne',
+        'numeroDeTel',
         'nombreChambres',
         'nombreSallesDeBain',
         'idPolitiqueAnnulation',
@@ -29,7 +33,7 @@ class Hebergement extends Model
     {
         return $this->belongsTo(Partenaire::class);
     }
-    
+
     public function type()
     {
         return $this->belongsTo(TypeHebergement::class, 'idType');

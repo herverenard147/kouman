@@ -21,8 +21,10 @@ return new class extends Migration
             $table->integer('placesDisponibles')->default(0);
             $table->enum('statut', ['actif', 'inactif'])->default('actif');
             $table->timestamps();
-
-            $table->foreign('id')->references('id')->on('partenaires');
+        });
+        Schema::table('vols', function (Blueprint $table) {
+            $table->unsignedBigInteger('idPartenaire'); // ou partenaire_id selon ta convention
+            $table->foreign('idPartenaire')->references('id')->on('partenaires')->onDelete('cascade');
         });
     }
 

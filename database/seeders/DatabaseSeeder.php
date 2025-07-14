@@ -2,22 +2,52 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $this->call([
+            LangueSeeder::class,
+            MoyenPaiementSeeder::class,
+            FamilleTypeHebergementSeeder::class,
+            TypeHebergementSeeder::class,
+            ClientSeeder::class,
+            UsersSeeder::class,
+            CustomersSeeder::class,
+            PartenaireSeeder::class,
+            AdministrateurSeeder::class,
+            LocalisationsSeeder::class,
+            HebergementSeeder::class,
+            PrixHebergementsSeeder::class,
+            DisponibilitesSeeder::class,
+            PolitiqueAnnulationSeeder::class,
+            ExcursionSeeder::class,
+            EquipementSeeder::class,
+            EvenementSeeder::class,
+            EquipementsExcursionsSeeder::class,
+            EquipementsEvenementSeeder::class,
+            HebergementEquipementSeeder::class,
+            ImagesSeeder::class,
+            ImagesHebergementsSeeder::class,
+            ImagesExcursionsSeeder::class,
+            ImagesEvenementSeeder::class,
+            // VolSeeder::class,
+            ExcursionDateSeeder::class,
+            ExcursionLangueSeeder::class,
+            ExcursionPaiementSeeder::class,
+            DateEvenementSeeder::class,
+            AvisSeeder::class,
+            AvisClientSeeder::class,
+            ComparaisonPrixSeeder::class,
+            OffreVoyageSeeder::class,
+            ReservationSeeder::class,
+            ServiceReserveSeeder::class,
+            ServiceInclusSeeder::class,
+            TransactionSeeder::class,
+            NotificationSeeder::class,
+            TelephonesSeeder::class,
         ]);
     }
 }

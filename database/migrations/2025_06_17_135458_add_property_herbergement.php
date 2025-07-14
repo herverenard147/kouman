@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('hebergements', function (Blueprint $table) {
-            $table->integer('numeroDeTel')->default(1)->after('nombreChambres');
+            $table->string('numeroDeTel')->after('nombreChambres');
         });
     }
 

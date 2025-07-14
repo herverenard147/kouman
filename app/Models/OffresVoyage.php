@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 class OffresVoyage extends Model
 {
     protected $table = 'offres_voyage';
-    protected $primaryKey = 'idOffreVoyage';
     protected $fillable = [
         'id',
         'titre',

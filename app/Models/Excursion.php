@@ -11,16 +11,19 @@ class Excursion extends Model
     protected $fillable = [
         'titre',
         'description',
-        'date',
-        'heure_debut',
         'duree',
         'prix',
-        'duree',
         'devise',
         'capacite_max',
         'partenaire_id',
-        'localisation_id',
-        'statut'
+        'statut',
+        'itineraire',
+        'nom_guide',
+        'langues',
+        'recurrence',
+        'age_minimum',
+        'conditions',
+        'moyens_paiement',
     ];
 
     public function images()
@@ -51,4 +54,15 @@ class Excursion extends Model
     {
         return $this->morphMany(Telephone::class, 'phoneable');
     }
+
+    public function langues()
+    {
+        return $this->belongsToMany(Langue::class, 'excursion_langue');
+    }
+
+    public function moyensPaiement()
+    {
+        return $this->belongsToMany(MoyenPaiement::class, 'excursion_paiement');
+    }
+
 }

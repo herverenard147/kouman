@@ -22,6 +22,7 @@
                             @case('hotel')
                                 <li><a href="{{route('partenaire.add.hebergement')}}">Hébergement</a></li>
                             @case('residence')
+                                <li><a href="{{route('partenaire.add.hebergement')}}">Hébergement</a></li>
                                  <li><a href="{{route('partenaire.add.event')}}">Événement</a></li>
                                 <!-- Liste des hébergements -->
                                 @break

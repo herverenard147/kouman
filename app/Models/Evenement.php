@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Evenement extends Model
 {
     protected $table = 'evenements';
-    protected $primaryKey = 'idEvenement';
     protected $fillable = ['titre', 'description', 'duree', 'prix', 'devise', 'capacite_max', 'partenaire_id', 'localisation_id', 'statut'];
 
     public function images()

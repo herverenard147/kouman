@@ -37,306 +37,187 @@
                     <div class="grid md:grid-cols-1 grid-cols-1 gap-6 mt-6">
                         <div class="md:col-span-12 col-span-12">
                             <div class="rounded-md shadow p-6 bg-white h-fit mb-5">
-                                {{-- <div class="relative rounded border border-gray-300 p-1 bg-white shadow max-w-[150px] image-preview" data-image-id="{{ $image->idImage }}">
-                                    <button type="button" class="absolute top-1 left-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 mark-delete-image" data-image-id="{{ $image->idImage }}">✕</button>
-                                    <img src="{{ asset('storage/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-auto object-cover rounded">
-                                    <input type="hidden" name="images_to_keep[{{ $image->idImage }}]" value="1" class="image-keep-input">
-                                    @if($image->estPrincipale)
-                                        <span class="absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded">Principale</span>
-                                    @endif
-                                </div> --}}
                                 <div>
-                                    {{-- <p class="font-medium mb-4">Téléchargez l'image de votre propriété ici (max 10 images, 10MB chacun)</p>
+                                    <p class="font-medium mb-4">Téléchargez les images de votre excursion (max 10 images, 10MB chacune, JPG/PNG)</p>
 
                                     <div id="preview-box" class="preview-box flex flex-wrap gap-4 overflow-x-auto max-h-60 bg-gray-50 p-4 rounded-md shadow-inner text-center text-slate-400">
-                                        @if($hebergement->images->isEmpty())
-                                            Supports JPG et PNG. Taille max : 10MB.
-                                        @else
-                                            @foreach($hebergement->images as $index => $image)
-                                                <div class="relative rounded border border-gray-300 p-1 bg-white shadow max-w-[150px] image-preview" data-image-id="{{ $image->idImage }}">
-                                                    <button type="button" class="absolute top-1 left-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 mark-delete-image" data-image-id="{{ $image->idImage }}">✕</button>
-                                                    <img src="{{ asset('storage/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-auto object-cover rounded">
-                                                    <input type="hidden" name="images_to_keep[{{ $image->idImage }}]" value="1" class="image-keep-input">
-                                                    @if($index === 0 && !$image->estSupprime)
-                                                        <span class="absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded principal-badge">Principale</span>
-                                                    @endif
+                                        @if(isset($excursionImages) && count($excursionImages) > 0)
+                                            @foreach($excursionImages as $image)
+                                                <div class="relative w-24 h-24">
+                                                    <img src="{{ asset('storage/' . $image->path) }}" alt="Image excursion" class="object-cover w-full h-full rounded-md">
+                                                    <!-- Ici tu peux ajouter un bouton pour supprimer l'image si besoin -->
                                                 </div>
                                             @endforeach
+                                        @else
+                                            Supports JPG et PNG. Taille max : 10MB.
                                         @endif
-                                        <!-- Conteneur pour les nouvelles images -->
-                                        <div id="new-images-preview" class="flex flex-wrap gap-4"></div>
                                     </div>
 
-                                    <input type="file" id="input-file" name="images[]" accept="image/jpeg,image/png" multiple hidden onchange="handleImageChange()">
-                                    <label for="input-file" class="btn-upload btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-6 cursor-pointer">
-                                        Ajouter des images
-                                    </label> --}}
-                                    <p class="font-medium mb-4">Téléchargez les images de votre propriété (max 10 images, 10MB chacune, JPG/PNG)</p>
-                                    <div id="preview-box" class="preview-box flex flex-wrap gap-4 overflow-x-auto max-h-60 bg-gray-50 p-4 rounded-md shadow-inner text-center text-slate-400">
-                                        @if($hebergement->images->isEmpty())
-                                            Supports JPG et PNG. Taille max : 10MB.
-                                        @else
-                                            @foreach($hebergement->images as $index => $image)
-                                                <div class="relative rounded border border-gray-300 p-1 bg-white shadow max-w-[150px] image-preview" data-image-id="{{ $image->idImage }}">
-                                                    <button type="button" class="absolute top-1 left-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 mark-delete-image" data-image-id="{{ $image->idImage }}">✕</button>
-                                                    <img src="{{ asset('storage/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-auto object-cover rounded">
-                                                    <input type="hidden" name="images_to_keep[{{ $image->idImage }}]" value="1" class="image-keep-input">
-                                                    @if($index === 0 && !$image->estSupprime)
-                                                        <span class="absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded principal-badge">Principale</span>
-                                                    @endif
-                                                </div>
-                                            @endforeach
-                                        @endif
-                                        <!-- Conteneur pour les nouvelles images -->
-                                        <div id="new-images-preview" class="flex flex-wrap gap-4"></div>
-                                    </div>
                                     <input type="file" id="input-file" name="images[]" accept="image/jpeg,image/png" multiple class="hidden" onchange="handleImageChange()">
                                     <label for="input-file" class="btn-upload btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-6 cursor-pointer inline-block">
                                         Ajouter des images
                                     </label>
-                                    <!-- Conteneur pour les erreurs JavaScript -->
                                     <div id="image-errors" class="text-red-600 text-sm mt-2"></div>
-                                    <!-- Erreurs Laravel -->
                                     @error('images.*')
                                         <span class="text-red-600 text-sm block mt-2">{{ $message }}</span>
                                     @enderror
                                 </div>
                             </div>
-                            @error('images.*')
-                                <span class="text-red-600 text-sm">{{ $message }}</span>
-                            @enderror
                         </div>
                         <div class="md:col-span-12 col-span-12">
-                            <div class="rounded-md shadow p-6 bg-white h-fit">
-                                <div class="grid grid-cols-12 gap-5">
-                                    <div class="col-span-12">
-                                        <label for="nom" class="font-medium">Nom :</label>
-                                        <input name="nom" id="nom" type="text" class="form-input mt-2 @error('nom') border-red-500 @enderror" placeholder="Nom de l'hébergement" value="{{ old('nom', $hebergement->nom) }}" required>
-                                        @error('nom')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                           <div class="rounded-md shadow p-6 bg-white h-fit mb-5">
+                            <div class="grid grid-cols-12 gap-5">
 
-                                    <div class="md:col-span-6 col-span-12">
-                                        <label class="font-semibold block mb-2" for="familyType">Famille d'hébergement :</label>
-                                        <select name="familyType" id="familyType" class="form-select w-full border border-gray-300 rounded-md p-2 @error('familyType') border-red-500 @enderror" required>
-                                            <option value="" disabled {{ old('familyType', $hebergement->type->idFamilleType) ? '' : 'selected' }}>-- Sélectionner une famille --</option>
-                                            @foreach($familles as $famille)
-                                                <option value="{{ $famille->idFamilleType }}" {{ old('familyType', $hebergement->type->idFamilleType) == $famille->idFamilleType ? 'selected' : '' }}>{{ $famille->nomFamille }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('familyType')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <!-- Titre -->
+                                <div class="col-span-12">
+                                    <label for="titre" class="font-medium">Titre de l'excursion :</label>
+                                    <input name="titre" id="titre" type="text" class="form-input mt-2 @error('titre') border-red-500 @enderror" placeholder="Titre de l'excursion" value="{{ old('titre', $excursion->titre ?? '') }}" required>
+                                    @error('titre') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
 
-                                    <div class="md:col-span-6 col-span-12">
-                                        <label class="font-semibold block mb-2" for="idType">Type d'hébergement :</label>
-                                        <select name="idType" id="typePartenaire" class="form-select w-full border border-gray-300 rounded-md p-2 @error('idType') border-red-500 @enderror" required>
-                                            <option value="{{ old('idType', $hebergement->type->nomType) }}" disabled {{ old('idType', $hebergement->type->idType) ? '' : 'selected' }}>{{ $hebergement->type->nomType }}</option>
-                                        </select>
-                                        @error('idType')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <!-- Description -->
+                                <div class="col-span-12">
+                                    <label for="description" class="font-medium">Description :</label>
+                                    <textarea name="description" id="description" class="form-input mt-2 @error('description') border-red-500 @enderror">{{ old('description', $excursion->description ?? '') }}</textarea>
+                                    @error('description') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
 
-                                    <div class="col-span-12">
-                                        <label for="description" class="font-medium">Description :</label>
-                                        <textarea name="description" id="description" rows="5" class="form-input mt-2 @error('description') border-red-500 @enderror" placeholder="Décrivez votre hébergement...">{{ old('description', $hebergement->description) }}</textarea>
-                                        @error('description')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <!-- Date de l'excursion -->
+                                <div class="col-span-6">
+                                    <label for="date" class="font-medium">Date de l'excursion :</label>
+                                    <input name="date" id="date" type="date" class="form-input mt-2 @error('date') border-red-500 @enderror" value="{{ old('date', optional($excursionDate)->date ?? '') }}">
+                                    @error('date') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
 
-                                    <div class="md:col-span-4 col-span-12">
-                                        <label for="prixParNuit" class="font-medium">Prix par nuit :</label>
-                                        <div class="form-icon relative mt-2">
-                                            <i class="bi bi-currency-dollar absolute top-2 start-4 text-green-600"></i>
-                                            <input name="prixParNuit" id="prixParNuit" type="number" step="0.01" class="form-input ps-11 @error('prixParNuit') border-red-500 @enderror" placeholder="0.00" value="{{ old('prixParNuit',$hebergement->prixParNuit) }}">
-                                        </div>
-                                        @error('prixParNuit')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <!-- Heure de début -->
+                                <div class="col-span-6">
+                                    <label for="heure_debut" class="font-medium">Heure de début :</label>
+                                    <input name="heure_debut" id="heure_debut" type="time" class="form-input mt-2 @error('heure_debut') border-red-500 @enderror" value="{{ old('heure_debut', optional($excursionDate)->heure_debut ?? '') }}">
+                                    @error('heure_debut') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
 
-                                    <div class="md:col-span-4 col-span-12">
-                                        <label for="devise" class="font-medium">Devise :</label>
-                                        <select name="devise" id="devise" class="form-select w-full border border-gray-300 rounded-md p-2 @error('devise') border-red-500 @enderror" required>
-                                            <option value="CFA" {{ old('devise', $hebergement->devise) == 'CFA' ? 'selected' : '' }}>CFA (CFA)</option>
-                                            <option value="EUR" {{ old('devise', $hebergement->devise) == 'EUR' ? 'selected' : '' }}>EUR (€)</option>
-                                            <option value="USD" {{ old('devise', $hebergement->devise) == 'USD' ? 'selected' : '' }}>USD ($)</option>
-                                            <option value="GBP" {{ old('devise', $hebergement->devise) == 'GBP' ? 'selected' : '' }}>GBP (£)</option>
-                                            <option value="CAD" {{ old('devise', $hebergement->devise) == 'CAD' ? 'selected' : '' }}>CAD (C$)</option>
-                                            <option value="AUD" {{ old('devise', $hebergement->devise) == 'AUD' ? 'selected' : '' }}>AUD (A$)</option>
-                                        </select>
-                                        @error('devise')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <!-- Durée -->
+                                <div class="col-span-6">
+                                    <label for="duree" class="font-medium">Durée (en heures) :</label>
+                                    <input name="duree" id="duree" type="number" step="0.1" min="0.5" max="24" class="form-input mt-2 @error('duree') border-red-500 @enderror" value="{{ old('duree', $excursion->duree ?? '') }}" required>
+                                    @error('duree') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
 
-                                    <div class="md:col-span-4 col-span-12">
-                                        <label for="idPolitiqueAnnulation" class="font-medium">Politique d'annulation :</label>
-                                        <select name="idPolitiqueAnnulation" id="politiqueAnnulation" class="form-select w-full border border-gray-300 rounded-md p-2 @error('idPolitiqueAnnulation') border-red-500 @enderror">
-                                            <option value="{{ $hebergement->idPolitiqueAnnulation }}" selected>{{ $hebergement->politiqueAnnulation->nom }}</option>
-                                            @foreach($politiques as $politique)
-                                                <option value="{{ $politique->idPolitique }}" {{ old('idPolitiqueAnnulation', $hebergement->idPolitiqueAnnulation) == $politique->idPolitique ? 'selected' : '' }}>{{ $politique->nom }}</option>
-                                            @endforeach
-                                        </select>
-                                        @error('idPolitiqueAnnulation')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <!-- Prix -->
+                                <div class="col-span-6">
+                                    <label for="prix" class="font-medium">Prix par personne :</label>
+                                    <input name="prix" id="prix" type="number" step="0.01" min="0" class="form-input mt-2 @error('prix') border-red-500 @enderror" value="{{ old('prix', $excursion->prix ?? '') }}" required>
+                                    @error('prix') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
 
-                                    <div class="md:col-span-6 col-span-12">
-                                        <label for="ville" class="font-medium">Ville :</label>
-                                        <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror" placeholder="Ville" value="{{ old('ville', $hebergement->localisation->ville) }}">
-                                        @error('ville')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <!-- Devise -->
+                                <div class="col-span-6">
+                                    <label for="devise" class="font-medium">Devise :</label>
+                                    <select name="devise" id="devise" class="form-input mt-2 @error('devise') border-red-500 @enderror" required>
+                                        @foreach(['CFA', 'EUR', 'USD', 'GBP', 'CAD', 'AUD'] as $dev)
+                                            <option value="{{ $dev }}" {{ old('devise', $excursion->devise ?? '') == $dev ? 'selected' : '' }}>{{ $dev }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('devise') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
 
-                                    <div class="md:col-span-6 col-span-12">
-                                        <label for="pays" class="font-medium">Pays :</label>
-                                        <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror" placeholder="Pays" value="{{ old('pays', $hebergement->localisation->pays) }}">
-                                        @error('pays')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <!-- Capacité maximale -->
+                                <div class="col-span-6">
+                                    <label for="capacite_max" class="font-medium">Capacité maximale :</label>
+                                    <input name="capacite_max" id="capacite_max" type="number" min="1" class="form-input mt-2 @error('capacite_max') border-red-500 @enderror" value="{{ old('capacite_max', $excursion->capacite_max ?? 1) }}" required>
+                                    @error('capacite_max') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
 
-                                    <div Saying-md class="col-span-4 col-span-12">
-                                        <label for="adresse" class="font-medium">Adresse :</label>
-                                        {{-- <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse')" placeholder="Adresse complète" value="{{ oldValue }}"> --}}
-                                        <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror" placeholder="Adresse complète" value="{{ old('adresse', $hebergement->localisation->adresse) }}">
-                                        @error('adresse')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <!-- Ville -->
+                                <div class="col-span-6">
+                                    <label for="ville" class="font-medium">Ville :</label>
+                                    <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror" value="{{ old('ville', $ville ?? '') }}">
+                                    @error('ville') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
 
-                                    <div class="md:col-span-4 col-span-12">
-                                        <label for="codePostal" class="font-medium">Code postal :</label>
-                                        <input name="codePostal" id="codePostal" type="text" class="form-input mt-2 @error('codePostal') border-red-500 @enderror" placeholder="Code postal" value="{{ old('codePostal', $hebergement->localisation->codePostal) }}">
-                                        @error('codePostal')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <!-- Pays -->
+                                <div class="col-span-6">
+                                    <label for="pays" class="font-medium">Pays :</label>
+                                    <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror" value="{{ old('pays', $pays ?? '') }}">
+                                    @error('pays') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
 
-                                    <div class="md:col-span-4 col-span-12">
-                                        <label for="latitude" class="font-medium">Latitude :</label>
-                                        <input name="latitude" id="latitude" type="number" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror" placeholder="Latitude" value="{{ old('latitude', $hebergement->localisation->latitude) }}">
-                                        @error('latitude')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <!-- Adresse -->
+                                <div class="col-span-6">
+                                    <label for="adresse" class="font-medium">Adresse (point de départ) :</label>
+                                    <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror" value="{{ old('adresse', $adresse ?? '') }}">
+                                    @error('adresse') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
 
-                                    <div class="md:col-span-4 col-span-12">
-                                        <label for="longitude" class="font-medium">Longitude :</label>
-                                        <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror" placeholder="Longitude" value="{{ old('longitude', $hebergement->localisation->longitude) }}">
-                                        @error('longitude')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <!-- Latitude -->
+                                <div class="col-span-3">
+                                    <label for="latitude" class="font-medium">Latitude :</label>
+                                    <input name="latitude" id="latitude" type="number" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror" value="{{ old('latitude', $latitude ?? '') }}" required>
+                                    @error('latitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
 
-                                    <div class="md:col-span-4 col-span-12">
-                                        <label for="nombreChambres" class="font-medium">Nombre de chambres :</label>
-                                        <div class="form-icon relative mt-2">
-                                            <i class="bi bi-door-open absolute top-3 start-4 text-green-600"></i>
-                                            <input name="nombreChambres" id="nombreChambres" type="number" class="form-input ps-11 @error('nombreChambres') border-red-500 @enderror" placeholder="0" value="{{ old('nombreChambres', $hebergement->nombreChambres) }}">
-                                        </div>
-                                        @error('nombreChambres')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <!-- Longitude -->
+                                <div class="col-span-3">
+                                    <label for="longitude" class="font-medium">Longitude :</label>
+                                    <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror" value="{{ old('longitude', $longitude ?? '') }}" required>
+                                    @error('longitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
 
-                                    <div class="md:col-span-4 col-span-12">
-                                        <label for="nombreSallesDeBain" class="font-medium">Nombre de salles de bain :</label>
-                                        <input name="nombreSallesDeBain" id="nombreSallesDeBain" type="number" class="form-input mt-2 @error('nombreSallesDeBain') border-red-500 @enderror" value="{{ old('nombreSallesDeBain', $hebergement->nombreSallesDeBain) }}">
-                                        @error('nombreSallesDeBain')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
+                                <!-- Bouton Carte -->
+                                <div class="col-span-12">
+                                    <button type="button" onclick="openMapPopup()" class="btn bg-green-600 text-white rounded-md px-4 py-2 mt-2">
+                                        Ajouter ma localisation
+                                    </button>
+                                </div>
 
-                                    <div class="md:col-span-4 col-span-12">
-                                        <label for="capaciteMax" class="font-medium">Capacité maximum :</label>
-                                        <div class="form-icon relative mt-2">
-                                            <i class="bi bi-person absolute top-3 start-4 text-green-600"></i>
-                                            <input name="capaciteMax" id="capaciteMax" type="number" class="form-input ps-11 @error('capaciteMax') border-red-500 @enderror" placeholder="1" value="{{ old('capaciteMax', $hebergement->capaciteMax) }}">
-                                        </div>
-                                        @error('capaciteMax')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
+                                <!-- Équipements -->
+                                <div class="col-span-12">
+                                    <label class="font-medium">Équipements inclus :</label>
+                                    <div class="mt-2">
+                                        @foreach($equipements as $equipement)
+                                            <label class="inline-flex items-center mr-4">
+                                                <input type="checkbox" name="equipements[]" value="{{ $equipement->id }}" class="form-checkbox"
+                                                {{ in_array($equipement->id, old('equipements', $excursionEquipementsIds ?? [])) ? 'checked' : '' }}>
+                                                <span class="ml-2">{{ $equipement->nom }}</span>
+                                            </label>
+                                        @endforeach
                                     </div>
+                                </div>
 
-                                    <div class="md:col-span-4 col-span-12">
-                                        <label for="heureArrivee" class="font-medium">Heure de check-in :</label>
-                                        <input name="heureArrivee" id="heureArrivee" type="time" class="form-input mt-2 @error('heureArrivee') border-red-500 @enderror" value="{{ old('heureArrivee', $hebergement->heureArrivee) }}">
-                                        @error('heureArrivee')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="md:col-span-4 col-span-12">
-                                        <label for="heureDepart" class="font-medium">Heure de check-out :</label>
-                                        <input name="heureDepart" id="heureDepart" type="time" class="form-input mt-2 @error('heureDepart') border-red-500 @enderror" value="{{ old('heureDepart', $hebergement->heureDepart) }}">
-                                        @error('heureDepart')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="col-span-12">
-                                        <label class="font-semibold block mb-2">Équipements :</label>
-                                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                            @foreach($equipements as $equipement)
-                                                <div class="flex items-center">
-                                                    <input type="checkbox" name="equipements[]" id="equipement_{{ $equipement->idEquipement }}" value="{{ $equipement->idEquipement }}" class="form-checkbox @error('equipements') border-red-500 @enderror" {{ in_array($equipement->idEquipement, old('equipements', $hebergement->equipements->pluck('idEquipement')->toArray())) ? 'checked' : '' }}>
-                                                    <label for="equipement_{{ $equipement->idEquipement }}" class="ms-2">{{ $equipement->nom }}</label>
+                                <!-- Téléphones -->
+                                <div class="col-span-12">
+                                    <label class="font-semibold block mb-2">Numéros de téléphone :</label>
+                                    <div id="telephones-container">
+                                        @php
+                                            $telephonesOld = old('telephones', $telephones ?? []);
+                                        @endphp
+                                        @foreach($telephonesOld as $index => $tel)
+                                            <div class="grid grid-cols-12 gap-2 mb-2">
+                                                <div class="col-span-4">
+                                                    <input name="telephones[{{ $index }}][numero]" type="text" class="form-input" placeholder="+2250700000000" value="{{ $tel['numero'] ?? '' }}">
                                                 </div>
-                                            @endforeach
-                                        </div>
-                                        @error('equipements')
-                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-
-                                    <div class="col-span-12">
-                                        <label class="font-semibold block mb-2">Prix saisonniers (optionnel) :</label>
-                                        <div id="prix-saisonniers-container">
-                                            @php $prixSaisonniers = old('prixSaisonniers', $hebergement->prixSaisonniers ?? [[]]); @endphp
-
-                                            @foreach($prixSaisonniers as $i => $saisonnier)
-                                                <div class="grid grid-cols-12 gap-2 mb-2">
-                                                    <div class="md:col-span-4 col-span-12">
-                                                        <label class="font-semibold block mb-2">Date de début :</label>
-                                                        <input name="prixSaisonniers[{{ $i }}][dateDebut]" type="date" class="form-input @error("prixSaisonniers.$i.dateDebut") border-red-500 @enderror" value="{{ old("prixSaisonniers.$i.dateDebut", $saisonnier['dateDebut'] ?? '') }}">
-                                                        @error("prixSaisonniers.$i.dateDebut")
-                                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="md:col-span-4 col-span-12">
-                                                        <label class="font-semibold block mb-2">Date de fin :</label>
-                                                        <input name="prixSaisonniers[{{ $i }}][dateFin]" type="date" class="form-input @error("prixSaisonniers.$i.dateFin") border-red-500 @enderror" value="{{ old("prixSaisonniers.$i.dateFin", $saisonnier['dateFin'] ?? '') }}">
-                                                        @error("prixSaisonniers.$i.dateFin")
-                                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
-                                                    <div class="md:col-span-4 col-span-12">
-                                                        <label class="font-semibold block mb-2">Prix par nuit :</label>
-                                                        <input name="prixSaisonniers[{{ $i }}][prixParNuit]" type="number" step="0.01" class="form-input @error("prixSaisonniers.$i.prixParNuit") border-red-500 @enderror" value="{{ old("prixSaisonniers.$i.prixParNuit", $saisonnier['prixParNuit'] ?? '') }}">
-                                                        @error("prixSaisonniers.$i.prixParNuit")
-                                                            <span class="text-red-600 text-sm">{{ $message }}</span>
-                                                        @enderror
-                                                    </div>
+                                            </div>
+                                        @endforeach
+                                        @if(count($telephonesOld) === 0)
+                                            <div class="grid grid-cols-12 gap-2 mb-2">
+                                                <div class="col-span-4">
+                                                    <input name="telephones[0][numero]" type="text" class="form-input" placeholder="+2250700000000" value="">
                                                 </div>
-                                            @endforeach
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <button type="button" id="add-telephone" class="btn bg-white text-gray-800 border border-gray-300 hover:bg-gray-100 rounded-md mt-2">
+                                        Ajouter un numéro
+                                    </button>
+                                </div>
 
-                                        </div>
-                                        <button type="button" id="add-prix-saison" class="btn bg-white text-gray-800 border border-gray-300 hover:bg-gray-100 rounded-md mt-2">
-                                            Ajouter une période
-                                        </button>
-                                    </div>
-                                    <div class="md:col-span-12 col-span-12 flex justify-end space-x-4">
-                                        <a href="{{route('partenaire.hebergement-detail.show', ['id' => $hebergement->idHebergement])}}" class="btn bg-red-700 hover:bg-red-600 text-white rounded-md px-4 py-2">Annuler</a>
-                                        <button type="submit" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md px-4 py-2">Mettre à jour</button>
-                                    </div>
+                                {{-- 🎯 NOUVEAUX CHAMPS ICI --}}
+                                @include('client.partials.excursion_extras')
+
+                                <!-- Boutons -->
+                                <div class="col-span-12 flex justify-end space-x-4 mt-6">
+                                    <a href="{{ route('partenaire.dashboard') }}" class="btn bg-gray-500 hover:bg-gray-600 text-white rounded-md px-4 py-2">Annuler</a>
+                                    <button type="submit" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md px-4 py-2">Mettre à jour l'excursion</button>
                                 </div>
                             </div>
                         </div>
