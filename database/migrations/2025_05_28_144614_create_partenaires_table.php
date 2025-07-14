@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nom_entreprise', 100);
             $table->string('email', 100)->unique();
-            $table->enum('type', ['hotel', 'agence_voyage', 'compagnie_aerienne', 'residence']);
+            $table->enum('type', ['hotel', 'agence_voyage', 'compagnie_aerienne', 'residence', 'evenementiel']);
             $table->string('téléphone', 100)->unique();
             $table->string('adresse', 100);
             $table->string('siteWeb', 100)->nullable()->unique();

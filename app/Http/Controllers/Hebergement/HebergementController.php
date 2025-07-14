@@ -39,7 +39,7 @@ class HebergementController extends Controller
         $equipements = Equipement::all();
         $politiques = PolitiquesAnnulation::all();
         // dd($familles, $equipements, $politiques);
-        return view('screens.add.hebergement.hebergement-add', compact('familles', 'equipements', 'politiques'));
+        return view('screens.add.Hebergement.hebergement-add', compact('familles', 'equipements', 'politiques'));
     }
 
     /**
@@ -146,7 +146,7 @@ class HebergementController extends Controller
             ->where('idPartenaire', $partenaireId)
             ->findOrFail($id);
 
-            return view('screens.add.hebergement.hebergement-detail', compact('hebergement'));
+            return view('screens.add.Hebergement.hebergement-detail', compact('hebergement'));
         } catch (\Exception $e) {
             dd($e->getMessage(), $e->getTraceAsString());
         }
@@ -174,7 +174,7 @@ class HebergementController extends Controller
         $equipements = Equipement::all();
         $politiques = PolitiquesAnnulation::all();
         // dd($hebergement, $familles, $equipements, $politiques);
-        return view('screens.add.hebergement.hebergement-update', compact('hebergement', 'familles', 'equipements', 'politiques'));
+        return view('screens.add.Hebergement.hebergement-update', compact('hebergement', 'familles', 'equipements', 'politiques'));
     }
 
     /**

@@ -20,21 +20,23 @@
                     <ul>
                         @switch(Auth::guard('partenaire')->user()->type)
                             @case('hotel')
-                                <li><a href="{{route('partenaire.add.hebergement')}}">Hébergement</a></li>
+                                <li><a href="{{route('partenaire.add.hebergement')}}">Vos Hébergements</a></li>
+                                <li><a href="{{route('partenaire.add.event')}}">Vos Événements</a></li>
                             @case('residence')
-                                <li><a href="{{route('partenaire.add.hebergement')}}">Hébergement</a></li>
-                                 <li><a href="{{route('partenaire.add.event')}}">Événement</a></li>
+                                <li><a href="{{route('partenaire.add.hebergement')}}">Vos Hébergements</a></li>
+                                 <li><a href="{{route('partenaire.add.event')}}">Vos Événements</a></li>
                                 <!-- Liste des hébergements -->
                                 @break
                             @case('agence_voyage')
-                                 <li><a href="{{ route('partenaire.add.vol') }}">Ajouter une offre de voyage</a></li>
-                                 <li><a href="{{route('partenaire.add.event')}}">Événement</a></li>
+                                 <li><a href="{{ route('partenaire.add.vol') }}">Vos voyages</a></li>
                                 <!-- Liste des offres de voyage -->
                                 @break
                             @case('compagnie_aerienne')
-                                 <li><a href="{{ route('partenaire.add.vol') }}">Ajouter un vol</a></li>
-                                 <li><a href="{{route('partenaire.add.event')}}">Événement</a></li>
+                                 <li><a href="{{ route('partenaire.add.vol') }}">Vos vols</a></li>
                                 <!-- Liste des vols -->
+                                @break
+                            @case('evenementiel')
+                                <li><a href="{{route('partenaire.add.event')}}">Vos Événements</a></li>
                                 @break
                         @endswitch
                         <li><a href="{{route('partenaire.add.excursion')}}">Excursion</a></li>

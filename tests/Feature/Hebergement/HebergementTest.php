@@ -39,7 +39,7 @@ class HebergementTest extends TestCase
         $response = $this->get(route('partenaire.hebergement'));
 
         $response->assertStatus(200);
-        $response->assertViewIs('screens.add.hebergement.hebergement');
+        $response->assertViewIs('screens.add.Hebergement.hebergement');
     }
 
     /** @test */
@@ -50,7 +50,7 @@ class HebergementTest extends TestCase
         $response = $this->get(route('partenaire.add.hebergement'));
 
         $response->assertStatus(200);
-        $response->assertViewIs('screens.add.hebergement.hebergement-add');
+        $response->assertViewIs('screens.add.Hebergement.hebergement-add');
     }
 
     /** @test */
@@ -122,7 +122,7 @@ public function test_un_partenaire_peut_afficher_le_detail_d_un_hebergement()
 
     // ✅ Assertions
     $response->assertStatus(200);
-    $response->assertViewIs('screens.add.hebergement.hebergement-detail');
+    $response->assertViewIs('screens.add.Hebergement.hebergement-detail');
 }
 
     /** @test */
@@ -137,7 +137,7 @@ public function test_un_partenaire_peut_afficher_le_detail_d_un_hebergement()
         $response = $this->get(route('partenaire.hebergement-detail.edit', $hebergement->id));
 
         $response->assertStatus(200);
-        $response->assertViewIs('screens.add.hebergement.hebergement-update');
+        $response->assertViewIs('screens.add.Hebergement.hebergement-update');
     }
 
     /** @test */
