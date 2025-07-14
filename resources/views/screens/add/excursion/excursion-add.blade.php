@@ -153,7 +153,7 @@
                             </div>
 
                             {{-- 🎯 NOUVEAUX CHAMPS ICI --}}
-                            @include('client.partials.excursion_extras')
+                            {{-- @include('client.partials.excursion_extras') --}}
 
                             <!-- Boutons -->
                             <div class="col-span-12 flex justify-end space-x-4 mt-6">
