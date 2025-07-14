@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             ImagesHebergementsSeeder::class,
             ImagesExcursionsSeeder::class,
             ImagesEvenementSeeder::class,
-            // VolSeeder::class,
+            VolSeeder::class,
             ExcursionDateSeeder::class,
             ExcursionLangueSeeder::class,
             ExcursionPaiementSeeder::class,

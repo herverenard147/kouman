@@ -24,8 +24,8 @@ class HebergementSeeder extends Seeder
                 'heureArrivee' => '14:00:00',
                 'heureDepart' => '12:00:00',
                 'idType' => 1,
-                'idLocalisation' => 5,
-                'idPartenaire' => 6,
+                'idLocalisation' => 1,
+                'idPartenaire' => 1,
                 'idPolitiqueAnnulation' => 1,
             ],
             [
@@ -42,8 +42,8 @@ class HebergementSeeder extends Seeder
                 'heureArrivee' => '15:00:00',
                 'heureDepart' => '11:00:00',
                 'idType' => 2,
-                'idLocalisation' => 4,
-                'idPartenaire' => 5,
+                'idLocalisation' => 2,
+                'idPartenaire' => 2,
                 'idPolitiqueAnnulation' => 2,
             ],
             [
@@ -61,7 +61,7 @@ class HebergementSeeder extends Seeder
                 'heureDepart' => '11:00:00',
                 'idType' => 3,
                 'idLocalisation' => 3,
-                'idPartenaire' => 7,
+                'idPartenaire' => 3,
                 'idPolitiqueAnnulation' => 1,
             ]
         ];

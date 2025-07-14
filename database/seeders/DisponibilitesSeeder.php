@@ -15,13 +15,13 @@ class DisponibilitesSeeder extends Seeder
                 'dateDebut' => now()->toDateString(),
                 'dateFin' => now()->addDays(5)->toDateString(),
                 'estDisponible' => 1,
-                'idHebergement' => 11,
+                'idHebergement' => 4,
             ],
             [
                 'dateDebut' => now()->addDays(6)->toDateString(),
                 'dateFin' => now()->addDays(10)->toDateString(),
                 'estDisponible' => 0,
-                'idHebergement' => 12,
+                'idHebergement' => 2,
             ],
         ];
 

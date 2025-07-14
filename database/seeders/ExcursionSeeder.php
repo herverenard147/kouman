@@ -18,7 +18,7 @@ class ExcursionSeeder extends Seeder
                 'devise' => 'CFA',
                 'duree' => 6,
                 'capacite_max' => 20,
-                'partenaire_id' => 6,
+                'partenaire_id' => 1,
                 'localisation_id' => 3,
                 'statut' => 'brouillon',
             ],

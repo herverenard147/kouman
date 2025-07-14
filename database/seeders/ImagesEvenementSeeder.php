@@ -13,27 +13,27 @@ class ImagesEvenementSeeder extends Seeder
     {
         $images = [
             [
-                'idEvenement' => 3,
+                'idEvenement' => 1,
                 'url' => 'uploads/evenements/image1.jpg',
                 // 'description' => 'Affiche principale de l’événement culturel',
             ],
             [
-                'idEvenement' => 3,
+                'idEvenement' => 1,
                 'url' => 'uploads/evenements/image2.jpg',
                 // 'description' => 'Scène pendant la soirée',
             ],
             [
-                'idEvenement' => 4,
+                'idEvenement' => 2,
                 'url' => 'uploads/evenements/image3.jpg',
                 // 'description' => 'Photo du lieu de l’événement musical',
             ],
             [
-                'idEvenement' => 4,
+                'idEvenement' => 2,
                 'url' => 'uploads/evenements/image4.jpg',
                 // 'description' => 'Ambiance générale',
             ],
             [
-                'idEvenement' => 4,
+                'idEvenement' => 2,
                 'url' => 'uploads/evenements/image5.jpg',
                 // 'description' => 'Vue du public',
             ],

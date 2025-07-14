@@ -1,4 +1,3 @@
-
 @extends('layout.base')
 @section('title', 'Mes Propriétés')
 @section('content')

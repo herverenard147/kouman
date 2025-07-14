@@ -11,8 +11,8 @@ class ExcursionPaiementSeeder extends Seeder
     public function run(): void
     {
         $paiements = [
-            ['excursion_id' => 3, 'moyen_paiement_id' => 1],
-            ['excursion_id' => 3, 'moyen_paiement_id' => 2],
+            ['excursion_id' => 1, 'moyen_paiement_id' => 1],
+            ['excursion_id' => 1, 'moyen_paiement_id' => 2],
             // ['excursion_id' => 2, 'moyen_paiement_id' => 3],
         ];
 

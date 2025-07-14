@@ -11,8 +11,8 @@ class EquipementsExcursionsSeeder extends Seeder
     public function run(): void
     {
         $relations = [
-            ['idExcursion' => 3, 'idEquipement' => 6], // Wi-Fi
-            ['idExcursion' => 3, 'idEquipement' => 7], // Parking
+            ['idExcursion' => 1, 'idEquipement' => 1], // Wi-Fi
+            ['idExcursion' => 1, 'idEquipement' => 2], // Parking
         ];
 
         foreach ($relations as $relation) {

@@ -11,11 +11,11 @@ class ImagesHebergementsSeeder extends Seeder
     public function run(): void
     {
         $images = [
-            ['idHebergement' => 10, 'url' => 'images/hebergements/he1.jpg',
+            ['idHebergement' => 4, 'url' => 'images/hebergements/he1.jpg',
         'estPrincipale' => true],
-            ['idHebergement' => 11, 'url' => 'images/hebergements/he1_alt.jpg',
+            ['idHebergement' => 2, 'url' => 'images/hebergements/he1_alt.jpg',
         'estPrincipale' => false],
-            ['idHebergement' => 12, 'url' => 'images/hebergements/he2.jpg',
+            ['idHebergement' => 3, 'url' => 'images/hebergements/he2.jpg',
         'estPrincipale' => true],
         ];
 

@@ -12,9 +12,9 @@ class HebergementEquipementSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ['idHebergement' => 10, 'idEquipement' => 5],
-            ['idHebergement' => 11, 'idEquipement' => 6],
-            ['idHebergement' => 12, 'idEquipement' => 7],
+            ['idHebergement' => 4, 'idEquipement' => 1],
+            ['idHebergement' => 3, 'idEquipement' => 2],
+            ['idHebergement' => 2, 'idEquipement' => 3],
         ];
 
         foreach ($data as $item) {

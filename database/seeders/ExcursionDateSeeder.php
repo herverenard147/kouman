@@ -12,7 +12,7 @@ class ExcursionDateSeeder extends Seeder
     {
         $dates = [
             [
-                'idExcursion' => 3,
+                'idExcursion' => 1,
                 'date' => now()->addDays(5)->format('Y-m-d'),
                 'heure_debut' => '08:00:00',
                 'places_disponibles' => 12,

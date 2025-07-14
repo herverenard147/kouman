@@ -11,9 +11,9 @@ class ImagesExcursionsSeeder extends Seeder
     public function run(): void
     {
         $images = [
-            ['idExcursion' => 3, 'idImage' => 1, 'url' => 'images/excursions/img1.jpg',
+            ['idExcursion' => 1, 'idImage' => 1, 'url' => 'images/excursions/img1.jpg',
         'estPrincipale' => true],
-            ['idExcursion' => 3, 'idImage' => 2, 'url' => 'images/excursions/img1_alt.jpg',
+            ['idExcursion' => 1, 'idImage' => 2, 'url' => 'images/excursions/img1_alt.jpg',
         'estPrincipale' => false],
         ];
 

@@ -13,14 +13,14 @@ class DateEvenementSeeder extends Seeder
     {
         $data = [
             [
-                'idEvenement' => 4,
+                'idEvenement' => 1,
                 'date' => '2025-08-10',
                 'heure_debut' => '18:00:00',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
             [
-                'idEvenement' => 3,
+                'idEvenement' => 2,
                 'date' => '2025-08-11',
                 'heure_debut' => '16:30:00',
                 'created_at' => Carbon::now(),

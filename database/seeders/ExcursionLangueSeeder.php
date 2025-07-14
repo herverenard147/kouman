@@ -11,8 +11,8 @@ class ExcursionLangueSeeder extends Seeder
     public function run(): void
     {
         $langues = [
-            ['excursion_id' => 3, 'langue_id' => 1],
-            ['excursion_id' => 3, 'langue_id' => 2],
+            ['excursion_id' => 1, 'langue_id' => 1],
+            ['excursion_id' => 1, 'langue_id' => 2],
             // ['excursion_id' => 2, 'langue_id' => 1],
         ];
 

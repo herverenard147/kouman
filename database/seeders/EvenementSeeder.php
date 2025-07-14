@@ -19,8 +19,8 @@ class EvenementSeeder extends Seeder
                 'devise' => 'CFA',
                 'capacite_max' => 100,
                 'statut' => 'actif',
-                'idPartenaire' => 7,
-                'idLocalisation' => 4,
+                'idPartenaire' => 1,
+                'idLocalisation' => 1,
             ],
             [
                 'titre' => 'Balade artistique',
@@ -30,7 +30,7 @@ class EvenementSeeder extends Seeder
                 'devise' => 'EUR',
                 'capacite_max' => 30,
                 'statut' => 'brouillon',
-                'idPartenaire' => 6,
+                'idPartenaire' => 2,
                 'idLocalisation' => 3,
             ],
         ];

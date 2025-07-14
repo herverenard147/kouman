@@ -21,7 +21,7 @@ class OffreVoyageSeeder extends Seeder
                 'destination' => 'Grand-Bassam',
                 'dureeJours' => 4,
                 'statut' => 'actif',
-                'idPartenaire' => 5
+                'idPartenaire' => 3
             ]
         ];
 
