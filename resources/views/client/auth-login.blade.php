@@ -1,6 +1,6 @@
 @include('client.Base.style.no-header')
 
-@section('title', 'Auth-Login - Hously')
+@section('title', 'Se connecter')
 
 @section('content')
     <section class="md:h-screen py-36 flex items-center relative overflow-hidden zoom-image">

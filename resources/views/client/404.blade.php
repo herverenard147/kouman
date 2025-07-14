@@ -19,7 +19,7 @@
                             for wasn't found.</p>
 
                         <div class="mt-4">
-                            <a href="{{ url('index') }}"
+                            <a href="{{ route('home') }}"
                                 class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md">
                                 Back to Home
                             </a>

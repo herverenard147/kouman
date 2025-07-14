@@ -2,169 +2,195 @@
 @section('title', 'Ajouter une excursion')
 
 @section('content')
-<div class="container relative">
-    <div class="grid md:grid-cols-1 grid-cols-1 gap-6 mt-6">
-        <h5 class="text-lg font-semibold mb-6">Ajouter une nouvelle excursion</h5>
-        {{-- <form action="{{ route('partenaire.excursion.store') }}" method="POST" enctype="multipart/form-data"> --}}
-        <form action="">
-            @csrf
-            <div class="container relative">
-                <div class="grid md:grid-cols-1 grid-cols-1 gap-6 mt-6">
-                    <!-- Section Images -->
-                    <div class="rounded-md shadow p-6 bg-white h-fit mb-5">
-                        <div>
-                            <p class="font-medium mb-4">Téléchargez les images de votre excursion (max 10 images, 10MB chacune, JPG/PNG)</p>
-                            <div id="preview-box" class="preview-box flex flex-wrap gap-4 overflow-x-auto max-h-60 bg-gray-50 p-4 rounded-md shadow-inner text-center text-slate-400">
-                                Supports JPG et PNG. Taille max : 10MB.
-                            </div>
-                            <input type="file" id="input-file" name="images[]" accept="image/jpeg,image/png" multiple class="hidden" onchange="handleImageChange()">
-                            <label for="input-file" class="btn-upload btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-6 cursor-pointer inline-block">
-                                Ajouter des images
-                            </label>
-                            <div id="image-errors" class="text-red-600 text-sm mt-2"></div>
-                            @error('images.*')
-                                <span class="text-red-600 text-sm block mt-2">{{ $message }}</span>
-                            @enderror
-                        </div>
-                    </div>
-                    <!-- Autres champs -->
-                    <div class="rounded-md shadow p-6 bg-white h-fit mb-5">
-                        <div class="grid grid-cols-12 gap-5">
 
-                            <!-- Titre -->
-                            <div class="col-span-12">
-                                <label for="titre" class="font-medium">Titre de l'excursion :</label>
-                                <input name="titre" id="titre" type="text" class="form-input mt-2 @error('titre') border-red-500 @enderror" placeholder="Titre de l'excursion" value="{{ old('titre') }}" required>
-                                @error('titre') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
+    <div class="container-fluid relative px-3">
+        <div class="layout-specing">
+            <!-- Start Content -->
+            <div class="md:flex justify-between items-center">
+                <h5 class="text-lg font-semibold">Ajouter une nouvelle excursion</h5>
 
-                            <!-- Description -->
-                            <div class="col-span-12">
-                                <label for="description" class="font-medium">Description :</label>
-                                <textarea name="description" id="description" class="form-input mt-2 @error('description') border-red-500 @enderror">{{ old('description') }}</textarea>
-                                @error('description') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
+                <ul class="tracking-[0.5px] inline-block sm:mt-0 mt-3">
+                    <li class="inline-block capitalize text-[16px] font-medium duration-500 hover:text-green-600"><a href="{{ route('partenaire.dashboard') }}">Kouman</a></li>
+                    <li class="inline-block text-base text-slate-950 mx-0.5 ltr:rotate-0 rtl:rotate-180"><i class="mdi mdi-chevron-right"></i></li>
+                    <li class="inline-block capitalize text-[16px] font-medium text-green-600" aria-current="page">Excursion</li>
+                </ul>
+            </div>
 
-                            <!-- Date / Heure -->
-                            <div class="col-span-6">
-                                <label for="date" class="font-medium">Date de l'excursion :</label>
-                                <input name="date" id="date" type="date" class="form-input mt-2 @error('date') border-red-500 @enderror" value="{{ old('date') }}">
-                                @error('date') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="col-span-6">
-                                <label for="heure_debut" class="font-medium">Heure de début :</label>
-                                <input name="heure_debut" id="heure_debut" type="time" class="form-input mt-2 @error('heure_debut') border-red-500 @enderror" value="{{ old('heure_debut') }}">
-                                @error('heure_debut') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-
-                            <!-- Durée -->
-                            <div class="col-span-6">
-                                <label for="duree" class="font-medium">Durée (en heures) :</label>
-                                <input name="duree" id="duree" type="number" step="0.1" min="0.5" max="24" class="form-input mt-2 @error('duree') border-red-500 @enderror" value="{{ old('duree') }}" required>
-                                @error('duree') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-
-                            <!-- Prix / Devise -->
-                            <div class="col-span-6">
-                                <label for="prix" class="font-medium">Prix par personne :</label>
-                                <input name="prix" id="prix" type="number" step="0.01" min="0" class="form-input mt-2 @error('prix') border-red-500 @enderror" value="{{ old('prix') }}" required>
-                                @error('prix') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="col-span-6">
-                                <label for="devise" class="font-medium">Devise :</label>
-                                <select name="devise" id="devise" class="form-input mt-2 @error('devise') border-red-500 @enderror" required>
-                                    @foreach(['CFA', 'EUR', 'USD', 'GBP', 'CAD', 'AUD'] as $dev)
-                                        <option value="{{ $dev }}" {{ old('devise') == $dev ? 'selected' : '' }}>{{ $dev }}</option>
-                                    @endforeach
-                                </select>
-                                @error('devise') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-
-                            <!-- Capacité -->
-                            <div class="col-span-6">
-                                <label for="capacite_max" class="font-medium">Capacité maximale :</label>
-                                <input name="capacite_max" id="capacite_max" type="number" min="1" class="form-input mt-2 @error('capacite_max') border-red-500 @enderror" value="{{ old('capacite_max', 1) }}" required>
-                                @error('capacite_max') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-
-                            <!-- Localisation -->
-                            <div class="col-span-6"><label for="ville" class="font-medium">Ville :</label>
-                                <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror" value="{{ old('ville') }}">
-                                @error('ville') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="col-span-6"><label for="pays" class="font-medium">Pays :</label>
-                                <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror" value="{{ old('pays') }}">
-                                @error('pays') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="col-span-6">
-                                <label for="adresse" class="font-medium">Adresse (point de départ) :</label>
-                                <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror" value="{{ old('adresse') }}">
-                                @error('adresse') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="col-span-3">
-                                <label for="latitude" class="font-medium">Latitude :</label>
-                                <input name="latitude" id="latitude" type="number" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror" value="{{ old('latitude') }}" required>
-                                @error('latitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-
-                            <div class="col-span-3">
-                                <label for="longitude" class="font-medium">Longitude :</label>
-                                <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror" value="{{ old('longitude') }}" required>
-                                @error('longitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                            </div>
-
-                            <!-- Bouton Carte -->
-                            <div class="col-span-12">
-                                <button type="button" onclick="openMapPopup()" class="btn bg-green-600 text-white rounded-md px-4 py-2 mt-2">
-                                    Ajouter ma localisation
-                                </button>
-                            </div>
-
-                            <!-- Équipements -->
-                            <div class="col-span-12">
-                                <label class="font-medium">Équipements inclus :</label>
-                                <div class="mt-2">
-                                    @foreach($equipements as $equipement)
-                                        <label class="inline-flex items-center mr-4">
-                                            <input type="checkbox" name="equipements[]" value="{{ $equipement->idEquipement }}" class="form-checkbox" {{ in_array($equipement->idEquipement, old('equipements', [])) ? 'checked' : '' }}>
-                                            <span class="ml-2">{{ $equipement->nom }}</span>
-                                        </label>
-                                    @endforeach
+            @if(session('success'))
+                <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if($errors->any())
+                <div class="bg-red-100 text-red-800 px-4 py-2 rounded mb-4">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+           
+            {{-- <form action="{{ route('partenaire.excursion.store') }}" method="POST" enctype="multipart/form-data"> --}}
+            <form action="">
+                @csrf
+                <div class="container relative">
+                    <div class="grid md:grid-cols-1 grid-cols-1 gap-6 mt-6">
+                        <!-- Section Images -->
+                        <div class="rounded-md shadow p-6 bg-white h-fit mb-5">
+                            <div>
+                                <p class="font-medium mb-4">Téléchargez les images de votre excursion (max 10 images, 10MB chacune, JPG/PNG)</p>
+                                <div id="preview-box" class="preview-box flex flex-wrap gap-4 overflow-x-auto max-h-60 bg-gray-50 p-4 rounded-md shadow-inner text-center text-slate-400">
+                                    Supports JPG et PNG. Taille max : 10MB.
                                 </div>
+                                <input type="file" id="input-file" name="images[]" accept="image/jpeg,image/png" multiple class="hidden" onchange="handleImageChange()">
+                                <label for="input-file" class="btn-upload btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-6 cursor-pointer inline-block">
+                                    Ajouter des images
+                                </label>
+                                <div id="image-errors" class="text-red-600 text-sm mt-2"></div>
+                                @error('images.*')
+                                    <span class="text-red-600 text-sm block mt-2">{{ $message }}</span>
+                                @enderror
                             </div>
-                            <!-- Téléphones -->
-                            <div class="col-span-12">
-                                <label class="font-semibold block mb-2">Numéros de téléphone :</label>
-                                <div id="telephones-container">
-                                    <div class="grid grid-cols-12 gap-2 mb-2">
-                                        <div class="col-span-4">
-                                            <input name="telephones[0][numero]" type="text" class="form-input" placeholder="+2250700000000" value="{{ old('telephones.0.numero') }}">
-                                        </div>
+                        </div>
+                        <!-- Autres champs -->
+                        <div class="rounded-md shadow p-6 bg-white h-fit mb-5">
+                            <div class="grid grid-cols-12 gap-5">
+
+                                <!-- Titre -->
+                                <div class="col-span-12">
+                                    <label for="titre" class="font-medium">Titre de l'excursion :</label>
+                                    <input name="titre" id="titre" type="text" class="form-input mt-2 @error('titre') border-red-500 @enderror" placeholder="Titre de l'excursion" value="{{ old('titre') }}" required>
+                                    @error('titre') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Description -->
+                                <div class="col-span-12">
+                                    <label for="description" class="font-medium">Description :</label>
+                                    <textarea name="description" id="description" class="form-input mt-2 @error('description') border-red-500 @enderror">{{ old('description') }}</textarea>
+                                    @error('description') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Date / Heure -->
+                                <div class="col-span-6">
+                                    <label for="date" class="font-medium">Date de l'excursion :</label>
+                                    <input name="date" id="date" type="date" class="form-input mt-2 @error('date') border-red-500 @enderror" value="{{ old('date') }}">
+                                    @error('date') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <div class="col-span-6">
+                                    <label for="heure_debut" class="font-medium">Heure de début :</label>
+                                    <input name="heure_debut" id="heure_debut" type="time" class="form-input mt-2 @error('heure_debut') border-red-500 @enderror" value="{{ old('heure_debut') }}">
+                                    @error('heure_debut') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Durée -->
+                                <div class="col-span-6">
+                                    <label for="duree" class="font-medium">Durée (en heures) :</label>
+                                    <input name="duree" id="duree" type="number" step="0.1" min="0.5" max="24" class="form-input mt-2 @error('duree') border-red-500 @enderror" value="{{ old('duree') }}" required>
+                                    @error('duree') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Prix / Devise -->
+                                <div class="col-span-6">
+                                    <label for="prix" class="font-medium">Prix par personne :</label>
+                                    <input name="prix" id="prix" type="number" step="0.01" min="0" class="form-input mt-2 @error('prix') border-red-500 @enderror" value="{{ old('prix') }}" required>
+                                    @error('prix') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <div class="col-span-6">
+                                    <label for="devise" class="font-medium">Devise :</label>
+                                    <select name="devise" id="devise" class="form-input mt-2 @error('devise') border-red-500 @enderror" required>
+                                        @foreach(['CFA', 'EUR', 'USD', 'GBP', 'CAD', 'AUD'] as $dev)
+                                            <option value="{{ $dev }}" {{ old('devise') == $dev ? 'selected' : '' }}>{{ $dev }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('devise') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Capacité -->
+                                <div class="col-span-6">
+                                    <label for="capacite_max" class="font-medium">Capacité maximale :</label>
+                                    <input name="capacite_max" id="capacite_max" type="number" min="1" class="form-input mt-2 @error('capacite_max') border-red-500 @enderror" value="{{ old('capacite_max', 1) }}" required>
+                                    @error('capacite_max') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Localisation -->
+                                <div class="col-span-6"><label for="ville" class="font-medium">Ville :</label>
+                                    <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror" value="{{ old('ville') }}">
+                                    @error('ville') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <div class="col-span-6"><label for="pays" class="font-medium">Pays :</label>
+                                    <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror" value="{{ old('pays') }}">
+                                    @error('pays') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <div class="col-span-6">
+                                    <label for="adresse" class="font-medium">Adresse (point de départ) :</label>
+                                    <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror" value="{{ old('adresse') }}">
+                                    @error('adresse') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <div class="col-span-3">
+                                    <label for="latitude" class="font-medium">Latitude :</label>
+                                    <input name="latitude" id="latitude" type="number" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror" value="{{ old('latitude') }}" required>
+                                    @error('latitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <div class="col-span-3">
+                                    <label for="longitude" class="font-medium">Longitude :</label>
+                                    <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror" value="{{ old('longitude') }}" required>
+                                    @error('longitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Bouton Carte -->
+                                <div class="col-span-12">
+                                    <button type="button" onclick="openMapPopup()" class="btn bg-green-600 text-white rounded-md px-4 py-2 mt-2">
+                                        Ajouter ma localisation
+                                    </button>
+                                </div>
+
+                                <!-- Équipements -->
+                                <div class="col-span-12">
+                                    <label class="font-medium">Équipements inclus :</label>
+                                    <div class="mt-2">
+                                        @foreach($equipements as $equipement)
+                                            <label class="inline-flex items-center mr-4">
+                                                <input type="checkbox" name="equipements[]" value="{{ $equipement->idEquipement }}" class="form-checkbox" {{ in_array($equipement->idEquipement, old('equipements', [])) ? 'checked' : '' }}>
+                                                <span class="ml-2">{{ $equipement->nom }}</span>
+                                            </label>
+                                        @endforeach
                                     </div>
                                 </div>
-                                <button type="button" id="add-telephone" class="btn bg-white text-gray-800 border border-gray-300 hover:bg-gray-100 rounded-md mt-2">
-                                    Ajouter un numéro
-                                </button>
-                            </div>
+                                <!-- Téléphones -->
+                                <div class="col-span-12">
+                                    <label class="font-semibold block mb-2">Numéros de téléphone :</label>
+                                    <div id="telephones-container">
+                                        <div class="grid grid-cols-12 gap-2 mb-2">
+                                            <div class="col-span-4">
+                                                <input name="telephones[0][numero]" type="text" class="form-input" placeholder="+2250700000000" value="{{ old('telephones.0.numero') }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" id="add-telephone" class="btn bg-white text-gray-800 border border-gray-300 hover:bg-gray-100 rounded-md mt-2">
+                                        Ajouter un numéro
+                                    </button>
+                                </div>
 
-                            {{-- 🎯 NOUVEAUX CHAMPS ICI --}}
-                            {{-- @include('client.partials.excursion_extras') --}}
+                                {{-- 🎯 NOUVEAUX CHAMPS ICI --}}
+                                {{-- @include('client.partials.excursion_extras') --}}
 
-                            <!-- Boutons -->
-                            <div class="col-span-12 flex justify-end space-x-4 mt-6">
-                                <a href="{{ route('partenaire.dashboard') }}" class="btn bg-gray-500 hover:bg-gray-600 text-white rounded-md px-4 py-2">Annuler</a>
-                                <button type="submit" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md px-4 py-2">Ajouter l'excursion</button>
+                                <!-- Boutons -->
+                                <div class="col-span-12 flex justify-end space-x-4 mt-6">
+                                    <a href="{{ route('partenaire.dashboard') }}" class="btn bg-gray-500 hover:bg-gray-600 text-white rounded-md px-4 py-2">Annuler</a>
+                                    <button type="submit" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md px-4 py-2">Ajouter l'excursion</button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
     </div>
 </div>
 

@@ -6,8 +6,8 @@ use App\Http\Controllers\ClientController;
 
 Route::prefix('client')->group(function () {
     Route::get('/dashboard', [ClientController::class, 'index'])->name('client.dashboard');
-    Route::view('/', 'client.index-two')->name('home');
-    Route::view('/index-two', 'client.index-two')->name('index.two');
+    Route::view('/', 'client.index')->name('home');
+    Route::view('/index-two', 'client.home')->name('index.two');
     Route::view('/index-three', 'client.index-three')->name('index.three');
     Route::view('/index-four', 'client.index-four')->name('index.four');
     Route::view('/index-five', 'client.index-five')->name('index.five');
@@ -85,7 +85,7 @@ Route::get('/client/auth-signup', function () {
 Route::get('/client/agencies', function () {
     return view('client.agencies');
 })->name('client.agencies');
-    
+
 Route::get('/client/agency-profile', function () {
     return view('client.agency-profile');
 })->name('client.agency.profile');
