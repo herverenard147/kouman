@@ -85,7 +85,7 @@ Route::get('/client/auth-signup', function () {
 Route::get('/client/agencies', function () {
     return view('client.agencies');
 })->name('client.agencies');
-
+    
 Route::get('/client/agency-profile', function () {
     return view('client.agency-profile');
 })->name('client.agency.profile');
