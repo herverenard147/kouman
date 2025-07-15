@@ -1,5 +1,4 @@
-<?php
-$static_url = asset(''); // Or set to your static base URL, e.g., '/assets'
+@php
 $profiles = [
     [
         'id' => 1,
@@ -56,13 +55,13 @@ $profiles = [
         'title' => '5133 MCLAIN WAY, Baton Rouge, LA 70809, USA',
     ],
 ];
-?>
+@endphp
 
-<?php foreach ($profiles as $item): ?>
+@foreach ($profiles as $item)
 <div
     class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
     <div class="relative">
-        <img src="<?php echo $static_url, $item['img']; ?>" alt="">
+        <img src="{{ asset('client/assets' . $item['img']) }}" alt="">
 
         <div class="absolute top-4 end-4">
             <a href="javascript:void(0)"
@@ -73,31 +72,31 @@ $profiles = [
 
     <div class="p-6">
         <div class="pb-6">
-            <a href="property-detail.php?id=<?php echo $item['id']; ?>"
-                class="text-lg hover:text-green-600 font-medium ease-in-out duration-500"><?php echo $item['title']; ?></a>
+            <a href="property-detail.php?id={{ $item['id'] }}"
+                class="text-lg hover:text-green-600 font-medium ease-in-out duration-500">{{ $item['title'] }}</a>
         </div>
 
         <ul class="py-6 border-y border-slate-100 dark:border-gray-800 flex items-center list-none">
             <li class="flex items-center me-4">
                 <i class="uil uil-compress-arrows text-2xl me-2 text-green-600"></i>
-                <span><?php echo $item['sqf']; ?></span>
+                <span>{{ $item['sqf'] }}</span>
             </li>
 
             <li class="flex items-center me-4">
                 <i class="uil uil-bed-double text-2xl me-2 text-green-600"></i>
-                <span><?php echo $item['beds']; ?></span>
+                <span>{{ $item['beds'] }}</span>
             </li>
 
             <li class="flex items-center">
                 <i class="uil uil-bath text-2xl me-2 text-green-600"></i>
-                <span><?php echo $item['baths']; ?></span>
+                <span>{{ $item['baths'] }}</span>
             </li>
         </ul>
 
         <ul class="pt-6 flex justify-between items-center list-none">
             <li>
                 <span class="text-slate-400">Price</span>
-                <p class="text-lg font-medium"><?php echo $item['price']; ?></p>
+                <p class="text-lg font-medium">{{ $item['price'] }}</p>
             </li>
 
             <li>
@@ -114,4 +113,4 @@ $profiles = [
         </ul>
     </div>
 </div><!--end property content-->
-<?php endforeach; ?>
+@endforeach

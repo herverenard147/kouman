@@ -1,5 +1,4 @@
-<?php
-$static_url = asset(''); // Utilise la fonction asset() de Laravel pour générer l'URL de base des assets
+@php
 $blogs = [
     [
         'id' => 1,
@@ -65,16 +64,16 @@ $blogs = [
         'date' => '3rd March, 2024',
     ],
 ];
-?>
+@endphp
 
-<?php foreach ($blogs as $item): ?>
+@foreach ($blogs as $item)
 <div
     class="group relative h-fit hover:-mt-[5px] overflow-hidden bg-white dark:bg-slate-900 rounded-xl shadow dark:shadow-gray-700 transition-all duration-500">
     <div class="relative overflow-hidden">
-        <img src="<?php echo $static_url, $item['img']; ?>" class="" alt="">
+        <img src="{{ asset('client/assets' . $item['img']) }}" class="" alt="">
         <div class="absolute end-4 top-4">
             <span
-                class="bg-green-600 text-white text-[14px] px-2.5 py-1 font-medium rounded-full h-5"><?php echo $item['name']; ?></span>
+                class="bg-green-600 text-white text-[14px] px-2.5 py-1 font-medium rounded-full h-5">{{ $item['name'] }}</span>
         </div>
     </div>
 
@@ -82,16 +81,16 @@ $blogs = [
         <div class="">
             <div class="flex justify-between mb-4">
                 <span class="text-slate-400 text-sm"><i
-                        class="uil uil-calendar-alt text-slate-900 dark:text-white me-2"></i><?php echo $item['date']; ?></span>
+                        class="uil uil-calendar-alt text-slate-900 dark:text-white me-2"></i>{{ $item['date'] }}</span>
                 <span class="text-slate-400 text-sm ms-3"><i
                         class="uil uil-clock text-slate-900 dark:text-white me-2"></i>5 min read</span>
             </div>
 
-            <a href="blog-detail.php?id=<?php echo $item['id']; ?>"
-                class="title text-xl font-medium hover:text-green-600 duration-500 ease-in-out"><?php echo $item['title']; ?></a>
+            <a href="blog-detail.php?id={{ $item['id'] }}"
+                class="title text-xl font-medium hover:text-green-600 duration-500 ease-in-out">{{ $item['title'] }}</a>
 
             <div class="mt-3">
-                <a href="blog-detail.php?id=<?php echo $item['id']; ?>"
+                <a href="{{ route('client.blog.detail', ['id' => $item['id']]) }}"
                     class="btn btn-link hover:text-green-600 after:bg-green-600 duration-500 ease-in-out">Read More <i
                         class="uil uil-arrow-right"></i></a>
             </div>
@@ -99,4 +98,4 @@ $blogs = [
     </div>
 </div>
 <!--end content-->
-<?php endforeach; ?>
+@endforeach

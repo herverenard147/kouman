@@ -152,7 +152,7 @@ $grids = [
                     <span class="text-slate-400">Price</span>
                     <p class="text-lg font-medium">{{ $item['price'] }}</p>
                 </li>
-
+                
                 <li>
                     <span class="text-slate-400">Rating</span>
                     <ul class="text-lg font-medium text-amber-400 list-none">

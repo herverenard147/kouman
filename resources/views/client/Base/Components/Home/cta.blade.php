@@ -1,29 +1,29 @@
-<?php
+@php
 $ctas = [
     [
-        'number' => '1010', 
-        'target' => '1548', 
-        'symbol' => '+', 
-        'title' => 'Properties Sell', 
+        'number' => '1010',
+        'target' => '1548',
+        'symbol' => '+',
+        'title' => 'Properties Sell',
     ],
     [
-        'number' => '2', 
-        'target' => '25', 
-        'symbol' => '+', 
-        'title' => 'Award Gained', 
+        'number' => '2',
+        'target' => '25',
+        'symbol' => '+',
+        'title' => 'Award Gained',
     ],
     [
-        'number' => '0', 
-        'target' => '9', 
-        'symbol' => '+', 
-        'title' => 'Years Experience', 
+        'number' => '0',
+        'target' => '9',
+        'symbol' => '+',
+        'title' => 'Years Experience',
     ]
 ];
-?>
+@endphp
 
-<?php foreach ($ctas as $item): ?>
+@foreach ($ctas as $item)
 <div class="counter-box text-center">
-    <h1 class="text-white lg:text-5xl text-4xl font-semibold mb-2"><span class="counter-value" data-target="<?php echo $item['target']; ?>"><?php echo $item['number']; ?></span><?php echo $item['symbol']; ?></h1>
-    <h5 class="counter-head text-white text-lg font-medium"><?php echo $item['title']; ?></h5>
+    <h1 class="text-white lg:text-5xl text-4xl font-semibold mb-2"><span class="counter-value" data-target="{{ $item['target'] }}">{{ $item['number'] }}</span>{{ $item['symbol'] }}</h1>
+    <h5 class="counter-head text-white text-lg font-medium">{{ $item['title'] }}</h5>
 </div><!--end counter box-->
-<?php endforeach; ?>
+@endforeach

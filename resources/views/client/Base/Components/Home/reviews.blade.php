@@ -1,4 +1,4 @@
-<?php
+@php
 $reviews = [
     [
         'img' => 'images/client/01.jpg',
@@ -37,9 +37,9 @@ $reviews = [
         'desc' => "Hously is fair priced, quick to respond, and easy to use. I highly recommend their services!",
     ]
 ];
-?>
+@endphp
 
-<?php foreach ($reviews as $item): ?>
+@foreach ($reviews as $item)
 <div class="tiny-slide">
     <div class="text-center">
         <p class="text-xl text-slate-400 italic"> " {{ $item['desc'] }} " </p>
@@ -59,4 +59,4 @@ $reviews = [
         </div>
     </div>
 </div>
-<?php endforeach; ?>
+@endforeach

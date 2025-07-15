@@ -1,4 +1,4 @@
-<?php
+@php
 $tabs = [
     [
         'style' => 'px-4 py-2 text-base font-medium rounded-md w-full text-white hover:text-green-600 transition-all duration-500 ease-in-out',
@@ -108,7 +108,7 @@ $tabdatas = [
         'desc' => 'Finally the closing packet is sent to the Title office, and the day has come… You have Hously the home of your dreams!',
     ],
 ];
-?>
+@endphp
 
 <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
     <div class="lg:col-span-4 md:col-span-5">
@@ -116,13 +116,13 @@ $tabdatas = [
             <ul class="flex-column text-center p-6 bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-md"
                 id="myTab" data-tabs-toggle="#myTabContent" role="tablist">
 
-                <?php foreach ($tabs as $item): ?>
-                <li role="presentation">
-                    <button class="<?php echo $item['style']; ?>" id="<?php echo $item['id']; ?>" data-tabs-target="<?php echo $item['target']; ?>"
-                        type="button" role="tab" aria-controls="<?php echo $item['controls']; ?>"
-                        aria-selected="<?php echo $item['selected']; ?>"><?php echo $item['title']; ?></button>
-                </li>
-                <?php endforeach; ?>
+                @foreach ($tabs as $item)
+                    <li role="presentation">
+                        <button class="{{ $item['style'] }}" id="{{ $item['id'] }}" data-tabs-target="{{ $item['target'] }}"
+                            type="button" role="tab" aria-controls="{{ $item['controls'] }}"
+                            aria-selected="{{ $item['selected'] }}">{{ $item['title'] }}</button>
+                    </li>
+                @endforeach
 
             </ul>
         </div>
@@ -131,16 +131,16 @@ $tabdatas = [
     <div class="lg:col-span-8 md:col-span-7">
         <div id="myTabContent">
 
-            <?php foreach ($tabdatas as $item): ?>
-            <div class="<?php echo $item['style']; ?>" id="<?php echo $item['id']; ?>" role="tabpanel"
-                aria-labelledby="<?php echo $item['labelledby']; ?>">
-                <img src="<?php echo $item['img']; ?>" alt="">
-                <div class="mt-6">
-                    <h5 class="font-medium text-xl"><?php echo $item['title']; ?></h5>
-                    <p class="text-slate-400 mt-3"><?php echo $item['desc']; ?></p>
+            @foreach ($tabdatas as $item)
+                <div class="{{ $item['style'] }}" id="{{ $item['id'] }}" role="tabpanel"
+                    aria-labelledby="{{ $item['labelledby'] }}">
+                    <img src="{{ $item['img'] }}" alt="">
+                    <div class="mt-6">
+                        <h5 class="font-medium text-xl">{{ $item['title'] }}</h5>
+                        <p class="text-slate-400 mt-3">{{ $item['desc'] }}</p>
+                    </div>
                 </div>
-            </div>
-            <?php endforeach; ?>
+            @endforeach
 
         </div>
     </div>

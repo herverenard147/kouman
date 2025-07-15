@@ -1,5 +1,4 @@
-<?php
-$static_url = asset(''); // Use Laravel's asset helper to get the base URL for assets
+@php
 
 $teams = [
     [
@@ -43,12 +42,12 @@ $teams = [
         'title' => 'Property Broker',
     ],
 ];
-?>
+@endphp
 
 @foreach ($teams as $item)
     <div class="group text-center">
         <div class="relative inline-block mx-auto size-52 rounded-full overflow-hidden">
-            <img src="{{ $static_url . $item['img'] }}" class="" alt="">
+            <img src="{{ asset('client/assets' . $item['img']) }}" class="" alt="">
             <div
                 class="absolute inset-0 bg-gradient-to-b from-transparent to-black size-52 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out">
             </div>
