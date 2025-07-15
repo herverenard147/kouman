@@ -18,6 +18,10 @@ Route::prefix('client')->group(function () {
         return view('client.aboutus');
     })->name('client.aboutus');
 
+    Route::get('index', function () {
+        return view('client.index');
+    })->name('client.index');
+
     Route::get('auth-signup', function () {
         return view('client.auth-signup');
     })->name('client.auth.signup');
