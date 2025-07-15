@@ -29,13 +29,13 @@
         <!--Login button Start-->
         <ul class="buy-button list-none mb-0">
             <li class="inline mb-0">
-                <a href="/auth-login"
+                <a href="{{route('client.auth.login')}}"
                     class="btn btn-icon bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full"><i
                         data-feather="user" class="size-4 stroke-[3]"></i></a>
             </li>
             <li class="sm:inline ps-1 mb-0 hidden">
-                <a href="/auth-signup"
-                    class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">Signup</a>
+                <a href="{{route('client.auth.signup')}}"
+                    class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">S'inscrire</a>
             </li>
         </ul>
         <!--Login button End-->
@@ -177,9 +177,9 @@
 
 
                 <li><a href="{{ route('client.index') }}" class="sub-menu-item">Home</a></li>
-                <li><a href="{{ route('client.buy') }}" class="sub-menu-item">Buy</a></li>
+                {{-- <li><a href="{{ route('client.buy') }}" class="sub-menu-item">Buy</a></li> --}}
 
-                <li><a href="{{ route('client.sell') }}" class="sub-menu-item">Sell</a></li>
+                {{-- <li><a href="{{ route('client.sell') }}" class="sub-menu-item">Sell</a></li> --}}
                 <li><a href="{{ route('client.grid.sidebar') }}" class="sub-menu-item">Nos offres</a></li>
 
                 {{-- <li class="has-submenu parent-parent-menu-item">
@@ -211,11 +211,11 @@
                         </li>
                     </ul>
                 </li> --}}
+                <li><a href="{{ route('client.aboutus') }}" class="sub-menu-item">A propos de Nous</a></li>
 
                 <li class="has-submenu parent-parent-menu-item">
                     <a href="javascript:void(0)">Autres Pages</a><span class="menu-arrow"></span>
                     <ul class="submenu">
-                        <li><a href="{{ route('client.aboutus') }}" class="sub-menu-item">A propos de Nous</a></li>
                         <li><a href="{{ route('client.features') }}" class="sub-menu-item">Fonctionnalités</a></li>
                         <li><a href="{{ route('client.pricing') }}" class="sub-menu-item">Tarification</a></li>
                         <li><a href="{{ route('client.faqs') }}" class="sub-menu-item">Faqs</a></li>

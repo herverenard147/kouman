@@ -1,5 +1,9 @@
-@extends('layouts.app')
-
+@php
+    $page = 'light';
+    $fpage = 'foot';
+@endphp
+@extends('client.base.style.base')
+@section('title', 'Grid View Layout')
 @section('content')
     <!-- Start Hero -->
     <section
