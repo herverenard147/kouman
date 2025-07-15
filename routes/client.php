@@ -19,7 +19,7 @@ Route::prefix('client')->group(function () {
     })->name('client.aboutus');
 
     Route::get('index', function () {
-        return view('client.index');
+        return view('client.index-seven');
     })->name('client.index');
 
     Route::get('auth-signup', function () {
