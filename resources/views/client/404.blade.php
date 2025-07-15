@@ -8,7 +8,7 @@
             <div class="grid grid-cols-1">
                 <div class="flex flex-col min-h-screen justify-center md:px-10 py-10 px-4">
                     <div class="text-center">
-                        <a href="{{ url('index') }}">
+                        <a href="{{ route('client.index') }}">
                             <img src="{{ asset('client/assets/images/logo-icon-64.png') }}" class="mx-auto" alt="">
                         </a>
                     </div>
@@ -19,7 +19,7 @@
                             for wasn't found.</p>
 
                         <div class="mt-4">
-                            <a href="{{ route('home') }}"
+                            <a href="{{ route('client.index') }}"
                                 class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md">
                                 Back to Home
                             </a>

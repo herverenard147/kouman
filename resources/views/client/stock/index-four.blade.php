@@ -108,7 +108,7 @@
     <!-- Start -->
     <section class="relative md:py-24 py-16">
         <div class="container relative">
-            @include('client.base.Components.Home.control')
+            @include('client.base.components.home.control')
         </div>
 
         <div class="container relative lg:mt-24 mt-16">
@@ -119,7 +119,7 @@
             </div>
 
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
-                @include('client.base.Components.Home.features')
+                @include('client.base.components.home.features')
             </div>
         </div>
 
@@ -131,7 +131,7 @@
             </div>
 
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
-                @include('client.base.Components.Home.properties')
+                @include('client.base.components.home.properties')
             </div>
         </div>
 
@@ -152,14 +152,14 @@
                     </div>
 
                     <div class="tiny-single-item">
-                        @include('client.base.Components.Home.reviews')
+                        @include('client.base.components.home.reviews')
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="container relative lg:mt-24 mt-16">
-            @include('client.base.Components.Home.get-in-touch')
+            @include('client.base.components.home.get-in-touch')
         </div>
     </section>
     <!-- End -->

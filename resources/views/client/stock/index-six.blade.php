@@ -155,7 +155,7 @@
                 <div class="tiny-home-slide-three">
 
                     <!-- properties1 code  -->
-                    @include('client/base/Components/Home/properties1') ;
+                    @include('client/base/components/home/properties1') ;
 
                 </div>
             </div><!--en grid-->
@@ -172,7 +172,7 @@
             <div class="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 mt-8 md:gap-[30px] gap-3">
 
                 <!-- categories code  -->
-                @include('client/base/Components/Home/categories') ;
+                @include('client/base/components/home/categories') ;
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -199,7 +199,7 @@
                     <div class="tiny-single-item">
 
                         <!-- reviews code  -->
-                        @include('client/base/Components/Home/reviews') ;
+                        @include('client/base/components/home/reviews') ;
 
                     </div>
                 </div>

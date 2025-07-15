@@ -32,13 +32,13 @@
         <div class="container relative">
             <div class="grid grid-cols-1 justify-center">
                 <div class="relative -mt-32">
-                    @include('client.base.Components.Buy.tab')
+                    @include('client.base.components.Buy.tab')
                 </div>
             </div>
         </div>
 
         <div class="container relative lg:mt-24 mt-16">
-            @include('client.base.Components.Home.control')
+            @include('client.base.components.home.control')
         </div>
 
         <div class="container relative lg:mt-24 mt-16">
@@ -49,7 +49,7 @@
                 </p>
             </div>
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
-                @include('client.base.Components.Home.features')
+                @include('client.base.components.home.features')
             </div>
         </div>
 
@@ -61,7 +61,7 @@
                 </p>
             </div>
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
-                @include('client.base.Components.Home.properties')
+                @include('client.base.components.home.properties')
             </div>
         </div>
 
@@ -81,14 +81,14 @@
                         <i class="mdi mdi-format-quote-close text-9xl opacity-5"></i>
                     </div>
                     <div class="tiny-single-item">
-                        @include('client.base.Components.Home.reviews')
+                        @include('client.base.components.home.reviews')
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="container relative lg:mt-24 mt-16">
-            @include('client.base.Components.Home.get-in-touch')
+            @include('client.base.components.home.get-in-touch')
         </div>
     </section>
     <!-- End -->

@@ -93,7 +93,7 @@
                         <div class="grid grid-cols-1 mt-8 gap-[30px]">
 
                             <!-- listing-list-map code  -->
-                            @include('client.base.Components.Listing.listing-list-map') ;
+                            @include('client.base.components.listing.listing-list-map') ;
                         </div><!--en grid-->
 
                         <div class="grid md:grid-cols-12 grid-cols-1 mt-8">

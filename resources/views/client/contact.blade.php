@@ -81,7 +81,7 @@
         <!-- Contact cards -->
         <div class="container relative lg:mt-24 mt-16">
             <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-[30px]">
-                @include('client.base.Components.Contact.contact')
+                @include('client.base.components.Contact.contact')
             </div>
         </div>
     </section>

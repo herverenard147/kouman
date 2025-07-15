@@ -76,7 +76,7 @@
                     <div class="grid grid-cols-1 gap-[30px]">
 
                         <!-- listing-list-sidebar code  -->
-                        @include('client/base/Components/Listing/listing-list-sidebar');
+                        @include('client/base/components/listing/listing-list-sidebar');
 
                     </div><!--en grid-->
 

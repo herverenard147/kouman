@@ -30,7 +30,7 @@
     <section class="relative lg:py-24 py-16">
         <div class="container relative">
             {{-- Control --}}
-            @include('client.base.Components.Home.control')
+            @include('client.base.components.home.control')
         </div>
 
         <div class="container relative lg:mt-24 mt-16">
@@ -43,7 +43,7 @@
 
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
                 {{-- Features --}}
-                @include('client.base.Components.Home.features')
+                @include('client.base.components.home.features')
             </div>
         </div>
     </section>
@@ -58,7 +58,7 @@
                 <div class="lg:col-start-2 lg:col-span-10">
                     <div class="grid md:grid-cols-3 grid-cols-1 items-center">
                         {{-- Call To Action --}}
-                        @include('client.base.Components.Home.cta')
+                        @include('client.base.components.home.cta')
                     </div>
                 </div>
             </div>
@@ -79,7 +79,7 @@
 
             <div class="grid md:grid-cols-12 grid-cols-1 mt-8 gap-[30px]">
                 {{-- Team --}}
-                @include('client.base.Components.Home.team')
+                @include('client.base.components.home.team')
             </div>
         </div>
 
@@ -96,7 +96,7 @@
                 <div class="relative w-full">
                     <div class="tiny-three-item">
                         {{-- Reviews --}}
-                        @include('client.base.Components.Home.reviews1')
+                        @include('client.base.components.home.reviews1')
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@
 
         <div class="container relative lg:mt-24 mt-16">
             {{-- Get in Touch --}}
-            @include('client.base.Components.Home.get-in-touch')
+            @include('client.base.components.home.get-in-touch')
         </div>
     </section>
     {{-- End --}}

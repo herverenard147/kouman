@@ -36,7 +36,7 @@
             <div class="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 md:gap-[30px] gap-3">
 
                 <!-- categories code  -->
-                @include('client/base/Components/Home/categories') ;
+                @include('client/base/components/home/categories') ;
             </div><!--end grid-->
         </div><!--end container-->
 
@@ -52,7 +52,7 @@
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
 
                 <!-- what-we-do code  -->
-                @include('client/base/Components/Home/what-we-do') ;
+                @include('client/base/components/home/what-we-do') ;
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -70,7 +70,7 @@
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
 
                 <!-- properties code  -->
-                @include('client/base/Components/Home/properties') ;
+                @include('client/base/components/home/properties') ;
 
             </div><!--en grid-->
         </div><!--end container-->
@@ -88,7 +88,7 @@
 
                         <!-- cta code  -->
 
-                        @include('client/base/Components/Home/cta') ;
+                        @include('client/base/components/home/cta') ;
 
                     </div>
                 </div>
@@ -103,7 +103,7 @@
             <div class="grid md:grid-cols-6 grid-cols-2 justify-center gap-[30px]">
 
                 <!-- business-partner code  -->
-                @include('client/base/Components/Home/business-partner') ;
+                @include('client/base/components/home/business-partner') ;
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -136,7 +136,7 @@
                     <div class="tiny-single-item">
 
                         <!-- reviews code  -->
-                        @include('client/base/Components/Home/reviews') ;
+                        @include('client/base/components/home/reviews') ;
 
                     </div>
                 </div>
@@ -156,7 +156,7 @@
             <div class="grid md:grid-cols-12 grid-cols-1 mt-8 gap-[30px]">
 
                 <!-- team code  -->
-                @include('client/base/Components/Home/team') ;
+                @include('client/base/components/home/team') ;
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -164,7 +164,7 @@
         <div class="container relative lg:mt-24 mt-16">
 
             <!-- get-in-touch code  -->
-            @include('client/base/Components/Home/get-in-touch') ;
+            @include('client/base/components/home/get-in-touch') ;
 
         </div><!--end container-->
     </section><!--end section-->

@@ -25,7 +25,7 @@
                         </div>
 
                         <div class="p-2 max-h-[482px]" data-simplebar>
-                            @include('base.Components.Chat.chatbox')
+                            @include('base.components.Chat.chatbox')
                         </div>
                     </div>
                 </div>

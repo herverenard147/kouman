@@ -106,7 +106,7 @@
                             <div class="grid lg:grid-cols-3 md:grid-cols-2 mt-6 gap-6">
 
                                 <!-- properties2 code  -->
-                                @include('base.Components.user-profile.properties2')
+                                @include('base.components.user-profile.properties2')
 
                             </div>
                         </div>

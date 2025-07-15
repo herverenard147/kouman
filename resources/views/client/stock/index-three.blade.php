@@ -34,7 +34,7 @@
             <div class="grid lg:grid-cols-2 grid-cols-1 gap-[30px]">
 
                 <!-- properties2 code  -->
-                @include('client/base/Components/Home/properties2') ;
+                @include('client/base/components/home/properties2') ;
 
             </div><!--end grid-->
 
@@ -62,7 +62,7 @@
             <div class="relative grid md:grid-cols-3 grid-cols-1 items-center mt-8 gap-[30px] z-1">
 
                 <!-- cta1 code  -->
-                @include('client/base/Components/Home/cta1') ;
+                @include('client/base/components/home/cta1') ;
 
             </div>
         </div><!--end container-->
@@ -79,7 +79,7 @@
             <div class="grid md:grid-cols-12 grid-cols-1 mt-8 gap-[30px]">
 
                 <!-- team code  -->
-                @include('client/base/Components/Home/team') ;
+                @include('client/base/components/home/team') ;
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -99,7 +99,7 @@
 
                         // <!-- reviews1 code  -->
 
-                        @include('client/base/Components/Home/reviews1') ;
+                        @include('client/base/components/home/reviews1') ;
 
                     </div>
                 </div>
@@ -109,7 +109,7 @@
         <div class="container relative lg:mt-24 mt-16">
 
             <!-- get-in-touch code  -->
-            @include('client/base/Components/Home/get-in-touch') ;
+            @include('client/base/components/home/get-in-touch') ;
 
         </div><!--end container-->
     </section><!--end section-->

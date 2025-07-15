@@ -27,7 +27,7 @@ ob_start();
 
                 <!-- reviews code  -->
                 <?php
-                    include "$base_dir/Components/Pages/reviews.php";
+                    include "$base_dir/components/pages/reviews.php";
                 ?>
 
             </div>

@@ -294,7 +294,7 @@
         <div class="container relative">
 
             <!-- control code  -->
-            @include('client/base/Components/Home/control') ;
+            @include('client/base/components/home/control') ;
 
         </div><!--end container-->
 
@@ -309,7 +309,7 @@
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
 
                 <!-- features code  -->
-                @include('client/base/Components/Home/features') ;
+                @include('client/base/components/home/features') ;
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -327,7 +327,7 @@
                 <div class="tiny-home-slide-three">
 
                     <!-- properties1 code  -->
-                    @include('client/base/Components/Home/properties1') ;
+                    @include('client/base/components/home/properties1') ;
 
                 </div>
             </div><!--en grid-->
@@ -344,7 +344,7 @@
                     <div class="grid md:grid-cols-3 grid-cols-1 items-center">
 
                         <!-- cta code  -->
-                        @include('client/base/Components/Home/cta') ;
+                        @include('client/base/components/home/cta') ;
 
                     </div>
                 </div>
@@ -359,7 +359,7 @@
             <div class="grid md:grid-cols-6 grid-cols-2 justify-center gap-[30px]">
 
                 <!-- business-partner code  -->
-                @include('client/base/Components/Home/business-partner') ;
+                @include('client/base/components/home/business-partner') ;
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -381,7 +381,7 @@
                     <div class="tiny-three-item">
 
                         <!-- reviews1 code  -->
-                        @include('client/base/Components/Home/reviews1') ;
+                        @include('client/base/components/home/reviews1') ;
 
                     </div>
                 </div>
@@ -391,7 +391,7 @@
         <div class="container relative lg:mt-24 mt-16">
 
             <!-- get-in-touch code  -->
-            @include('client/base/Components/Home/get-in-touch') ;
+            @include('client/base/components/home/get-in-touch') ;
 
         </div><!--end container-->
     </section><!--end section-->

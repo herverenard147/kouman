@@ -91,7 +91,7 @@
 
                         <div class="grid lg:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
                             <!-- listing-grid code  -->
-                            @include('client.base.Components.Listing.listing-grid')
+                            @include('client.base.components.listing.listing-grid')
                         </div><!--end grid-->
 
                         <div class="grid md:grid-cols-12 grid-cols-1 mt-8">

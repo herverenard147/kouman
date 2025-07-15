@@ -336,7 +336,7 @@
 
         <!-- Get in touch section -->
         <div class="container relative lg:mt-24 mt-16">
-            @include('client.base.Components.Home.get-in-touch')
+            @include('client.base.components.home.get-in-touch')
         </div>
     </section>
     <!-- End -->

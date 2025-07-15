@@ -36,7 +36,7 @@
 
                 <!-- features code  -->
 
-                @include('client.base.Components.Home.features')
+                @include('client.base.components.home.features')
 
             </div><!--end grid-->
         </div><!--end container-->

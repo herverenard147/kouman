@@ -29,7 +29,7 @@
             <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-[30px]">
 
                 <!-- team1 code  -->
-                @include('client.base.Components.Pages.team1')
+                @include('client.base.components.pages.team1')
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -37,7 +37,7 @@
         <div class="container relative lg:mt-24 mt-16">
 
             <!-- get-in-touch code  -->
-            @include('client.base.Components.Home.get-in-touch')
+            @include('client.base.components.home.get-in-touch')
 
         </div><!--end container-->
     </section><!--end section-->

@@ -30,7 +30,7 @@
         <div class="container relative">
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">
                 {{-- blog1 content --}}
-                @include('client.base.Components.Pages.blog1')
+                @include('client.base.components.pages.blog1')
             </div>
 
             <div class="grid md:grid-cols-12 grid-cols-1 mt-8">

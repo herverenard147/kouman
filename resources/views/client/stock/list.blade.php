@@ -108,7 +108,7 @@
             <div class="grid lg:grid-cols-2 grid-cols-1 gap-[30px]">
 
                 <!-- listing-list code  -->
-                @include('client/base/Components/Listing/listing-list');
+                @include('client/base/components/listing/listing-list');
 
             </div><!--en grid-->
 

@@ -34,7 +34,7 @@
             <div class="grid lg:grid-cols-12 md:grid-cols-2 grid-cols-1 gap-[30px]">
                 <div class="lg:col-span-8 md:order-1 order-2">
                     <div class="grid lg:grid-cols-2 grid-cols-1 gap-[30px]">
-                        @include('client.base.Components.Pages.blog1')
+                        @include('client.base.components.pages.blog1')
                     </div>
 
                     {{-- Pagination --}}

@@ -31,7 +31,7 @@
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-[30px] gap-y-[50px]">
 
                 <!-- services code  -->
-                @include("client.base.Components.Pages.services")
+                @include("client.base.components.pages.services")
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -58,7 +58,7 @@
                     <div class="tiny-single-item">
 
                         <!-- reviews code  -->
-                        @include("client.base.Components.Home.reviews")
+                        @include("client.base.components.home.reviews")
 
                     </div>
                 </div>
@@ -68,7 +68,7 @@
         <div class="container relative lg:mt-24 mt-16">
 
             <!-- get-in-touch code  -->
-            @include("client.base.Components.Home.get-in-touch")
+            @include("client.base.components.home.get-in-touch")
 
         </div><!--end container-->
     </section><!--end section-->

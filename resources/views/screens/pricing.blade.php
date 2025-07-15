@@ -16,7 +16,7 @@
             </div>
 
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-6">
-                @include('base.Components.Pages.pricing')
+                @include('base.components.pages.pricing')
             </div><!--end grid-->
             <!-- End Content -->
         </div>

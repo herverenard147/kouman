@@ -26,7 +26,7 @@
 
                 <!-- blogs code  -->
 
-                @include('base.Components.Blog.blogs')
+                @include('base.components.Blog.blogs')
 
             </div><!--end grid-->
 
