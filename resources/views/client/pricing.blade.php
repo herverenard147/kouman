@@ -1,4 +1,8 @@
-@extends('client.Base.style.base')
+@php
+    $page = 'light';
+    $fpage = 'foot';
+@endphp
+@extends('client.base.style.base')
 @section('title', 'Pricing')
 @section('content')
 
@@ -27,7 +31,7 @@
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-[30px] gap-y-[50px]">
 
                 <!-- pricing code  -->
-                @include('client/Base/Components/Pages/pricing') ;
+                @include('client/base/Components/Pages/pricing') ;
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -35,7 +39,7 @@
         <div class="container relative lg:mt-24 mt-16">
 
             <!-- get-in-touch code  -->
-            @include('client/Base/Components/Home/get-in-touch') ;
+            @include('client/base/Components/Home/get-in-touch') ;
 
         </div><!--end container-->
     </section><!--end section-->

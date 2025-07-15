@@ -1,4 +1,4 @@
-@extends('client.Base.style.base')
+@extends('client.base.style.base')
 @section('title', 'Sell Your Home | Hously')
 @section('content')
 
@@ -36,7 +36,7 @@
 
                 <!-- features code  -->
 
-                @include('client.Base.Components.Home.features')
+                @include('client.base.Components.Home.features')
 
             </div><!--end grid-->
         </div><!--end container-->

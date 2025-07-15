@@ -1,4 +1,4 @@
-@extends('client.Base.style.base')
+@extends('client.base.style.base')
 @section('title', 'Privacy Policy')
 @section('content')
 

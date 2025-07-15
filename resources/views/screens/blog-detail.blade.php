@@ -182,7 +182,7 @@ if ($article === null) {
                         <h5 class="font-medium text-lg mt-[30px]">Recent post</h5>
 
                             <!-- social-sites code  -->
-                            @extends('Base.Components.Blog.social-sites')
+                            @extends('base.Components.Blog.social-sites')
 
                         <h5 class="font-medium text-lg mt-[30px]">Social sites</h5>
                         <ul class="list-none mt-4">

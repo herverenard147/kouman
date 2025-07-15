@@ -32,12 +32,12 @@
                     <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px] -mt-24">
                         <div class="lg:col-span-4 md:col-span-12">
                             <a href="#" class="text-[22px] focus:outline-none">
-                                <img src="<?php echo $static_url; ?>/images/logo-light.png" alt="">
+                                <img src="{{ asset('client/assets/images/logo-light.png') }}" alt="">
                             </a>
                             <p class="mt-6 text-gray-300">A great plateform to buy, sell and rent your properties without any agent or commisions.</p>
-                    
+
                         </div><!--end col-->
-                
+
                         <div class="lg:col-span-2 md:col-span-4">
                             <h5 class="tracking-[1px] text-gray-100 font-semibold">Company</h5>
                             <ul class="list-none footer-list mt-6">
@@ -48,7 +48,7 @@
                                 <li class="mt-[10px]"><a href="auth-login.php" class="text-slate-300 hover:text-slate-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b me-1"></i> Login</a></li>
                             </ul>
                         </div><!--end col-->
-                
+
                         <div class="lg:col-span-3 md:col-span-4">
                             <h5 class="tracking-[1px] text-gray-100 font-semibold">Usefull Links</h5>
                             <ul class="list-none footer-list mt-6">
@@ -61,8 +61,8 @@
 
                         <div class="lg:col-span-3 md:col-span-4">
                             <h5 class="tracking-[1px] text-gray-100 font-semibold">Contact Details</h5>
-                    
-                    
+
+
                             <div class="flex mt-6">
                                 <i data-feather="map-pin" class="size-5 text-green-600 me-3"></i>
                                 <div class="">
@@ -77,7 +77,7 @@
                                     <a href="mailto:contact@example.com" class="text-slate-300 hover:text-slate-400 duration-500 ease-in-out">contact@example.com</a>
                                 </div>
                             </div>
-                    
+
                             <div class="flex mt-6">
                                 <i data-feather="phone" class="size-5 text-green-600 me-3"></i>
                                 <div class="">

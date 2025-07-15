@@ -3,7 +3,7 @@
 @section('title', 'Blogs & News')
 
 @section('navlink')
-    @include('client.Base.style.navbar-light')
+    @include('client.base.style.navbar-light')
 @endsection
 
 @section('content')
@@ -34,7 +34,7 @@
             <div class="grid lg:grid-cols-12 md:grid-cols-2 grid-cols-1 gap-[30px]">
                 <div class="lg:col-span-8 md:order-1 order-2">
                     <div class="grid lg:grid-cols-2 grid-cols-1 gap-[30px]">
-                        @include('client.Base.Components.Pages.blog1')
+                        @include('client.base.Components.Pages.blog1')
                     </div>
 
                     {{-- Pagination --}}

@@ -17,7 +17,7 @@
 
             <div class="grid lg:grid-cols-2 grid-cols-1 gap-6 mt-6">
 
-                @include('Base.Components.Favorite-Properties.properties1')
+                @include('base.Components.Favorite-Properties.properties1')
             </div><!--en grid-->
 
             <div class="grid md:grid-cols-12 grid-cols-1 mt-6">

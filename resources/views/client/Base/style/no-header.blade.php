@@ -1,5 +1,5 @@
 <?php
-// $base_dir = __DIR__ . '/Base';
+// $base_dir = __DIR__ . '/base';
 $static_url = '/Hously_Landing/assets';
 
 // Define the content for the navlink block

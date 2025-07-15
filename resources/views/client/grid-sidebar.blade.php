@@ -1,21 +1,13 @@
-<?php
-$base_dir = __DIR__ . '/Base';
-$static_url = '/Hously_Landing/assets'; // Ensure this is the correct path
-
-// Include the common navlink content
-ob_start();
-include "$base_dir/navbar-light.php"; // This file contains the shared navlink content
-$navlink_content = ob_get_clean(); // Capture the navlink content
-$page = 'light';
-$fpage = 'foot';
-
-// Optionally define the Hero block content
-ob_start();
-?>
-
+@php
+    $page = 'light';
+    $fpage = 'foot';
+@endphp
+@extends('client.base.style.base')
+@section('title', 'Grid View Layout')
+@section('content')
 <!-- Start Hero -->
 <section
-    class="relative table w-full py-32 lg:py-36 bg-[url('../../<?php echo $static_url; ?>/images/bg/01.jpg')] bg-no-repeat bg-center bg-cover">
+    class="relative table w-full py-32 lg:py-36 bg-[url('{{ asset('client/assets/images/bg/01.jpg') }}')] bg-no-repeat bg-center bg-cover">
     <div class="absolute inset-0 bg-black opacity-80"></div>
     <div class="container relative">
         <div class="grid grid-cols-1 text-center mt-10">
@@ -87,9 +79,7 @@ ob_start();
                 <div class="grid lg:grid-cols-2 grid-cols-1 gap-[30px]">
 
                     <!-- listing-grid code  -->
-                    <?php
-                    include "$base_dir/Components/Listing/listing-grid.php";
-                    ?>
+                    @include("Client.base.Components.Listing.listing-grid")
 
                 </div><!--en grid-->
 
@@ -134,10 +124,4 @@ ob_start();
     </div><!--end container-->
 </section><!--end section-->
 <!-- End -->
-
-<?php
-$hero_content = ob_get_clean(); // Capture the hero content
-
-// Include the base template
-include "$base_dir/style/base.php";
-?>
+@endsection

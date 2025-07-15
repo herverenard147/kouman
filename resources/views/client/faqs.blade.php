@@ -1,7 +1,11 @@
-@extends('client.Base.style.base')
+@php
+    $page = 'light';
+    $fpage = 'foot';
+@endphp
+@extends('client.base.style.base')
 
 @section('navlink')
-    @include('client.Base.style.navbar-light')
+    @include('client.base.style.navbar-light')
 @endsection
 
 @section('content')
@@ -49,25 +53,282 @@
                     {{-- Buying Section --}}
                     <div id="tech">
                         <h5 class="text-2xl font-semibold">Buying Product</h5>
-                        @include('client.Base.Components.FAQ.buying')
+                        <div id="accordion-collapseone" data-accordion="collapse" class="mt-6">
+                            <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden">
+                                <h2 class="text-lg font-medium" id="accordion-collapse-heading-1">
+                                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
+                                        <span>How does it work ?</span>
+                                        <svg data-accordion-icon class="size-5 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-collapse-body-1" class="hidden" aria-labelledby="accordion-collapse-heading-1">
+                                    <div class="p-5">
+                                        <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden mt-4">
+                                <h2 class="text-lg font-medium" id="accordion-collapse-heading-2">
+                                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
+                                        <span>Do I need a designer to use Hously ?</span>
+                                        <svg data-accordion-icon class="size-5 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-collapse-body-2" class="hidden" aria-labelledby="accordion-collapse-heading-2">
+                                    <div class="p-5">
+                                        <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden mt-4">
+                                <h2 class="text-lg font-medium" id="accordion-collapse-heading-3">
+                                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-3" aria-expanded="false" aria-controls="accordion-collapse-body-3">
+                                        <span>What do I need to do to start selling ?</span>
+                                        <svg data-accordion-icon class="size-5 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-collapse-body-3" class="hidden" aria-labelledby="accordion-collapse-heading-3">
+                                    <div class="p-5">
+                                        <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden mt-4">
+                                <h2 class="text-lg font-medium" id="accordion-collapse-heading-4">
+                                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-4" aria-expanded="false" aria-controls="accordion-collapse-body-4">
+                                        <span>What happens when I receive an order ?</span>
+                                        <svg data-accordion-icon class="size-5 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-collapse-body-4" class="hidden" aria-labelledby="accordion-collapse-heading-4">
+                                    <div class="p-5">
+                                        <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     {{-- General Section --}}
                     <div id="general" class="mt-8">
                         <h5 class="text-2xl font-semibold">General Questions</h5>
-                        @include('client.Base.Components.FAQ.general')
+                        <div id="accordion-collapsetwo" data-accordion="collapse" class="mt-6">
+                            <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden">
+                                <h2 class="text-lg font-medium" id="accordion-collapse-heading-5">
+                                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-5" aria-expanded="true" aria-controls="accordion-collapse-body-5">
+                                        <span>How does it work ?</span>
+                                        <svg data-accordion-icon class="size-5 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-collapse-body-5" class="hidden" aria-labelledby="accordion-collapse-heading-5">
+                                    <div class="p-5">
+                                        <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden mt-4">
+                                <h2 class="text-lg font-medium" id="accordion-collapse-heading-6">
+                                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-6" aria-expanded="false" aria-controls="accordion-collapse-body-6">
+                                        <span>Do I need a designer to use Hously ?</span>
+                                        <svg data-accordion-icon class="size-5 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-collapse-body-6" class="hidden" aria-labelledby="accordion-collapse-heading-6">
+                                    <div class="p-5">
+                                        <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden mt-4">
+                                <h2 class="text-lg font-medium" id="accordion-collapse-heading-7">
+                                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-7" aria-expanded="false" aria-controls="accordion-collapse-body-7">
+                                        <span>What do I need to do to start selling ?</span>
+                                        <svg data-accordion-icon class="size-5 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-collapse-body-7" class="hidden" aria-labelledby="accordion-collapse-heading-7">
+                                    <div class="p-5">
+                                        <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden mt-4">
+                                <h2 class="text-lg font-medium" id="accordion-collapse-heading-8">
+                                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-8" aria-expanded="false" aria-controls="accordion-collapse-body-8">
+                                        <span>What happens when I receive an order ?</span>
+                                        <svg data-accordion-icon class="size-5 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-collapse-body-8" class="hidden" aria-labelledby="accordion-collapse-heading-8">
+                                    <div class="p-5">
+                                        <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     {{-- Payments Section --}}
                     <div id="payment" class="mt-8">
                         <h5 class="text-2xl font-semibold">Payments Questions</h5>
-                        @include('client.Base.Components.FAQ.payment')
+
+                        <div id="accordion-collapsethree" data-accordion="collapse" class="mt-6">
+                            <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden">
+                                <h2 class="text-lg font-medium" id="accordion-collapse-heading-9">
+                                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-9" aria-expanded="true" aria-controls="accordion-collapse-body-9">
+                                        <span>How does it work ?</span>
+                                        <svg data-accordion-icon class="size-5 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-collapse-body-9" class="hidden" aria-labelledby="accordion-collapse-heading-9">
+                                    <div class="p-5">
+                                        <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden mt-4">
+                                <h2 class="text-lg font-medium" id="accordion-collapse-heading-10">
+                                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-10" aria-expanded="false" aria-controls="accordion-collapse-body-10">
+                                        <span>Do I need a designer to use Hously ?</span>
+                                        <svg data-accordion-icon class="size-5 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-collapse-body-10" class="hidden" aria-labelledby="accordion-collapse-heading-10">
+                                    <div class="p-5">
+                                        <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden mt-4">
+                                <h2 class="text-lg font-medium" id="accordion-collapse-heading-11">
+                                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-11" aria-expanded="false" aria-controls="accordion-collapse-body-11">
+                                        <span>What do I need to do to start selling ?</span>
+                                        <svg data-accordion-icon class="size-5 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-collapse-body-11" class="hidden" aria-labelledby="accordion-collapse-heading-11">
+                                    <div class="p-5">
+                                        <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden mt-4">
+                                <h2 class="text-lg font-medium" id="accordion-collapse-heading-12">
+                                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-12" aria-expanded="false" aria-controls="accordion-collapse-body-12">
+                                        <span>What happens when I receive an order ?</span>
+                                        <svg data-accordion-icon class="size-5 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-collapse-body-12" class="hidden" aria-labelledby="accordion-collapse-heading-12">
+                                    <div class="p-5">
+                                        <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     {{-- Support Section --}}
                     <div id="support" class="mt-8">
                         <h5 class="text-2xl font-semibold">Support Questions</h5>
-                        @include('client.Base.Components.FAQ.support')
+                        <div id="accordion-collapsefour" data-accordion="collapse" class="mt-6">
+                            <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden">
+                                <h2 class="text-lg font-medium" id="accordion-collapse-heading-13">
+                                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-13" aria-expanded="true" aria-controls="accordion-collapse-body-13">
+                                        <span>How does it work ?</span>
+                                        <svg data-accordion-icon class="size-5 rotate-180 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-collapse-body-13" class="hidden" aria-labelledby="accordion-collapse-heading-13">
+                                    <div class="p-5">
+                                        <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden mt-4">
+                                <h2 class="text-lg font-medium" id="accordion-collapse-heading-14">
+                                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-14" aria-expanded="false" aria-controls="accordion-collapse-body-14">
+                                        <span>Do I need a designer to use Hously ?</span>
+                                        <svg data-accordion-icon class="size-5 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-collapse-body-14" class="hidden" aria-labelledby="accordion-collapse-heading-14">
+                                    <div class="p-5">
+                                        <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden mt-4">
+                                <h2 class="text-lg font-medium" id="accordion-collapse-heading-15">
+                                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-15" aria-expanded="false" aria-controls="accordion-collapse-body-15">
+                                        <span>What do I need to do to start selling ?</span>
+                                        <svg data-accordion-icon class="size-5 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-collapse-body-15" class="hidden" aria-labelledby="accordion-collapse-heading-15">
+                                    <div class="p-5">
+                                        <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="relative shadow dark:shadow-gray-700 rounded-md overflow-hidden mt-4">
+                                <h2 class="text-lg font-medium" id="accordion-collapse-heading-16">
+                                    <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-16" aria-expanded="false" aria-controls="accordion-collapse-body-16">
+                                        <span>What happens when I receive an order ?</span>
+                                        <svg data-accordion-icon class="size-5 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                                        </svg>
+                                    </button>
+                                </h2>
+                                <div id="accordion-collapse-body-16" class="hidden" aria-labelledby="accordion-collapse-heading-16">
+                                    <div class="p-5">
+                                        <p class="text-slate-400 dark:text-gray-400">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -75,7 +336,7 @@
 
         <!-- Get in touch section -->
         <div class="container relative lg:mt-24 mt-16">
-            @include('client.Base.Components.Home.get-in-touch')
+            @include('client.base.Components.Home.get-in-touch')
         </div>
     </section>
     <!-- End -->

@@ -1,4 +1,4 @@
-@extends('client.Base.style.no-header')
+@extends('client.base.style.no-header')
 
 @section('navlink')
 

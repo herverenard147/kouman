@@ -27,7 +27,7 @@
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">
 
                 <!-- agencies code  -->
-                @include('client.Base.Components.Pages.agencies')
+                @include('client.base.Components.Pages.agencies')
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -35,7 +35,7 @@
         <div class="container relative lg:mt-24 mt-16">
 
             <!-- get-in-touch code  -->
-            @include('client.Base.Components.Home.get-in-touch')
+            @include('client.base.Components.Home.get-in-touch')
 
         </div><!--end container-->
     </section><!--end section-->

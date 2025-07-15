@@ -1,4 +1,4 @@
-@extends('client.Base.style.base')
+@extends('client.base.style.base')
 @section('title', 'Grid View Layout')
 @section('content')
 
@@ -108,7 +108,7 @@
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">
 
                 <!-- listing-grid code  -->
-                @include('client.Base.Components.Listing.listing-grid');
+                @include('client.base.Components.Listing.listing-grid');
             </div><!--en grid-->
 
             <div class="grid md:grid-cols-12 grid-cols-1 mt-8">

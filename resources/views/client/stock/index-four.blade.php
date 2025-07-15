@@ -1,4 +1,4 @@
-@extends('client.Base.style.base')
+@extends('client.base.style.base')
 @section('title', 'Index-foure View Layout')
 @section('content')
 
@@ -108,7 +108,7 @@
     <!-- Start -->
     <section class="relative md:py-24 py-16">
         <div class="container relative">
-            @include('client.Base.Components.Home.control')
+            @include('client.base.Components.Home.control')
         </div>
 
         <div class="container relative lg:mt-24 mt-16">
@@ -119,7 +119,7 @@
             </div>
 
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
-                @include('client.Base.Components.Home.features')
+                @include('client.base.Components.Home.features')
             </div>
         </div>
 
@@ -131,7 +131,7 @@
             </div>
 
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
-                @include('client.Base.Components.Home.properties')
+                @include('client.base.Components.Home.properties')
             </div>
         </div>
 
@@ -152,14 +152,14 @@
                     </div>
 
                     <div class="tiny-single-item">
-                        @include('client.Base.Components.Home.reviews')
+                        @include('client.base.Components.Home.reviews')
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="container relative lg:mt-24 mt-16">
-            @include('client.Base.Components.Home.get-in-touch')
+            @include('client.base.Components.Home.get-in-touch')
         </div>
     </section>
     <!-- End -->

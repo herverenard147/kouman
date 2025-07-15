@@ -1,7 +1,7 @@
-@extends('client.Base.style.base')
+@extends('client.base.style.base')
 
 @section('navlink')
-    @include('client.Base.style.navbar-light')
+    @include('client.base.style.navbar-light')
 @endsection
 
 @section('content')
@@ -30,7 +30,7 @@
         <div class="container relative">
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">
                 {{-- blog1 content --}}
-                @include('client.Base.Components.Pages.blog1')
+                @include('client.base.Components.Pages.blog1')
             </div>
 
             <div class="grid md:grid-cols-12 grid-cols-1 mt-8">
@@ -39,9 +39,9 @@
                         <ul class="inline-flex items-center -space-x-px">
                             <li>
                                 <a href="#"
-                                    class="size-10 inline-flex justify-center items-center mx-1 rounded-full 
-                                    text-slate-400 bg-white dark:bg-slate-900 hover:text-white shadow-sm 
-                                    dark:shadow-gray-700 hover:border-green-600 dark:hover:border-green-600 
+                                    class="size-10 inline-flex justify-center items-center mx-1 rounded-full
+                                    text-slate-400 bg-white dark:bg-slate-900 hover:text-white shadow-sm
+                                    dark:shadow-gray-700 hover:border-green-600 dark:hover:border-green-600
                                     hover:bg-green-600 dark:hover:bg-green-600">
                                     <i class="uil uil-angle-left text-[20px]"></i>
                                 </a>
@@ -49,11 +49,11 @@
                             @for ($i = 1; $i <= 4; $i++)
                                 <li>
                                     <a href="#"
-                                        class="size-10 inline-flex justify-center items-center mx-1 rounded-full 
+                                        class="size-10 inline-flex justify-center items-center mx-1 rounded-full
                                        {{ $i == 3
                                            ? 'text-white bg-green-600 z-10 shadow-sm dark:shadow-gray-700'
-                                           : 'text-slate-400 hover:text-white bg-white dark:bg-slate-900 
-                                                                                           shadow-sm dark:shadow-gray-700 hover:border-green-600 
+                                           : 'text-slate-400 hover:text-white bg-white dark:bg-slate-900
+                                                                                           shadow-sm dark:shadow-gray-700 hover:border-green-600
                                                                                            dark:hover:border-green-600 hover:bg-green-600 dark:hover:bg-green-600' }}">
                                         {{ $i }}
                                     </a>
@@ -61,9 +61,9 @@
                             @endfor
                             <li>
                                 <a href="#"
-                                    class="size-10 inline-flex justify-center items-center mx-1 rounded-full 
-                                    text-slate-400 bg-white dark:bg-slate-900 hover:text-white shadow-sm 
-                                    dark:shadow-gray-700 hover:border-green-600 dark:hover:border-green-600 
+                                    class="size-10 inline-flex justify-center items-center mx-1 rounded-full
+                                    text-slate-400 bg-white dark:bg-slate-900 hover:text-white shadow-sm
+                                    dark:shadow-gray-700 hover:border-green-600 dark:hover:border-green-600
                                     hover:bg-green-600 dark:hover:bg-green-600">
                                     <i class="uil uil-angle-right text-[20px]"></i>
                                 </a>

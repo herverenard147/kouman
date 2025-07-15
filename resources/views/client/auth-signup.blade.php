@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@include('client.Base.style.no-header')
+@include('client.base.style.no-header')
 
 @section('title', 'Auth-Signup - Hously')
 @section('content')

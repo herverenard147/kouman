@@ -1,4 +1,8 @@
-@extends('client.Base.style.base')
+@php
+    $page = 'light';
+    $fpage = 'foot1';
+@endphp
+@extends('client.base.style.base')
 @section('title', 'Index-seven')
 @section('content')
 
@@ -8,8 +12,8 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide flex items-center overflow-hidden">
                     <div class="slide-inner absolute end-0 top-0 size-full slide-bg-image flex items-center bg-center;"
-                        data-background="client/assets/images/bg/01.jpg">
-                        <div class="absolute inset-0 bg-black/70"></div>
+                        data-background="{{ asset('client/assets/images/bg/01.jpg') }}">
+                        {{-- <div class="absolute inset-0 bg-black/70"></div> --}}
                         <div class="container relative">
                             <div class="grid grid-cols-1">
                                 <div class="text-center">
@@ -31,8 +35,8 @@
 
                 <div class="swiper-slide flex items-center overflow-hidden">
                     <div class="slide-inner absolute end-0 top-0 size-full slide-bg-image flex items-center bg-center;"
-                        data-background="client/assets/images/bg/02.jpg">
-                        <div class="absolute inset-0 bg-black/70"></div>
+                        data-background="{{ asset('client/assets/images/bg/02.jpg') }}">
+                        {{-- <div class="absolute inset-0 bg-black/70"></div> --}}
                         <div class="container relative">
                             <div class="grid grid-cols-1">
                                 <div class="text-center">
@@ -348,7 +352,7 @@
         <div class="container relative lg:mt-24 mt-16">
 
             <!-- control code  -->
-            @include('client/Base/Components/Home/control') ;
+            @include('client/base/Components/Home/control')
 
         </div><!--end container-->
 
@@ -363,7 +367,7 @@
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
 
                 <!-- features code  -->
-                @include('client/Base/Components/Home/features') ;
+                @include('client/base/Components/Home/features')
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -380,7 +384,7 @@
             <div class="grid lg:grid-cols-2 grid-cols-1 gap-[30px] mt-8">
 
                 <!-- properties2 code  -->
-                @include('client/Base/Components/Home/properties2') ;
+                @include('client/base/Components/Home/properties2')
 
             </div><!--en grid-->
 
@@ -395,7 +399,7 @@
 
         <div class="container relative lg:mt-24 mt-16 lg:pt-24 pt-16">
             <div
-                class="absolute inset-0 opacity-25 dark:opacity-50 bg-[url('client/assets/images/map.png')] bg-no-repeat bg-center bg-cover">
+                class="absolute inset-0 opacity-25 dark:opacity-50 bg-[url('{{ asset('client/assets/images/map.png') }}')] bg-no-repeat bg-center bg-cover">
             </div>
             <div class="relative grid grid-cols-1 pb-8 text-center z-1">
                 <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">Trusted by more than
@@ -408,7 +412,7 @@
             <div class="relative grid md:grid-cols-3 grid-cols-1 items-center mt-8 gap-[30px] z-1">
 
                 <!-- cta1 code  -->
-                @include('client/Base/Components/Home/cta1') ;
+                @include('client/base/Components/Home/cta1')
 
             </div>
         </div><!--end container-->
@@ -425,7 +429,7 @@
             <div class="grid md:grid-cols-12 grid-cols-1 mt-8 gap-[30px]">
 
                 <!-- team code  -->
-                @include('client/Base/Components/Home/team') ;
+                @include('client/base/Components/Home/team')
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -452,7 +456,7 @@
                     <div class="tiny-single-item">
 
                         <!-- reviews code  -->
-                        @include('client/Base/Components/Home/reviews') ;
+                        @include('client/base/Components/Home/reviews')
 
                     </div>
                 </div>
@@ -462,7 +466,7 @@
         <div class="container relative lg:mt-24 mt-16">
 
             <!-- get-in-touch code  -->
-            @include('client/Base/Components/Home/get-in-touch') ;
+            @include('client/base/Components/Home/get-in-touch')
 
         </div><!--end container-->
     </section><!--end section-->

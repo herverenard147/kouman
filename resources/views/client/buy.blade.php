@@ -46,7 +46,7 @@
             </div><!--end grid-->
 
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
-                @include('client.Base.components.home.properties')
+                @include('client.base.components.home.properties')
             </div><!--end grid-->
 
             <div class="md:flex justify-center text-center mt-6">
@@ -66,16 +66,16 @@
             </div><!--end grid-->
 
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
-                @include('client.Base.components.buy.buyer-benefits')
+                @include('client.base.components.buy.buyer-benefits')
             </div><!--end grid-->
         </div><!--end container-->
 
         <div class="container relative lg:mt-24 mt-16">
-            @include('client.Base.components.buy.tab')
+            @include('client.base.components.buy.tab')
         </div><!--end container-->
 
         <div class="container relative lg:mt-24 mt-16">
-            @include('client.Base.components.home.get-in-touch')
+            @include('client.base.components.home.get-in-touch')
         </div><!--end container-->
     </section><!--end section-->
     <!-- End -->

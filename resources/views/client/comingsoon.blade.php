@@ -1,4 +1,4 @@
-@extends('client.Base.style.no-header')
+@extends('client.base.style.no-header')
 
 @section('content')
     <section class="md:h-screen py-36 flex items-center justify-center relative overflow-hidden zoom-image">
@@ -8,7 +8,7 @@
         <div class="container-fluid relative z-3">
             <div class="grid grid-cols-1">
                 <div class="flex flex-col min-h-screen justify-center md:px-10 py-10 px-4">
-                    
+
                     <!-- Logo -->
                     <div class="text-center">
                         <a href="{{ url('/') }}">
@@ -39,7 +39,7 @@
                     <div class="text-center">
                         <p class="mb-0 text-slate-400">
                             © <script>document.write(new Date().getFullYear())</script> Hously.
-                            Design & Develop with <i class="mdi mdi-heart text-red-600"></i> by 
+                            Design & Develop with <i class="mdi mdi-heart text-red-600"></i> by
                             <a href="https://shreethemes.in/" target="_blank" class="text-reset">Shreethemes</a>.
                         </p>
                     </div>

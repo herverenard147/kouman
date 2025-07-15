@@ -6,16 +6,16 @@ use App\Http\Controllers\ClientController;
 
 Route::prefix('client')->group(function () {
     Route::get('dashboard', [ClientController::class, 'index'])->name('client.dashboard');
-    Route::view('/', 'client.index')->name('home');
-    Route::view('index-two', 'client.home')->name('index.two');
-    Route::view('index-three', 'client.index-three')->name('index.three');
-    Route::view('index-four', 'client.index-four')->name('index.four');
-    Route::view('index-five', 'client.index-five')->name('index.five');
-    Route::view('index-six', 'client.index-six')->name('index.six');
-    Route::view('index-seven', 'client.index-seven')->name('index.seven');
-    Route::view('index-eight', 'client.index-eight')->name('index.eight');
-    Route::view('index-nine', 'client.index-nine')->name('index.nine');
-    Route::view('index-ten', 'client.index-ten')->name('index.ten');
+    // Route::view('/', 'client.home')->name('home');
+    // Route::view('index-two', 'client.index-two')->name('index.two');
+    // Route::view('index-three', 'client.index-three')->name('index.three');
+    // Route::view('index-four', 'client.index-four')->name('index.four');
+    // Route::view('index-five', 'client.index-five')->name('index.five');
+    // Route::view('index-six', 'client.index-six')->name('index.six');
+    Route::view('index', 'client.index-seven')->name('client.index');
+    // Route::view('index-eight', 'client.index-eight')->name('index.eight');
+    // Route::view('index-nine', 'client.index-nine')->name('index.nine');
+    // Route::view('index-ten', 'client.index-ten')->name('index.ten');
 
     Route::view('buy', 'client.buy')->name('buy');
     Route::view('sell', 'client.sell')->name('sell');
@@ -95,6 +95,8 @@ Route::get('client/agents', function () {
     return view('client.agents');
 })->name('client.agents');
 
+Route::view('agent-profile', 'client.agent-profile')->name('client.agent.profile');
+
 Route::get('client/auth-login', function () {
     return view('client.auth-login');
 })->name('client.auth.login');
@@ -142,64 +144,25 @@ Route::get('client/features', function () {
 
 Route::get('client/grid-map', function () {
     return view('client.grid-map');
-})->name('client.grid-map');
+})->name('client.grid.map');
 
 Route::get('client/grid-sidebar', function () {
     return view('client.grid-sidebar');
-})->name('client.grid-sidebar');
+})->name('client.grid.sidebar');
 
 Route::get('client/grid', function () {
     return view('client.grid');
 })->name('client.grid');
 
-Route::get('client/index-eight', function () {
-    return view('client.index-eight');
-})->name('client.index-eight');
 
-Route::get('client/index-five', function () {
-    return view('client.index-five');
-})->name('client.index-five');
-
-Route::get('client/index-four', function () {
-    return view('client.index-four');
-})->name('client.index-four');
-
-Route::get('client/index-nine', function () {
-    return view('client.index-nine');
-})->name('client.index-nine');
-
-Route::get('client/index-seven', function () {
-    return view('client.index-seven');
-})->name('client.index-seven');
-
-
-Route::get('client/index-six', function () {
-    return view('client.index-six');
-})->name('client.index-six');
-
-Route::get('client/index-ten', function () {
-    return view('client.index-ten');
-})->name('client.index-ten');
-
-Route::get('client/index-three', function () {
-    return view('client.index-three');
-})->name('client.index-three');
-
-Route::get('client/index-two', function () {
-    return view('client.index-two');
-})->name('client.index-two');
-
-Route::get('client/index', function () {
-    return view('client.index');
-})->name('client.index');
 
 Route::get('client/list-map', function () {
     return view('client.list-map');
-})->name('client.list-map');
+})->name('client.list.map');
 
 Route::get('client/list-sidebar', function () {
     return view('client.list-sidebar');
-})->name('client.list-sidebar');
+})->name('client.list.sidebar');
 
 Route::get('client/list', function () {
     return view('client.list');
@@ -219,16 +182,16 @@ Route::get('client/privacy', function () {
 
 Route::get('client/property-detail-two', function () {
     return view('client.property-detail-two');
-})->name('client.property-detail');
+})->name('client.property.detail.two');
 
 Route::get('client/property-detail', function () {
     return view('client.property-detail');
-})->name('client.property-detail');
+})->name('client.property.detail');
 
 Route::get('client/sell', function () {
     return view('client.sell');
 })->name('client.sell');
 
-Route::get('client/terms', function () {
+Route::get('    client/terms', function () {
     return view('client.terms');
 })->name('client.terms');

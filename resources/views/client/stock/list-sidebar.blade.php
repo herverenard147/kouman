@@ -1,4 +1,4 @@
-@extends('client.Base.style.base')
+@extends('client.base.style.base')
 @section('title', 'List Sidebar')
 @section('content')
 
@@ -76,7 +76,7 @@
                     <div class="grid grid-cols-1 gap-[30px]">
 
                         <!-- listing-list-sidebar code  -->
-                        @include('client/Base/Components/Listing/listing-list-sidebar');
+                        @include('client/base/Components/Listing/listing-list-sidebar');
 
                     </div><!--en grid-->
 

@@ -1,4 +1,4 @@
-@extends('client.Base.style.base')
+@extends('client.base.style.base')
 @section('title', 'Hously - Home')
 @section('content')
 
@@ -52,26 +52,42 @@
 
                         <div class="mt-4">
                             <ul class="list-none relative md:mt-20">
-                                <li class="inline-block relative"><a href=""><img
-                                            src="client/assets/images/client/01.jpg"
+                                <li class="inline-block relative">
+                                    <a href="">
+                                        <img src="{{ asset('client/assets/images/client/01.jpg') }}"
                                             class="size-12 rounded-full shadow-md shadow-slate-100 dark:shadow-slate-800 border-4 border-white dark:border-slate-900 relative hover:z-1 hover:scale-105 transition-all duration-500"
-                                            alt=""></a></li>
-                                <li class="inline-block relative -ms-4"><a href=""><img
-                                            src="client/assets/images/client/02.jpg"
+                                            alt="">
+                                    </a>
+                                </li>
+                                <li class="inline-block relative -ms-4">
+                                    <a href="">
+                                        <img src="{{ asset('client/assets/images/client/02.jpg') }}"
                                             class="size-12 rounded-full shadow-md shadow-slate-100 dark:shadow-slate-800 border-4 border-white dark:border-slate-900 relative hover:z-1 hover:scale-105 transition-all duration-500"
-                                            alt=""></a></li>
-                                <li class="inline-block relative -ms-4"><a href=""><img
-                                            src="client/assets/images/client/03.jpg"
+                                            alt="">
+                                    </a>
+                                </li>
+                                <li class="inline-block relative -ms-4">
+                                    <a href="">
+                                        <img src="{{ asset('client/assets/images/client/03.jpg') }}"
                                             class="size-12 rounded-full shadow-md shadow-slate-100 dark:shadow-slate-800 border-4 border-white dark:border-slate-900 relative hover:z-1 hover:scale-105 transition-all duration-500"
-                                            alt=""></a></li>
-                                <li class="inline-block relative -ms-4"><a href=""><img
-                                            src="client/assets/images/client/04.jpg"
+                                            alt="">
+                                    </a>
+                                </li>
+                                <li class="inline-block relative -ms-4">
+                                    <a href="">
+                                        <img src="{{ asset('client/assets/images/client/04.jpg') }}"
                                             class="size-12 rounded-full shadow-md shadow-slate-100 dark:shadow-slate-800 border-4 border-white dark:border-slate-900 relative hover:z-1 hover:scale-105 transition-all duration-500"
-                                            alt=""></a></li>
-                                <li class="inline-block relative -ms-4"><a href=""><img
-                                            src="client/assets/images/client/05.jpg"
+                                            alt="">
+                                    </a>
+                                </li>
+                                <li class="inline-block relative -ms-4">
+                                    <a href="">
+                                        <img src="{{ asset('client/assets/images/client/05.jpg') }}"
                                             class="size-12 rounded-full shadow-md shadow-slate-100 dark:shadow-slate-800 border-4 border-white dark:border-slate-900 relative hover:z-1 hover:scale-105 transition-all duration-500"
-                                            alt=""></a></li>
+                                            alt="">
+                                    </a>
+                                </li>
+
                             </ul>
                         </div>
                     </div>
@@ -83,7 +99,7 @@
             <div class="grid md:grid-cols-6 grid-cols-2 justify-center gap-6">
 
                 <!-- business-partner code  -->
-                @include('client/Base/Components/Home/business-partner') ;
+                @include('client/base/Components/Home/business-partner') ;
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -103,7 +119,7 @@
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
 
                 <!-- what-we-do code  -->
-                @include('client/Base/Components/Home/what-we-do') ;
+                @include('client/base/Components/Home/what-we-do') ;
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -111,7 +127,7 @@
         <div class="container relative lg:mt-24 mt-16">
 
             <!-- control code  -->
-            @include('client/Base/Components/Home/control') ;
+            @include('client/base/Components/Home/control') ;
 
         </div><!--end container-->
 
@@ -126,7 +142,7 @@
             <div class="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 mt-8 md:gap-[30px] gap-3">
 
                 <!-- categories code  -->
-                @include('client/Base/Components/Home/categories') ;
+                @include('client/base/Components/Home/categories') ;
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -143,7 +159,7 @@
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
 
                 <!-- properties code  -->
-                @include('client/Base/Components/Home/properties') ;
+                @include('client/base/Components/Home/properties') ;
 
             </div><!--en grid-->
         </div><!--end container-->
@@ -162,7 +178,7 @@
                     <div class="tiny-three-item">
 
                         <!-- reviews1 code  -->
-                        @include('client/Base/Components/Home/reviews1') ;
+                        @include('client/base/Components/Home/reviews1') ;
 
                     </div>
                 </div>
@@ -181,7 +197,7 @@
             <div class="grid md:grid-cols-12 grid-cols-1 mt-8 gap-[30px]">
 
                 <!-- team code  -->
-                @include('client/Base/Components/Home/team') ;
+                @include('client/base/Components/Home/team') ;
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -198,7 +214,7 @@
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
 
                 <!-- blog code  -->
-                @include('client/Base/Components/Home/blog') ;
+                @include('client/base/Components/Home/blog') ;
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -206,7 +222,7 @@
         <div class="container relative lg:mt-24 mt-16">
 
             <!-- get-in-touch code  -->
-            @include('client/Base/Components/Home/get-in-touch') ;
+            @include('client/base/Components/Home/get-in-touch') ;
 
         </div><!--end container-->
     </section><!--end section-->

@@ -3,8 +3,8 @@
     <div class="container relative">
         <!-- Logo container-->
         <a class="logo" href="index.php">
-            <img src="client/images/logo-dark.png" class="inline-block dark:hidden" alt="">
-            <img src="client/images/logo-light.png" class="hidden dark:inline-block" alt="">
+            <img src="{{ asset('client/assets/images/logo-dark.png') }}" class="inline-block dark:hidden" alt="">
+            <img src="{{ asset('client/assets/images/logo-light.png') }}" class="hidden dark:inline-block" alt="">
         </a>
         <!-- End Logo container-->
 
@@ -49,7 +49,7 @@
                                     <a href="index.php" class="sub-menu-item">
                                         <div class="lg:text-center">
                                             <span class="hidden lg:block"><img
-                                                    src="client/images/demos/hero-one.png"
+                                                    src="{{ asset('client/images/demos/hero-one.png') }}"
                                                     class="img-fluid rounded shadow-md" alt=""></span>
                                             <span class="lg:mt-2 block">Hero One</span>
                                         </div>
@@ -59,7 +59,7 @@
                                     <a href="index-two.php" class="sub-menu-item">
                                         <div class="lg:text-center">
                                             <span class="hidden lg:block"><img
-                                                    src="client/images/demos/hero-two.png"
+                                                    src="{{ asset('client/images/demos/hero-two.png') }}"
                                                     class="img-fluid rounded shadow-md" alt=""></span>
                                             <span class="lg:mt-2 block">Hero Two</span>
                                         </div>
@@ -74,7 +74,7 @@
                                     <a href="index-three.php" class="sub-menu-item">
                                         <div class="lg:text-center">
                                             <span class="hidden lg:block"><img
-                                                    src="client/images/demos/hero-three.png"
+                                                    src="{{ asset('client/images/demos/hero-three.png') }}"
                                                     class="img-fluid rounded shadow-md" alt=""></span>
                                             <span class="lg:mt-2 block">Hero Three</span>
                                         </div>
@@ -84,7 +84,7 @@
                                     <a href="index-four.php" class="sub-menu-item">
                                         <div class="lg:text-center">
                                             <span class="hidden lg:block"><img
-                                                    src="client/images/demos/hero-four.png"
+                                                    src="{{ asset('client/images/demos/hero-four.png') }}"
                                                     class="img-fluid rounded shadow-md" alt=""></span>
                                             <span class="lg:mt-2 block">Hero Four</span>
                                         </div>
@@ -99,7 +99,7 @@
                                     <a href="index-five.php" class="sub-menu-item">
                                         <div class="lg:text-center">
                                             <span class="hidden lg:block"><img
-                                                    src="client/images/demos/hero-five.png"
+                                                    src="{{ asset('client/images/demos/hero-five.png') }}"
                                                     class="img-fluid rounded shadow-md" alt=""></span>
                                             <span class="lg:mt-2 block">Hero Five</span>
                                         </div>
@@ -109,7 +109,7 @@
                                     <a href="index-six.php" class="sub-menu-item">
                                         <div class="lg:text-center">
                                             <span class="hidden lg:block"><img
-                                                    src="client/images/demos/hero-six.png"
+                                                    src="{{ asset('client/images/demos/hero-six.png') }}"
                                                     class="img-fluid rounded shadow-md" alt=""></span>
                                             <span class="lg:mt-2 block">Hero Six</span>
                                         </div>
@@ -124,7 +124,7 @@
                                     <a href="index-seven.php" class="sub-menu-item">
                                         <div class="lg:text-center">
                                             <span class="hidden lg:block"><img
-                                                    src="client/images/demos/hero-seven.png"
+                                                    src="{{ asset('client/images/demos/hero-seven.png') }}"
                                                     class="img-fluid rounded shadow-md" alt=""></span>
                                             <span class="lg:mt-2 block">Hero Seven</span>
                                         </div>
@@ -134,7 +134,7 @@
                                     <a href="index-eight.php" class="sub-menu-item">
                                         <div class="lg:text-center">
                                             <span class="hidden lg:block"><img
-                                                    src="client/images/demos/hero-eight.png"
+                                                    src="{{ asset('client/images/demos/hero-eight.png') }}"
                                                     class="img-fluid rounded shadow-md" alt=""></span>
                                             <span class="lg:mt-2 block">Hero Eight</span>
                                         </div>
@@ -149,7 +149,7 @@
                                     <a href="index-nine.php" class="sub-menu-item">
                                         <div class="lg:text-center">
                                             <span class="hidden lg:block"><img
-                                                    src="client/images/demos/hero-nine.png"
+                                                    src="{{ asset('client/images/demos/hero-nine.png') }}"
                                                     class="img-fluid rounded shadow-md" alt=""></span>
                                             <span class="lg:mt-2 block">Hero Nine</span>
                                         </div>
@@ -160,7 +160,7 @@
                                     <a href="index-ten.php" class="sub-menu-item">
                                         <div class="lg:text-center">
                                             <span class="hidden lg:block"><img
-                                                    src="client/images/demos/hero-ten.png"
+                                                    src="{{ asset('client/images/demos/hero-ten.png') }}"
                                                     class="img-fluid rounded shadow-md" alt=""></span>
                                             <span class="lg:mt-2 block">Hero Ten</span>
                                         </div>

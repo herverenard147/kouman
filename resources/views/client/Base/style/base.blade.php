@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>@yield('title', 'Hously - Real Estate Landing & Admin Dashboard Template')</title>
+    <title>@yield('title', 'Hously - PHP Real Estate Landing & Admin Dashboard Template')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta content="Real Estate Website Landing Page" name="description" />
     <meta content="Real Estate, buy, sell, Rent, tailwind Css" name="keywords" />
@@ -21,16 +21,13 @@
     <link href="{{ asset('client/assets/libs/tobii/css/tobii.min.css') }}" rel="stylesheet">
     <link href="{{ asset('client/assets/libs/choices.js/public/assets/styles/choices.min.css') }}" rel="stylesheet">
     <link href="{{ asset('client/assets/libs/swiper/css/swiper.min.css') }}" rel="stylesheet">
-    <!-- Main Css -->
     <link href="{{ asset('client/assets/libs/@iconscout/unicons/css/line.css') }}" type="text/css" rel="stylesheet" />
-    <link href="{{ asset('client/assets/libs/@mdi/font/css/materialdesignicons.min.css') }}" rel="stylesheet"
-        type="text/css">
+    <link href="{{ asset('client/assets/libs/@mdi/font/css/materialdesignicons.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('client/assets/css/tailwind.css') }}" />
     <link rel="stylesheet" href="{{ asset('client/assets/css/output.css') }}" />
 
     @stack('styles')
 </head>
-
 
 <body class="dark:bg-slate-900">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -42,19 +39,24 @@
 
     {{-- Navbar --}}
     @isset($page)
-        @if ($page === 'dark')
-            @include('client.Base.style.navbar-dark')
-        @elseif($page === 'light')
-            @include('client.Base.style.navbar-light')
-        @elseif($page === 'tagline-dark')
-            @include('client.Base.style.navbar-tagline-dark')
-        @elseif($page === 'center')
-            @include('client.Base.style.navbar-center')
-        @else
-            @include('client.Base.style.no-header')
-        @endif
+        @switch($page)
+            @case('dark')
+                @include('client.base.style.navbar-dark')
+                @break
+            @case('light')
+                @include('client.base.style.navbar-light')
+                @break
+            @case('tagline-dark')
+                @include('client.base.style.navbar-tagline-dark')
+                @break
+            @case('center')
+                @include('client.base.style.navbar-center')
+                @break
+            @default
+                @include('client.base.style.no-header')
+        @endswitch
     @else
-        @include('client.Base.style.no-header')
+        @include('client.base.style.no-header')
     @endisset
 
     <!-- Main Content -->
@@ -64,15 +66,18 @@
 
     {{-- Footer --}}
     @isset($fpage)
-        @if ($fpage === 'foot')
-            @include('client.Base.style.footer')
-        @elseif($fpage === 'foot1')
-            @include('client.Base.style.footer1')
-        @else
-            @include('client.Base.style.footer2')
-        @endif
+        @switch($fpage)
+            @case('foot')
+                @include('client.base.style.footer')
+                @break
+            @case('foot1')
+                @include('client.base.style.footer1')
+                @break
+            @default
+                @include('client.base.style.footer2')
+        @endswitch
     @else
-        @include('client.Base.style.footer2')
+        @include('client.base.style.footer2')
     @endisset
 
     <!-- Switcher -->
@@ -88,27 +93,28 @@
             </label>
         </span>
     </div>
-    <!-- Switcher -->
 
-    <!-- LTR & RTL Mode Code -->
+    <!-- LTR & RTL -->
     <div class="fixed top-[40%] -left-3 z-50">
-        <a href="" id="switchRtl">
+        <a href="#" id="switchRtl">
             <span
-                class="py-1 px-3 relative inline-block rounded-b-md -rotate-90 bg-white dark:bg-slate-900 shadow-md dark:shadow dark:shadow-gray-800 font-semibold rtl:block ltr:hidden">LTR</span>
+                class="py-1 px-3 relative inline-block rounded-b-md -rotate-90 bg-white dark:bg-slate-900 shadow-md font-semibold rtl:block ltr:hidden">
+                LTR
+            </span>
             <span
-                class="py-1 px-3 relative inline-block rounded-b-md -rotate-90 bg-white dark:bg-slate-900 shadow-md dark:shadow dark:shadow-gray-800 font-semibold ltr:block rtl:hidden">RTL</span>
+                class="py-1 px-3 relative inline-block rounded-b-md -rotate-90 bg-white dark:bg-slate-900 shadow-md font-semibold ltr:block rtl:hidden">
+                RTL
+            </span>
         </a>
     </div>
-    <!-- LTR & RTL Mode Code -->
 
     <!-- Back to top -->
     <a href="#" onclick="topFunction()" id="back-to-top"
-        class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 size-9 text-center bg-green-600 text-white justify-center items-center"><i
-            class="uil uil-arrow-up"></i></a>
-    <!-- Back to top -->
+        class="back-to-top fixed hidden text-lg rounded-full z-10 bottom-5 end-5 size-9 text-center bg-green-600 text-white justify-center items-center">
+        <i class="uil uil-arrow-up"></i>
+    </a>
 
-
-    <!-- JAVASCRIPTS -->
+    <!-- Scripts -->
     <script src="{{ asset('client/assets/libs/tiny-slider/min/tiny-slider.js') }}"></script>
     <script src="{{ asset('client/assets/libs/gumshoejs/gumshoe.polyfills.min.js') }}"></script>
     <script src="{{ asset('client/assets/libs/tobii/js/tobii.min.js') }}"></script>
@@ -118,11 +124,8 @@
     <script src="{{ asset('client/assets/libs/feather-icons/feather.min.js') }}"></script>
     <script src="{{ asset('client/assets/js/plugins.init.js') }}"></script>
     <script src="{{ asset('client/assets/js/app.js') }}"></script>
-    <!-- JAVASCRIPTS -->
 
     @stack('scripts')
-
-
 </body>
 
 </html>

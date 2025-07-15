@@ -1,7 +1,6 @@
-@extends('client.Base.style.base')
-@section('title', 'List-Map')
-@section('content')
+@extends('client.base.style.base')
 
+@section('content')
     <!-- Start -->
     <section class="relative">
         <div class="container-fluid">
@@ -13,16 +12,16 @@
                                 <div class="registration-form text-dark text-start">
                                     <div class="grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 lg:gap-0 gap-6">
                                         <div>
-                                            <label class="form-label font-medium text-slate-900 dark:text-white">Search :
-                                                <span class="text-red-600">*</span></label>
+                                            <label class="form-label font-medium text-slate-900 dark:text-white">
+                                                Search : <span class="text-red-600">*</span>
+                                            </label>
                                             <div class="filter-search-form relative filter-border mt-2">
                                                 <i class="uil uil-search icons"></i>
                                                 <input name="name" type="text" id="job-keyword"
                                                     class="form-input filter-input-box bg-gray-50 dark:bg-slate-800 border-0"
-                                                    placeholder="Search your keaywords">
+                                                    placeholder="Search your keywords">
                                             </div>
                                         </div>
-
 
                                         <div>
                                             <label for="buy-properties"
@@ -30,8 +29,8 @@
                                                 Categories:</label>
                                             <div class="filter-search-form relative filter-border mt-2">
                                                 <i class="uil uil-estate icons"></i>
-                                                <select class="form-select z-2" data-trigger name="choices-catagory"
-                                                    id="choices-catagory-buy" aria-label="Default select example">
+                                                <select class="form-select z-2" data-trigger name="choices-category"
+                                                    id="choices-category-buy" aria-label="Default select example">
                                                     <option>Houses</option>
                                                     <option>Apartment</option>
                                                     <option>Offices</option>
@@ -64,7 +63,7 @@
                                             <label for="buy-max-price"
                                                 class="form-label font-medium text-slate-900 dark:text-white">Max Price
                                                 :</label>
-                                            <div class="filter-search-form relative mt-2">
+                                            <div class="filter-search-form relative mt-2 filter-border">
                                                 <i class="uil uil-usd-circle icons"></i>
                                                 <select class="form-select" data-trigger name="choices-max-price"
                                                     id="choices-max-price-buy" aria-label="Default select example">
@@ -90,11 +89,10 @@
                             </form><!--end form-->
                         </div><!--end grid-->
 
-                        <div class="grid grid-cols-1 mt-8 gap-[30px]">
-
-                            <!-- listing-list-map code  -->
-                            @include('client.Base.Components.Listing.listing-list-map') ;
-                        </div><!--en grid-->
+                        <div class="grid lg:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
+                            <!-- listing-grid code  -->
+                            @include('client.base.Components.Listing.listing-grid')
+                        </div><!--end grid-->
 
                         <div class="grid md:grid-cols-12 grid-cols-1 mt-8">
                             <div class="md:col-span-12 text-center">
@@ -133,7 +131,6 @@
                             </div>
                         </div><!--end grid-->
                     </div>
-
                 </div>
 
                 <div class="relative md:block hidden">

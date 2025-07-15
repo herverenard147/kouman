@@ -1,4 +1,4 @@
-@extends('client.Base.style.base')
+@extends('client.base.style.base')
 @section('title', 'List')
 @section('content')
 
@@ -108,7 +108,7 @@
             <div class="grid lg:grid-cols-2 grid-cols-1 gap-[30px]">
 
                 <!-- listing-list code  -->
-                @include('client/Base/Components/Listing/listing-list');
+                @include('client/base/Components/Listing/listing-list');
 
             </div><!--en grid-->
 

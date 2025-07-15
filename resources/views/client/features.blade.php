@@ -1,21 +1,13 @@
-<?php
-$base_dir = __DIR__ . '/Base';
-$static_url = '/Hously_Landing/assets'; // Ensure this is the correct path
-
-// Include the common navlink content
-ob_start();
-include "$base_dir/navbar-light.php"; // This file contains the shared navlink content
-$navlink_content = ob_get_clean(); // Capture the navlink content
-$page = 'light';
-$fpage = 'foot';
-
-// Optionally define the Hero block content
-ob_start();
-?>
-
+@php
+    $page = 'light';
+    $fpage = 'foot';
+@endphp
+@extends('client.base.style.base')
+@section('title', 'Grid View Layout')
+@section('content')
 <!-- Start Hero -->
 <section
-    class="relative table w-full py-32 lg:py-36 bg-[url('../../<?php echo $static_url; ?>/images/bg/01.jpg')] bg-no-repeat bg-center bg-cover">
+    class="relative table w-full py-32 lg:py-36 bg-[url('{{asset('client/assets/images/bg/01.jpg')}}')] bg-no-repeat bg-center bg-cover">
     <div class="absolute inset-0 bg-black opacity-80"></div>
     <div class="container relative">
         <div class="grid grid-cols-1 text-center mt-10">
@@ -39,9 +31,7 @@ ob_start();
         <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-[30px] gap-y-[50px]">
 
             <!-- services code  -->
-            <?php
-            include "$base_dir/Components/Pages/services.php";
-            ?>
+            @include("client.base.Components.Pages.services")
 
         </div><!--end grid-->
     </div><!--end container-->
@@ -68,9 +58,7 @@ ob_start();
                 <div class="tiny-single-item">
 
                     <!-- reviews code  -->
-                    <?php
-                    include "$base_dir/Components/Home/reviews.php";
-                    ?>
+                    @include("client.base.Components.Home.reviews")
 
                 </div>
             </div>
@@ -80,17 +68,9 @@ ob_start();
     <div class="container relative lg:mt-24 mt-16">
 
         <!-- get-in-touch code  -->
-        <?php
-        include "$base_dir/Components/Home/get-in-touch.php";
-        ?>
+        @include("client.base.Components.Home.get-in-touch")
 
     </div><!--end container-->
 </section><!--end section-->
 <!-- End -->
-
-<?php
-$hero_content = ob_get_clean(); // Capture the hero content
-
-// Include the base template
-include "$base_dir/style/base.php";
-?>
+@endsection

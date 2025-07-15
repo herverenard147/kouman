@@ -1,11 +1,11 @@
-@extends('client.Base.style.base')
+@extends('client.base.style.base')
 @section('title', 'Two')
 @section('content')
 
     <!-- Hero Start -->
     <section class="relative table w-full py-36 lg:py-44 overflow-hidden zoom-image">
-        <div
-            class="absolute inset-0 image-wrap z-1 bg-[url('client/assets/images/bg/04.jpg')] bg-no-repeat bg-center bg-cover">
+        <div class="absolute inset-0 image-wrap z-1 bg-no-repeat bg-center bg-cover"
+            style="background-image: url('{{ asset('client/assets/images/bg/04.jpg') }}');">
         </div>
         <div class="absolute inset-0 bg-black/70 z-2"></div>
         <div class="container relative z-3">
@@ -294,7 +294,7 @@
         <div class="container relative">
 
             <!-- control code  -->
-            @include('client/Base/Components/Home/control') ;
+            @include('client/base/Components/Home/control') ;
 
         </div><!--end container-->
 
@@ -309,7 +309,7 @@
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
 
                 <!-- features code  -->
-                @include('client/Base/Components/Home/features') ;
+                @include('client/base/Components/Home/features') ;
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -327,7 +327,7 @@
                 <div class="tiny-home-slide-three">
 
                     <!-- properties1 code  -->
-                    @include('client/Base/Components/Home/properties1') ;
+                    @include('client/base/Components/Home/properties1') ;
 
                 </div>
             </div><!--en grid-->
@@ -335,7 +335,8 @@
     </section><!--end section-->
 
     <!-- Start CTA -->
-    <section class="relative py-24 bg-[url('client/assets/images/bg/01.jpg')] bg-no-repeat bg-center bg-fixed bg-cover">
+    <section class="relative py-24 bg-no-repeat bg-center bg-fixed bg-cover"
+        style="background-image: url('{{ asset('client/assets/images/bg/04.jpg') }}');">
         <div class="absolute inset-0 bg-black/60"></div>
         <div class="container relative">
             <div class="grid lg:grid-cols-12 grid-cols-1 md:text-start text-center justify-center">
@@ -343,7 +344,7 @@
                     <div class="grid md:grid-cols-3 grid-cols-1 items-center">
 
                         <!-- cta code  -->
-                        @include('client/Base/Components/Home/cta') ;
+                        @include('client/base/Components/Home/cta') ;
 
                     </div>
                 </div>
@@ -358,7 +359,7 @@
             <div class="grid md:grid-cols-6 grid-cols-2 justify-center gap-[30px]">
 
                 <!-- business-partner code  -->
-                @include('client/Base/Components/Home/business-partner') ;
+                @include('client/base/Components/Home/business-partner') ;
 
             </div><!--end grid-->
         </div><!--end container-->
@@ -380,7 +381,7 @@
                     <div class="tiny-three-item">
 
                         <!-- reviews1 code  -->
-                        @include('client/Base/Components/Home/reviews1') ;
+                        @include('client/base/Components/Home/reviews1') ;
 
                     </div>
                 </div>
@@ -390,7 +391,7 @@
         <div class="container relative lg:mt-24 mt-16">
 
             <!-- get-in-touch code  -->
-            @include('client/Base/Components/Home/get-in-touch') ;
+            @include('client/base/Components/Home/get-in-touch') ;
 
         </div><!--end container-->
     </section><!--end section-->

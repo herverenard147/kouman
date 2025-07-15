@@ -1,5 +1,5 @@
 <?php
-$base_dir = __DIR__ . '/Base';
+$base_dir = __DIR__ . '/base';
 $static_url = '/Hously_Landing/assets'; // Ensure this is the correct path
 
 // Include the common navlink content

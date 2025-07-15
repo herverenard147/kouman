@@ -1,4 +1,4 @@
-@include('client.Base.style.no-header')
+@include('client.base.style.no-header')
 
 @section('title', 'Reset Password - Hously')
 @section('content')

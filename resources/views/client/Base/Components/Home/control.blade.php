@@ -1,7 +1,7 @@
 <div class="grid md:grid-cols-12 grid-cols-1 items-center gap-[30px]">
     <div class="md:col-span-5">
         <div class="relative">
-            <img src="{{ asset('Hously_Landing/assets/images/about.jpg') }}" class="rounded-xl shadow-md" alt="">
+            <img src="{{ asset('client/assets/images/about.jpg') }}" class="rounded-xl shadow-md" alt="">
             <div class="absolute bottom-2/4 translate-y-2/4 start-0 end-0 text-center">
                 <a href="#!" data-type="youtube" data-id="yba7hPeTSjk"
                     class="lightbox size-20 rounded-full shadow-md dark:shadow-gyay-700 inline-flex items-center justify-center bg-white dark:bg-slate-900 text-green-600">

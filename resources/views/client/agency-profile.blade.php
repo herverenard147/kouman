@@ -114,7 +114,7 @@
                     <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-4 gap-[30px]">
 
                         <!-- agents code  -->
-                        @include('client.Base.Components.Pages.agents')
+                        @include('client.base.Components.Pages.agents')
 
                     </div>
 
@@ -123,7 +123,7 @@
                     <div class="grid lg:grid-cols-2 grid-cols-1 mt-4 gap-[30px]">
 
                         <!-- profile code  -->
-                        @include('client.Base.Components.Pages.profile')
+                        @include('client.base.Components.Pages.profile')
 
                     </div><!--en grid-->
 

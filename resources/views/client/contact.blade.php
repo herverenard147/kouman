@@ -1,7 +1,11 @@
-@extends('client.Base.style.base')
+@php
+    $page = 'light';
+    $fpage = 'foot';
+@endphp
+@extends('client.base.style.base')
 
 @section('navlink')
-    @include('client.Base.style.navbar-dark')
+    @include('client.base.style.navbar-dark')
 @endsection
 
 @section('content')
@@ -77,7 +81,7 @@
         <!-- Contact cards -->
         <div class="container relative lg:mt-24 mt-16">
             <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-[30px]">
-                @include('client.Base.Components.Contact.contact')
+                @include('client.base.Components.Contact.contact')
             </div>
         </div>
     </section>
