@@ -32,7 +32,7 @@
         <div class="container relative">
             <div class="grid grid-cols-1 justify-center">
                 <div class="relative -mt-32">
-                    @include('client.base.components.Buy.tab')
+                    @include('client.base.components.buy.tab')
                 </div>
             </div>
         </div>
