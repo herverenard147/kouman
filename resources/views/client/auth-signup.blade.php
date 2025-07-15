@@ -1,7 +1,8 @@
-@extends('layouts.app')
-
-@include('client.base.style.no-header')
-
+@php
+    // $page = 'light';
+    // $fpage = 'foot';
+@endphp
+@extends('client.base.style.base')
 @section('title', 'Auth-Signup - Hously')
 @section('content')
     <section class="md:h-screen py-36 flex items-center relative overflow-hidden zoom-image">

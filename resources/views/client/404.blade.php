@@ -1,6 +1,6 @@
 @extends('client.base.style.no-header')
 
-@section('navlink')
+@section('title', '404')
 
 @section('content')
     <section class="relative bg-green-600/5">

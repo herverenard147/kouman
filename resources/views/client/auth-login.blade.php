@@ -1,5 +1,4 @@
-@include('client.base.style.no-header')
-
+@extends('client.base.style.base')
 @section('title', 'Se connecter')
 
 @section('content')

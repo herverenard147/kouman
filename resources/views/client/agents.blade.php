@@ -1,5 +1,4 @@
-@extends('layouts.app')
-
+@extends('client.base.style.base')
 @section('title', 'Agents / Brokers - Hously')
 
 @section('content')

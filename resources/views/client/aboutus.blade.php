@@ -1,8 +1,6 @@
 @extends('client.base.style.base')
 
-@section('navlink')
-    @include('client.base.style.navbar-light')
-@endsection
+@section('title', 'About Us - Hously')
 
 {{-- Contenu principal --}}
 @section('content')

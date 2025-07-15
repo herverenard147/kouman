@@ -1,8 +1,11 @@
+@php
+    $page = 'light';
+    $fpage = 'foot';
+@endphp
 @extends('client.base.style.base')
 
-@section('navlink')
-    @include('client.base.style.navbar-light')
-@endsection
+@section('title', 'Blogs & News')
+
 
 @section('content')
     <!-- Start Hero -->

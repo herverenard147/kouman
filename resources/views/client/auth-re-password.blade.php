@@ -1,5 +1,5 @@
-@include('client.base.style.no-header')
 
+@extends('client.base.style.base')
 @section('title', 'Reset Password - Hously')
 @section('content')
     <section class="md:h-screen py-36 flex items-center relative overflow-hidden zoom-image">

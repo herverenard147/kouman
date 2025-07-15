@@ -1,11 +1,9 @@
-@extends('layouts.app')
-
+@php
+    $page = 'light';
+    $fpage = 'foot';
+@endphp
+@extends('client.base.style.base')
 @section('title', 'Blogs & News')
-
-@section('navlink')
-    @include('client.base.style.navbar-light')
-@endsection
-
 @section('content')
 
     {{-- Start Hero --}}

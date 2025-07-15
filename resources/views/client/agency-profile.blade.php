@@ -1,5 +1,8 @@
-@extends('layouts.app')
-
+@php
+    $page = 'light';
+    $fpage = 'foot';
+@endphp
+@extends('client.base.style.base')
 @section('title', 'Agency Profile - Hously')
 
 @section('content')
