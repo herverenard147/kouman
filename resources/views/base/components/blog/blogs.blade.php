@@ -1,4 +1,4 @@
-<?php
+@php
 $blogs = [
     [
         'id' => 1,
@@ -57,7 +57,7 @@ $blogs = [
         'date' => '3rd March, 2025',
     ]
 ];
-?>
+@endphp
 @foreach ($blogs as $item)
     <div class="group relative h-fit hover:-mt-[5px] overflow-hidden bg-white rounded-xl shadow transition-all duration-500">
         <div class="relative overflow-hidden">
