@@ -4,9 +4,10 @@
 @endphp
 @extends('client.base.style.base')
 
-@section('navlink')
+{{-- @section('navlink')
     @include('client.base.style.navbar-dark')
-@endsection
+@endsection --}}
+@section('title', 'Contactez nous')
 
 @section('content')
     <!-- Google Map -->
@@ -81,7 +82,7 @@
         <!-- Contact cards -->
         <div class="container relative lg:mt-24 mt-16">
             <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-[30px]">
-                @include('client.base.components.Contact.contact')
+                @include('client.base.components.contact.contact')
             </div>
         </div>
     </section>
