@@ -89,7 +89,7 @@ $properties = [
         </div>
         <div class="p-6 w-full">
             <div class="md:pb-4 pb-6">
-                <a href="{{ route('property-detail', ['id' => $item['id']]) }}"
+                <a href="{{ route('client.property.detail', ['id' => $item['id']]) }}"
                     class="text-lg hover:text-green-600 font-medium ease-in-out duration-500">{{ $item['title'] }}</a>
             </div>
 
