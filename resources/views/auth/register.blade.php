@@ -9,8 +9,8 @@
                 <div class="relative overflow-hidden bg-white shadow-md rounded-md">
                     <div class="p-6">
                         <a href="">
-                            <img src="{{ asset('images/logo-dark.png') }}" class="mx-auto block" alt="">
-                            <img src="{{ asset('images/logo-light.png') }}" class="mx-auto hidden" alt="">
+                            <img src="{{ asset('client/assets/images/d.ico') }}" class="mx-auto block" alt="">
+                            <img src="{{ asset('client/assets/images/d.ico') }}" class="mx-auto hidden" alt="">
                         </a>
                         <h5 class="my-6 text-xl font-semibold">Créez votre compte</h5>
                         <form method="POST" action="{{ route('register') }}" class="text-start" >
@@ -106,7 +106,7 @@
         <div class="relative z-10 w-full max-w-2xl">
             <div class="bg-white shadow-md rounded-lg px-8 py-10">
                 <div class="text-center mb-6">
-                    <img src="{{ asset('images/logo-dark.png') }}" class="mx-auto w-32 h-auto" alt="Logo">
+                    <img src="{{ asset('client/assets/images/d.ico') }}" class="mx-auto w-32 h-auto" alt="Logo">
                 </div>
 
                 <h5 class="text-xl font-semibold mb-6 text-center">Créez votre compte</h5>

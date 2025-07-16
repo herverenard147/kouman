@@ -1,7 +1,10 @@
-@extends('layout.base')
+@php
+    $page = 'light';
+    $fpage = 'foot';
+@endphp
+@extends('content.no-sidebar')
 @section('title', 'Terms & Conditions')
 @section('content')
-
     <div class="container-fluid relative px-3">
         <div class="layout-specing">
             <!-- Start Content -->

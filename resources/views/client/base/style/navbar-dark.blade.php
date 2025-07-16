@@ -3,8 +3,8 @@
     <div class="container relative">
         <!-- Logo container-->
         <a class="logo" href="index.php">
-            <img src="{{ asset('client/assets/images/logo-dark.png') }}" class="inline-block dark:hidden" alt="">
-            <img src="{{ asset('client/assets/images/logo-light.png') }}" class="hidden dark:inline-block" alt="">
+            <img src="{{ asset('client/assets/images/a.png') }}" class="inline-block dark:hidden" alt="">
+            <img src="{{ asset('client/assets/images/b.png') }}" class="hidden dark:inline-block" alt="">
         </a>
         <!-- End Logo container-->
 

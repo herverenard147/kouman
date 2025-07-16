@@ -10,8 +10,8 @@
             <div class="bg-white shadow-md rounded-lg px-8 py-10">
                 <div class="p-6">
                     <a href="{{route('login')}}">
-                        <img src=" {{ asset('images/logo-dark.png') }}" class="inline-block" alt="">
-                        <img src=" {{ asset('images/logo-light.png') }}" class="hidden" alt="">
+                        <img src=" {{ asset('client/assets/images/d.ico') }}" class="inline-block" alt="">
+                        <img src=" {{ asset('client/assets/images/d.ico') }}" class="hidden" alt="">
                     </a>
                     <h5 class="my-6 text-xl font-semibold">Se Connecter</h5>
                     @if(session('success'))

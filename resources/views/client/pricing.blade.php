@@ -8,7 +8,7 @@
 
     <!-- Start Hero -->
     <section
-        class="relative table w-full py-32 lg:py-36 bg-[url('client/assets/images/bg/01.jpg')] bg-no-repeat bg-center bg-cover">
+        class="relative table w-full py-32 lg:py-36 bg-[url('{{asset('client/assets/images/bg/01.jpg')}}')] bg-no-repeat bg-center bg-cover">
         <div class="absolute inset-0 bg-black opacity-80"></div>
         <div class="container relative">
             <div class="grid grid-cols-1 text-center mt-10">

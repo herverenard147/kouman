@@ -3,8 +3,8 @@
             <div class="container-fluid md:px-8 px-3">
                 <!-- Logo container-->
                 <a class="logo" href="index.php">
-                    <img src="<?php echo $static_url; ?>/images/logo-dark.png" class="inline-block dark:hidden" alt="">
-                    <img src="<?php echo $static_url; ?>/images/logo-light.png" class="hidden dark:inline-block" alt="">
+                    <img src="<?php echo $static_url; ?>/client/assets/images/d.ico" class="inline-block dark:hidden" alt="">
+                    <img src="<?php echo $static_url; ?>/client/assets/images/d.ico" class="hidden dark:inline-block" alt="">
                 </a>
                 <!-- End Logo container-->
 

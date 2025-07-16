@@ -15,8 +15,8 @@
         <div class="absolute inset-0 bg-black opacity-80"></div>
         <div class="container relative">
             <div class="grid grid-cols-1 text-center mt-10">
-                <h3 class="md:text-4xl text-3xl md:leading-normal leading-normal font-medium text-white">Frequently Asked
-                    Questions</h3>
+                <h3 class="md:text-4xl text-3xl md:leading-normal leading-normal font-medium text-white">Questions Frequemments 
+                    Posées</h3>
             </div>
         </div>
     </section>

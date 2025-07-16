@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>@yield('title', 'Hously - PHP Real Estate Landing & Admin Dashboard Template')</title>
+    <title>@yield('title', 'Afrique Évasion')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta content="Real Estate Website Landing Page" name="description" />
     <meta content="Real Estate, buy, sell, Rent, tailwind Css" name="keywords" />
@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{ asset('client/assets/images/favicon.ico') }}" />
+    <link rel="shortcut icon" href="{{ asset('client/assets/images/d.ico') }}" />
 
     <!-- Css -->
     <link href="{{ asset('client/assets/libs/tiny-slider/tiny-slider.css') }}" rel="stylesheet">

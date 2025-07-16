@@ -3,7 +3,7 @@
     $fpage = 'foot1';
 @endphp
 @extends('client.base.style.base')
-@section('title', 'Index-seven')
+@section('title', 'Accueil')
 @section('content')
 
     <!-- Start Hero -->

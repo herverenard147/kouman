@@ -3,11 +3,11 @@
     <div class="container relative">
         <!-- Start Logo container-->
         <a class="logo" href="/index">
-            <span class="inline-block dark:hidden">
-                <img src="{{ asset('client/assets/images/logo-dark.png') }}" class="l-dark" height="24" alt="">
-                <img src="{{ asset('client/assets/images/logo-light.png') }}" class="l-light" height="24" alt="">
+            <span class="inline-block mt-4 dark:hidden">
+                <img src="{{ asset('client/assets/images/d.ico') }}" class="l-dark" height="24" alt="">
+                <img src="{{ asset('client/assets/images/d.ico') }}" class="l-light" height="24" alt="">
             </span>
-            <img src="{{ asset('client/images/logo-light.png') }}" height="24" class="hidden dark:inline-block"
+            <img src="{{ asset('client/assets/images/d.ico') }}" height="24" class="hidden mt-4 dark:inline-block"
                 alt="">
         </a>
         <!-- End Logo container-->
@@ -261,15 +261,7 @@
                 </li>
 
                 <li><a href="{{ route('client.contact') }}" class="sub-menu-item">Contact</a></li>
-                <div class="absolute top-5 right-5 z-50">
-                    <form method="GET" action="">
-                        <select onchange="window.location.href='/lang/' + this.value" class="rounded-md border-gray-300 text-sm p-2">
-                            <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>EN</option>
-                            <option value="fr" {{ app()->getLocale() == 'fr' ? 'selected' : '' }}>FR</option>
-                            <option value="es" {{ app()->getLocale() == 'es' ? 'selected' : '' }}>ES</option>
-                        </select>
-                    </form>
-                </div>
+                
             </ul><!--end navigation menu-->
         </div><!--end navigation-->
     </div><!--end container-->
