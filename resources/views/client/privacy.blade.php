@@ -1,3 +1,7 @@
+@php
+    $page = 'light';
+    $fpage = 'foot';
+@endphp
 @extends('client.base.style.base')
 @section('title', 'Privacy Policy')
 @section('content')

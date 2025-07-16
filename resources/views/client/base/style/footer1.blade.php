@@ -32,8 +32,8 @@
                     <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px] -mt-24">
                         <div class="lg:col-span-4 md:col-span-12">
                             <a href="#" class="text-[22px] focus:outline-none">
-                                <img src="{{ asset('/images/logo-dark.png') }}" class="block dark:hidden" alt="">
-                                <img src="{{ asset('/images/logo-light.png') }}" class="hidden dark:block" alt="">
+                                <img src="{{ asset('/client/assets/images/d.ico') }}" class="block dark:hidden" alt="">
+                                <img src="{{ asset('/client/assets/images/d.ico') }}" class="hidden dark:block" alt="">
                             </a>
                             <p class="mt-6 text-slate-400">A great plateform to buy, sell and rent your properties without any agent or commisions.</p>
 

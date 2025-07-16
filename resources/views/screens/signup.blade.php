@@ -8,8 +8,8 @@
                 <div class="relative overflow-hidden bg-white shadow-md rounded-md">
                     <div class="p-6">
                         <a href="">
-                            <img src="{{ asset('images/logo-dark.png') }}" class="mx-auto block" alt="">
-                            <img src="{{ asset('images/logo-light.png') }}" class="mx-auto hidden" alt="">
+                            <img src="{{ asset('client/assets/images/d.ico') }}" class="mx-auto block" alt="">
+                            <img src="{{ asset('client/assets/images/d.ico') }}" class="mx-auto hidden" alt="">
                         </a>
                         <h5 class="my-6 text-xl font-semibold">Signup</h5>
                         <form class="text-start">
