@@ -2,7 +2,7 @@
 <html lang="en" class="light scroll-smooth" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title') | Kouman</title>
+    <title>@yield('title') | Afica évasion</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Tailwind CSS Saas & Software Landing Page Template">
     <meta name="keywords" content="agency, application, business, clean, creative, cryptocurrency, it solutions, modern, multipurpose, nft marketplace, portfolio, saas, software, tailwind css">

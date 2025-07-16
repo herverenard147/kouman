@@ -3,7 +3,7 @@
     $fpage = 'foot';
 @endphp
 @extends('client.base.style.base')
-@section('title', 'Grid View Layout')
+@section('title', 'Nos Offres')
 @section('content')
 <!-- Start Hero -->
 <section
@@ -11,7 +11,7 @@
     <div class="absolute inset-0 bg-black opacity-80"></div>
     <div class="container relative">
         <div class="grid grid-cols-1 text-center mt-10">
-            <h3 class="md:text-4xl text-3xl md:leading-normal leading-normal font-medium text-white">Grid View Layout
+            <h3 class="md:text-4xl text-3xl md:leading-normal leading-normal font-medium text-white">Nos Offres
             </h3>
         </div><!--end grid-->
     </div><!--end container-->
@@ -31,49 +31,97 @@
         <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
             <div class="lg:col-span-4 md:col-span-6">
                 <div class="shadow dark:shadow-gray-700 p-6 rounded-xl bg-white dark:bg-slate-900 sticky top-20">
-                    <form>
+                    <form method="GET" action="{{ route('client.grid.sidebar') }}">
                         <div class="grid grid-cols-1 gap-3">
+
+                            {{-- Mots-clés --}}
                             <div>
-                                <label for="searchname" class="font-medium">Search Properties</label>
+                                <label for="searchname" class="font-medium text-slate-900 dark:text-white">Mots-clés</label>
                                 <div class="relative mt-2">
-                                    <i class="uil uil-search text-lg absolute top-[8px] start-3"></i>
+                                    <i class="uil uil-search text-lg absolute top-[8px] start-3 text-slate-400"></i>
                                     <input name="search" id="searchname" type="text"
-                                        class="form-input border border-slate-100 dark:border-slate-800 ps-10"
-                                        placeholder="Search">
+                                        class="form-input border border-slate-100 dark:border-slate-800 ps-10 w-full"
+                                        placeholder="Ex: villa, plage, circuit, vol...">
                                 </div>
                             </div>
 
+                            {{-- Catégorie principale --}}
                             <div>
-                                <label class="font-medium">Categories</label>
-                                <select
-                                    class="form-select form-input border border-slate-100 dark:border-slate-800 block w-full mt-1">
-                                    <option value="re">Residential</option>
-                                    <option value="la">Land</option>
-                                    <option value="co">Commercial</option>
-                                    <option value="ind">Industrial</option>
-                                    <option value="inv">Investment</option>
+                                <label class="font-medium text-slate-900 dark:text-white">Catégorie</label>
+                                <select name="categorie"
+                                    class="form-select form-input border border-slate-100 dark:border-slate-800 block w-full mt-1"
+                                    onchange="this.form.submit()">
+                                    <option value="">Toutes les catégories</option>
+                                    <option value="hebergement" {{ request('categorie') == 'hebergement' ? 'selected' : '' }}>Hébergements</option>
+                                    <option value="vol" {{ request('categorie') == 'vol' ? 'selected' : '' }}>Vols</option>
+                                    <option value="excursion" {{ request('categorie') == 'excursion' ? 'selected' : '' }}>Excursions</option>
+                                    <option value="evenement" {{ request('categorie') == 'evenement' ? 'selected' : '' }}>Événements</option>
                                 </select>
                             </div>
 
+                            {{-- Type selon catégorie choisie --}}
+                            @if(!empty($types))
+                                <div>
+                                    <label class="font-medium text-slate-900 dark:text-white">Type</label>
+                                    <select name="type"
+                                        class="form-select form-input border border-slate-100 dark:border-slate-800 block w-full mt-1">
+                                        <option value="">Tous les types</option>
+                                        @foreach($types as $type)
+                                            <option value="{{ $type }}" {{ request('type') == $type ? 'selected' : '' }}>
+                                                {{ $type }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @endif
+
+                            {{-- Localisation --}}
+                            @if(!empty($localisations))
+                                <div>
+                                    <label class="font-medium text-slate-900 dark:text-white">Localisation</label>
+                                    <select name="localisation"
+                                        class="form-select form-input border border-slate-100 dark:border-slate-800 block w-full mt-1">
+                                        <option value="">Toutes les localisations</option>
+                                        @foreach($localisations as $loc)
+                                            <option value="{{ $loc }}" {{ request('localisation') == $loc ? 'selected' : '' }}>
+                                                {{ $loc }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @endif
+
+                            {{-- Prix minimum --}}
                             <div>
-                                <label class="font-medium">Location</label>
-                                <select
-                                    class="form-select form-input border border-slate-100 dark:border-slate-800 block w-full mt-1">
-                                    <option value="NY">New York</option>
-                                    <option value="MC">North Carolina</option>
-                                    <option value="SC">South Carolina</option>
-                                </select>
+                                <label class="font-medium text-slate-900 dark:text-white">Prix minimum</label>
+                                <input name="prix_min" type="number"
+                                    class="form-input form-input border border-slate-100 dark:border-slate-800 block w-full mt-1"
+                                    placeholder="Min" value="{{ request('prix_min') }}">
                             </div>
 
+                            {{-- Prix maximum --}}
+                            <div>
+                                <label class="font-medium text-slate-900 dark:text-white">Prix maximum</label>
+                                <input name="prix_max" type="number"
+                                    class="form-input form-input border border-slate-100 dark:border-slate-800 block w-full mt-1"
+                                    placeholder="Max" value="{{ request('prix_max') }}">
+                            </div>
+
+                            {{-- Bouton de recherche --}}
                             <div>
                                 <input type="submit"
                                     class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md w-full"
-                                    value="Apply Filter">
+                                    value="Appliquer le filtre">
                             </div>
                         </div>
                     </form>
                 </div>
+
             </div><!--end col-->
+
+
+            
+
 
             <div class="lg:col-span-8 md:col-span-6">
                 <div class="grid lg:grid-cols-2 grid-cols-1 gap-[30px]">

@@ -107,7 +107,7 @@
                             <h3 class="mb-6 text-xl leading-normal font-medium text-black dark:text-white">Have Question ? Get in touch!</h3>
 
                             <div class="mt-6">
-                                <a href="contact.php" class="btn bg-transparent hover:bg-green-600 border border-green-600 text-green-600 hover:text-white rounded-md"><i class="uil uil-phone align-middle me-2"></i> Contact us</a>
+                                <a href="{{route('client.contact')}}" class="btn bg-transparent hover:bg-green-600 border border-green-600 text-green-600 hover:text-white rounded-md"><i class="uil uil-phone align-middle me-2"></i> Contact us</a>
                             </div>
                         </div>
                     </div>

@@ -4,6 +4,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
 
+Route::get('/', [ClientController::class, 'index'])->name('client.index');
+
+Route::get('/filtrer', [ClientController::class, 'filtrer'])->name('client.filtrer.services');
+
+Route::prefix('filtrer')->group( function(){
+    Route::get('/hebergements', [ClientController::class, 'filtrerHebergements'])->name('client.filtre.hebergements');
+    Route::get('/vols', [ClientController::class, 'filtrerVols'])->name('client.filtre.vols');
+    Route::get('/excursions', [ClientController::class, 'filtrerExcursions'])->name('client.filtre.excursions');
+    Route::get('/evenements', [ClientController::class, 'filtrerEvenements'])->name('client.filtre.evenements');
+});
+
+
 Route::prefix('client')->group(function () {
     Route::get('error', function () {
         return view('client.404');
@@ -17,10 +29,6 @@ Route::prefix('client')->group(function () {
     Route::get('about-us', function () {
         return view('client.aboutus');
     })->name('client.aboutus');
-
-    Route::get('index', function () {
-        return view('client.index-seven');
-    })->name('client.index');
 
     Route::get('auth-signup', function () {
         return view('client.auth-signup');

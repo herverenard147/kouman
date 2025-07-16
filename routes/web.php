@@ -18,6 +18,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/lang/{locale}', function ($locale) {
+    if (in_array($locale, ['fr', 'en', 'es'])) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+})->name('lang.switch');
+
+
 require __DIR__.'/client.php';
 require __DIR__.'/auth.php';
 require __DIR__.'/partenaire.php';

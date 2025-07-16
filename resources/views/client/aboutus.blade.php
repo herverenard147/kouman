@@ -1,3 +1,7 @@
+@php
+    $page = 'light';
+    $fpage = 'foot1';
+@endphp
 @extends('client.base.style.base')
 
 @section('title', 'About Us - Hously')

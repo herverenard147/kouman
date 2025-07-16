@@ -261,6 +261,15 @@
                 </li>
 
                 <li><a href="{{ route('client.contact') }}" class="sub-menu-item">Contact</a></li>
+                <div class="absolute top-5 right-5 z-50">
+                    <form method="GET" action="">
+                        <select onchange="window.location.href='/lang/' + this.value" class="rounded-md border-gray-300 text-sm p-2">
+                            <option value="en" {{ app()->getLocale() == 'en' ? 'selected' : '' }}>EN</option>
+                            <option value="fr" {{ app()->getLocale() == 'fr' ? 'selected' : '' }}>FR</option>
+                            <option value="es" {{ app()->getLocale() == 'es' ? 'selected' : '' }}>ES</option>
+                        </select>
+                    </form>
+                </div>
             </ul><!--end navigation menu-->
         </div><!--end navigation-->
     </div><!--end container-->

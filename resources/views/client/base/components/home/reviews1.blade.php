@@ -56,7 +56,7 @@
                     <li class="inline"><i class="mdi mdi-star"></i></li>
                 </ul>
 
-                <img src="{{ asset('Hously_Landing/assets' . $item['img']) }}"
+                <img src="{{ asset('client/assets' . $item['img']) }}"
                     class="size-14 rounded-full shadow-md dark:shadow-gray-700 mx-auto" alt="">
                 <h6 class="mt-2 fw-semibold">{{ $item['name'] }}</h6>
                 <span class="text-slate-400 text-sm">{{ $item['title'] }}</span>

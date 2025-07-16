@@ -31,7 +31,7 @@ class EvenementSeeder extends Seeder
                 'capacite_max' => 30,
                 'statut' => 'brouillon',
                 'idPartenaire' => 2,
-                'idLocalisation' => 3,
+                'idLocalisation' => 2,
             ],
         ];
 

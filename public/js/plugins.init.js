@@ -1,4 +1,4 @@
-/* Template Name: Kouman
+/* Template Name: Afica évasion
    Author: Shreethemes
    Email: support@shreethemes.in
    Website: https://shreethemes.in

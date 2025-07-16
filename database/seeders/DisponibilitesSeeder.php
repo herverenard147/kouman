@@ -15,7 +15,7 @@ class DisponibilitesSeeder extends Seeder
                 'dateDebut' => now()->toDateString(),
                 'dateFin' => now()->addDays(5)->toDateString(),
                 'estDisponible' => 1,
-                'idHebergement' => 4,
+                'idHebergement' => 1,
             ],
             [
                 'dateDebut' => now()->addDays(6)->toDateString(),
