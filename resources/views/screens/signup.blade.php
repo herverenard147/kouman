@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="px-6 py-2 bg-slate-50 text-center">
-                        <p class="mb-0 text-slate-400">© <script>document.write(new Date().getFullYear())</script> Kw Legal & Tech. Designed by <a href="https://shreethemes.in/" target="_blank" class="text-reset">Shreethemes</a>.</p>
+                        <p class="mb-0 text-slate-400">© <script>document.write(new Date().getFullYear())</script> Africa Évasion. Conception et Developper par <a href="https://kwlegaltech.com/" target="_blank" class="text-reset">Kw Legal & Tech</a>.</p>
                     </div>
                 </div>
             </div>

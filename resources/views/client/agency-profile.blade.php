@@ -12,7 +12,7 @@
             <div class="grid grid-cols-1">
                 <div class="p-6 rounded-md bg-green-600/10 dark:bg-green-600/20">
                     <div class="md:flex items-center">
-                        <img src="client/assets/images/agency/1.png" class="rounded-full size-28" alt="">
+                        <img src="{{asset('client/assets/images/agency/1.png')}}" class="rounded-full size-28" alt="">
 
                         <div class="md:ms-4 md:mt-0 mt-4 md:flex justify-between items-end">
                             <div>

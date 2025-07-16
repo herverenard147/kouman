@@ -14,7 +14,7 @@
 
     <!-- favicon -->
     {{-- <link rel="shortcut icon" href="{{ $static_url }}/images/favicon.ico"> --}}
-    <link rel="shortcut icon" src="{{ asset('client/assets/client/assets/images/d.ico') }}" alt="Logo">
+    <link rel="shortcut icon" src="{{ asset('client/assets/images/d.ico') }}" alt="Logo">
 
 
     <!-- CSS -->

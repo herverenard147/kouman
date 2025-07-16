@@ -7,7 +7,7 @@
                 <img src="{{ asset('client/assets/images/d.ico') }}" class="l-dark" height="24" alt="">
                 <img src="{{ asset('client/assets/images/d.ico') }}" class="l-light" height="24" alt="">
             </span>
-            <img src="{{ asset('client/images/icon.jpg') }}" height="24" class="hidden dark:inline-block"
+            <img src="{{ asset('client/assets/images/d.ico') }}" height="24" class="hidden mt-4 dark:inline-block"
                 alt="">
         </a>
         <!-- End Logo container-->

@@ -26,9 +26,9 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <p class="mb-0 text-slate-400">© {{ now()->year }} Hously. Design & Develop with
+                        <p class="mb-0 text-slate-400">© {{ now()->year }} Afrique Évasion. Conception et Developper par
                             <i class="mdi mdi-heart text-red-600"></i> by
-                            <a href="https://shreethemes.in/" target="_blank" class="text-reset">Shreethemes</a>.
+                            <a href="https://kwlegaltech.com/" target="_blank" class="text-reset">Shreethemes</a>.
                         </p>
                     </div>
                 </div>
