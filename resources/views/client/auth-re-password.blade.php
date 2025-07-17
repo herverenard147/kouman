@@ -1,5 +1,5 @@
-@extends('client.base.style.base')
-@section('title', 'Réinitialiser le mot de passe - Hously')
+@extends('client.base.style.no-header')
+@section('title', 'Réinitialiser le mot de passe')
 @section('content')
     <section class="md:h-screen py-36 flex items-center relative overflow-hidden zoom-image">
 
@@ -11,7 +11,7 @@
             <div class="flex justify-center">
                 <div
                     class="max-w-[400px] w-full m-auto p-6 bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-700 rounded-md">
-                    <a href="/index"><img src="/Hously_Landing/assets/images/logo-icon-64.png" class="mx-auto"
+                    <a href="/index"><img src="{{asset('client/assets/images/b.ico')}}" class="mx-auto"
                             alt=""></a>
                     <h5 class="my-6 text-xl font-semibold">Réinitialisez votre mot de passe</h5>
                     <div class="grid grid-cols-1">
@@ -31,7 +31,7 @@
 
                                 <div class="text-center">
                                     <span class="text-slate-400 me-2">Vous vous souvenez de votre mot de passe ?</span><a href="{{route('client.auth.login')}}"
-                                        class="text-black dark:text-white font-bold">Se connecter</a>
+                                        class="text-black dark:text-white font-bold"> </br> Se connecter</a>
                                 </div>
                             </div>
                         </form>

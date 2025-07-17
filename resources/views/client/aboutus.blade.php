@@ -4,17 +4,17 @@
 @endphp
 @extends('client.base.style.base')
 
-@section('title', 'About Us - Hously')
+@section('title', 'À propos de nous')
 
 {{-- Contenu principal --}}
 @section('content')
-    {{-- Start Hero --}}
+    {{-- Début Hero --}}
     <section
         class="relative table w-full py-32 lg:py-36 bg-[url('{{ asset('client/assets/images/bg/01.jpg') }}')] bg-no-repeat bg-center bg-cover">
         <div class="absolute inset-0 bg-black opacity-80"></div>
         <div class="container relative">
             <div class="grid grid-cols-1 text-center mt-10">
-                <h3 class="md:text-4xl text-3xl md:leading-normal leading-normal font-medium text-white">About Us</h3>
+                <h3 class="md:text-4xl text-3xl md:leading-normal leading-normal font-medium text-white">À propos de nous</h3>
             </div>
         </div>
     </section>
@@ -26,32 +26,32 @@
             </svg>
         </div>
     </div>
-    {{-- End Hero --}}
+    {{-- Fin Hero --}}
 
-    {{-- Start Section --}}
+    {{-- Début Section --}}
     <section class="relative lg:py-24 py-16">
         <div class="container relative">
-            {{-- Control --}}
+            {{-- Contrôle --}}
             @include('client.base.components.home.control')
         </div>
 
         <div class="container relative lg:mt-24 mt-16">
             <div class="grid grid-cols-1 pb-8 text-center">
-                <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">How It Works</h3>
+                <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">Comment ça fonctionne</h3>
                 <p class="text-slate-400 max-w-xl mx-auto">
-                    A great platform to buy, sell and rent your properties without any agent or commissions.
+                    Une excellente plateforme pour acheter, vendre et louer vos biens sans aucun agent ni commission.
                 </p>
             </div>
 
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-8 gap-[30px]">
-                {{-- Features --}}
+                {{-- Fonctionnalités --}}
                 @include('client.base.components.home.features')
             </div>
         </div>
     </section>
-    {{-- End Section --}}
+    {{-- Fin Section --}}
 
-    {{-- Start CTA --}}
+    {{-- Début Appel à l'action --}}
     <section
         class="relative py-24 bg-[url('{{ asset('client/assets/images/bg/01.jpg') }}')] bg-no-repeat bg-center bg-fixed bg-cover">
         <div class="absolute inset-0 bg-black/60"></div>
@@ -59,45 +59,43 @@
             <div class="grid lg:grid-cols-12 grid-cols-1 md:text-start text-center justify-center">
                 <div class="lg:col-start-2 lg:col-span-10">
                     <div class="grid md:grid-cols-3 grid-cols-1 items-center">
-                        {{-- Call To Action --}}
+                        {{-- Appel à l’action --}}
                         @include('client.base.components.home.cta')
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    {{-- End CTA --}}
+    {{-- Fin Appel à l'action --}}
 
-    {{-- Start Team & Testimonials --}}
+    {{-- Début Équipe & Témoignages --}}
     <section class="relative lg:py-24 py-16">
         <div class="container relative">
             <div class="grid grid-cols-1 pb-8 text-center">
-                <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">Meet The Agent Team
-                </h3>
+                <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">Rencontrez notre équipe d’agents</h3>
                 <p class="text-slate-400 max-w-xl mx-auto">
-                    A great platform to buy, sell and rent your properties without any agent or commissions.
+                    Une excellente plateforme pour acheter, vendre et louer vos biens sans aucun agent ni commission.
                 </p>
             </div>
 
             <div class="grid md:grid-cols-12 grid-cols-1 mt-8 gap-[30px]">
-                {{-- Team --}}
+                {{-- Équipe --}}
                 @include('client.base.components.home.team')
             </div>
         </div>
 
         <div class="container relative lg:mt-24 mt-16">
             <div class="grid grid-cols-1 pb-8 text-center">
-                <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">What Our Clients Say?
-                </h3>
+                <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">Ce que disent nos clients</h3>
                 <p class="text-slate-400 max-w-xl mx-auto">
-                    A great platform to buy, sell and rent your properties without any agent or commissions.
+                    Une excellente plateforme pour acheter, vendre et louer vos biens sans aucun agent ni commission.
                 </p>
             </div>
 
             <div class="flex justify-center relative mt-8">
                 <div class="relative w-full">
                     <div class="tiny-three-item">
-                        {{-- Reviews --}}
+                        {{-- Avis --}}
                         @include('client.base.components.home.reviews1')
                     </div>
                 </div>
@@ -105,9 +103,9 @@
         </div>
 
         <div class="container relative lg:mt-24 mt-16">
-            {{-- Get in Touch --}}
+            {{-- Contact --}}
             @include('client.base.components.home.get-in-touch')
         </div>
     </section>
-    {{-- End --}}
+    {{-- Fin --}}
 @endsection
