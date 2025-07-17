@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" class="light scroll-smooth" dir="ltr">
+<html lang="en" class="dark scroll-smooth" dir="ltr">
 
 <head>
     <meta charset="UTF-8" />
-    <title>@yield('title', 'Afrique Évasion')</title>
+    <title>@yield('title') | Afrique Évasion</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta content="Real Estate Website Landing Page" name="description" />
     <meta content="Real Estate, buy, sell, Rent, tailwind Css" name="keywords" />

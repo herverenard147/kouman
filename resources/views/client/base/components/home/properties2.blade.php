@@ -90,30 +90,30 @@ $properties = [
         <div class="p-6 w-full">
             <div class="md:pb-4 pb-6">
                 <a href="{{ route('client.property.detail', ['id' => $item['id']]) }}"
-                    class="text-lg hover:text-green-600 font-medium ease-in-out duration-500">{{ $item['title'] }}</a>
+                    class="text-lg hover:text-green-600 font-medium ease-in-out duration-500">{{ $item['nom'] }}</a>
             </div>
 
             <ul class="md:py-4 py-6 border-y border-slate-100 dark:border-gray-800 flex items-center list-none">
                 <li class="flex items-center me-4">
                     <i class="uil uil-compress-arrows text-2xl me-2 text-green-600"></i>
-                    <span>{{ $item['sqf'] }}</span>
+                    <span>{{ $item['capaciteMax'] }}</span>
                 </li>
 
                 <li class="flex items-center me-4">
                     <i class="uil uil-bed-double text-2xl me-2 text-green-600"></i>
-                    <span>{{ $item['beds'] }}</span>
+                    <span>{{ $item['nombreChambres'] }}</span>
                 </li>
 
                 <li class="flex items-center">
                     <i class="uil uil-bath text-2xl me-2 text-green-600"></i>
-                    <span>{{ $item['baths'] }}</span>
+                    <span>{{ $item['nombreSallesDeBain'] }}</span>
                 </li>
             </ul>
 
             <ul class="md:pt-4 pt-6 flex justify-between items-center list-none">
                 <li>
-                    <span class="text-slate-400">Price</span>
-                    <p class="text-lg font-medium">{{ $item['price'] }}</p>
+                    <span class="text-slate-400">Prix</span>
+                    <p class="text-lg font-medium">{{ $item['prixParNuit'] }}</p>
                 </li>
 
                 <li>
@@ -124,7 +124,7 @@ $properties = [
                         <li class="inline"><i class="mdi mdi-star"></i></li>
                         <li class="inline"><i class="mdi mdi-star"></i></li>
                         <li class="inline"><i class="mdi mdi-star"></i></li>
-                        <li class="inline text-black dark:text-white">5.0(30)</li>
+                        <li class="inline text-black dark:text-white">{{$item['noteMoyenne']}}</li>
                     </ul>
                 </li>
             </ul>
