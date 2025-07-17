@@ -2,24 +2,24 @@
 $features = [
     [
         'icon' => 'uil uil-estate',
-        'title' => 'Evaluate Property',
-        'desc' => "If the distribution of letters and 'words' is random, the reader will not be distracted from making.",
+        'title' => 'Évaluer le bien',
+        'desc' => "Si la répartition des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa compréhension.",
     ],
     [
         'icon' => 'uil uil-bag',
-        'title' => 'Meeting with Agent',
-        'desc' => "If the distribution of letters and 'words' is random, the reader will not be distracted from making.",
+        'title' => 'Rencontre avec un agent',
+        'desc' => "Si la répartition des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa compréhension.",
     ],
     [
         'icon' => 'uil uil-key-skeleton',
-        'title' => 'Close the Deal',
-        'desc' => "If the distribution of letters and 'words' is random, the reader will not be distracted from making.",
+        'title' => 'Finaliser l’accord',
+        'desc' => "Si la répartition des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa compréhension.",
     ]
 ];
 @endphp
 
 @foreach ($features as $item)
-<!-- Content -->
+<!-- Contenu -->
 <div class="group relative lg:px-10 transition-all duration-500 ease-in-out rounded-xl bg-transparent overflow-hidden text-center">
     <div class="relative overflow-hidden text-transparent -m-3">
         <i data-feather="hexagon" class="size-32 fill-green-600/5 mx-auto"></i>
@@ -33,5 +33,5 @@ $features = [
         <p class="text-slate-400 mt-3">{{ $item['desc'] }}</p>
     </div>
 </div>
-<!-- Content -->
+<!-- Fin Contenu -->
 @endforeach

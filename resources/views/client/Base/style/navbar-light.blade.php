@@ -1,18 +1,17 @@
-<!-- Start Navbar -->
+<!-- Début de la Navbar -->
 <nav id="topnav" class="defaultscroll is-sticky">
     <div class="container relative">
-        <!-- Start Logo container-->
+        <!-- Début du logo -->
         <a class="logo" href="/index">
             <span class="inline-block mt-4 dark:hidden">
                 <img src="{{ asset('client/assets/images/d.ico') }}" class="l-dark" height="24" alt="">
                 <img src="{{ asset('client/assets/images/d.ico') }}" class="l-light" height="24" alt="">
             </span>
-            <img src="{{ asset('client/assets/images/d.ico') }}" height="24" class="hidden mt-4 dark:inline-block"
-                alt="">
+            <img src="{{ asset('client/assets/images/d.ico') }}" height="24" class="hidden mt-4 dark:inline-block" alt="">
         </a>
-        <!-- End Logo container-->
+        <!-- Fin du logo -->
 
-        <!-- Start Mobile Toggle -->
+        <!-- Bouton menu mobile -->
         <div class="menu-extras">
             <div class="menu-item">
                 <a class="navbar-toggle" id="isToggle" onclick="toggleMenu()">
@@ -24,252 +23,73 @@
                 </a>
             </div>
         </div>
-        <!-- End Mobile Toggle -->
+        <!-- Fin menu mobile -->
 
-        <!--Login button Start-->
+        <!-- Boutons Connexion / Inscription -->
         <ul class="buy-button list-none mb-0">
             <li class="inline mb-0">
                 <a href="{{route('client.auth.login')}}"
-                    class="btn btn-icon bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full"><i
-                        data-feather="user" class="size-4 stroke-[3]"></i></a>
+                    class="btn btn-icon bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
+                    <i data-feather="user" class="size-4 stroke-[3]"></i>
+                </a>
             </li>
             <li class="sm:inline ps-1 mb-0 hidden">
                 <a href="{{route('client.auth.signup')}}"
-                    class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">S'inscrire</a>
+                    class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
+                    S'inscrire
+                </a>
             </li>
         </ul>
-        <!--Login button End-->
+        <!-- Fin des boutons -->
 
         <div id="navigation">
-            <!-- Navigation Menu-->
+            <!-- Menu de navigation -->
             <ul class="navigation-menu justify-end nav-light">
-                {{-- <li class="has-submenu parent-parent-menu-item">
-                    <a href="javascript:void(0)">Home</a><span class="menu-arrow"></span>
 
-                    <ul class="submenu megamenu">
-                        <li>
-                            <ul>
-                                <li>
-                                    <a href="/index" class="sub-menu-item">
-                                        <div class="lg:text-center">
-                                            <span class="hidden lg:block"><img
-                                                    src="{{ asset('client/assets/images/demos/hero-one.png') }}"
-                                                    class="img-fluid rounded shadow-md" alt=""></span>
-                                            <span class="lg:mt-2 block">Hero One</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/index-two" class="sub-menu-item">
-                                        <div class="lg:text-center">
-                                            <span class="hidden lg:block"><img
-                                                    src="{{ asset('client/assets/images/demos/hero-two.png') }}"
-                                                    class="img-fluid rounded shadow-md" alt=""></span>
-                                            <span class="lg:mt-2 block">Hero Two</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <ul>
-                                <li>
-                                    <a href="/index-three" class="sub-menu-item">
-                                        <div class="lg:text-center">
-                                            <span class="hidden lg:block"><img
-                                                    src="{{ asset('client/assets/images/demos/hero-three.png') }}"
-                                                    class="img-fluid rounded shadow-md" alt=""></span>
-                                            <span class="lg:mt-2 block">Hero Three</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/index-four" class="sub-menu-item">
-                                        <div class="lg:text-center">
-                                            <span class="hidden lg:block"><img
-                                                    src="{{ asset('client/assets/images/demos/hero-four.png') }}"
-                                                    class="img-fluid rounded shadow-md" alt=""></span>
-                                            <span class="lg:mt-2 block">Hero Four</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <ul>
-                                <li>
-                                    <a href="/index-five" class="sub-menu-item">
-                                        <div class="lg:text-center">
-                                            <span class="hidden lg:block"><img
-                                                    src="{{ asset('client/assets/images/demos/hero-five.png') }}"
-                                                    class="img-fluid rounded shadow-md" alt=""></span>
-                                            <span class="lg:mt-2 block">Hero Five</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/index-six" class="sub-menu-item">
-                                        <div class="lg:text-center">
-                                            <span class="hidden lg:block"><img
-                                                    src="{{ asset('client/assets/images/demos/hero-six.png') }}"
-                                                    class="img-fluid rounded shadow-md" alt=""></span>
-                                            <span class="lg:mt-2 block">Hero Six</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <ul>
-                                <li>
-                                    <a href="/index-seven" class="sub-menu-item">
-                                        <div class="lg:text-center">
-                                            <span class="hidden lg:block"><img
-                                                    src="{{ asset('client/assets/images/demos/hero-seven.png') }}"
-                                                    class="img-fluid rounded shadow-md" alt=""></span>
-                                            <span class="lg:mt-2 block">Hero Seven</span>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/index-eight" class="sub-menu-item">
-                                        <div class="lg:text-center">
-                                            <span class="hidden lg:block"><img
-                                                    src="{{ asset('client/assets/images/demos/hero-eight.png') }}"
-                                                    class="img-fluid rounded shadow-md" alt=""></span>
-                                            <span class="lg:mt-2 block">Hero Eight</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li>
-                            <ul>
-                                <li>
-                                    <a href="/index-nine" class="sub-menu-item">
-                                        <div class="lg:text-center">
-                                            <span class="hidden lg:block"><img
-                                                    src="{{ asset('client/assets/images/demos/hero-nine.png') }}"
-                                                    class="img-fluid rounded shadow-md" alt=""></span>
-                                            <span class="lg:mt-2 block">Hero Nine</span>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="/index-ten" class="sub-menu-item">
-                                        <div class="lg:text-center">
-                                            <span class="hidden lg:block"><img
-                                                    src="{{ asset('client/assets/images/demos/hero-ten.png') }}"
-                                                    class="img-fluid rounded shadow-md" alt=""></span>
-                                            <span class="lg:mt-2 block">Hero Ten</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li> --}}
-
-
-                <li><a href="{{ route('client.index') }}" class="sub-menu-item">Home</a></li>
-                {{-- <li><a href="{{ route('client.buy') }}" class="sub-menu-item">Buy</a></li> --}}
-
-                {{-- <li><a href="{{ route('client.sell') }}" class="sub-menu-item">Sell</a></li> --}}
-                <li><a href="{{ route('client.grid.sidebar') }}" class="sub-menu-item">Nos offres</a></li>
-
-                {{-- <li class="has-submenu parent-parent-menu-item">
-                    <a href="javascript:void(0)">Listing</a><span class="menu-arrow"></span>
-                    <ul class="submenu">
-                        <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Grid View </a><span
-                                class="submenu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="{{ route('client.grid') }}" class="sub-menu-item">Grid Listing</a></li>
-                                <li><a href="{{ route('client.grid.sidebar') }}" class="sub-menu-item">Grid Sidebar </a></li>
-                                <li><a href="{{ route('client.grid.map') }}" class="sub-menu-item">Grid With Map</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> List View </a><span
-                                class="submenu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="{{ route('client.list') }}" class="sub-menu-item">List Listing</a></li>
-                                <li><a href="{{ route('client.list.sidebar') }}" class="sub-menu-item">List Sidebar </a></li>
-                                <li><a href="{{ route('client.list.map') }}" class="sub-menu-item">List With Map</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Property
-                                Detail</a><span class="submenu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="{{ route('client.property.detail') }}" class="sub-menu-item">Property Detail</a></li>
-                                <li><a href="{{ route('client.property.detail.two') }}" class="sub-menu-item">Property Detail Two</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li> --}}
-                <li><a href="{{ route('client.aboutus') }}" class="sub-menu-item">A propos de Nous</a></li>
+                <li><a href="{{ route('client.index') }}" class="sub-menu-item">Accueil</a></li>
+                <li><a href="{{ route('client.grid.sidebar') }}" class="sub-menu-item">Nos Offres</a></li>
+                <li><a href="{{ route('client.aboutus') }}" class="sub-menu-item">À propos de nous</a></li>
 
                 <li class="has-submenu parent-parent-menu-item">
                     <a href="javascript:void(0)">Autres Pages</a><span class="menu-arrow"></span>
                     <ul class="submenu">
                         <li><a href="{{ route('client.features') }}" class="sub-menu-item">Fonctionnalités</a></li>
                         <li><a href="{{ route('client.pricing') }}" class="sub-menu-item">Tarification</a></li>
-                        <li><a href="{{ route('client.faqs') }}" class="sub-menu-item">Faqs</a></li>
-                        <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Agents</a><span
-                                class="submenu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="{{ route('client.agents') }}" class="sub-menu-item">Agents</a></li>
-                                <li><a href="{{ route('client.agent.profile') }}" class="sub-menu-item">Agent Profile</a></li>
-                            </ul>
-                        </li>
-                        <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Agencies</a><span
-                                class="submenu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="{{ route('client.agencies') }}" class="sub-menu-item">Agencies</a></li>
-                                <li><a href="{{ route('client.agency.profile') }}" class="sub-menu-item">Agency Profile</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="{{ route('client.faqs') }}" class="sub-menu-item">FAQ</a></li>
 
-                        <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Utility </a><span
-                                class="submenu-arrow"></span>
+                        {{-- <li class="has-submenu parent-menu-item"><a href="javascript:void(0)">Agents</a><span class="submenu-arrow"></span>
+                            <ul class="submenu"> --}}
+                                {{-- <li><a href="{{ route('client.agents') }}" class="sub-menu-item">Nos Agents</a></li> --}}
+                                {{-- <li><a href="{{ route('client.agent.profile') }}" class="sub-menu-item">Profil d’agent</a></li> --}}
+                            {{-- </ul>
+                        </li> --}}
+
+                        {{-- <li class="has-submenu parent-menu-item"><a href="javascript:void(0)">Agences</a><span class="submenu-arrow"></span>
+                            <ul class="submenu"> --}}
+                                <li><a href="{{ route('client.agencies') }}" class="sub-menu-item">Nos Partenaires</a></li>
+                                {{-- <li><a href="{{ route('client.agency.profile') }}" class="sub-menu-item">Profil d’agence</a></li> --}}
+                            {{-- </ul>
+                        </li> --}}
+
+                        <li class="has-submenu parent-menu-item"><a href="javascript:void(0)">Utilitaires</a><span class="submenu-arrow"></span>
                             <ul class="submenu">
-                                <li><a href="{{ route('client.terms') }}" class="sub-menu-item">Terms of Services</a></li>
-                                <li><a href="{{ route('client.privacy') }}" class="sub-menu-item">Privacy Policy</a></li>
+                                <li><a href="{{ route('client.terms') }}" class="sub-menu-item">Conditions d’utilisation</a></li>
+                                <li><a href="{{ route('client.privacy') }}" class="sub-menu-item">Politique de confidentialité</a></li>
                             </ul>
                         </li>
-                        {{-- <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Blog </a><span
-                                class="submenu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="{{ route('client.blogs') }}" class="sub-menu-item"> Blogs</a></li>
-                                <li><a href="{{ route('client.blog.sidebar') }}" class="sub-menu-item"> Blog Sidebar</a></li>
-                                <li><a href="{{ route('client.blog.detail') }}" class="sub-menu-item"> Blog Detail</a></li>
-                            </ul>
-                        </li> --}}
-                        {{-- <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Special </a><span
-                                class="submenu-arrow"></span>
-                            <ul class="submenu">
-                                <li><a href="{{ route('client.comingsoon') }}" class="sub-menu-item">Comingsoon</a></li>
-                                <li><a href="{{ route('client.maintenance') }}" class="sub-menu-item">Maintenance</a></li>
-                                <li><a href="{{ route('client.error.404') }}" class="sub-menu-item">404! Error</a></li>
-                            </ul>
-                        </li> --}}
                     </ul>
                 </li>
 
                 <li><a href="{{ route('client.contact') }}" class="sub-menu-item">Contact</a></li>
-                
-            </ul><!--end navigation menu-->
-        </div><!--end navigation-->
-    </div><!--end container-->
-</nav><!--end header-->
-<!-- End Navbar -->
+
+            </ul><!-- Fin du menu -->
+        </div><!-- Fin navigation -->
+    </div><!-- Fin container -->
+</nav><!-- Fin navbar -->
+<!-- Fin de la Navbar -->
 
 
-<!-- JavaScript to handle the active class (corrigé pour cibler .sub-menu-item) -->
+<!-- Script pour l’état actif (corrigé pour .sub-menu-item) -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const navItems = document.querySelectorAll('.sub-menu-item');

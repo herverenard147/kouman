@@ -13,14 +13,12 @@
 
     <div class="md:col-span-7">
         <div class="lg:ms-4">
-            <h4 class="mb-6 md:text-3xl text-2xl lg:leading-normal leading-normal font-semibold">Efficiency.
-                Transparency. <br> Control.</h4>
-            <p class="text-slate-400 max-w-xl">Hously developed a platform for the Real Estate marketplace that allows
-                buyers and sellers to easily execute a transaction on their own. The platform drives efficiency, cost
-                transparency and control into the hands of the consumers. Hously is Real Estate Redefined.</p>
+            <h4 class="mb-6 md:text-3xl text-2xl lg:leading-normal leading-normal font-semibold">Efficacité.
+                Transparence. <br> Contrôle.</h4>
+            <p class="text-slate-400 max-w-xl">Hously a développé une plateforme pour le marché immobilier permettant aux acheteurs et vendeurs de réaliser facilement leurs transactions eux-mêmes. La plateforme apporte efficacité, transparence des coûts et contrôle entre les mains des utilisateurs. Hously redéfinit l'immobilier.</p>
 
             <div class="mt-4">
-                <a href="" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md mt-3">Learn More </a>
+                <a href="" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md mt-3">En savoir plus</a>
             </div>
         </div>
     </div><!--end col-->

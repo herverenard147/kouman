@@ -67,7 +67,7 @@ $teams = [
         </div>
 
         <div class="content mt-3">
-            <a href="agent-profile.php"
+            <a href="{{ route('client.agency.profile') }}"
                 class="text-xl font-medium hover:text-green-600 transition-all duration-500 ease-in-out">{{ $item['name'] }}</a>
             <p class="text-slate-400">{{ $item['title'] }}</p>
         </div>
