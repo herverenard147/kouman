@@ -2,7 +2,7 @@
 <nav id="sidebar" class="sidebar-wrapper sidebar-dark">
     <div class="sidebar-content">
         <div class="sidebar-brand">
-            <a href="{{route('index')}}"><img src="{{ asset('client/assets/images/d.ico') }}" alt=""></a>
+            <a href="{{route('index')}}"><img src="{{ asset('client/assets/images/c.ico') }}" alt=""></a>
         </div>
 
         <ul class="sidebar-menu border-t border-white/10" data-simplebar style="height: calc(100% - 70px);">
@@ -22,6 +22,7 @@
                             @case('hotel')
                                 <li><a href="{{route('partenaire.add.hebergement')}}">Vos Hébergements</a></li>
                                 <li><a href="{{route('partenaire.add.event')}}">Vos Événements</a></li>
+                                @break
                             @case('residence')
                                 <li><a href="{{route('partenaire.add.hebergement')}}">Vos Hébergements</a></li>
                                  <li><a href="{{route('partenaire.add.event')}}">Vos Événements</a></li>

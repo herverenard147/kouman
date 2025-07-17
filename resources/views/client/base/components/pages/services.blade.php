@@ -2,45 +2,45 @@
     $services = [
         [
             'icon' => 'mdi mdi-cards-heart',
-            'title' => 'Comfortable',
+            'title' => 'Confortable',
             'desc' =>
-                "If the distribution of letters and 'words' is random, the reader will not be distracted from making.",
+                "Si la distribution des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa lecture.",
         ],
         [
             'icon' => 'mdi mdi-shield-sun',
-            'title' => 'Extra Security',
+            'title' => 'Sécurité renforcée',
             'desc' =>
-                "If the distribution of letters and 'words' is random, the reader will not be distracted from making.",
+                "Si la distribution des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa lecture.",
         ],
         [
             'icon' => 'mdi mdi-star',
-            'title' => 'Luxury',
+            'title' => 'Luxe',
             'desc' =>
-                "If the distribution of letters and 'words' is random, the reader will not be distracted from making.",
+                "Si la distribution des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa lecture.",
         ],
         [
             'icon' => 'mdi mdi-currency-usd',
-            'title' => 'Best Price',
+            'title' => 'Meilleur prix',
             'desc' =>
-                "If the distribution of letters and 'words' is random, the reader will not be distracted from making.",
+                "Si la distribution des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa lecture.",
         ],
         [
             'icon' => 'mdi mdi-map-marker',
-            'title' => 'Stratagic Location',
+            'title' => 'Emplacement stratégique',
             'desc' =>
-                "If the distribution of letters and 'words' is random, the reader will not be distracted from making.",
+                "Si la distribution des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa lecture.",
         ],
         [
             'icon' => 'mdi mdi-chart-arc',
-            'title' => 'Efficient',
+            'title' => 'Efficacité',
             'desc' =>
-                "If the distribution of letters and 'words' is random, the reader will not be distracted from making.",
+                "Si la distribution des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa lecture.",
         ],
     ];
 @endphp
 
 @foreach ($services as $item)
-    <!-- Content -->
+    <!-- Contenu -->
     <div
         class="group relative lg:px-10 transition-all duration-500 ease-in-out rounded-xl bg-white dark:bg-slate-900 overflow-hidden">
         <div class="relative overflow-hidden text-transparent -m-3">
@@ -56,5 +56,5 @@
             <p class="text-slate-400 mt-3">{{ $item['desc'] }}</p>
         </div>
     </div>
-    <!-- Content -->
+    <!-- Contenu -->
 @endforeach

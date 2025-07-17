@@ -66,4 +66,16 @@ class Handler extends ExceptionHandler
             //
         });
     }
+    // public function render($request, Throwable $exception)
+    // {
+    //     if ($this->isHttpException($exception)) {
+    //         $status = $exception->getStatusCode();
+
+    //         if (view()->exists("errors.{$status}")) {
+    //             return response()->view("errors.{$status}", [], $status);
+    //         }
+    //     }
+
+    //     return parent::render($request, $exception);
+    // }
 }
