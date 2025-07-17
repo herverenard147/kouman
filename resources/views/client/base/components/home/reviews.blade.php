@@ -4,13 +4,13 @@ $reviews = [
         'img' => 'images/client/01.jpg',
         'name' => 'Christa Smith',
         'title' => "Directrice",
-        'desc' => "Hously a rendu le processus tellement simple. Nous avons eu beaucoup plus d’intérêt et économisé plus de 10 000 \$.",
+        'desc' => "Afrique évasion a rendu le processus tellement simple. Nous avons eu beaucoup plus d’intérêt et économisé plus de 10 000 \$.",
     ],
     [
         'img' => 'images/client/02.jpg',
         'name' => 'Christa Smith',
         'title' => "Directrice",
-        'desc' => 'Je recommande vivement Hously pour vendre votre maison entre particuliers. Ma maison a été vendue en 24 heures au prix demandé. Meilleurs 400 \$ jamais dépensés !',
+        'desc' => 'Je recommande vivement Afrique évasion pour vendre votre maison entre particuliers. Ma maison a été vendue en 24 heures au prix demandé. Meilleurs 400 \$ jamais dépensés !',
     ],
     [
         'img' => 'images/client/03.jpg',
@@ -28,13 +28,13 @@ $reviews = [
         'img' => 'images/client/05.jpg',
         'name' => 'Christa Smith',
         'title' => "Directrice",
-        'desc' => "Hously a rendu la vente de ma maison simple et sans stress. Ils ont vraiment dépassé mes attentes.",
+        'desc' => "Afrique évasion a rendu la vente de ma maison simple et sans stress. Ils ont vraiment dépassé mes attentes.",
     ],
     [
         'img' => 'images/client/06.jpg',
         'name' => 'Christa Smith',
         'title' => "Directrice",
-        'desc' => "Hously offre un tarif juste, une grande réactivité et une plateforme simple d’utilisation. Je recommande à 100 % !",
+        'desc' => "Afrique évasion offre un tarif juste, une grande réactivité et une plateforme simple d’utilisation. Je recommande à 100 % !",
     ]
 ];
 @endphp

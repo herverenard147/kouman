@@ -1,4 +1,4 @@
-/* Template Name: Hously -  PHP Real Estate Landing & Admin Dashboard Template
+/* Template Name: Afrique évasion -  PHP Real Estate Landing & Admin Dashboard Template
    Author: Shreethemes
    Email: support@shreethemes.in
    Website: https://shreethemes.in
@@ -23,10 +23,10 @@
  *     08.  Choices Js           *
  *     09.  Maintenance Js       * (For Maintenance Page)
  *     10.  Countdown Js         * (For Comingsoon Page)
- *     11.  Typed Text animation (animation) * 
- *     12.  Swiper Slider        * 
+ *     11.  Typed Text animation (animation) *
+ *     12.  Swiper Slider        *
  ================================*/
-         
+
 //=========================================//
 /*            01) Tiny slider              */
 //=========================================//
@@ -202,7 +202,7 @@ document.getElementsByClassName("back-button")[0]?.addEventListener("click", (e)
       }
 })
 
-  
+
 //=========================================//
 /*            05) Particles                */
 //=========================================//
@@ -319,7 +319,7 @@ try {
         "retina_detect": true
     });
 } catch (error) {
-    
+
 }
 
 //=========================================//
@@ -334,7 +334,7 @@ try {
         inactiveClasses: 'hover:text-green-600 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-slate-800',
         onShow: () => { }
     }
-    
+
     class Tabs {
         constructor(items = [], options = {}) {
             this._items = items
@@ -342,17 +342,17 @@ try {
             this._options = { ...Default, ...options }
             this._init()
         }
-    
+
         _init() {
             if (this._items.length) {
                 // set the first tab as active if not set by explicitly
                 if (!this._activeTab) {
                     this._setActiveTab(this._items[0])
                 }
-    
+
                 // force show the first default tab
                 this.show(this._activeTab.id, true)
-    
+
                 // show tab content based on click
                 this._items.map(tab => {
                     tab.triggerEl.addEventListener('click', () => {
@@ -361,27 +361,27 @@ try {
                 })
             }
         }
-    
+
         getActiveTab() {
             return this._activeTab
         }
-    
+
         _setActiveTab(tab) {
             this._activeTab = tab
         }
-    
+
         getTab(id) {
             return this._items.filter(t => t.id === id)[0]
         }
-    
+
         show(id, forceShow = false) {
             const tab = this.getTab(id)
-    
+
             // don't do anything if already active
             if (tab === this._activeTab && !forceShow) {
                 return
             }
-    
+
             // hide other tabs
             this._items.map(t => {
                 if (t !== tab) {
@@ -391,26 +391,26 @@ try {
                     t.triggerEl.setAttribute('aria-selected', false)
                 }
             })
-    
+
             // show active tab
             tab.triggerEl.classList.add(...this._options.activeClasses.split(" "));
             tab.triggerEl.classList.remove(...this._options.inactiveClasses.split(" "));
             tab.triggerEl.setAttribute('aria-selected', true)
             tab.targetEl.classList.remove('hidden')
-    
+
             this._setActiveTab(tab)
-    
+
             // callback function
             this._options.onShow(this, tab)
         }
-    
+
     }
-    
+
     window.Tabs = Tabs;
-    
+
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('[data-tabs-toggle]').forEach(triggerEl => {
-    
+
             const tabElements = []
             let defaultTabId = null
             triggerEl.querySelectorAll('[role="tab"]').forEach(el => {
@@ -421,7 +421,7 @@ try {
                     targetEl: document.querySelector(el.getAttribute('data-tabs-target'))
                 }
                 tabElements.push(tab)
-    
+
                 if (isActive) {
                     defaultTabId = tab.id
                 }
@@ -432,7 +432,7 @@ try {
         })
     })
 } catch (error) {
-    
+
 }
 
 //********2) Accordions********/
@@ -445,37 +445,37 @@ try {
         onClose: () => { },
         onToggle: () => { }
     }
-    
+
     class Accordion {
         constructor(items = [], options = {}) {
             this._items = items
             this._options = { ...Default, ...options }
             this._init()
         }
-    
+
         _init() {
             if (this._items.length) {
                 // show accordion item based on click
                 this._items.map(item => {
-    
+
                     if (item.active) {
                         this.open(item.id)
                     }
-    
+
                     item.triggerEl.addEventListener('click', () => {
                         this.toggle(item.id)
                     })
                 })
             }
         }
-    
+
         getItem(id) {
             return this._items.filter(item => item.id === id)[0]
         }
-    
+
         open(id) {
             const item = this.getItem(id)
-    
+
             // don't hide other accordions if always open
             if (!this._options.alwaysOpen) {
                 this._items.map(i => {
@@ -485,7 +485,7 @@ try {
                         i.targetEl.classList.add('hidden')
                         i.triggerEl.setAttribute('aria-expanded', false)
                         i.active = false
-    
+
                         // rotate icon if set
                         if (i.iconEl) {
                             i.iconEl.classList.remove('rotate-180')
@@ -493,65 +493,65 @@ try {
                     }
                 })
             }
-    
+
             // show active item
             item.triggerEl.classList.add(...this._options.activeClasses.split(" "))
             item.triggerEl.classList.remove(...this._options.inactiveClasses.split(" "))
             item.triggerEl.setAttribute('aria-expanded', true)
             item.targetEl.classList.remove('hidden')
             item.active = true
-    
+
             // rotate icon if set
             if (item.iconEl) {
                 item.iconEl.classList.add('rotate-180')
             }
-    
+
             // callback function
             this._options.onOpen(this, item)
         }
-    
+
         toggle(id) {
             const item = this.getItem(id)
-    
+
             if (item.active) {
                 this.close(id)
             } else {
                 this.open(id)
             }
-    
+
             // callback function
             this._options.onToggle(this, item)
         }
-    
+
         close(id) {
             const item = this.getItem(id)
-    
+
             item.triggerEl.classList.remove(...this._options.activeClasses.split(" "))
             item.triggerEl.classList.add(...this._options.inactiveClasses.split(" "))
             item.targetEl.classList.add('hidden')
             item.triggerEl.setAttribute('aria-expanded', false)
             item.active = false
-    
+
             // rotate icon if set
             if (item.iconEl) {
                 item.iconEl.classList.remove('rotate-180')
             }
-    
+
             // callback function
             this._options.onClose(this, item)
         }
-    
+
     }
-    
+
     window.Accordion = Accordion;
-    
+
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('[data-accordion]').forEach(accordionEl => {
-    
+
             const alwaysOpen = accordionEl.getAttribute('data-accordion')
             const activeClasses = accordionEl.getAttribute('data-active-classes')
             const inactiveClasses = accordionEl.getAttribute('data-inactive-classes')
-    
+
             const items = []
             accordionEl.querySelectorAll('[data-accordion-target]').forEach(el => {
                 const item = {
@@ -563,7 +563,7 @@ try {
                 }
                 items.push(item)
             })
-    
+
             new Accordion(items, {
                 alwaysOpen: alwaysOpen === 'open' ? true : false,
                 activeClasses: activeClasses ? activeClasses : Default.activeClasses,
@@ -572,7 +572,7 @@ try {
         })
     })
 } catch (error) {
-    
+
 }
 
 //=========================================//
@@ -590,7 +590,7 @@ try {
         document.getElementById('saving-label').innerHTML = parseFloat(value *0.01).toFixed(2);
     });
 } catch (error) {
-    
+
 }
 
 //=========================================//
@@ -604,7 +604,7 @@ try {
         var singleCategories = new Choices('#choices-type');
     }
 } catch (error) {
-    
+
 }
 //for buy
 try {
@@ -618,7 +618,7 @@ try {
         var choicesmaxs = new Choices('#choices-max-price-buy');
     }
 } catch (error) {
-    
+
 }
 
 //for sell
@@ -633,7 +633,7 @@ try {
         var choicesmaxs = new Choices('#choices-max-price-sell');
     }
 } catch (error) {
-    
+
 }
 
 //for rent
@@ -648,7 +648,7 @@ try {
         var choicesmaxs = new Choices('#choices-max-price-rent');
     }
 } catch (error) {
-    
+
 }
 
 

@@ -94,7 +94,7 @@
         <div class="container relative text-center">
             <div class="grid md:grid-cols-2 items-center gap-4">
                 <div class="md:text-start text-center">
-                    <p class="mb-0 text-gray-300">© <script>document.write(new Date().getFullYear())</script> Afrique Évasion. Conception et développement par <i class="mdi mdi-heart text-red-600"></i> par <a href="https://kwlegaltech.com/" target="_blank" class="text-reset">Kw Legal & Tech</a>.</p>
+                    <p class="mb-0 text-gray-300">© <script>document.write(new Date().getFullYear())</script> Afrique Évasion. Conception et développement par  par <a href="https://kwlegaltech.com/" target="_blank" class="text-reset">Kw Legal & Tech</a>.</p>
                 </div>
 
                 <ul class="list-none md:text-end text-center">

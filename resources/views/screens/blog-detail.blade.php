@@ -103,7 +103,7 @@ if ($article === null) {
                 </h5>
 
                 <ul class="tracking-[0.5px] inline-block sm:mt-0 mt-3">
-                    <li class="inline-block capitalize text-[16px] font-medium duration-500 hover:text-green-600"><a href="{{route('index')}}">Afica évasion</a></li>
+                    <li class="inline-block capitalize text-[16px] font-medium duration-500 hover:text-green-600"><a href="{{route('index')}}">Afrique évasion</a></li>
                     <li class="inline-block text-base text-slate-950 mx-0.5 ltr:rotate-0 rtl:rotate-180"><i class="mdi mdi-chevron-right"></i></li>
                     <li class="inline-block capitalize text-[16px] font-medium text-green-600" aria-current="page">Blog Detail</li>
                 </ul>

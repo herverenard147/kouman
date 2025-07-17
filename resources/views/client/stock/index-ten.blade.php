@@ -1,5 +1,5 @@
 @extends('client.base.style.base')
-@section('title', 'Hously - Home')
+@section('title', 'Afrique évasion - Home')
 @section('content')
 
     <!-- Hero Start -->

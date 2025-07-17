@@ -82,7 +82,7 @@
                                         class="flex justify-between items-center p-5 w-full font-medium text-start"
                                         data-accordion-target="#accordion-collapse-body-2" aria-expanded="false"
                                         aria-controls="accordion-collapse-body-2">
-                                        <span>Ai-je besoin d’un designer pour utiliser Hously ?</span>
+                                        <span>Ai-je besoin d’un designer pour utiliser Afrique évasion ?</span>
                                         <svg data-accordion-icon class="size-5 shrink-0" fill="currentColor"
                                             viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd"

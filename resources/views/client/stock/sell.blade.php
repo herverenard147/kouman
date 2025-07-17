@@ -1,5 +1,5 @@
 @extends('client.base.style.base')
-@section('title', 'Sell Your Home | Hously')
+@section('title', 'Sell Your Home | Afrique évasion')
 @section('content')
 
     <!-- Start Hero -->

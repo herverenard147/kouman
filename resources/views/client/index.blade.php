@@ -135,9 +135,9 @@
                             Efficacité. <br> Transparence. Contrôle.
                         </h4>
                         <p class="text-slate-400 max-w-xl">
-                            Hously a développé une plateforme pour le marché immobilier qui permet aux acheteurs et vendeurs
+                            Afrique évasion a développé une plateforme pour le marché immobilier qui permet aux acheteurs et vendeurs
                             d’effectuer des transactions par eux-mêmes. Elle offre efficacité, transparence des coûts et
-                            autonomie. Hously, c’est l’immobilier réinventé.
+                            autonomie. Afrique évasion, c’est l’immobilier réinventé.
                         </p>
 
                         <div class="mt-4">

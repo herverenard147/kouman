@@ -38,8 +38,8 @@
                     <!-- Footer -->
                     <div class="text-center">
                         <p class="mb-0 text-slate-400">
-                            © <script>document.write(new Date().getFullYear())</script> Hously.
-                            Design & Develop with <i class="mdi mdi-heart text-red-600"></i> by
+                            © <script>document.write(new Date().getFullYear())</script> Afrique évasion.
+                            Design & Develop with  by
                             <a href="https://shreethemes.in/" target="_blank" class="text-reset">Shreethemes</a>.
                         </p>
                     </div>
