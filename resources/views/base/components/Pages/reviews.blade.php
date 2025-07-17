@@ -10,7 +10,7 @@ $reviews = [
         'img' => '/images/client/05.jpg',
         'name' => 'Barbara McIntosh',
         'title' => "Student",
-        'desc' => "There are so many things I had to do with my old software that I just don't do at all with Afica évasion. Suspicious but I can't say I don't love it.",
+        'desc' => "There are so many things I had to do with my old software that I just don't do at all with Afrique évasion. Suspicious but I can't say I don't love it.",
     ],
     [
         'img' => '/images/client/02.jpg',
@@ -46,7 +46,7 @@ $reviews = [
         'img' => '/images/client/05.jpg',
         'name' => 'Barbara McIntosh',
         'title' => "Student",
-        'desc' => "There are so many things I had to do with my old software that I just don't do at all with Afica évasion. Suspicious but I can't say I don't love it.",
+        'desc' => "There are so many things I had to do with my old software that I just don't do at all with Afrique évasion. Suspicious but I can't say I don't love it.",
     ],
     [
         'img' => '/images/client/02.jpg',
@@ -82,7 +82,7 @@ $reviews = [
         'img' => '/images/client/05.jpg',
         'name' => 'Barbara McIntosh',
         'title' => "Student",
-        'desc' => "There are so many things I had to do with my old software that I just don't do at all with Afica évasion. Suspicious but I can't say I don't love it.",
+        'desc' => "There are so many things I had to do with my old software that I just don't do at all with Afrique évasion. Suspicious but I can't say I don't love it.",
     ],
     [
         'img' => '/images/client/02.jpg',

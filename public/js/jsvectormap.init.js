@@ -1,4 +1,4 @@
-/* Template Name: Afica évasion
+/* Template Name: Afrique évasion
    Author: Shreethemes
    Email: support@shreethemes.in
    Website: https://shreethemes.in

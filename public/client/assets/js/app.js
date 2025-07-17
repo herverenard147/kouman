@@ -1,4 +1,4 @@
-/* Template Name: Hously -  PHP Real Estate Landing & Admin Dashboard Template
+/* Template Name: Afrique évasion -  PHP Real Estate Landing & Admin Dashboard Template
    Author: Shreethemes
    Email: support@shreethemes.in
    Website: https://shreethemes.in
@@ -95,21 +95,21 @@ function activateMenu() {
 
         if (matchingMenuItem) {
             matchingMenuItem.classList.add('active');
-         
-         
+
+
             var immediateParent = getClosest(matchingMenuItem, 'li');
-      
+
             if (immediateParent) {
                 immediateParent.classList.add('active');
             }
-            
+
             var parent = getClosest(immediateParent, '.child-menu-item');
             if(parent){
                 parent.classList.add('active');
             }
 
             var parent = getClosest(parent || immediateParent , '.parent-menu-item');
-        
+
             if (parent) {
                 parent.classList.add('active');
 
@@ -282,7 +282,7 @@ try {
         }, 200);
     }
 } catch (error) {
-    
+
 }
 
 /*********************/
@@ -292,7 +292,7 @@ try {
     function changeTheme(e){
         e.preventDefault()
         const htmlTag = document.getElementsByTagName("html")[0]
-        
+
         if (htmlTag.className.includes("dark")) {
             htmlTag.className = 'light'
         } else {
@@ -302,12 +302,12 @@ try {
 
     const switcher = document.getElementById("theme-mode")
     switcher?.addEventListener("click" ,changeTheme )
-    
+
     const chk = document.getElementById('chk');
 
     chk.addEventListener('change',changeTheme);
 } catch (err) {
-    
+
 }
 
 /*********************/
@@ -324,7 +324,7 @@ try{
         else{
             htmlTag.dir = "rtl"
         }
-        
+
     }
     const switcherRtl = document.getElementById("switchRtl")
     switcherRtl?.addEventListener("click" ,changeLayout )

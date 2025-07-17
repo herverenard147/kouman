@@ -15,7 +15,7 @@
         <div class="lg:ms-4">
             <h4 class="mb-6 md:text-3xl text-2xl lg:leading-normal leading-normal font-semibold">Efficacité.
                 Transparence. <br> Contrôle.</h4>
-            <p class="text-slate-400 max-w-xl">Hously a développé une plateforme pour le marché immobilier permettant aux acheteurs et vendeurs de réaliser facilement leurs transactions eux-mêmes. La plateforme apporte efficacité, transparence des coûts et contrôle entre les mains des utilisateurs. Hously redéfinit l'immobilier.</p>
+            <p class="text-slate-400 max-w-xl">Afrique évasion a développé une plateforme pour le marché immobilier permettant aux acheteurs et vendeurs de réaliser facilement leurs transactions eux-mêmes. La plateforme apporte efficacité, transparence des coûts et contrôle entre les mains des utilisateurs. Afrique évasion redéfinit l'immobilier.</p>
 
             <div class="mt-4">
                 <a href="" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md mt-3">En savoir plus</a>

@@ -10,7 +10,7 @@
                 <h5 class="text-lg font-semibold">Ajouter une nouvelle excursion</h5>
 
                 <ul class="tracking-[0.5px] inline-block sm:mt-0 mt-3">
-                    <li class="inline-block capitalize text-[16px] font-medium duration-500 hover:text-green-600"><a href="{{ route('partenaire.dashboard') }}">Afica évasion</a></li>
+                    <li class="inline-block capitalize text-[16px] font-medium duration-500 hover:text-green-600"><a href="{{ route('partenaire.dashboard') }}">Afrique évasion</a></li>
                     <li class="inline-block text-base text-slate-950 mx-0.5 ltr:rotate-0 rtl:rotate-180"><i class="mdi mdi-chevron-right"></i></li>
                     <li class="inline-block capitalize text-[16px] font-medium text-green-600" aria-current="page">Excursion</li>
                 </ul>
@@ -30,7 +30,7 @@
                     </ul>
                 </div>
             @endif
-           
+
             {{-- <form action="{{ route('partenaire.excursion.store') }}" method="POST" enctype="multipart/form-data"> --}}
             <form action="">
                 @csrf

@@ -318,7 +318,7 @@ if ($article === null) {
 
                             <ul class="list-none mt-4">
                                 <li class="flex justify-between items-center">
-                                    <span class="text-slate-400 text-sm">Days on Hously</span>
+                                    <span class="text-slate-400 text-sm">Days on Afrique évasion</span>
                                     <span class="font-medium text-sm">124 Days</span>
                                 </li>
 

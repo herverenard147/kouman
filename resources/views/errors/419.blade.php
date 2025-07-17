@@ -26,7 +26,7 @@
                     </div>
                     <div class="text-center">
                         <p class="mb-0 text-slate-400">© {{ now()->year }} Afrique Évasion. Conception et développement par
-                            <i class="mdi mdi-heart text-red-600"></i> par
+                             par
                             <a href="https://kwlegaltech.com/" target="_blank" class="text-reset">Kw Legal & Tech</a>.
                         </p>
                     </div>

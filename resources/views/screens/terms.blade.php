@@ -12,7 +12,7 @@
                 <h5 class="text-lg font-semibold">Terms & Conditions</h5>
 
                 <ul class="tracking-[0.5px] inline-block sm:mt-0 mt-3">
-                    <li class="inline-block capitalize text-[16px] font-medium duration-500 hover:text-green-600"><a href="{{route('partenaire.dashboard')}}">Afica évasion</a></li>
+                    <li class="inline-block capitalize text-[16px] font-medium duration-500 hover:text-green-600"><a href="{{route('partenaire.dashboard')}}">Afrique évasion</a></li>
                     <li class="inline-block text-base text-slate-950 mx-0.5 ltr:rotate-0 rtl:rotate-180"><i class="mdi mdi-chevron-right"></i></li>
                     <li class="inline-block capitalize text-[16px] font-medium text-green-600" aria-current="page">Terms</li>
                 </ul>
@@ -63,7 +63,7 @@
                                 <div class="relative shadow rounded-md overflow-hidden mt-4">
                                     <h2 class="text-base font-semibold" id="accordion-collapse-heading-2">
                                         <button type="button" class="flex justify-between items-center p-5 w-full font-medium text-start" data-accordion-target="#accordion-collapse-body-2" aria-expanded="false" aria-controls="accordion-collapse-body-2">
-                                            <span>Do I need a designer to use Afica évasion?</span>
+                                            <span>Do I need a designer to use Afrique évasion?</span>
                                             <svg data-accordion-icon class="size-4 shrink-0" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                                             </svg>
