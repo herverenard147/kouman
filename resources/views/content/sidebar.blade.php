@@ -2,12 +2,12 @@
 <nav id="sidebar" class="sidebar-wrapper sidebar-dark">
     <div class="sidebar-content">
         <div class="sidebar-brand">
-            <a href="{{route('index')}}"><img src="{{ asset('client/assets/images/c.ico') }}" alt=""></a>
+            <a href="{{route('index')}}"><img src="{{ asset('client/assets/images/logoG.ico') }}" alt=""></a>
         </div>
 
         <ul class="sidebar-menu border-t border-white/10" data-simplebar style="height: calc(100% - 70px);">
             <li>
-                <a href="{{route('partenaire.dashboard')}}"><i class="mdi mdi-chart-bell-curve-cumulative me-2"></i>Dashboard</a>
+                <a href="{{route('partenaire.dashboard')}}"><i class="mdi mdi-chart-bell-curve-cumulative me-2"></i>Tableau de bord</a>
             </li>
 
             <li>

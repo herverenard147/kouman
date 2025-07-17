@@ -9,8 +9,8 @@
                 <div class="relative overflow-hidden bg-white shadow-md rounded-md">
                     <div class="p-6">
                         <a href="">
-                            <img src="{{ asset('client/assets/images/d.ico') }}" class="mx-auto block" alt="">
-                            <img src="{{ asset('client/assets/images/d.ico') }}" class="mx-auto hidden" alt="">
+                            <img src="{{ asset('client/assets/images/logoG.ico') }}" class="mx-auto block" alt="">
+                            <img src="{{ asset('client/assets/images/logoG.ico') }}" class="mx-auto hidden" alt="">
                         </a>
                         <h5 class="my-6 text-xl font-semibold">Créez votre compte</h5>
                         <form method="POST" action="{{ route('register') }}" class="text-start" >
@@ -92,7 +92,7 @@
                     </div>
 
                     <div class="px-6 py-2 bg-slate-50 text-center">
-                        <p class="mb-0 text-slate-400">© <script>document.write(new Date().getFullYear())</script> Kw Legal & Tech. Designed by <a href="https://shreethemes.in/" target="_blank" class="text-reset">Shreethemes</a>.</p>
+                        <p class="mb-0 text-slate-400">© <script>document.write(new Date().getFullYear())</script> Kw Legal & Tech. Designed by <a href="https://kwlegaltech.com//" target="_blank" class="text-reset">kw legal tech</a>.</p>
                     </div>
                 </div>
             </div>
@@ -106,7 +106,7 @@
         <div class="relative z-10 w-full max-w-2xl">
             <div class="bg-white shadow-md rounded-lg px-8 py-10">
                 <div class="text-center mb-6">
-                    <img src="{{ asset('client/assets/images/d.ico') }}" class="mx-auto w-32 h-auto" alt="Logo">
+                    <img src="{{ asset('client/assets/images/logoG.ico') }}" class="mx-auto w-32 h-auto" alt="Logo">
                 </div>
 
                 <h5 class="text-xl font-semibold mb-6 text-center">Créez votre compte</h5>

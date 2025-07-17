@@ -12,9 +12,24 @@
             <div class="flex justify-center">
                 <div
                     class="max-w-[400px] w-full m-auto p-6 bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-700 rounded-md">
-                    <a href="/index"><img src="{{asset('client/assets/images/b.ico')}}" class="mx-auto"
+                    <a href="{{route('client.auth.login')}}"><img src="{{asset('client/assets/images/b.ico')}}" class="mx-auto"
                             alt=""></a>
-                    <h5 class="my-6 text-xl font-semibold">Connexion</h5>
+                    <h5 class="my-6 text-xl font-semibold">Se Connecter</h5>
+                    @if(session('success'))
+                        <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if($errors->any())
+                        <div class="bg-red-100 text-red-800 px-4 py-2 rounded mb-4">
+                            <ul>
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <form class="text-start">
                         <div class="grid grid-cols-1">
                             <div class="mb-4">

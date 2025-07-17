@@ -7,14 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta content="Real Estate Website Landing Page" name="description" />
     <meta content="Real Estate, buy, sell, Rent, tailwind Css" name="keywords" />
-    <meta name="author" content="Shreethemes" />
-    <meta name="website" content="https://shreethemes.in" />
-    <meta name="email" content="support@shreethemes.in" />
+    <meta name="author" content="kw legal tech" />
+    <meta name="website" content="https://kwlegaltech.com/" />
+    <meta name="email" content="contact@kwlegaltech.com" />
     <meta name="version" content="2.3.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="{{ asset('client/assets/images/favicon.ico')}}" />
+    <link rel="shortcut icon" href="{{ asset('client/assets/images/b.ico')}}" />
 
     <!-- Css -->
     <!-- Main Css -->

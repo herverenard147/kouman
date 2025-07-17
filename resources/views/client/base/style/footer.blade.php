@@ -32,7 +32,7 @@
                     <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px] -mt-24">
                         <div class="lg:col-span-4 md:col-span-12">
                             <a href="#" class="text-[22px] focus:outline-none">
-                                <img src="{{ asset('client/assets/images/d.ico') }}" alt="">
+                                <img src="{{ asset('client/assets/images/logoG.ico') }}" alt="">
                             </a>
                             <p class="mt-6 text-gray-300">Une excellente plateforme pour acheter, vendre et louer vos biens sans agent ni commission.</p>
                         </div><!-- fin colonne -->
@@ -100,7 +100,7 @@
                 <ul class="list-none md:text-end text-center">
                     <li class="inline"><a href="http://linkedin.com/company/shreethemes" target="_blank" class="btn btn-icon btn-sm text-gray-400 hover:text-white border border-gray-800 dark:border-gray-700 rounded-md hover:border-green-600 dark:hover:border-green-600 hover:bg-green-600 dark:hover:bg-green-600"><i data-feather="linkedin" class="size-4"></i></a></li>
                     <li class="inline"><a href="https://www.facebook.com/shreethemes" target="_blank" class="btn btn-icon btn-sm text-gray-400 hover:text-white border border-gray-800 dark:border-gray-700 rounded-md hover:border-green-600 dark:hover:border-green-600 hover:bg-green-600 dark:hover:bg-green-600"><i data-feather="facebook" class="size-4"></i></a></li>
-                    <li class="inline"><a href="mailto:support@shreethemes.in" class="btn btn-icon btn-sm text-gray-400 hover:text-white border border-gray-800 dark:border-gray-700 rounded-md hover:border-green-600 dark:hover:border-green-600 hover:bg-green-600 dark:hover:bg-green-600"><i data-feather="mail" class="size-4"></i></a></li>
+                    <li class="inline"><a href="mailto:contact@kwlegaltech.com" class="btn btn-icon btn-sm text-gray-400 hover:text-white border border-gray-800 dark:border-gray-700 rounded-md hover:border-green-600 dark:hover:border-green-600 hover:bg-green-600 dark:hover:bg-green-600"><i data-feather="mail" class="size-4"></i></a></li>
                 </ul><!-- fin icônes -->
             </div><!-- fin grid -->
         </div><!-- fin container -->

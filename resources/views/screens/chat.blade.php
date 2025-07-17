@@ -184,7 +184,7 @@
                                         </div>
 
                                         <div class="me-2 max-w-lg">
-                                            <p class="bg-white text-slate-400 text-[16px] shadow px-3 py-2 rounded mb-1">Sure please check below link to find more useful information <a href="https://shreethemes.in/hously/" target="_blank" class="text-green-600">https://shreethemes.in/hously/</a></p>
+                                            <p class="bg-white text-slate-400 text-[16px] shadow px-3 py-2 rounded mb-1">Sure please check below link to find more useful information <a href="https://kwlegaltech.com//hously/" target="_blank" class="text-green-600">https://kwlegaltech.com//hously/</a></p>
                                             <span class="text-slate-400 text-sm"><i class="mdi mdi-clock-outline me-1"></i>29 min ago</span>
                                         </div>
                                     </div>

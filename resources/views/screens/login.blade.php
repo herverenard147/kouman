@@ -9,8 +9,8 @@
                 <div class="relative overflow-hidden bg-white shadow-md rounded-md">
                     <div class="p-6">
                         <a href="">
-                            <img src=" {{ asset('client/assets/images/d.ico') }}" class="inline-block" alt="">
-                            <img src=" {{ asset('client/assets/images/d.ico') }}" class="hidden" alt="">
+                            <img src=" {{ asset('client/assets/images/logoG.ico') }}" class="inline-block" alt="">
+                            <img src=" {{ asset('client/assets/images/logoG.ico') }}" class="hidden" alt="">
                         </a>
                         <h5 class="my-6 text-xl font-semibold">Login</h5>
                         <form class="text-start">
@@ -45,7 +45,7 @@
                     </div>
 
                     <div class="px-6 py-2 bg-slate-50 text-center">
-                        <p class="mb-0 text-slate-400">© <script>document.write(new Date().getFullYear())</script> Kw Legal & Tech. Designed by <a href="https://shreethemes.in/" target="_blank" class="text-reset">Shreethemes</a>.</p>
+                        <p class="mb-0 text-slate-400">© <script>document.write(new Date().getFullYear())</script> Kw Legal & Tech. Designed by <a href="https://kwlegaltech.com//" target="_blank" class="text-reset">kw legal tech</a>.</p>
                     </div>
                 </div>
             </div>

@@ -100,7 +100,7 @@ Route::prefix('client')->group(function () {
         return view('client.grid-map');
     })->name('client.grid.map');
 
-    Route::get('grid-sidebar', function () {
+    Route::get('nosOffres', function () {
         return view('client.grid-sidebar');
     })->name('client.grid.sidebar');
 
