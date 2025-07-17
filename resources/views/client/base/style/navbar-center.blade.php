@@ -3,8 +3,8 @@
             <div class="container-fluid md:px-8 px-3">
                 <!-- Logo container-->
                 <a class="logo" href="index.php">
-                    <img src="<?php echo $static_url; ?>/client/assets/images/d.ico" class="inline-block dark:hidden" alt="">
-                    <img src="<?php echo $static_url; ?>/client/assets/images/d.ico" class="hidden dark:inline-block" alt="">
+                    <img src="<?php echo $static_url; ?>/client/assets/images/logoG.ico" class="inline-block dark:hidden" alt="">
+                    <img src="<?php echo $static_url; ?>/client/assets/images/logoG.ico" class="hidden dark:inline-block" alt="">
                 </a>
                 <!-- End Logo container-->
 
@@ -34,7 +34,7 @@
                 <!--Login button End-->
 
                 <div id="navigation">
-                    <!-- Navigation Menu-->   
+                    <!-- Navigation Menu-->
                     <ul class="navigation-menu justify-center">
                         <li class="has-submenu parent-parent-menu-item">
                             <a href="javascript:void(0)">Home</a><span class="menu-arrow"></span>
@@ -102,7 +102,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                
+
                                 <li>
                                     <ul>
                                         <li>
@@ -123,7 +123,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                
+
                                 <li>
                                     <ul>
                                         <li>
@@ -134,7 +134,7 @@
                                                 </div>
                                             </a>
                                         </li>
-                                
+
                                         <li>
                                             <a href="index-ten.php" class="sub-menu-item">
                                                 <div class="lg:text-center">
@@ -147,9 +147,9 @@
                                 </li>
                             </ul>
                         </li>
-                
+
                         <li><a href="buy.php" class="sub-menu-item">Buy</a></li>
-                
+
                         <li><a href="sell.php" class="sub-menu-item">Sell</a></li>
 
                         <li class="has-submenu parent-parent-menu-item">
@@ -160,20 +160,20 @@
                                         <li><a href="grid.php" class="sub-menu-item">Grid Listing</a></li>
                                         <li><a href="grid-sidebar.php" class="sub-menu-item">Grid Sidebar </a></li>
                                         <li><a href="grid-map.php" class="sub-menu-item">Grid With Map</a></li>
-                                    </ul> 
+                                    </ul>
                                 </li>
                                 <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> List View </a><span class="submenu-arrow"></span>
                                     <ul class="submenu">
                                         <li><a href="list.php" class="sub-menu-item">List Listing</a></li>
                                         <li><a href="list-sidebar.php" class="sub-menu-item">List Sidebar </a></li>
                                         <li><a href="list-map.php" class="sub-menu-item">List With Map</a></li>
-                                    </ul>  
+                                    </ul>
                                 </li>
                                 <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Property Detail</a><span class="submenu-arrow"></span>
                                     <ul class="submenu">
                                         <li><a href="property-detail.php" class="sub-menu-item">Property Detail</a></li>
                                         <li><a href="property-detail-two.php" class="sub-menu-item">Property Detail Two</a></li>
-                                    </ul>  
+                                    </ul>
                                 </li>
                             </ul>
                         </li>
@@ -189,44 +189,44 @@
                                     <ul class="submenu">
                                         <li><a href="agents.php" class="sub-menu-item">Agents</a></li>
                                         <li><a href="agent-profile.php" class="sub-menu-item">Agent Profile</a></li>
-                                    </ul>  
+                                    </ul>
                                 </li>
                                 <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Agencies</a><span class="submenu-arrow"></span>
                                     <ul class="submenu">
                                         <li><a href="agencies.php" class="sub-menu-item">Agencies</a></li>
                                         <li><a href="agency-profile.php" class="sub-menu-item">Agency Profile</a></li>
-                                    </ul>  
+                                    </ul>
                                 </li>
                                 <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Auth Pages </a><span class="submenu-arrow"></span>
                                     <ul class="submenu">
                                         <li><a href="auth-login.php" class="sub-menu-item">Login</a></li>
                                         <li><a href="auth-signup.php" class="sub-menu-item">Signup</a></li>
                                         <li><a href="auth-re-password.php" class="sub-menu-item">Reset Password</a></li>
-                                    </ul>  
+                                    </ul>
                                 </li>
                                 <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Utility </a><span class="submenu-arrow"></span>
                                     <ul class="submenu">
                                         <li><a href="terms.php" class="sub-menu-item">Terms of Services</a></li>
                                         <li><a href="privacy.php" class="sub-menu-item">Privacy Policy</a></li>
-                                    </ul>  
+                                    </ul>
                                 </li>
                                 <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Blog </a><span class="submenu-arrow"></span>
                                     <ul class="submenu">
                                         <li><a href="blogs.php" class="sub-menu-item"> Blogs</a></li>
                                         <li><a href="blog-sidebar.php" class="sub-menu-item"> Blog Sidebar</a></li>
                                         <li><a href="blog-detail.php" class="sub-menu-item"> Blog Detail</a></li>
-                                    </ul> 
+                                    </ul>
                                 </li>
                                 <li class="has-submenu parent-menu-item"><a href="javascript:void(0)"> Special </a><span class="submenu-arrow"></span>
                                     <ul class="submenu">
                                         <li><a href="comingsoon.php" class="sub-menu-item">Comingsoon</a></li>
                                         <li><a href="maintenance.php" class="sub-menu-item">Maintenance</a></li>
                                         <li><a href="404.php" class="sub-menu-item">404! Error</a></li>
-                                    </ul>  
+                                    </ul>
                                 </li>
                             </ul>
                         </li>
-                
+
                         <li><a href="contact.php" class="sub-menu-item">Contact</a></li>
                     </ul><!--end navigation menu-->
                 </div><!--end navigation-->
@@ -243,7 +243,7 @@
             item.addEventListener('click', function () {
                 // Remove active class from all nav-links
                 navItems.forEach(nav => nav.classList.remove('active'));
-                
+
                 // Add active class to the clicked nav-link
                 this.classList.add('active');
             });

@@ -12,7 +12,7 @@
         <div class="absolute inset-0 bg-black opacity-80"></div>
         <div class="container relative">
             <div class="grid grid-cols-1 text-center mt-10">
-                <h3 class="md:text-4xl text-3xl md:leading-normal leading-normal font-medium text-white">Plans Tarifaires</h3>
+                <h3 class="md:text-4xl text-3xl md:leading-normal leading-normal font-medium text-white">Vous voulez devenir partenaire ? </br> Voici nos plans Tarifaires.</h3>
             </div><!--fin grid-->
         </div><!--fin container-->
     </section><!--fin section-->

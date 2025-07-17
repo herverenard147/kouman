@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="text-center">
-                        <p class="mb-0 text-slate-400">© <script>document.write(new Date().getFullYear())</script> Kw Legal & Tech. Design & Develop with  by <a href="https://shreethemes.in/" target="_blank" class="text-reset">Shreethemes</a>.</p>
+                        <p class="mb-0 text-slate-400">© <script>document.write(new Date().getFullYear())</script> Kw Legal & Tech. Design & Develop with  by <a href="https://kwlegaltech.com//" target="_blank" class="text-reset">kw legal tech</a>.</p>
                     </div>
                 </div>
             </div><!--end grid-->

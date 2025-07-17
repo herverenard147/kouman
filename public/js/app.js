@@ -19,9 +19,9 @@ window.ApexCharts = ApexCharts;
 feather.replace();
 
 /* Template Name: Afrique évasion
-   Author: Shreethemes
-   Email: support@shreethemes.in
-   Website: https://shreethemes.in
+   Author: kw legal tech
+   Email: contact@kwlegaltech.com
+   Website: https://kwlegaltech.com/
    Version: 2.3.0
    Created: May 2022
    File Description: Main JS file of the template

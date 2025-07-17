@@ -6,8 +6,8 @@
             <a href="#" class="xl:hidden block me-2">
                 <img src="{{ asset('images/logo-icon-32.png') }}" class="md:hidden block" alt="">
                 <span class="md:block hidden">
-                    <img src=" {{ asset('client/assets/images/d.ico') }}" class="inline-block" alt="">
-                    <img src=" {{ asset('client/assets/images/d.ico') }}" class="hidden" alt="">
+                    <img src=" {{ asset('images/di.ico') }}" class="inline-block" alt="">
+                    <img src=" {{ asset('client/assets/images/logoG.ico') }}" class="hidden" alt="">
                 </span>
             </a>
             <!-- Logo -->

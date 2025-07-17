@@ -3,11 +3,11 @@
     <div class="container relative">
         <!-- Début du logo -->
         <a class="logo" href="/index">
-            <span class="inline-block mt-4 dark:hidden">
-                <img src="{{ asset('client/assets/images/d.ico') }}" class="l-dark" height="24" alt="">
-                <img src="{{ asset('client/assets/images/d.ico') }}" class="l-light" height="24" alt="">
+            <span class="inline-block  dark:hidden">
+                <img src="{{ asset('client/assets/images/logoG.ico') }}" class="l-dark" height="24" alt="">
+                <img src="{{ asset('client/assets/images/logoG.ico') }}" class="l-light" height="24" alt="">
             </span>
-            <img src="{{ asset('client/assets/images/d.ico') }}" height="24" class="hidden mt-4 dark:inline-block" alt="">
+            <img src="{{ asset('client/assets/images/logoG.ico') }}" height="24" class="hidden mt-4 dark:inline-block" alt="">
         </a>
         <!-- Fin du logo -->
 

@@ -9,7 +9,7 @@
                 <div class="flex flex-col min-h-screen justify-center md:px-10 py-10 px-4">
                     <div class="text-center">
                         <a href="{{ route('client.index') }}">
-                            <img src="{{ asset('client/assets/images/d.ico') }}" class="mx-auto" alt="">
+                            <img src="{{ asset('client/assets/images/logoG.ico') }}" class="mx-auto" alt="">
                         </a>
                     </div>
                     <div class="title-heading text-center my-auto">

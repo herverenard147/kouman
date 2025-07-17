@@ -2,18 +2,18 @@
 <html lang="en" class="light scroll-smooth" dir="ltr">
     <head>
         <meta charset="UTF-8">
-        <title>Afrique évasion</title>
+        <title>@yield('title') | Afrique évasion</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="Tailwind CSS Saas & Software Landing Page Template">
         <meta name="keywords" content="agency, application, business, clean, creative, cryptocurrency, it solutions, modern, multipurpose, nft marketplace, portfolio, saas, software, tailwind css">
-        <meta name="author" content="Shreethemes">
-        <meta name="website" content="https://shreethemes.in">
-        <meta name="email" content="support@shreethemes.in">
+        <meta name="author" content="kw legal tech">
+        <meta name="website" content="https://kwlegaltech.com/">
+        <meta name="email" content="contact@kwlegaltech.com">
         <meta name="version" content="2.3.0">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <!-- favicon -->
-        <link rel="shortcut icon" src="{{ asset('images/favicon.ico') }}" alt="Logo">
+        <link rel="shortcut icon" href="{{ asset('client/assets/images/b.ico') }}" alt="Logo">
 
         <!-- Css -->
         <!-- Main Css -->
