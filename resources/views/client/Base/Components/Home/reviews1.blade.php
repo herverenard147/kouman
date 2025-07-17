@@ -5,39 +5,39 @@
             'name' => 'Christa Smith',
             'title' => 'Manager',
             'desc' =>
-                'Hously made the processes so easy. Hously instantly increased the amount of interest and ultimately saved us over $10,000.',
+                'Afrique évasion a rendu les processus si simples. Afrique évasion a instantanément augmenté le nombre d’intérêts et nous a finalement fait économiser plus de 10 000 $.',
         ],
         [
             'img' => '/images/client/02.jpg',
             'name' => 'Christa Smith',
             'title' => 'Manager',
             'desc' =>
-                'I highly recommend Hously as the new way to sell your home "by owner". My home sold in 24 hours for the asking price. Best $400 you could spend to sell your home.',
+                'Je recommande vivement Afrique évasion comme nouvelle façon de vendre votre maison "par le propriétaire". Ma maison s’est vendue en 24 heures au prix demandé. Les 400 $ les mieux dépensés pour vendre votre maison.',
         ],
         [
             'img' => '/images/client/03.jpg',
             'name' => 'Christa Smith',
             'title' => 'Manager',
             'desc' =>
-                'My favorite part about selling my home myself was that we got to meet and get to know the people personally. This made it so much more enjoyable!',
+                'Ce que j’ai préféré en vendant ma maison moi-même, c’est que nous avons pu rencontrer et connaître personnellement les gens. Cela a rendu l’expérience beaucoup plus agréable !',
         ],
         [
             'img' => '/images/client/04.jpg',
             'name' => 'Christa Smith',
             'title' => 'Manager',
-            'desc' => 'Great experience all around! Easy to use and efficient.',
+            'desc' => 'Excellente expérience globale ! Facile à utiliser et efficace.',
         ],
         [
             'img' => '/images/client/05.jpg',
             'name' => 'Christa Smith',
             'title' => 'Manager',
-            'desc' => 'Hously made selling my home easy and stress free. They went above and beyond what is expected.',
+            'desc' => 'Afrique évasion a rendu la vente de ma maison facile et sans stress. Ils ont dépassé les attentes.',
         ],
         [
             'img' => '/images/client/06.jpg',
             'name' => 'Christa Smith',
             'title' => 'Manager',
-            'desc' => 'Hously is fair priced, quick to respond, and easy to use. I highly recommend their services!',
+            'desc' => 'Afrique évasion est à un prix juste, réactif rapidement et facile à utiliser. Je recommande vivement leurs services !',
         ],
     ];
 @endphp

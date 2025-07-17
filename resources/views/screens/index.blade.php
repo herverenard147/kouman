@@ -1,6 +1,6 @@
 {{--  --}}
 @extends('layout.base')
-@section('title', 'Dashboard')
+@section('title', 'Tableau de bord')
 @section('content')
     <div class="container-fluid relative px-3">
         <div class="layout-specing">
