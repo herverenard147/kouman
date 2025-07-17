@@ -4,8 +4,8 @@
 @section('content')
     <section class="md:h-screen py-36 flex items-center relative overflow-hidden zoom-image">
 
-        <div
-            class="absolute inset-0 image-wrap z-1 bg-[url('../../client/assets/images/bg/01.jpg')] bg-no-repeat bg-center bg-cover">
+        <div class="absolute inset-0 image-wrap z-1 bg-no-repeat bg-center bg-cover"
+            style="background-image: url('{{ asset('client/assets/images/bg/01.jpg') }}');">
         </div>
         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black z-2" id="particles-snow"></div>
         <div class="container relative z-3">
@@ -35,7 +35,7 @@
                                         type="checkbox" value="" id="RememberMe">
                                     <label class="form-checkbox-label text-slate-400" for="RememberMe">Se rappelez de moi</label>
                                 </div>
-                                <p class="text-slate-400 mb-0"><a href="/auth-re-password" class="text-slate-400">Mot
+                                <p class="text-slate-400 mb-0"><a href="{{route('client.auth.re.password')}}" class="text-slate-400">Mot
                                         de passe oublié ?</a></p>
                             </div>
 

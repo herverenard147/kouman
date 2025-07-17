@@ -37,7 +37,7 @@ class ClientController extends Controller
             $item->type = 'evenement';
             return $item;
         });
-        
+
         $localisations = Localisations::all()->map(function ($item) {
             $item->type = 'localisation';
             return $item;
@@ -55,7 +55,7 @@ class ClientController extends Controller
         return view('client.index', compact('items', 'localisations')); // Adjust the view as needed
     }
 
-    
+
     public function filtrer(Request $request)
     {
         $query = $request->input('search');
@@ -98,8 +98,8 @@ class ClientController extends Controller
 
         return view('client.resultats', compact('hebergements', 'vols', 'excursions', 'evenements'));
     }
-    
-    
+
+
     /**
      * Show the form for creating a new resource.
      */
