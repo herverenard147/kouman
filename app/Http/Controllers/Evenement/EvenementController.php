@@ -23,6 +23,15 @@ class EvenementController extends Controller
         $this->middleware('auth:partenaire');
     }
 
+    public function index()
+    {
+        $evenements = Evenement::where('idPartenaire', Auth::guard('partenaire')->id())->with('images')->get();
+        // dd($hebergements);
+        return view('screens.add.evenement.evenement-list', compact('hebergements'));
+        // return response()->file(resource_path('views/screens/add/Evenement/hebergement.blade.php'));
+
+    }
+
     public function createEvenement()
     {
         $equipements = Equipement::all();

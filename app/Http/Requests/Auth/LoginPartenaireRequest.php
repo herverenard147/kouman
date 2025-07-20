@@ -54,6 +54,7 @@ class LoginPartenaireRequest extends FormRequest
      */
     public function authenticate(): void
     {
+        dd();
         $this->ensureIsNotRateLimited();
 
         $credentials = [

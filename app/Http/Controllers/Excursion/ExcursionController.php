@@ -23,6 +23,14 @@ class ExcursionController extends Controller
         $this->middleware('auth:partenaire');
     }
 
+    public function index()
+    {
+        $excursions = Excursion::where('idPartenaire', Auth::guard('partenaire')->id())->with('images')->get();
+        // dd($hebergements);
+        return view('screens.add.excursion.excursion-list', compact('hebergements'));
+        // return response()->file(resource_path('views/screens/add/Excursion/hebergement.blade.php'));
+
+    }
 
     public function createExcursion()
     {
