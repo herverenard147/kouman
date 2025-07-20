@@ -26,7 +26,7 @@ class EvenementController extends Controller
     public function index()
     {
         $evenements = Evenement::where('idPartenaire', Auth::guard('partenaire')->id())->with('images')->get();
-        // dd($hebergements);
+        dd($evenements);
         return view('screens.add.evenement.evenement-list', compact('evenements'));
         // return response()->file(resource_path('views/screens/add/Evenement/hebergement.blade.php'));
 
