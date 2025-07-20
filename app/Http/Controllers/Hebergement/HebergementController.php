@@ -23,7 +23,7 @@ class HebergementController extends Controller
      */
     public function index()
     {
-        $hebergements = Hebergement::where('id', Auth::guard('partenaire')->id())->with('images')->get();
+        $hebergements = Hebergement::where('idPartenaire', Auth::guard('partenaire')->id())->with('images')->get();
         // dd($hebergements);
         return view('screens.add.Hebergement.hebergement', compact('hebergements'));
         // return response()->file(resource_path('views/screens/add/Hebergement/hebergement.blade.php'));

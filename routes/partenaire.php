@@ -80,23 +80,23 @@ Route::middleware(['auth:partenaire'])
 
         Route::group(['prefix' => 'excursion'], function(){
 
-            Route::get('/', [HebergementController::class, 'index'])->name('partenaire.excursion');
-            Route::get('detail/{id}', [HebergementController::class, 'show'])->name('partenaire.excursion-detail.show');
+            Route::get('/', [ExcursionController::class, 'index'])->name('partenaire.excursion');
+            Route::get('detail/{id}', [ExcursionController::class, 'show'])->name('partenaire.excursion-detail.show');
 
-            Route::get('update/{id}', [HebergementController::class, 'edit'])->name('partenaire.excursion-detail.edit');
-            Route::put('update/{id}', [HebergementController::class, 'update'])->name('partenaire.excursion-detail.update');
-            Route::delete('delette/{id}', [HebergementController::class, 'destroy'])->name('partenaire.excursion.destroy');
+            Route::get('update/{id}', [ExcursionController::class, 'edit'])->name('partenaire.excursion-detail.edit');
+            Route::put('update/{id}', [ExcursionController::class, 'update'])->name('partenaire.excursion-detail.update');
+            Route::delete('delette/{id}', [ExcursionController::class, 'destroy'])->name('partenaire.excursion.destroy');
             // Route::delete('images-hebergement/{id}', [ImageHebergementController::class, 'destroy']);
         });
 
-        Route::group(['prefix' => 'evenement'], function(){
+        Route::group(['prefix' => 'event'], function(){
 
-            Route::get('/', [HebergementController::class, 'index'])->name('partenaire.evenement');
-            Route::get('detail/{id}', [HebergementController::class, 'show'])->name('partenaire.evenement-detail.show');
+            Route::get('/', [EvenementController::class, 'index'])->name('partenaire.event');
+            Route::get('detail/{id}', [EvenementController::class, 'show'])->name('partenaire.event-detail.show');
 
-            Route::get('update/{id}', [HebergementController::class, 'edit'])->name('partenaire.evenement-detail.edit');
-            Route::put('update/{id}', [HebergementController::class, 'update'])->name('partenaire.evenement-detail.update');
-            Route::delete('delette/{id}', [HebergementController::class, 'destroy'])->name('partenaire.evenement.destroy');
+            Route::get('update/{id}', [EvenementController::class, 'edit'])->name('partenaire.event-detail.edit');
+            Route::put('update/{id}', [EvenementController::class, 'update'])->name('partenaire.event-detail.update');
+            Route::delete('delette/{id}', [EvenementController::class, 'destroy'])->name('partenaire.event.destroy');
             // Route::delete('images-hebergement/{id}', [ImageHebergementController::class, 'destroy']);
         });
 

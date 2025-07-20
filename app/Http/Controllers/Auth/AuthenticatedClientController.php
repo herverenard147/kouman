@@ -22,7 +22,7 @@ class AuthenticatedClientController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login');
+        return view('client.auth.login');
     }
 
     /**
@@ -34,7 +34,7 @@ class AuthenticatedClientController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('partenaire.dashboard', absolute: false));
+        return redirect()->intended(route('client.index', absolute: false));
     }
 
     /**

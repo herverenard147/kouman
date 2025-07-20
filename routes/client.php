@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticatedClientController;
+use App\Http\Controllers\Auth\RegisteredClientController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
@@ -9,30 +11,25 @@ Route::get('/', [ClientController::class, 'index'])->name('client.index');
 Route::get('/filtrer', [ClientController::class, 'filtrer'])->name('client.filtrer.services');
 
 Route::prefix('filtrer')->group( function(){
-    Route::get('/hebergements', [ClientController::class, 'filtrerHebergements'])->name('client.filtre.hebergements');
+    Route::get('/hebergements',[ClientController::class, 'filtrerHebergements'])->name('client.filtre.hebergements');
     Route::get('/vols', [ClientController::class, 'filtrerVols'])->name('client.filtre.vols');
     Route::get('/excursions', [ClientController::class, 'filtrerExcursions'])->name('client.filtre.excursions');
     Route::get('/evenements', [ClientController::class, 'filtrerEvenements'])->name('client.filtre.evenements');
 });
 
 
-Route::prefix('client')->group(function () {
-    Route::get('error', function () {
-        return view('client.404');
-    })->name('client.error.404');
+Route::middleware(['guest:web'])->prefix('client')->group(function () {
     Route::view('terms', 'client.terms')->name('client.terms');
 
-    Route::get('auth-login', function () {
-        return view('client.auth-login');
-    })->name('client.auth.login');
+    Route::get('auth-login', [AuthenticatedClientController::class, 'create'])->name('client.auth.login');
+    Route::post('auth-login', [AuthenticatedClientController::class, 'store'])->name('client.auth.login.store');
 
     Route::get('about-us', function () {
         return view('client.aboutus');
     })->name('client.aboutus');
 
-    Route::get('auth-signup', function () {
-        return view('client.auth-signup');
-    })->name('client.auth.signup');
+    Route::get('auth-signup', [RegisteredClientController::class, 'create'])->name('client.auth.signup');
+    Route::post('auth-signup', [RegisteredClientController::class, 'store'])->name('client.auth.signup.store');
 
     Route::get('agencies', function () {
         return view('client.agencies');
@@ -51,16 +48,13 @@ Route::prefix('client')->group(function () {
         return view('client.agent-profile');
     })->name('client.agent.profile');
 
-    Route::get('auth-login', function () {
-        return view('client.auth-login');
-    })->name('client.auth.login');
 
     Route::get('auth-re-password', function () {
-        return view('client.auth-re-password');
+        return view('client.auth.re-password');
     })->name('client.auth.re.password');
 
     Route::get('auth-signup', function () {
-        return view('client.auth-signup');
+        return view('client.auth.signup');
     })->name('client.auth.signup');
 
     Route::get('blog-detail', function () {

@@ -100,6 +100,11 @@ class ClientController extends Controller
     }
 
 
+    public function login()
+    {
+        return view('client.auth.login');
+    }
+
     /**
      * Show the form for creating a new resource.
      */

@@ -25,6 +25,9 @@
     <link href="{{ asset('client/assets/libs/@mdi/font/css/materialdesignicons.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('client/assets/css/tailwind.css') }}" />
     <link rel="stylesheet" href="{{ asset('client/assets/css/output.css') }}" />
+    <!-- CSS Flatpickr -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
 
     @stack('styles')
 </head>
@@ -124,6 +127,8 @@
     <script src="{{ asset('client/assets/libs/feather-icons/feather.min.js') }}"></script>
     <script src="{{ asset('client/assets/js/plugins.init.js') }}"></script>
     <script src="{{ asset('client/assets/js/app.js') }}"></script>
+    <!-- JS Flatpickr -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     @stack('scripts')
 </body>

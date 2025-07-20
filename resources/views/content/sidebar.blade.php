@@ -14,37 +14,110 @@
                 <a href="{{route('partenaire.hebergement')}}"><i class="mdi mdi-home-city me-2"></i>Mes Propriétés</a>
             </li>
 
-            <li class="sidebar-dropdown">
-                <a href="javascript:void(0)"><i class="mdi mdi-file-document-outline me-2"></i>Ajouter une Offre</a>
-                <div class="sidebar-submenu">
-                    <ul>
-                        @switch(Auth::guard('partenaire')->user()->type)
-                            @case('hotel')
-                                <li><a href="{{route('partenaire.add.hebergement')}}">Vos Hébergements</a></li>
-                                <li><a href="{{route('partenaire.add.event')}}">Vos Événements</a></li>
-                                @break
-                            @case('residence')
-                                <li><a href="{{route('partenaire.add.hebergement')}}">Vos Hébergements</a></li>
-                                 <li><a href="{{route('partenaire.add.event')}}">Vos Événements</a></li>
-                                <!-- Liste des hébergements -->
-                                @break
-                            @case('agence_voyage')
-                                 <li><a href="{{ route('partenaire.add.vol') }}">Vos voyages</a></li>
-                                <!-- Liste des offres de voyage -->
-                                @break
-                            @case('compagnie_aerienne')
-                                 <li><a href="{{ route('partenaire.add.vol') }}">Vos vols</a></li>
-                                <!-- Liste des vols -->
-                                @break
-                            @case('evenementiel')
-                                <li><a href="{{route('partenaire.add.event')}}">Vos Événements</a></li>
-                                @break
-                        @endswitch
-                        <li><a href="{{route('partenaire.add.excursion')}}">Excursion</a></li>
-                    </ul>
-                </div>
-            </li>
+            @if (Auth::guard('partenaire')->user()->type == 'residence')
+                <li class="sidebar-dropdown">
+                    <a href="javascript:void(0)"><i class="mdi mdi-file-document-outline me-2"></i>Hebergement</a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li><a href="{{route('partenaire.add.hebergement')}}">Ajouter</a></li>
+                            <li><a href="{{route('partenaire.hebergement')}}"> Liste</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidebar-dropdown">
+                    <a href="javascript:void(0)"><i class="mdi mdi-file-document-outline me-2"></i>Evenement</a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li><a href="{{route('partenaire.add.event')}}">Ajouter </a></li>
+                            <li><a href="{{route('partenaire.event')}}">Liste</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidebar-dropdown">
+                    <a href="javascript:void(0)"><i class="mdi mdi-file-document-outline me-2"></i>Excursion</a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li><a href="{{route('partenaire.add.excursion')}}"> Ajouter</a></li>
+                            <li><a href="{{route('partenaire.excursion')}}">Liste</a></li>
+                        </ul>
+                    </div>
+                </li>
+            @endif
 
+            @if (Auth::guard('partenaire')->user()->type == 'hotel')
+                <li class="sidebar-dropdown">
+                    <a href="javascript:void(0)"><i class="mdi mdi-file-document-outline me-2"></i>Evenement</a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li><a href="{{route('partenaire.add.event')}}">Ajouter </a></li>
+                            <li><a href="{{route('partenaire.event')}}">Liste</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidebar-dropdown">
+                    <a href="javascript:void(0)"><i class="mdi mdi-file-document-outline me-2"></i>Excursion</a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li><a href="{{route('partenaire.add.excursion')}}"> Ajouter</a></li>
+                            <li><a href="{{route('partenaire.excursion')}}">Liste</a></li>
+                        </ul>
+                    </div>
+                </li>
+            @endif
+
+            @if (Auth::guard('partenaire')->user()->type == 'agence_voyage')
+                <li class="sidebar-dropdown">
+                    <a href="javascript:void(0)"><i class="mdi mdi-file-document-outline me-2"></i>Vol</a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li><a href="{{route('partenaire.add.vol')}}">Ajouter</a></li>
+                            <li><a href="{{route('')}}">Liste</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidebar-dropdown">
+                    <a href="javascript:void(0)"><i class="mdi mdi-file-document-outline me-2"></i>Excursion</a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li><a href="{{route('partenaire.add.excursion')}}"> Ajouter</a></li>
+                            <li><a href="{{route('partenaire.excursion')}}">Liste</a></li>
+                        </ul>
+                    </div>
+                </li>
+            @endif
+
+            @if (Auth::guard('partenaire')->user()->type == 'compagnie_aerienne')
+                <li class="sidebar-dropdown">
+                    <a href="javascript:void(0)"><i class="mdi mdi-file-document-outline me-2"></i>Vol</a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li><a href="{{route('partenaire.add.vol')}}">Ajouter</a></li>
+                            <li><a href="{{route('')}}">Liste</a></li>
+                        </ul>
+                    </div>
+                </li>
+            @endif
+
+            @if (Auth::guard('partenaire')->user()->type == 'evenementiel')
+                <li class="sidebar-dropdown">
+                    <a href="javascript:void(0)"><i class="mdi mdi-file-document-outline me-2"></i>Evenement</a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li><a href="{{route('partenaire.add.event')}}">Ajouter </a></li>
+                            <li><a href="{{route('partenaire.event')}}">Liste</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidebar-dropdown">
+                    <a href="javascript:void(0)"><i class="mdi mdi-file-document-outline me-2"></i>Excursion</a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                            <li><a href="{{route('partenaire.add.excursion')}}"> Ajouter</a></li>
+                            <li><a href="{{route('partenaire.excursion')}}">Liste</a></li>
+                        </ul>
+                    </div>
+                </li>
+            @endif
             <li>
                 <a href="{{route('partenaire.favorite-hebergement')}}"><i class="mdi mdi-home-heart me-2"></i>Favorite Properties</a>
             </li>

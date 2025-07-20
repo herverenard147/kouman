@@ -3,13 +3,40 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Client extends Model
+
+class Client extends Authenticatable
 {
-    protected $fillable = [
+        use Notifiable, HasFactory;
+
+     protected $fillable = [
         'nom',
+        'prenom',
         'email',
-        'mot_de_passe'
+        'mot_de_passe',
+        'telephone',
+        'adresse',
+        'ville',
+        'pays',
+        'code_postal',
+        'date_naissance',
+        'genre',
+        'photo_profil',
+        'langue_preferee',
+        'newsletter',
+        'email_verified_at',
+        'remember_token'
+    ];
+
+    protected $hidden = ['mot_de_passe', 'remember_token'];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'newsletter' => 'boolean',
+        'date_naissance' => 'date',
     ];
 
     public function reservations()
@@ -19,16 +46,21 @@ class Client extends Model
 
     public function avis()
     {
-        return $this->hasMany(AvisClient::class);
+        return $this->hasMany(Avis::class, 'client_id');
+    }
+
+    public function avisClient()
+    {
+        return $this->hasMany(AvisClient::class, 'client_id');
     }
 
     public function notifications()
     {
-        return $this->hasMany(Notification::class);
+        return $this->hasMany(Notification::class, 'client_id');
     }
 
     public function comparaisons()
     {
-        return $this->hasMany(ComparaisonPrix::class);
+        return $this->hasMany(ComparaisonPrix::class, 'client_id');
     }
 }
