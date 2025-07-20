@@ -27,7 +27,7 @@ class EvenementController extends Controller
     {
         $evenements = Evenement::where('idPartenaire', Auth::guard('partenaire')->id())->with('images')->get();
         // dd($hebergements);
-        return view('screens.add.evenement.evenement-list', compact('hebergements'));
+        return view('screens.add.evenement.evenement-list', compact('evenements'));
         // return response()->file(resource_path('views/screens/add/Evenement/hebergement.blade.php'));
 
     }

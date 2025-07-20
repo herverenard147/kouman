@@ -27,7 +27,7 @@ class ExcursionController extends Controller
     {
         $excursions = Excursion::where('idPartenaire', Auth::guard('partenaire')->id())->with('images')->get();
         // dd($hebergements);
-        return view('screens.add.excursion.excursion-list', compact('hebergements'));
+        return view('screens.add.excursion.excursion-list', compact('excursions'));
         // return response()->file(resource_path('views/screens/add/Excursion/hebergement.blade.php'));
 
     }
