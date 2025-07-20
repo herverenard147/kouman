@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ImageEvenement extends Model
 {
-    protected $table = 'images_evenements';
+    protected $table = 'images_evenement';
     protected $fillable = ['idEvenement', 'url', 'estPrincipale'];
 
     public function evenement()
