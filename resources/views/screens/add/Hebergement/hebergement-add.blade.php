@@ -555,11 +555,11 @@ function openMapPopup() {
     if (event.origin !== window.location.origin) return;
 
     const { latitude, longitude, adresse, ville, pays } = event.data;
-    document.getElementById('latitude').value = latitude;
-    document.getElementById('longitude').value = longitude;
-    document.getElementById('adresse').value = adresse;
-    document.getElementById('ville').value = ville;
-    document.getElementById('pays').value = pays;
+    document.getElementById('latitude').value = latitude || '';
+    document.getElementById('longitude').value = longitude || '';
+    document.getElementById('adresse').value = adresse || '';
+    document.getElementById('ville').value = ville || '';
+    document.getElementById('pays').value = pays || '';
 }, false);
 </script>
 

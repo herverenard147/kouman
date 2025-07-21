@@ -223,10 +223,12 @@
             document.getElementById('reverseAddress').innerText = 'Adresse : ' + text;
         }
 
+
         function reverseGeocode(lat, lng) {
             fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`)
                 .then(res => res.json())
                 .then(data => {
+                    console.log('reverseGeocode data.address:', data.address);
                     const display = data.display_name || '';
                     updateAddressText(display);
 
