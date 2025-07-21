@@ -69,7 +69,7 @@ class EvenementController extends Controller
             'pays' => 'nullable|string|max:255',
             'adresse' => 'nullable|string|max:255',
             'equipements' => 'nullable|array',
-            'equipements.*' => 'exists:equipements,idEquipement',
+            'equipements.*' => 'exists:equipements,id',
             'telephones.*.numero' => 'nullable|string|max:20',
             'images.*' => 'nullable|image|mimes:jpeg,png|max:10240',
         ]);

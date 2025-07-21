@@ -11,8 +11,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             LangueSeeder::class,
             MoyenPaiementSeeder::class,
-            // FamilleTypeHebergementSeeder::class,
-            // TypeHebergementSeeder::class,
+            FamilleTypeHebergementSeeder::class,
+            TypeHebergementSeeder::class,
             ClientSeeder::class,
             UsersSeeder::class,
             CustomersSeeder::class,

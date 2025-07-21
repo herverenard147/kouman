@@ -16,6 +16,7 @@ class Excursion extends Model
         'devise',
         'capacite_max',
         'partenaire_id',
+        'localisation_id',
         'statut',
         'itineraire',
         'nom_guide',
@@ -63,6 +64,11 @@ class Excursion extends Model
     public function moyensPaiement()
     {
         return $this->belongsToMany(MoyenPaiement::class, 'excursion_paiement');
+    }
+    
+    public function avis()
+    {
+        return $this->hasMany(Avis::class);
     }
 
 }

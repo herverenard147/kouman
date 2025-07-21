@@ -101,21 +101,21 @@
                     <!-- Localisation -->
                     <div class="col-span-6">
                         <label for="ville" class="font-medium">Ville :</label>
-                        <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror" value="{{ old('ville') }}">
+                        <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror" value="{{ old('ville') }}" disabled>
                         @error('ville')
                             <span class="text-red-600 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="col-span-6">
                         <label for="pays" class="font-medium">Pays :</label>
-                        <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror" value="{{ old('pays') }}">
+                        <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror" value="{{ old('pays') }}" disabled>
                         @error('pays')
                             <span class="text-red-600 text-sm">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="col-span-12">
                         <label for="adresse" class="font-medium">Adresse :</label>
-                        <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror" value="{{ old('adresse') }}">
+                        <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror" value="{{ old('adresse') }}" disabled>
                         @error('adresse')
                             <span class="text-red-600 text-sm">{{ $message }}</span>
                         @enderror
