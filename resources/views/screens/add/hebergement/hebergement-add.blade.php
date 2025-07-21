@@ -167,7 +167,7 @@
 
                             <div class="md:col-span-4 col-span-12">
                                 <label for="longitude" class="font-medium">Longitude <strong>*</strong>:</label>
-                                <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror" placeholder="Longitude" value="{{ old('longitude') }}" required readonly>
+                                <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror" placeholder="Longitude" value="{{ old('longitude', '') }}" required readonly>
                                 @error('longitude')
                                     <span class="text-red-600 text-sm">{{ $message }}</span>
                                 @enderror
@@ -537,30 +537,30 @@
     });
 
 
-function openMapPopup() {
-    const width = 600;
-    const height = 500;
-    const left = (screen.width / 2) - (width / 2);
-    const top = (screen.height / 2) - (height / 2);
+    function openMapPopup() {
+        const width = 600;
+        const height = 500;
+        const left = (screen.width / 2) - (width / 2);
+        const top = (screen.height / 2) - (height / 2);
 
-    const mapWindow = window.open(
-        "/partenaire/popup-localisation", // à créer dans Laravel
-        "Localisation",
-        `width=${width},height=${height},top=${top},left=${left}`
-    );
+        const mapWindow = window.open(
+            "/partenaire/popup-localisation", // à créer dans Laravel
+            "Localisation",
+            `width=${width},height=${height},top=${top},left=${left}`
+        );
 
-}
-// Recevoir la position depuis la popup
- window.addEventListener('message', function (event) {
-    if (event.origin !== window.location.origin) return;
+        // Recevoir la position depuis la popup
+        window.addEventListener('message', function (event) {
+            if (event.origin !== window.location.origin) return;
 
-    const { latitude, longitude, adresse, ville, pays } = event.data;
-    document.getElementById('latitude').value = latitude || '';
-    document.getElementById('longitude').value = longitude || '';
-    document.getElementById('adresse').value = adresse || '';
-    document.getElementById('ville').value = ville || '';
-    document.getElementById('pays').value = pays || '';
-}, false);
+            const { latitude, longitude, adresse, ville, pays } = event.data;
+            document.getElementById('latitude').value = latitude || '';
+            document.getElementById('longitude').value = longitude || '';
+            document.getElementById('adresse').value = adresse || '';
+            document.getElementById('ville').value = ville || '';
+            document.getElementById('pays').value = pays || '';
+        }, false);
+    }
 </script>
 
 <!-- JAVASCRIPTS -->

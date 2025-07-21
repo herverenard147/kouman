@@ -444,7 +444,7 @@
             if (adresse) document.getElementById('adresse').value = adresse;
             if (ville) document.getElementById('ville').value = ville;
             if (pays) document.getElementById('pays').value = pays;
-        });
+        }); 
 
         // Recevoir la position depuis la popup
         // window.addEventListener('message', function (event) {
