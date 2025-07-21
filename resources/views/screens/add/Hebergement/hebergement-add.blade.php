@@ -136,7 +136,7 @@
 
                             <div class="md:col-span-6 col-span-12">
                                 <label for="ville" class="font-medium">Ville <strong>*</strong>:</label>
-                                <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror" placeholder="Ville" value="{{ old('ville') }}" required disabled>
+                                <input name="ville" id="ville" type="number" class="form-input mt-2 @error('ville') border-red-500 @enderror" placeholder="Ville" value="{{ old('ville') }}" required disabled>
                                 @error('ville')
                                     <span class="text-red-600 text-sm">{{ $message }}</span>
                                 @enderror
@@ -144,7 +144,7 @@
 
                             <div class="md:col-span-6 col-span-12">
                                 <label for="pays" class="font-medium">Pays <strong>*</strong>:</label>
-                                <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror" placeholder="Pays" value="{{ old('pays') }}" required disabled>
+                                <input name="pays" id="pays" type="number" class="form-input mt-2 @error('pays') border-red-500 @enderror" placeholder="Pays" value="{{ old('pays') }}" required disabled>
                                 @error('pays')
                                     <span class="text-red-600 text-sm">{{ $message }}</span>
                                 @enderror
@@ -152,14 +152,14 @@
 
                             <div Saying-md class="col-span-4 col-span-12">
                                 <label for="adresse" class="font-medium">Adresse <strong>*</strong>:</label>
-                                <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror" placeholder="Adresse complète" value="{{ old('adresse') }}" required disabled>
+                                <input name="adresse" id="adresse" type="number" class="form-input mt-2 @error('adresse') border-red-500 @enderror" placeholder="Adresse complète" value="{{ old('adresse') }}" required disabled>
                                 @error('adresse')
                                     <span class="text-red-600 text-sm">{{ $message }}</span>
                                 @enderror
                             </div>
                             <div class="md:col-span-4 col-span-12">
                                 <label for="latitude" class="font-medium">Latitude <strong>*</strong>:</label>
-                                <input name="latitude" id="latitude" type="texxt" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror" placeholder="Latitude" value="{{ old('latitude') }}" required disabled>
+                                <input name="latitude" id="latitude" type="number" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror" placeholder="Latitude" value="{{ old('latitude') }}" required disabled>
                                 @error('latitude')
                                     <span class="text-red-600 text-sm">{{ $message }}</span>
                                 @enderror
@@ -167,7 +167,7 @@
 
                             <div class="md:col-span-4 col-span-12">
                                 <label for="longitude" class="font-medium">Longitude <strong>*</strong>:</label>
-                                <input name="longitude" id="longitude" type="text" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror" placeholder="Longitude" value="{{ old('longitude') }}" required disabled>
+                                <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror" placeholder="Longitude" value="{{ old('longitude') }}" required disabled>
                                 @error('longitude')
                                     <span class="text-red-600 text-sm">{{ $message }}</span>
                                 @enderror
