@@ -17,12 +17,12 @@ class ExcursionDateSeeder extends Seeder
                 'heure_debut' => '08:00:00',
                 'places_disponibles' => 12,
             ],
-            // [
-            //     'idExcursion' => 2,
-            //     'date' => now()->addDays(10)->format('Y-m-d'),
-            //     'heure_debut' => '14:30:00',
-            //     'places_disponibles' => 8,
-            // ],
+            [
+                'idExcursion' => 2,
+                'date' => now()->addDays(10)->format('Y-m-d'),
+                'heure_debut' => '14:30:00',
+                'places_disponibles' => 8,
+            ],
         ];
 
         foreach ($dates as $data) {

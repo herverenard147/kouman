@@ -63,6 +63,60 @@
                                     <input name="titre" id="titre" type="text" class="form-input mt-2 @error('titre') border-red-500 @enderror" placeholder="Titre de l'excursion" value="{{ old('titre') }}" required>
                                     @error('titre') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
+                                <!-- Itinéraire -->
+                                <div class="col-span-12">
+                                    <label for="itineraire" class="font-medium">Itinéraire :</label>
+                                    <textarea name="itineraire" id="itineraire" class="form-input mt-2 @error('itineraire') border-red-500 @enderror" rows="3" placeholder="Décrivez l’itinéraire prévu">{{ old('itineraire') }}</textarea>
+                                    @error('itineraire') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Nom du guide -->
+                                <div class="col-span-6">
+                                    <label for="nom_guide" class="font-medium">Nom du guide :</label>
+                                    <input name="nom_guide" id="nom_guide" type="text" class="form-input mt-2 @error('nom_guide') border-red-500 @enderror" value="{{ old('nom_guide') }}" placeholder="Nom complet du guide">
+                                    @error('nom_guide') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Langues parlées -->
+                                <div class="col-span-6">
+                                    <label for="langues" class="font-medium">Langues parlées :</label>
+                                    <input name="langues" id="langues" type="text" class="form-input mt-2 @error('langues') border-red-500 @enderror" value="{{ old('langues') }}" placeholder="Ex : Français, Anglais">
+                                    @error('langues') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Récurrence -->
+                                <div class="col-span-6">
+                                    <label for="recurrence" class="font-medium">Fréquence :</label>
+                                    <select name="recurrence" id="recurrence" class="form-input mt-2 @error('recurrence') border-red-500 @enderror">
+                                        @foreach(['ponctuelle', 'quotidienne', 'hebdomadaire', 'mensuelle'] as $freq)
+                                            <option value="{{ $freq }}" {{ old('recurrence') == $freq ? 'selected' : '' }}>
+                                                {{ ucfirst($freq) }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('recurrence') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Âge minimum -->
+                                <div class="col-span-6">
+                                    <label for="age_minimum" class="font-medium">Âge minimum requis :</label>
+                                    <input name="age_minimum" id="age_minimum" type="number" min="0" class="form-input mt-2 @error('age_minimum') border-red-500 @enderror" value="{{ old('age_minimum', 0) }}">
+                                    @error('age_minimum') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Conditions d’annulation -->
+                                <div class="col-span-12">
+                                    <label for="conditions" class="font-medium">Conditions d’annulation :</label>
+                                    <textarea name="conditions" id="conditions" class="form-input mt-2 @error('conditions') border-red-500 @enderror" rows="3" placeholder="Politique d’annulation, remboursement, etc.">{{ old('conditions') }}</textarea>
+                                    @error('conditions') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Moyens de paiement -->
+                                <div class="col-span-12">
+                                    <label for="moyens_paiement" class="font-medium">Moyens de paiement acceptés :</label>
+                                    <input name="moyens_paiement" id="moyens_paiement" type="text" class="form-input mt-2 @error('moyens_paiement') border-red-500 @enderror" value="{{ old('moyens_paiement') }}" placeholder="Ex : Orange Money, Visa, Cash">
+                                    @error('moyens_paiement') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
 
                                 <!-- Description -->
                                 <div class="col-span-12">
@@ -444,7 +498,7 @@
             if (adresse) document.getElementById('adresse').value = adresse;
             if (ville) document.getElementById('ville').value = ville;
             if (pays) document.getElementById('pays').value = pays;
-        }); 
+        });
 
         // Recevoir la position depuis la popup
         // window.addEventListener('message', function (event) {

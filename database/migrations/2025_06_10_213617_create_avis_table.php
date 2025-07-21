@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('dateAvis')->useCurrent();
 
             $table->foreignId('idClient')->constrained('clients')->onDelete('cascade');
-            $table->foreignId('idHebergement')->constrained('hebergements')->onDelete('cascade');
+            $table->foreignId('idHebergement')->nullable()->constrained('hebergements')->onDelete('cascade');
             $table->timestamps();
         });
     }

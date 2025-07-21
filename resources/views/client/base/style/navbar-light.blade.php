@@ -58,6 +58,12 @@
                         S'inscrire
                     </a>
                 </li>
+                <li class="sm:inline ps-1 mb-0 hidden">
+                    <a href="{{ route('partenaire.login') }}"
+                        class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
+                        S'inscrire entant que partenaire
+                    </a>
+                </li>
             @endauth
         </ul>
 

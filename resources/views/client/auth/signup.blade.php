@@ -90,8 +90,8 @@
                             <!-- Date de naissance -->
                             <div class="mb-4">
                                 <label for="date_naissance" class="font-semibold block mb-2">Date de naissance :</label>
-                                <input type="text" id="date_naissance" name="date_naissance"
-                                    class="form-input w-full pl-4 pr-4 py-2 rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-slate-800 text-gray-900 dark:text-white focus:ring-2 focus:ring-green-500"
+                                <input type="date" id="date_naissance" name="date_naissance"
+                                    class="form-input mt-3"
                                     placeholder="Sélectionnez votre date de naissance" autocomplete="off">
                             </div>
 
@@ -114,10 +114,10 @@
                             </div>
 
                             <!-- Langue préférée -->
-                            <div class="mb-4">
+                            {{-- <div class="mb-4">
                                 <label class="font-semibold" for="langue_preferee">Langue :</label>
                                 <input name="langue_preferee" id="langue_preferee" type="text" class="form-input mt-3" placeholder="fr">
-                            </div>
+                            </div> --}}
 
                             <!-- Photo de profil -->
                             <div class="mb-4 md:col-span-2">

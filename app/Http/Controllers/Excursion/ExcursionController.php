@@ -185,6 +185,7 @@ class ExcursionController extends Controller
             'conditions' => 'nullable|string',
             'paiements' => 'nullable|array',
             'paiements.*' => 'string|max:50',
+            'moyens_paiement' => 'nullable|string',
         ]);
 
         $excursion = Excursion::create([
