@@ -447,18 +447,18 @@
         });
 
         // Recevoir la position depuis la popup
-        window.addEventListener('message', function (event) {
-            if (event.origin !== window.location.origin) return;
-            if (!event.data || event.data.from !== 'localisation-popup') return;
+        // window.addEventListener('message', function (event) {
+        //     if (event.origin !== window.location.origin) return;
+        //     if (!event.data || event.data.from !== 'localisation-popup') return;
 
-            const { latitude, longitude, adresse, ville, pays } = event.data;
+        //     const { latitude, longitude, adresse, ville, pays } = event.data;
 
-            document.getElementById('latitude').value = latitude;
-            document.getElementById('longitude').value = longitude;
-            if (adresse) document.getElementById('adresse').value = adresse;
-            if (ville) document.getElementById('ville').value = ville;
-            if (pays) document.getElementById('pays').value = pays;
-        });
+        //     document.getElementById('latitude').value = latitude;
+        //     document.getElementById('longitude').value = longitude;
+        //     if (adresse) document.getElementById('adresse').value = adresse;
+        //     if (ville) document.getElementById('ville').value = ville;
+        //     if (pays) document.getElementById('pays').value = pays;
+        // });
     }
     </script>
 @endpush

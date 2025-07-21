@@ -115,7 +115,7 @@
         function validerPosition() {
             const pos = marker.getLatLng();
             window.opener.postMessage({
-                from: 'localisation-popup'
+                from: 'localisation-popup',
                 latitude: pos.lat,
                 longitude: pos.lng,
                 adresse: currentAddress.adresse,
