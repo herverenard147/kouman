@@ -31,8 +31,8 @@
                 </div>
             @endif
 
-            {{-- <form action="{{ route('partenaire.excursion.store') }}" method="POST" enctype="multipart/form-data"> --}}
-            <form action="">
+            <form action="{{ route('partenaire.excursion.store') }}" method="POST" enctype="multipart/form-data">
+            {{-- <form action=""> --}}
                 @csrf
                 <div class="container relative">
                     <div class="grid md:grid-cols-1 grid-cols-1 gap-6 mt-6">
@@ -117,30 +117,30 @@
 
                                 <!-- Localisation -->
                                 <div class="col-span-6"><label for="ville" class="font-medium">Ville :</label>
-                                    <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror"  value="{{ old('ville') }}" disabled>
+                                    <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror"  value="{{ old('ville') }}" readonly>
                                     @error('ville') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="col-span-6"><label for="pays" class="font-medium">Pays :</label>
-                                    <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror" value="{{ old('pays') }}" disabled>
+                                    <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror" value="{{ old('pays') }}" readonly>
                                     @error('pays') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="col-span-6">
                                     <label for="adresse" class="font-medium">Adresse (point de départ) :</label>
-                                    <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror" value="{{ old('adresse') }}" disabled>
+                                    <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror" value="{{ old('adresse') }}" readonly>
                                     @error('adresse') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="col-span-3">
                                     <label for="latitude" class="font-medium">Latitude :</label>
-                                    <input name="latitude" id="latitude" type="number" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror" value="{{ old('latitude') }}" required disabled>
+                                    <input name="latitude" id="latitude" type="number" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror" value="{{ old('latitude') }}" required readonly>
                                     @error('latitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="col-span-3">
                                     <label for="longitude" class="font-medium">Longitude :</label>
-                                    <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror" value="{{ old('longitude') }}" required disabled>
+                                    <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror" value="{{ old('longitude') }}" required readonly>
                                     @error('longitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
@@ -428,6 +428,23 @@
             "Localisation",
             `width=${width},height=${height},top=${top},left=${left}`
         );
+        window.addEventListener('message', function (event) {
+            if (event.origin !== window.location.origin) return;
+
+            const { latitude, longitude, adresse, ville, pays } = event.data;
+
+            console.log("📦 Données reçues :", event.data); // 👀 ici tu verras tout
+
+            // Assure-toi que latitude/longitude sont bien définies
+            if (latitude !== undefined && longitude !== undefined) {
+                document.getElementById('latitude').value = latitude;
+                document.getElementById('longitude').value = longitude;
+            }
+
+            if (adresse) document.getElementById('adresse').value = adresse;
+            if (ville) document.getElementById('ville').value = ville;
+            if (pays) document.getElementById('pays').value = pays;
+        });
 
         // Recevoir la position depuis la popup
         window.addEventListener('message', function (event) {
