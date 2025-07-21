@@ -136,7 +136,7 @@
 
                             <div class="md:col-span-6 col-span-12">
                                 <label for="ville" class="font-medium">Ville <strong>*</strong>:</label>
-                                <input name="ville" id="ville" type="number" class="form-input mt-2 @error('ville') border-red-500 @enderror" placeholder="Ville" value="{{ old('ville') }}" required disabled>
+                                <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror" placeholder="Ville" value="{{ old('ville') }}" required disabled>
                                 @error('ville')
                                     <span class="text-red-600 text-sm">{{ $message }}</span>
                                 @enderror
@@ -144,7 +144,7 @@
 
                             <div class="md:col-span-6 col-span-12">
                                 <label for="pays" class="font-medium">Pays <strong>*</strong>:</label>
-                                <input name="pays" id="pays" type="number" class="form-input mt-2 @error('pays') border-red-500 @enderror" placeholder="Pays" value="{{ old('pays') }}" required disabled>
+                                <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror" placeholder="Pays" value="{{ old('pays') }}" required disabled>
                                 @error('pays')
                                     <span class="text-red-600 text-sm">{{ $message }}</span>
                                 @enderror
@@ -152,7 +152,7 @@
 
                             <div Saying-md class="col-span-4 col-span-12">
                                 <label for="adresse" class="font-medium">Adresse <strong>*</strong>:</label>
-                                <input name="adresse" id="adresse" type="number" class="form-input mt-2 @error('adresse') border-red-500 @enderror" placeholder="Adresse complète" value="{{ old('adresse') }}" required disabled>
+                                <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror" placeholder="Adresse complète" value="{{ old('adresse') }}" required disabled>
                                 @error('adresse')
                                     <span class="text-red-600 text-sm">{{ $message }}</span>
                                 @enderror
