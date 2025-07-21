@@ -26,7 +26,7 @@ class ExcursionController extends Controller
      public function index()
     {
         $excursions = Excursion::with('partenaire', 'localisation')->latest()->get();
-        return view('excursions.index', compact('excursions'));
+        return view('screens.add.excursion.excursion-list', compact('excursions'));
     }
 
     public function createExcursion()

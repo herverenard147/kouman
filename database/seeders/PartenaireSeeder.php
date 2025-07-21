@@ -23,7 +23,7 @@ class PartenaireSeeder extends Seeder
                 'statut' => 'actif', 'mot_de_passe' => bcrypt('password'), 'remember_token' => Str::random(10)
             ],
             [
-                'nom_entreprise' => 'Noom', 'email' => 'info@noom.com', 'type' => 'agence_voyage',
+                'nom_entreprise' => 'Noom', 'email' => 'info@noom.com', 'type' => 'residence',
                 'téléphone' => '+2250505050506', 'adresse' => 'Yamoussoukro', 'siteWeb' => 'https://noom.com',
                 'statut' => 'actif', 'mot_de_passe' => bcrypt('password'), 'remember_token' => Str::random(10)
             ],

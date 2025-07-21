@@ -27,19 +27,40 @@
 
         <!-- Boutons Connexion / Inscription -->
         <ul class="buy-button list-none mb-0">
-            <li class="inline mb-0">
-                <a href="{{route('client.auth.login')}}"
-                    class="btn btn-icon bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
-                    <i data-feather="user" class="size-4 stroke-[3]"></i>
-                </a>
-            </li>
-            <li class="sm:inline ps-1 mb-0 hidden">
-                <a href="{{route('client.auth.signup')}}"
-                    class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
-                    S'inscrire
-                </a>
-            </li>
+            @auth('client')
+                <!-- Bouton tableau de bord client -->
+                <li class="inline mb-0">
+                    {{-- <a href="{{ route('client.dashboard') }}" --}}
+                    <a href=""
+                        class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
+                        Tableau de bord
+                    </a>
+                </li>
+            @elseif(auth('partenaire')->check())
+                <!-- Bouton tableau de bord partenaire -->
+                <li class="inline mb-0">
+                    <a href="{{ route('partenaire.dashboard') }}"
+                        class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
+                        Tableau de bord
+                    </a>
+                </li>
+            @else
+                <!-- Boutons Connexion et Inscription visibles si aucun connecté -->
+                <li class="inline mb-0">
+                    <a href="{{ route('client.auth.login') }}"
+                        class="btn btn-icon bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
+                        <i data-feather="user" class="size-4 stroke-[3]"></i>
+                    </a>
+                </li>
+                <li class="sm:inline ps-1 mb-0 hidden">
+                    <a href="{{ route('client.auth.signup') }}"
+                        class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
+                        S'inscrire
+                    </a>
+                </li>
+            @endauth
         </ul>
+
         <!-- Fin des boutons -->
 
         <div id="navigation">
