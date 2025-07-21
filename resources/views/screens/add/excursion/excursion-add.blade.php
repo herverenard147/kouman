@@ -31,7 +31,7 @@
                 </div>
             @endif
 
-            <form action="{{ route('partenaire.excursion.store') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('partenaire.add.excursion.store') }}" method="POST" enctype="multipart/form-data">
             {{-- <form action=""> --}}
                 @csrf
                 <div class="container relative">

@@ -81,10 +81,10 @@ Route::middleware(['auth:partenaire'])
         Route::group(['prefix' => 'excursion'], function(){
 
             Route::get('/', [ExcursionController::class, 'index'])->name('partenaire.excursion');
-            Route::get('detail/{id}', [ExcursionController::class, 'show'])->name('partenaire.excursion-detail.show');
+            Route::get('detail/{id}', [ExcursionController::class, 'show'])->name('partenaire.excursion.show');
 
-            Route::get('update/{id}', [ExcursionController::class, 'edit'])->name('partenaire.excursion-detail.edit');
-            Route::put('update/{id}', [ExcursionController::class, 'update'])->name('partenaire.excursion-detail.update');
+            Route::get('update/{id}', [ExcursionController::class, 'edit'])->name('partenaire.excursion.edit');
+            Route::put('update/{id}', [ExcursionController::class, 'update'])->name('partenaire.excursion.update');
             Route::delete('delette/{id}', [ExcursionController::class, 'destroy'])->name('partenaire.excursion.destroy');
             // Route::delete('images-hebergement/{id}', [ImageHebergementController::class, 'destroy']);
         });
