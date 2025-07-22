@@ -25,7 +25,10 @@ class ExcursionController extends Controller
 
      public function index()
     {
-        $excursions = Excursion::with('partenaire', 'localisation')->latest()->get();
+        $excursions = Excursion::with(['partenaire', 'localisation', 'avisClients'])->latest()->get();
+        $serviceIds = $excursions->flatMap(function ($excursion) {
+            return $excursion->avisClients->pluck('service_id');
+        })->unique()->values();
         return view('screens.add.excursion.excursion-list', compact('excursions'));
     }
 

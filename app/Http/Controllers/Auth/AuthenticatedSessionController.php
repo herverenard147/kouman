@@ -36,8 +36,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        // dd('Méthode destroy atteinte');
-         $guards = ['admin', 'client', 'partenaire', 'web'];
+        dd('Méthode destroy atteinte');
+        $guards = ['admin', 'client', 'partenaire', 'web'];
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
@@ -48,7 +48,7 @@ class AuthenticatedSessionController extends Controller
                 // Redirection personnalisée selon le guard
                 return match ($guard) {
                     'admin' => redirect()->route('admin.login'),
-                    'client' => redirect()->route('client.login'),
+                    'client' => redirect()->route('client.index'),
                     'partenaire' => redirect()->route('partenaire.login'),
                     default => redirect('/login'),
                 };

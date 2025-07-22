@@ -65,10 +65,10 @@ class Excursion extends Model
     {
         return $this->belongsToMany(MoyenPaiement::class, 'excursion_paiement');
     }
-    
+
     public function avis()
     {
-        return $this->hasMany(Avis::class);
+        return $this->hasMany(AvisClient::class);
     }
 
 }

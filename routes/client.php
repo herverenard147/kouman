@@ -19,6 +19,10 @@ Route::prefix('filtrer')->group( function(){
 
 
 Route::middleware(['guest:web'])->prefix('client')->group(function () {
+
+    Route::post('logout', [AuthenticatedClientController::class, 'destroy'])
+        ->name('client.logout');
+
     Route::view('terms', 'client.terms')->name('client.terms');
 
     Route::get('auth-login', [AuthenticatedClientController::class, 'create'])->name('client.auth.login');

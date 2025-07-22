@@ -139,7 +139,7 @@
                     <span class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-[20px] text-center bg-gray-50 hover:bg-gray-100 border border-gray-100 text-slate-900 rounded-md"><img src="{{ asset('images/client/07.jpg') }}" class="rounded-md" alt=""></span>
                 </button>
                 <!-- Dropdown menu -->
-                <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white shadow hidden" onclick="event.stopPropagation();">
+                <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white shadow hidden" onclick="event.stopPropa gation();">
                     <ul class="py-2 text-start">
                         <li>
                             <a href="{{route('partenaire.profile')}}" class="block py-1 px-4 hover:text-green-600"><i class="mdi mdi-account-outline me-2"></i>Profile</a>

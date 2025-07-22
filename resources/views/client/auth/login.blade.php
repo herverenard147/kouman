@@ -30,24 +30,25 @@
                             </ul>
                         </div>
                     @endif
-                    <form class="text-start">
+                    <form class="text-start" action="{{route('client.auth.login.store')}}"  method="POST" enctype="multipart/form-data">
+                        @csrf
                         <div class="grid grid-cols-1">
                             <div class="mb-4">
                                 <label class="font-medium" for="LoginEmail">Email :</label>
-                                <input id="LoginEmail" type="email" class="form-input mt-3"
+                                <input id="LoginEmail" name="email" type="email" class="form-input mt-3"
                                     placeholder="name@example.com">
                             </div>
 
                             <div class="mb-4">
                                 <label class="font-medium" for="LoginPassword">Mot de passe:</label>
-                                <input id="LoginPassword" type="password" class="form-input mt-3" placeholder="Password:">
+                                <input id="LoginPassword" name="password" type="password" class="form-input mt-3" placeholder="Password:">
                             </div>
 
                             <div class="flex justify-between mb-4">
                                 <div class="flex items-center mb-0">
                                     <input
                                         class="form-checkbox rounded border-gray-200 dark:border-gray-800 text-green-600 focus:border-green-300 focus:ring focus:ring-offset-0 focus:ring-green-200 focus:ring-opacity-50 me-2"
-                                        type="checkbox" value="" id="RememberMe">
+                                        type="checkbox" value="" name="remember" id="RememberMe">
                                     <label class="form-checkbox-label text-slate-400" for="RememberMe">Se rappelez de moi</label>
                                 </div>
                                 <p class="text-slate-400 mb-0"><a href="{{route('client.auth.re.password')}}" class="text-slate-400">Mot
@@ -55,8 +56,8 @@
                             </div>
 
                             <div class="mb-4">
-                                <a href=""
-                                    class="btn bg-green-600 hover:bg-green-700 text-white rounded-md w-full">Connexion</a>
+                                <button type="submit"
+                                    class="btn bg-green-600 hover:bg-green-700 text-white rounded-md w-full">Connexion</button>
                             </div>
 
                             <div class="text-center">
@@ -69,4 +70,5 @@
             </div>
         </div>
     </section><!--end section -->
+    
 @endsection

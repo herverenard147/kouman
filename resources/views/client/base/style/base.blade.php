@@ -130,6 +130,18 @@
     <!-- JS Flatpickr -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+
+        <script src="{{asset('libs/jsvectormap/jsvectormap.min.js')}}"></script>
+        <script src="{{asset('libs/shufflejs/shuffle.min.js')}}"></script>
+        <script src="{{asset('libs/tobii/js/tobii.min.js')}}"></script>
+        <script src="{{asset('libs/jsvectormap/maps/world.js')}}"></script>
+        <script src="{{asset('js/jsvectormap.init.js')}}"></script>
+        <script src="{{asset('libs/apexcharts/apexcharts.min.js')}}"></script>
+        <script src="{{asset('libs/feather-icons/feather.min.js')}}"></script>
+        <script src="{{asset('libs/simplebar/simplebar.min.js')}}"></script>
+        <script src="{{asset('js/plugins.init.js')}}"></script>
+        {{-- <script src="{{asset('js/app.js')}}"></script> --}}
+
     @stack('scripts')
 </body>
 

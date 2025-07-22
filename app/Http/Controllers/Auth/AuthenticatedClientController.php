@@ -13,8 +13,8 @@ class AuthenticatedClientController extends Controller
 {
      public function __construct()
     {
-        if (Auth::guard('partenaire')->check()) {
-            redirect()->route('partenaire.dashboard')->send();
+        if (Auth::guard('client')->check()) {
+            redirect()->route('client.index')->send();
         }
     }
     /**
