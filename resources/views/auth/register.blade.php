@@ -100,7 +100,7 @@
     </section>--}}
     <!--end section -->
 
-    <section class="min-h-screen flex items-center py-10 px-4 bg-[url('{{ asset('images/01.jpg') }}')] bg-no-repeat bg-center bg-cover relative overflow-hidden">
+    {{-- <section class="min-h-screen flex items-center py-10 px-4 bg-[url('{{ asset('images/01.jpg') }}')] bg-no-repeat bg-center bg-cover relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>
 
         <div class="relative z-10 w-full max-w-2xl">
@@ -219,8 +219,116 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
+<section class="min-h-screen flex items-center py-10 px-4 bg-[url('{{ asset('images/01.jpg') }}')] bg-no-repeat bg-center bg-cover relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>
+
+    <div class="relative z-10 w-full max-w-2xl">
+        <div class="bg-white dark:bg-slate-900 shadow-md rounded-lg px-8 py-10">
+            <div class="text-center mb-6">
+                <img src="{{ asset('client/assets/images/logoG.ico') }}" class="mx-auto w-32 h-auto" alt="Logo">
+            </div>
+
+            <h5 class="text-xl font-semibold mb-6 text-center text-slate-900 dark:text-white">Créez votre compte</h5>
+
+            @if(session('success'))
+                <div class="bg-green-100 dark:bg-green-200 text-green-800 px-4 py-2 rounded mb-4">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div class="bg-red-100 dark:bg-red-200 text-red-800 px-4 py-2 rounded mb-4">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form method="POST" action="{{ route('partenaire.register.store') }}" class="space-y-6">
+                @csrf
+
+                <div class="grid md:grid-cols-2 gap-6">
+                    @foreach ([
+                        ['name' => 'nom_entreprise', 'label' => 'Nom Entreprise', 'type' => 'text', 'placeholder' => 'Ivoire Golf Hotel'],
+                        ['name' => 'email', 'label' => 'Adresse Email', 'type' => 'email', 'placeholder' => 'name@example.com'],
+                        ['name' => 'téléphone', 'label' => 'Téléphone', 'type' => 'tel', 'placeholder' => '0000000000'],
+                        ['name' => 'adresse', 'label' => 'Adresse', 'type' => 'text', 'placeholder' => 'Abidjan, Marcory, Foyer des jeunes'],
+                        ['name' => 'siteWeb', 'label' => 'Site Web', 'type' => 'url', 'placeholder' => 'https://exemple.com'],
+                        ['name' => 'mot_de_passe', 'label' => 'Mot de passe', 'type' => 'password', 'placeholder' => 'Votre mot de passe'],
+                        ['name' => 'mot_de_passe_confirmation', 'label' => 'Confirmer votre Mot de passe', 'type' => 'password', 'placeholder' => 'Votre mot de passe'],
+                    ] as $field)
+                        <div>
+                            <label class="font-semibold block mb-2 text-slate-700 dark:text-white" for="{{ $field['name'] }}">{{ $field['label'] }} :</label>
+                            <input
+                                name="{{ $field['name'] }}"
+                                id="{{ $field['name'] }}"
+                                type="{{ $field['type'] }}"
+                                class="form-input w-full @error($field['name']) border-red-500 @enderror"
+                                placeholder="{{ $field['placeholder'] }}"
+                                value="{{ old($field['name']) }}"
+                                required
+                            >
+                            @error($field['name'])
+                                <span class="text-red-600 dark:text-red-400 text-sm">{{ $message }}</span>
+                            @enderror
+                        </div>
+                    @endforeach
+
+                    <div>
+                        <label for="type" class="font-semibold block mb-2 text-slate-700 dark:text-white">
+                            Type d'entreprise :
+                        </label>
+                        <select
+                            name="type"
+                            id="type"
+                            required
+                            class="form-select w-full rounded-md p-2 border
+                                border-gray-300 dark:border-gray-600
+                                bg-white dark:bg-slate-800
+                                text-gray-900 dark:text-white
+                                placeholder-gray-400 dark:placeholder-gray-500
+                                focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600
+                                @error('type') border-red-500 dark:border-red-400 @enderror"
+                        >
+                            <option value="" disabled {{ old('type') ? '' : 'selected' }}>-- Sélectionner un type --</option>
+                            <option value="hotel" {{ old('type') == 'hotel' ? 'selected' : '' }}>Hôtel</option>
+                            <option value="residence" {{ old('type') == 'residence' ? 'selected' : '' }}>Résidence</option>
+                            <option value="agence_voyage" {{ old('type') == 'agence_voyage' ? 'selected' : '' }}>Agence de voyage</option>
+                            <option value="compagnie_aerienne" {{ old('type') == 'compagnie_aerienne' ? 'selected' : '' }}>Compagnie aérienne</option>
+                        </select>
+                        @error('type')
+                            <span class="text-red-600 dark:text-red-400 text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                </div>
+
+                <div class="flex items-center">
+                    <input type="checkbox" name="AcceptT&C" class="form-checkbox text-green-600 mr-2" id="AcceptT&C">
+                    <label for="AcceptT&C" class="text-slate-600 dark:text-slate-300 text-sm">J'accepte les <a href="{{route('partenaire.terms')}}" class="text-green-600 dark:text-green-400">Termes et Conditions</a></label>
+                </div>
+
+                <button type="submit" class="w-full bg-green-600 hover:bg-green-700 text-white py-2 rounded-md font-medium">S'Inscrire</button>
+
+                <p class="text-center text-lg text-slate-600 dark:text-slate-200 mt-4">
+                    Avez-vous déjà un compte ?
+                    <a href="{{ route('partenaire.login') }}" class="text-black dark:text-white font-medium">Se Connecter</a>
+                </p>
+            </form>
+
+            <div class="px-6 py-2 bg-slate-50 dark:bg-slate-800 text-center mt-4">
+                <p class="mb-0 text-slate-600 dark:text-slate-400">
+                    © <script>document.write(new Date().getFullYear())</script> Kw Legal & Tech.
+                    Designed by <a href="https://kwlegaltech.com/" target="_blank" class="text-green-600 dark:text-green-400 hover:underline">KW Legal & Tech</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
 
 @endsection
 

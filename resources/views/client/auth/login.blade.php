@@ -64,11 +64,14 @@
                                 <span class="text-slate-400 me-2">Vous n'avez pas de compte ?</span> <a href="{{route('client.auth.signup')}}"
                                     class="text-black dark:text-white font-bold">S'inscrire</a>
                             </div>
+                            <div class="text-center">
+                                <span class="text-slate-400 me-2">Êtes vous un partenaire ?</span> <a href="{{route('partenaire.login')}}" class="text-black dark:text-white font-bold">Connectez-vous ici</a>
+                            </div>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </section><!--end section -->
-    
+
 @endsection

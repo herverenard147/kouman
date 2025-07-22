@@ -34,80 +34,6 @@
         <ul class="buy-button list-none mb-0">
             @auth('client')
                 <!-- Bouton tableau de bord client -->
-                {{-- <li class="dropdown inline-block relative">
-                    <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
-                        <span class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-[20px] text-center bg-gray-50 hover:bg-gray-100 border border-gray-100 text-slate-900 rounded-md"><img src="{{ asset('images/client/07.jpg') }}" class="rounded-md" alt=""></span>
-                    </button>
-                    <!-- Dropdown menu -->
-                    <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white shadow hidden" onclick="event.stopPropagation();">
-                        <ul class="py-2 text-start">
-                            <li>
-                                <a href="{{route('partenaire.profile')}}" class="block py-1 px-4 hover:text-green-600"><i class="mdi mdi-account-outline me-2"></i>Profile</a>
-                            </li>
-                            <li>
-                                <a href="{{route('partenaire.chat')}}" class="block py-1 px-4 hover:text-green-600"><i class="mdi mdi-chat-outline me-2"></i>Chat</a>
-                            </li>
-                            <li>
-                                <a href="{{route('partenaire.profile-setting')}}" class="block py-1 px-4 hover:text-green-600"><i class="mdi mdi-cog-outline me-2"></i>Settings</a>
-                            </li>
-                            <li class="border-t border-gray-100 my-2"></li>
-                            <li>
-                                <a href="{{route('partenaire.lock-screen')}}" class="block py-1 px-4 hover:text-green-600"><i class="mdi mdi-lock-outline me-2"></i>Lockscreen</a>
-                            </li>
-                            <li>
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="block w-full text-left py-1 px-4 hover:text-green-600 bg-transparent border-0">
-                                        <i class="mdi mdi-logout me-2"></i>Déconnexion
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                </li> --}}
-{{--
-                <li class="dropdown inline-block relative">
-                    <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
-                        <span class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-[20px] text-center bg-gray-50 dark:bg-slate-800 hover:bg-gray-100 dark:hover:bg-slate-700 border border-gray-100 dark:border-slate-700 text-slate-900 dark:text-white rounded-md">
-                            <img src="{{ asset('images/client/07.jpg') }}" class="rounded-md" alt="">
-                        </span>
-                    </button>
-
-                    <!-- Dropdown menu -->
-                    <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow hidden" onclick="event.stopPropagation();">
-                        <ul class="py-2 text-start">
-                            <li>
-                                <a href="{{ route('partenaire.profile') }}" class="block py-1 px-4 text-slate-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400">
-                                    <i class="mdi mdi-account-outline me-2"></i>Profil
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('partenaire.chat') }}" class="block py-1 px-4 text-slate-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400">
-                                    <i class="mdi mdi-chat-outline me-2"></i>Chat
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('partenaire.profile-setting') }}" class="block py-1 px-4 text-slate-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400">
-                                    <i class="mdi mdi-cog-outline me-2"></i>Paramètres
-                                </a>
-                            </li>
-                            <li class="border-t border-gray-100 dark:border-slate-700 my-2"></li>
-                            <li>
-                                <a href="{{ route('partenaire.lock-screen') }}" class="block py-1 px-4 text-slate-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400">
-                                    <i class="mdi mdi-lock-outline me-2"></i>Verrouiller
-                                </a>
-                            </li>
-                            <li>
-                                <form action="{{ route('logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="block w-full text-left py-1 px-4 text-slate-700 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 bg-transparent border-0">
-                                        <i class="mdi mdi-logout me-2"></i>Déconnexion
-                                    </button>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                </li> --}}
                 <li class="dropdown inline-block relative">
                     <button data-dropdown-toggle="dropdown" class="dropdown-toggle items-center" type="button">
                         <span
@@ -119,7 +45,6 @@
                             @endif
                         </span>
                     </button>
-
                     <!-- Dropdown menu -->
                     <div class="dropdown-menu absolute left-1/2 -translate-x-1/2 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow hidden" onclick="event.stopPropagation();">
                         <ul class="py-2 text-start text-slate-900 dark:text-white">
@@ -178,12 +103,6 @@
                         <i data-feather="user" class="size-4 stroke-[3]"></i>
                     </a>
                 </li>
-                {{-- <li class="sm:inline ps-1 mb-0 hidden">
-                    <a href="{{ route('client.auth.signup') }}"
-                        class="btn bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
-                        S'inscrire
-                    </a>
-                </li> --}}
                 <li class="sm:inline ps-1 mb-0 hidden">
                     <a href="{{ route('partenaire.register.index') }}"
                     class="btn bg-green-600 hover:bg-green-700 border border-green-600 text-white rounded-full px-4 py-2 text-sm leading-tight text-center whitespace-normal">
@@ -210,13 +129,6 @@
                         <li><a href="{{ route('client.features') }}" class="sub-menu-item">Fonctionnalités</a></li>
                         <li><a href="{{ route('client.pricing') }}" class="sub-menu-item">Tarification</a></li>
                         <li><a href="{{ route('client.faqs') }}" class="sub-menu-item">FAQ</a></li>
-
-                        {{-- <li class="has-submenu parent-menu-item"><a href="javascript:void(0)">Agents</a><span class="submenu-arrow"></span>
-                            <ul class="submenu"> --}}
-                                {{-- <li><a href="{{ route('client.agents') }}" class="sub-menu-item">Nos Agents</a></li> --}}
-                                {{-- <li><a href="{{ route('client.agent.profile') }}" class="sub-menu-item">Profil d’agent</a></li> --}}
-                            {{-- </ul>
-                        </li> --}}
 
                         {{-- <li class="has-submenu parent-menu-item"><a href="javascript:void(0)">Agences</a><span class="submenu-arrow"></span>
                             <ul class="submenu"> --}}

@@ -38,16 +38,21 @@
 // ];
 ?>
 @foreach ($properties as $item)
-    <div class="relative overflow-hidden rounded-md shadow bg-white">
+    <div class="relative overflow-hidden rounded-md shadow bg-white dark:bg-slate-800">
         <div class="p-5 flex items-center justify-between">
             <span class="me-3">
-                <span class="text-slate-400 block">{{ $item['title'] }}</span>
+                {{-- Modifié: text-gray-700 -> text-slate-500 (ou text-gray-700) et ajout de dark:text-gray-300 --}}
+                <span class="text-slate-500 dark:text-gray-300 block">{{ $item['title'] }}</span>
                 <span class="flex items-center justify-between mt-1">
-                    <span class="text-2xl font-medium">{{ $item['symbol'] }} <span class="counter-value" data-target="{{ $item['total'] }}">{{ $item['debut'] }}</span></span>
+                    {{-- Modifié: text-black -> text-black dark:text-white --}}
+                    <span class="text-2xl font-semibold text-black dark:text-white">
+                        {{ $item['symbol'] }} <span class="counter-value" data-target="{{ $item['total'] }}">{{ $item['debut'] }}</span>
+                    </span>
                 </span>
             </span>
 
-            <span class="flex justify-center items-center rounded-md size-12 min-w-[48px] bg-slate-50 shadow shadow-gray-100 text-green-600">
+            {{-- Modifié: bg-gray-100 -> bg-gray-100 dark:bg-gray-700 --}}
+            <span class="flex justify-center items-center rounded-md size-12 min-w-[48px] bg-gray-100 dark:bg-gray-700 shadow text-green-600">
                 <i class="{{ $item['icon'] }}"></i>
             </span>
         </div>
