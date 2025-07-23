@@ -17,9 +17,9 @@ Route::prefix('filtrer')->group( function(){
 });
 
 
+Route::get('/', [ClientController::class, 'index'])->name('client.index');
 Route::middleware(['guest:web'])->prefix('client')->group(function () {
 
-    Route::get('/', [ClientController::class, 'index'])->name('client.index');
 
     Route::post('/contact/envoyer', [MailContact::class, 'store'])->name('contact.envoyer');
 
