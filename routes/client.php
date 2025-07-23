@@ -5,8 +5,7 @@ use App\Http\Controllers\Auth\RegisteredClientController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
-
-Route::get('/', [ClientController::class, 'index'])->name('client.index');
+use App\Http\Controllers\MailContact;
 
 Route::get('/filtrer', [ClientController::class, 'filtrer'])->name('client.filtrer.services');
 
@@ -19,6 +18,11 @@ Route::prefix('filtrer')->group( function(){
 
 
 Route::middleware(['guest:web'])->prefix('client')->group(function () {
+
+    Route::get('/', [ClientController::class, 'index'])->name('client.index');
+
+    Route::post('/contact/envoyer', [MailContact::class, 'store'])->name('contact.envoyer');
+
 
     Route::post('logout', [AuthenticatedClientController::class, 'destroy'])
         ->name('client.logout');

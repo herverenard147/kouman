@@ -40,39 +40,49 @@
                     <div class="lg:me-5">
                         <div class="bg-white dark:bg-slate-900 rounded-md shadow dark:shadow-gray-700 p-6">
                             <h3 class="mb-6 text-2xl leading-normal font-medium">Get in touch !</h3>
-
-                            <form method="post" name="myForm" id="myForm" onsubmit="return validateForm()">
+                            @if (session('success'))
+                                <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
+                            @if (session('error'))
+                                <div class="bg-red-100 text-red-800 px-4 py-2 rounded mb-4">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
+                            <form action="{{ route('contact.envoyer') }}" method="POST" id="myForm">
+                            @csrf
                                 <p class="mb-0" id="error-msg"></p>
                                 <div id="simple-msg"></div>
                                 <div class="grid lg:grid-cols-12 lg:gap-6">
                                     <div class="lg:col-span-6 mb-5">
-                                        <label for="name" class="font-medium">Your Name:</label>
-                                        <input name="name" id="name" type="text" class="form-input mt-2"
-                                            placeholder="Name :">
+                                        <label for="name" class="font-medium">Votre Nom:</label>
+                                        <input name="name" id="name" value="{{ old('name') }}" type="text" class="form-input mt-2"
+                                            placeholder="Nom :" required>
                                     </div>
 
                                     <div class="lg:col-span-6 mb-5">
-                                        <label for="email" class="font-medium">Your Email:</label>
-                                        <input name="email" id="email" type="email" class="form-input mt-2"
-                                            placeholder="Email :">
+                                        <label for="email" class="font-medium">Votre Email:</label>
+                                        <input name="email" id="email" value="{{ old('email') }}" type="email" class="form-input mt-2"
+                                            placeholder="Email :" required>
                                     </div>
                                 </div>
 
                                 <div class="grid grid-cols-1">
                                     <div class="mb-5">
-                                        <label for="subject" class="font-medium">Your Question:</label>
-                                        <input name="subject" id="subject" class="form-input mt-2"
-                                            placeholder="Subject :">
+                                        <label for="subject" class="font-medium">Votre Question:</label>
+                                        <input name="subject" id="subject" value="{{ old('subject') }}" class="form-input mt-2"
+                                            placeholder="Sujet :" required>
                                     </div>
 
                                     <div class="mb-5">
-                                        <label for="comments" class="font-medium">Your Comment:</label>
-                                        <textarea name="comments" id="comments" class="form-input mt-2 textarea" placeholder="Message :"></textarea>
+                                        <label for="comments" class="font-medium">Votre Commentaire:</label>
+                                        <textarea name="comments" id="comments" class="form-input mt-2 textarea" placeholder="Message :" required>{{ old('comments') }}</textarea>
                                     </div>
                                 </div>
 
                                 <button type="submit" id="submit" name="send"
-                                    class="btn bg-green-600 hover:bg-green-700 text-white rounded-md">Send Message</button>
+                                    class="btn bg-green-600 hover:bg-green-700 text-white rounded-md">Envoyer le Message</button>
                             </form>
                         </div>
                     </div>
