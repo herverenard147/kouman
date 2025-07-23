@@ -12,10 +12,14 @@
         <div class="absolute inset-0 bg-black/50"></div>
         <div class="container relative z-3">
             <div class="grid md:grid-cols-12 mt-10">
-                <div class="lg:col-span-8 md:col-span-6">
-                    <h1 class="font-semibold text-white lg:leading-normal leading-normal text-4xl lg:text-6xl mb-6">
-                        Trouvez le <br> <span class="typewrite" data-period="2000"
-                            data-type='[ "logement", "villa", "bureau" ]'></span> parfait pour vous
+                <div class="lg:col-span-10 md:col-span-6">
+                    <h1 class="font-semibold text-white text-4xl lg:text-6xl leading-tight lg:leading-tight mb-6">
+                        Trouvez <br class="hidden lg:block">
+                        <span class="inline-block">
+                            <span class="typewrite text-primary font-bold" data-period="2000"
+                                data-type='["l’hébergement", "l’excursion", "l’évènement", "le vol", "la chambre"]'></span>
+                        </span>
+                        parfait(e) pour vous
                     </h1>
                     <p class="text-white/70 text-xl max-w-xl">
                         Une excellente plateforme pour acheter, vendre et louer vos biens sans intermédiaire ni commission.
@@ -112,7 +116,7 @@
     </div>
 
     <!-- Début Section -->
-    <section class="relative md:py-24 py-16">
+    <section class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen">
         <div class="container relative">
             <div class="grid md:grid-cols-12 grid-cols-1 items-center gap-[30px]">
                 <div class="md:col-span-5">
@@ -141,7 +145,7 @@
                         </p>
 
                         <div class="mt-4">
-                            <a href="" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md mt-3">En savoir plus</a>
+                            <a href="{{ route('client.aboutus') }}" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md mt-3">En savoir plus</a>
                         </div>
                     </div>
                 </div>

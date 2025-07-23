@@ -1,6 +1,6 @@
 @php
     $page = 'light';
-    $fpage = 'foot';
+    $fpage = 'foot1';
 @endphp
 @extends('content.no-sidebar')
 @section('title', 'Terms & Conditions')

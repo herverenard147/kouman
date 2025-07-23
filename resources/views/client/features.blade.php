@@ -1,6 +1,6 @@
 @php
     $page = 'light';
-    $fpage = 'foot';
+    $fpage = 'foot1';
 @endphp
 @extends('client.base.style.base')
 @section('title', 'Fonctionnalités')
@@ -25,7 +25,7 @@
     <!-- Fin Héros -->
 
     <!-- Début -->
-    <section class="relative lg:py-24 py-16">
+    <section class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen">
         <div class="container relative">
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-[30px] gap-y-[50px]">
 

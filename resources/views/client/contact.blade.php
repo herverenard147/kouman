@@ -1,6 +1,6 @@
 @php
     $page = 'light';
-    $fpage = 'foot';
+    $fpage = 'foot1';
 @endphp
 @extends('client.base.style.base')
 
@@ -14,8 +14,10 @@
     <div class="container-fluid relative mt-20">
         <div class="grid grid-cols-1">
             <div class="w-full leading-[0] border-0">
+                {{-- <iframe src="" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> --}}
                 <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin"
+                    src="
+                        https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3776.0354530365057!2d-4.025226325256714!3d5.325503694652991!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfc1eba100183785%3A0xc6e997b2eae0b484!2sImmeuble%20Longchamp%20Du%20Plateau!5e1!3m2!1sfr!2sci!4v1753294573391!5m2!1sfr!2sci"
                     style="border:0" class="w-full h-[500px]" allowfullscreen>
                 </iframe>
             </div>
@@ -24,7 +26,7 @@
     <!-- Google Map -->
 
     <!-- Start Section-->
-    <section class="relative lg:py-24 py-16">
+    <section class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen">
         <div class="container relative">
             <div class="grid md:grid-cols-12 grid-cols-1 items-center gap-[30px]">
 

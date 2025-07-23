@@ -1,6 +1,6 @@
 @php
     $page = 'light';
-    $fpage = 'foot';
+    $fpage = 'foot1';
 @endphp
 @extends('client.base.style.base')
 @section('title', 'Politique de confidentialité')
