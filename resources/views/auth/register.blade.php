@@ -320,10 +320,10 @@
                 </p>
             </form>
 
-            <div class="px-6 py-2 bg-slate-50 dark:bg-slate-800 text-center mt-4">
+            <div class="px-6 py-2 text-center mt-4">
                 <p class="mb-0 text-slate-600 dark:text-slate-400">
                     © <script>document.write(new Date().getFullYear())</script> Kw Legal & Tech.
-                    Designed by <a href="https://kwlegaltech.com/" target="_blank" class="text-green-600 dark:text-green-400 hover:underline">KW Legal & Tech</a>.
+                    Conception et développement par <br> <a href="https://kwlegaltech.com/" target="_blank" class="text-green-600 dark:text-green-400 hover:underline">KW Legal & Tech</a>.
                 </p>
             </div>
         </div>
