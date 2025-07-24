@@ -22,8 +22,8 @@ class MailContact extends Controller
             'subject' => 'required|string',
             'comments' => 'required|string',
         ]);
-
         try {
+            // dd(Mail::to('teamw@afriqueévasion.com'));
             // Envoi de l'email
             Mail::to('teamw@afriqueévasion.com')->send(new envoyerMessage($validated));
 

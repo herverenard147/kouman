@@ -29,7 +29,7 @@ class envoyerMessage extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Envoyer Message',
+            subject: $this->data['subject'], // 👈 utilise le sujet du tableau de données
         );
     }
 
