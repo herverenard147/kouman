@@ -253,13 +253,13 @@
 
                 <div class="grid md:grid-cols-2 gap-6">
                     @foreach ([
-                        ['name' => 'nom_entreprise', 'label' => 'Nom Entreprise', 'type' => 'text', 'placeholder' => 'Ivoire Golf Hotel'],
-                        ['name' => 'email', 'label' => 'Adresse Email', 'type' => 'email', 'placeholder' => 'name@example.com'],
-                        ['name' => 'téléphone', 'label' => 'Téléphone', 'type' => 'tel', 'placeholder' => '0000000000'],
-                        ['name' => 'adresse', 'label' => 'Adresse', 'type' => 'text', 'placeholder' => 'Abidjan, Marcory, Foyer des jeunes'],
+                        ['name' => 'nom_entreprise', 'label' => 'Nom Entreprise', 'type' => 'text', 'placeholder' => 'Ivoire Golf Hotel', 'required' => 'required'],
+                        ['name' => 'email', 'label' => 'Adresse Email', 'type' => 'email', 'placeholder' => 'name@example.com', 'required' => 'required'],
+                        ['name' => 'téléphone', 'label' => 'Téléphone', 'type' => 'tel', 'placeholder' => '0000000000', 'required' => 'required'],
+                        ['name' => 'adresse', 'label' => 'Adresse', 'type' => 'text', 'placeholder' => 'Abidjan, Marcory, Foyer des jeunes', 'required' => 'required'],
                         ['name' => 'siteWeb', 'label' => 'Site Web', 'type' => 'url', 'placeholder' => 'https://exemple.com'],
-                        ['name' => 'mot_de_passe', 'label' => 'Mot de passe', 'type' => 'password', 'placeholder' => 'Votre mot de passe'],
-                        ['name' => 'mot_de_passe_confirmation', 'label' => 'Confirmer votre Mot de passe', 'type' => 'password', 'placeholder' => 'Votre mot de passe'],
+                        ['name' => 'mot_de_passe', 'label' => 'Mot de passe', 'type' => 'password', 'placeholder' => 'Votre mot de passe', 'required' => 'required'],
+                        ['name' => 'mot_de_passe_confirmation', 'label' => 'Confirmer votre Mot de passe', 'type' => 'password', 'placeholder' => 'Votre mot de passe', 'required' => 'required'],
                     ] as $field)
                         <div>
                             <label class="font-semibold block mb-2 text-slate-700 dark:text-white" for="{{ $field['name'] }}">{{ $field['label'] }} :</label>
@@ -270,7 +270,7 @@
                                 class="form-input w-full @error($field['name']) border-red-500 @enderror"
                                 placeholder="{{ $field['placeholder'] }}"
                                 value="{{ old($field['name']) }}"
-                                required
+                                {{ isset($field['required']) ? $field['required'] : '' }}
                             >
                             @error($field['name'])
                                 <span class="text-red-600 dark:text-red-400 text-sm">{{ $message }}</span>

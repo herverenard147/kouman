@@ -36,7 +36,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        dd('Méthode destroy atteinte');
+        // dd('Méthode destroy atteinte');
         $guards = ['admin', 'client', 'partenaire', 'web'];
 
         foreach ($guards as $guard) {
