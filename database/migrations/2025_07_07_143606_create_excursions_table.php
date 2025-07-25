@@ -20,6 +20,13 @@ return new class extends Migration
             $table->decimal('duree', 5, 2); // Durée en heures avec précision (ex. 2.5)
             $table->integer('capacite_max')->unsigned()->default(1); // Capacité maximale
             $table->foreignId('partenaire_id')->constrained('partenaires')->onDelete('cascade');
+            $table->text('itineraire')->nullable();
+            $table->string('nom_guide', 150)->nullable();
+            $table->text('langues')->nullable(); // tu peux aussi utiliser ->json() si tu préfères
+            $table->enum('recurrence', ['ponctuelle', 'quotidienne', 'hebdomadaire', 'mensuelle'])->default('ponctuelle');
+            $table->unsignedInteger('age_minimum')->default(0);
+            $table->text('conditions')->nullable();
+            $table->text('moyens_paiement')->nullable(); // ou ->json() si tu préfères
 
             $table->foreignId('localisation_id')
                 ->nullable()

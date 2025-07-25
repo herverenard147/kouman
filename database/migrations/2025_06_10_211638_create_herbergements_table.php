@@ -23,6 +23,8 @@ return new class extends Migration
             $table->enum('statut', ['actif', 'inactif'])->default('actif');
             $table->time('heureArrivee')->nullable();
             $table->time('heureDepart')->nullable();
+            $table->integer('nombreSallesDeBain')->default(1)->after('nombreChambres');
+            $table->string('numeroDeTel')->after('nombreChambres');
             $table->timestamps();
 
             $table->unsignedBigInteger('idType'); // Type compatible avec idType de types_hebergement

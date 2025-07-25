@@ -85,38 +85,6 @@
                                     </button>
                                 </form>
                             </li>
-                            <li>
-                                <form action="{{ route('client.logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="block w-full text-left py-1 px-4 hover:text-green-600 bg-transparent border-0">
-                                        Déconnexion
-                                    </button>
-                                </form>
-                            </li>
-                            <li>
-                                <form action="{{ route('client.logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="block w-full text-left py-1 px-4 hover:text-green-600 bg-transparent border-0">
-                                        Déconnexion
-                                    </button>
-                                </form>
-                            </li>
-                            <li>
-                                <form action="{{ route('client.logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="block w-full text-left py-1 px-4 hover:text-green-600 bg-transparent border-0">
-                                        Déconnexion
-                                    </button>
-                                </form>
-                            </li>
-                            <li>
-                                <form action="{{ route('client.logout') }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="block w-full text-left py-1 px-4 hover:text-green-600 bg-transparent border-0">
-                                        Déconnexion
-                                    </button>
-                                </form>
-                            </li>
                         </ul>
                     </div>
                 </li>
