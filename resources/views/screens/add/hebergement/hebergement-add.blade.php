@@ -562,5 +562,36 @@
             e.target.closest('.telephone-item').remove();
         }
     });
+
+
+    function openMapPopup() {
+        const width = 600;
+        const height = 500;
+        const left = (screen.width / 2) - (width / 2);
+        const top = (screen.height / 2) - (height / 2);
+
+        const mapWindow = window.open(
+            "/partenaire/popup-localisation", // à créer dans Laravel
+            "Localisation",
+            `width=${width},height=${height},top=${top},left=${left}`
+        );
+        window.addEventListener('message', function (event) {
+            if (event.origin !== window.location.origin) return;
+
+            const { latitude, longitude, adresse, ville, pays } = event.data;
+
+            console.log("📦 Données reçues :", event.data); // 👀 ici tu verras tout
+
+            // Assure-toi que latitude/longitude sont bien définies
+            if (latitude !== undefined && longitude !== undefined) {
+                document.getElementById('latitude').value = latitude;
+                document.getElementById('longitude').value = longitude;
+            }
+
+            if (adresse) document.getElementById('adresse').value = adresse;
+            if (ville) document.getElementById('ville').value = ville;
+            if (pays) document.getElementById('pays').value = pays;
+        });
+    }
 </script>
 @endsection

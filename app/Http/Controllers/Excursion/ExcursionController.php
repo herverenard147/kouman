@@ -181,7 +181,7 @@ class ExcursionController extends Controller
             'images.*' => 'nullable|image|mimes:jpeg,png|max:10240',
             'itineraire' => 'nullable|string',
             'nom_guide' => 'nullable|string|max:150',
-            'langues' => 'nullable|array',
+            'langues' => 'nullable|string',
             'langues.*' => 'string|max:50',
             'recurrence' => 'nullable|in:ponctuelle,quotidienne,hebdomadaire,mensuelle',
             'age_minimum' => 'nullable|integer|min:0',

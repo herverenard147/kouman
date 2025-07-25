@@ -2,7 +2,7 @@
 @section('title', 'Ajouter une excursion')
 
 @section('content')
-
+<div class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen">
     <div class="container-fluid relative px-3">
         <div class="layout-specing">
             <!-- Start Content -->
@@ -34,7 +34,7 @@
             <form action="{{ route('partenaire.add.excursion.store') }}" method="POST" enctype="multipart/form-data">
             {{-- <form action=""> --}}
                 @csrf
-                <div class="container relative">
+                <div class="w-full md:w-3/4 mx-auto">
                     <div class="grid md:grid-cols-1 grid-cols-1 gap-6 mt-6">
                         <!-- Section Images -->
                         <div class="rounded-md shadow p-6 bg-white h-fit mb-5">
@@ -245,6 +245,7 @@
                     </div>
                 </div>
             </form>
+        </div>
     </div>
 </div>
 
