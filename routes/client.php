@@ -1,7 +1,11 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthenticatedClientController;
-use App\Http\Controllers\Auth\RegisteredClientController;
+use App\Http\Controllers\Auth\Client\AuthenticatedClientController;
+use App\Http\Controllers\Auth\Client\ConfirmablePasswordClientController;
+use App\Http\Controllers\Auth\Client\NewPasswordClientController;
+use App\Http\Controllers\Auth\Client\PasswordClientController;
+use App\Http\Controllers\Auth\Client\PasswordResetLinkClientController;
+use App\Http\Controllers\Auth\Client\RegisteredClientController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
@@ -20,6 +24,20 @@ Route::prefix('filtrer')->group( function(){
 Route::get('/', [ClientController::class, 'index'])->name('client.index');
 
 Route::middleware(['guest:web'])->prefix('client')->group(function () {
+
+
+    Route::get('forgot-password', [PasswordResetLinkClientController::class, 'create'])
+        ->name('password.request');
+
+    Route::post('forgot-password', [PasswordResetLinkClientController::class, 'store'])
+        ->name('password.email');
+
+    Route::get('reset-password/{token}', [NewPasswordClientController::class, 'create'])
+        ->name('password.reset');
+
+    Route::post('reset-password', [NewPasswordClientController::class, 'store'])
+        ->name('password.store');
+
 
 
     Route::post('/contact/envoyer', [MailContact::class, 'store'])->name('contact.envoyer');
@@ -148,4 +166,16 @@ Route::middleware(['guest:web'])->prefix('client')->group(function () {
     Route::get('sell', function () {
         return view('client.sell');
     })->name('client.sell');
+});
+
+Route::middleware('auth')
+    ->group( function(){
+
+
+    Route::get('confirm-password', [ConfirmablePasswordClientController::class, 'show'])
+        ->name('client.password.confirm');
+
+    Route::post('confirm-password', [ConfirmablePasswordClientController::class, 'store']);
+
+    Route::put('password', [PasswordClientController::class, 'update'])->name('client.password.update');
 });

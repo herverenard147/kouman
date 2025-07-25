@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth\Client;
 
 use Illuminate\View\View;
 use App\Models\Partenaire;

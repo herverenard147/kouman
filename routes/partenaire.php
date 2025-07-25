@@ -1,16 +1,17 @@
 <?php
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Auth\AuthenticatedPartenaireController;
-use App\Http\Controllers\Excursion\ExcursionController;
+use App\Http\Controllers\Auth\Partenaire\NewPasswordPartenaireController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PartenaireController;
 use App\Http\Controllers\Auth\NewPasswordController;
-use App\Http\Controllers\Auth\RegisteredPartenaireController;
 use App\Http\Controllers\Evenement\EvenementController;
+use App\Http\Controllers\Excursion\ExcursionController;
 use App\Http\Controllers\Hebergement\HebergementController;
 use App\Http\Controllers\Hebergement\TypeHebergementController;
+use App\Http\Controllers\Auth\Partenaire\AuthenticatedPartenaireController;
+use App\Http\Controllers\Auth\Partenaire\RegisteredPartenaireController;
 
 // Route::middleware( [ 'auth:partenaire'])
 //     ->prefix('partenaire')
@@ -29,11 +30,12 @@ Route::middleware('guest:partenaire')->prefix('partenaire')->group(function () {
     Route::get('forgot-password', [PasswordResetLinkControllerPartenaire::class, 'create'])->name('partenaire.reset-password');
     Route::post('forgot-password', [PasswordResetLinkControllerPartenaire::class, 'store'])->name('partenaire.reset-password.store');
 
-    Route::get('reset-password/{token}', [NewPasswordControllerPartenaire::class, 'create'])
+    Route::get('reset-password/{token}', [NewPasswordPartenaireController::class, 'create'])
         ->name('partenaire.password.reset');
     // Traitement du nouveau mot de passe (POST)
-    Route::post('reset-password', [NewPasswordControllerPartenaire::class, 'store'])
+    Route::post('reset-password', [NewPasswordPartenaireController::class, 'store'])
     ->name('partenaire.password.update');
+    
     Route::get('terms', fn() => view('screens.terms'))->name('partenaire.terms');
 
     Route::get('/register', [RegisteredPartenaireController::class, 'create'])->name( 'partenaire.register.index');

@@ -20,7 +20,8 @@ return new class extends Migration
             $table->string('adresse', 100);
             $table->string('siteWeb', 100)->nullable()->unique();
             $table->string('statut', 100);
-            $table->string('mot_de_passe', 255);
+            $table->string('password', 255);
+            $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

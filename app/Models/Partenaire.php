@@ -21,7 +21,7 @@ class Partenaire extends Authenticatable implements MustVerifyEmail, Authenticat
     protected $fillable = [
         'nom_entreprise',
         'email',
-        'mot_de_passe',
+        'password',
         'type',
         'téléphone',
         'adresse',
@@ -35,7 +35,7 @@ class Partenaire extends Authenticatable implements MustVerifyEmail, Authenticat
      * @var array
      */
     protected $hidden = [
-        'mot_de_passe',
+        'password',
         'remember_token',
     ];
 
