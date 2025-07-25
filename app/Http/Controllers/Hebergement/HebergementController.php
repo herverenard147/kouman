@@ -47,10 +47,6 @@ class HebergementController extends Controller
      */
     public function store(StoreHebergementRequest $request)
     {
-
-        // dd($request->all());
-
-        // dd($request->all());
         $validated = $request->validated();
 
         // Créer la localisation
@@ -63,6 +59,7 @@ class HebergementController extends Controller
             'longitude' => $request->longitude,
         ]);
 
+
         // dd($localisation);
 
         // Créer l'hébergement
@@ -72,7 +69,6 @@ class HebergementController extends Controller
             'description' => $request->description,
             'prixParNuit' => $request->prixParNuit,
             'devise' => $request->devise,
-            'numeroDeTel' => $request->numeroDeTel,
             'idLocalisation' => $localisation->id,
             'idPartenaire' => Auth::guard('partenaire')->id(), // Assumes partenaire is linked to user
             'nombreChambres' => $request->nombreChambres,
