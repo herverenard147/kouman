@@ -39,11 +39,6 @@ class Partenaire extends Authenticatable implements MustVerifyEmail, Authenticat
         'remember_token',
     ];
 
-    public function getAuthPassword()
-    {
-        return $this->mot_de_passe;
-    }
-
     /**
      * The attributes that should be cast to native types.
      *

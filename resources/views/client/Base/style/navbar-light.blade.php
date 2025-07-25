@@ -65,6 +65,54 @@
                                 <form action="{{ route('client.logout') }}" method="POST">
                                     @csrf
                                     <button type="submit" class="block w-full text-left py-1 px-4 hover:text-green-600 bg-transparent border-0">
+                                        Modifier le mot de passe par email
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('client.logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="block w-full text-left py-1 px-4 hover:text-green-600 bg-transparent border-0">
+                                        Restaurer le mot de passe
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('client.logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="block w-full text-left py-1 px-4 hover:text-green-600 bg-transparent border-0">
+                                        Déconnexion
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('client.logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="block w-full text-left py-1 px-4 hover:text-green-600 bg-transparent border-0">
+                                        Déconnexion
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('client.logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="block w-full text-left py-1 px-4 hover:text-green-600 bg-transparent border-0">
+                                        Déconnexion
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('client.logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="block w-full text-left py-1 px-4 hover:text-green-600 bg-transparent border-0">
+                                        Déconnexion
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <form action="{{ route('client.logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="block w-full text-left py-1 px-4 hover:text-green-600 bg-transparent border-0">
                                         Déconnexion
                                     </button>
                                 </form>

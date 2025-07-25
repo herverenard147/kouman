@@ -83,7 +83,13 @@ class PartenaireController extends Controller
      */
     public function show(Partenaire $partenaire)
     {
-        //
+        // On récupère l'ID de l'utilisateur connecté
+        $id = Auth::guard('partenaire')->id();
+
+        // On charge directement depuis la base avec les relations
+        $partenaire = Partenaire::with(['hebergements', 'excursions', 'evenements', 'vols'])->findOrFail($id);
+
+        return view('screens.profile', compact('partenaire'));
     }
 
     /**
