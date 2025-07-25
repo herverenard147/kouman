@@ -65,16 +65,79 @@
                             </div>
 
                             <!-- Mot de passe -->
-                            <div class="mb-4">
-                                <label class="font-semibold" for="password">Mot de passe :</label>
-                                <input name="password" id="password" type="password" class="form-input mt-3" placeholder="********" required>
+                            <div class="mb-4 relative">
+                                <label for="LoginPassword" class="font-medium text-slate-700 dark:text-white">Mot de passe :</label>
+
+                                <input name="password" id="LoginPassword" type="password"
+                                    class="form-input mt-3 pr-12 bg-white dark:bg-slate-800 dark:text-white dark:placeholder-slate-500 @error('password') border-red-500 @enderror"
+                                    placeholder="Mot de passe">
+
+                                <!-- Bouton -->
+                                <button type="button"
+                                    onclick="togglePasswordVisibility('LoginPassword', 'eyeVisible1', 'eyeHidden1')"
+                                    class="absolute right-3 top-11 text-slate-600 dark:text-slate-400 focus:outline-none">
+
+                                    <svg id="eyeVisible1" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7s-8.268-2.943-9.542-7z"/>
+                                    </svg>
+
+                                    <svg id="eyeHidden1" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a10.05 10.05 0 013.07-4.568"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 12a3 3 0 01-4.243-4.243"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 3l18 18"/>
+                                    </svg>
+                                </button>
                             </div>
 
+
                             <!-- Confirmation -->
-                            <div class="mb-4">
+                            <div class="mb-4 relative">
+                                <label for="password_confirmation" class="font-medium text-slate-700 dark:text-white">Mot de passe :</label>
+
+                                <input name="password_confirmation" id="password_confirmation" type="password"
+                                    class="form-input mt-3 pr-12 bg-white dark:bg-slate-800 dark:text-white dark:placeholder-slate-500 @error('password') border-red-500 @enderror"
+                                    placeholder="Confirmez votre Mot de passe">
+
+                                <!-- Icônes œil -->
+                                <button type="button"
+                                    onclick="togglePasswordVisibility1('password_confirmation', 'eyeVisible2', 'eyeHidden2')"
+                                    class="absolute right-3 top-11 text-slate-600 dark:text-slate-400 focus:outline-none">
+
+                                    <svg id="eyeVisible2" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M2.458 12C3.732 7.943 7.523 5 12 5s8.268 2.943 9.542 7c-1.274 4.057-5.065 7-9.542 7s-8.268-2.943-9.542-7z"/>
+                                    </svg>
+
+                                    <svg id="eyeHidden2" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none"
+                                        viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.542-7a10.05 10.05 0 013.07-4.568"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 12a3 3 0 01-4.243-4.243"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 3l18 18"/>
+                                    </svg>
+                                </button>
+
+                                @error('password')
+                                    <span class="text-red-600 dark:text-red-400 text-sm">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            {{-- <div class="mb-4">
                                 <label class="font-semibold" for="password_confirmation">Confirmez :</label>
                                 <input name="password_confirmation" id="password_confirmation" type="password" class="form-input mt-3" required>
-                            </div>
+                            </div> --}}
 
                             <!-- Genre -->
                             <div class="mb-4">
@@ -157,8 +220,40 @@
         </div>
     </section>
 
-    @push('script')
+    @push('scripts')
         <script>
+            function togglePasswordVisibility(inputId, eyeVisibleId, eyeHiddenId) {
+                const input = document.getElementById(inputId);
+                const eyeVisible = document.getElementById(eyeVisibleId);
+                const eyeHidden = document.getElementById(eyeHiddenId);
+
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    eyeVisible.classList.add('hidden');
+                    eyeHidden.classList.remove('hidden');
+                } else {
+                    input.type = 'password';
+                    eyeVisible.classList.remove('hidden');
+                    eyeHidden.classList.add('hidden');
+                }
+            }
+
+            function togglePasswordVisibility1(inputId, eyeVisibleId, eyeHiddenId) {
+                const input = document.getElementById(inputId);
+                const eyeVisible = document.getElementById(eyeVisibleId);
+                const eyeHidden = document.getElementById(eyeHiddenId);
+
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    eyeVisible.classList.add('hidden');
+                    eyeHidden.classList.remove('hidden');
+                } else {
+                    input.type = 'password';
+                    eyeVisible.classList.remove('hidden');
+                    eyeHidden.classList.add('hidden');
+                }
+            }
+
             flatpickr("#date_naissance", {
                 dateFormat: "Y-m-d",
                 maxDate: "today",
@@ -168,6 +263,5 @@
             });
         </script>
     @endpush
-
 
 @endsection

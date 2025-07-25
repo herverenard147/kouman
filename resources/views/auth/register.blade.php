@@ -263,15 +263,46 @@
                     ] as $field)
                         <div>
                             <label class="font-semibold block mb-2 text-slate-700 dark:text-white" for="{{ $field['name'] }}">{{ $field['label'] }} :</label>
-                            <input
-                                name="{{ $field['name'] }}"
-                                id="{{ $field['name'] }}"
-                                type="{{ $field['type'] }}"
-                                class="form-input w-full @error($field['name']) border-red-500 @enderror"
-                                placeholder="{{ $field['placeholder'] }}"
-                                value="{{ old($field['name']) }}"
-                                {{ isset($field['required']) ? $field['required'] : '' }}
-                            >
+
+                            @if (in_array($field['name'], ['mot_de_passe', 'mot_de_passe_confirmation']))
+                                <div class="relative">
+                                    <input
+                                        name="{{ $field['name'] }}"
+                                        id="{{ $field['name'] }}"
+                                        type="password"
+                                        class="form-input w-full pr-10 @error($field['name']) border-red-500 @enderror"
+                                        placeholder="{{ $field['placeholder'] }}"
+                                        value="{{ old($field['name']) }}"
+                                        {{ isset($field['required']) ? $field['required'] : '' }}
+                                    >
+                                    <button type="button" onclick="togglePassword('{{ $field['name'] }}')" class="absolute inset-y-0 right-0 px-3 flex items-center text-gray-500">
+                                        <svg id="eyeVisible-{{ $field['name'] }}" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                                        </svg>
+                                        <svg id="eyeHidden-{{ $field['name'] }}" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M13.875 18.825A10.05 10.05 0 0112 19c-4.477 0-8.268-2.943-9.542-7a10.055 10.055 0 012.38-3.944M9.88 9.88a3 3 0 104.24 4.24M6.1 6.1l11.8 11.8"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            @else
+                                <input
+                                    name="{{ $field['name'] }}"
+                                    id="{{ $field['name'] }}"
+                                    type="{{ $field['type'] }}"
+                                    class="form-input w-full @error($field['name']) border-red-500 @enderror"
+                                    placeholder="{{ $field['placeholder'] }}"
+                                    value="{{ old($field['name']) }}"
+                                    {{ isset($field['required']) ? $field['required'] : '' }}
+                                >
+                            @endif
+
+
                             @error($field['name'])
                                 <span class="text-red-600 dark:text-red-400 text-sm">{{ $message }}</span>
                             @enderror
@@ -329,6 +360,25 @@
         </div>
     </div>
 </section>
+@push('scripts')
+<script>
+    function togglePassword(id) {
+        const input = document.getElementById(id);
+        const eyeVisible = document.getElementById('eyeVisible-' + id);
+        const eyeHidden = document.getElementById('eyeHidden-' + id);
+
+        if (input.type === 'password') {
+            input.type = 'text';
+            eyeVisible.classList.add('hidden');
+            eyeHidden.classList.remove('hidden');
+        } else {
+            input.type = 'password';
+            eyeVisible.classList.remove('hidden');
+            eyeHidden.classList.add('hidden');
+        }
+    }
+</script>
+@endpush
 
 @endsection
 
