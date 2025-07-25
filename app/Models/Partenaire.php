@@ -18,7 +18,7 @@ class Partenaire extends Authenticatable implements MustVerifyEmail, Authenticat
     use CanResetPasswordTrait;
 
     protected $table = 'partenaires';
-   protected $fillable = [
+    protected $fillable = [
         'nom_entreprise',
         'email',
         'mot_de_passe',

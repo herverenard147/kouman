@@ -66,7 +66,7 @@ class LoginClientRequest extends FormRequest
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => 'Les informations d\'identification sont incorrectes.',
+                'email' => 'Les informations d\'identification sont incorrectes. N\'êtes vous pas partenaire ?',
             ]);
         }
 

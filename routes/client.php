@@ -18,6 +18,7 @@ Route::prefix('filtrer')->group( function(){
 
 
 Route::get('/', [ClientController::class, 'index'])->name('client.index');
+
 Route::middleware(['guest:web'])->prefix('client')->group(function () {
 
 

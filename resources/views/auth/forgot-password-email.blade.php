@@ -31,7 +31,7 @@
                         @endif
                         <div class="grid grid-cols-1">
                             <p class="text-slate-400 mb-6">Veuillez saisir votre adresse e-mail. Vous recevrez un lien pour créer un nouveau mot de passe par e-mail.</p>
-                            <form class="text-start" method="POST" action="{{route('partenaire.reset-password.store')}}">
+                            <form class="text-start" method="POST" action="{{route('password.email')}}">
                                 @csrf
                                 <div class="grid grid-cols-1">
                                     <div class="mb-4">

@@ -77,6 +77,16 @@
                 ])
             @endif
 
+            @include('base.components.sidebar.section', [
+                'icon' => 'mdi mdi-file-document-outline',
+                'title' => 'Utilisateur',
+                'items' => [
+                    ['label' => 'Profil', 'route' => 'partenaire.profile'],
+                    ['label' => 'Modifier mes informations', 'route' => 'partenaire.profile-setting'],
+                    // ['label' => 'Changer mot de passe', 'route' => 'partenaire.change-password'],
+                ]
+            ])
+
             {{-- Favoris --}}
             <li>
                 <a href="{{ route('partenaire.favorite-hebergement') }}">

@@ -80,7 +80,7 @@
                             <div class="mb-4">
                                 <label class="font-semibold" for="genre">Genre :</label>
                                 <select name="genre" id="genre" class="form-input mt-3">
-                                    <option value="">-- Choisir --</option>
+                                    <option value="">-- Sélectionnez votre genre --</option>
                                     <option value="homme">Homme</option>
                                     <option value="femme">Femme</option>
                                     <option value="autre">Autre</option>
@@ -99,6 +99,12 @@
                             <div class="mb-4">
                                 <label class="font-semibold" for="pays">Pays :</label>
                                 <input name="pays" id="pays" type="text" class="form-input mt-3" placeholder="Côte d'Ivoire">
+                            </div>
+
+                            <!-- Adresse -->
+                            <div class="mb-4">
+                                <label class="font-semibold" for="adresse">Adresse :</label>
+                                <input name="adresse" id="adresse" type="text" class="form-input mt-3" placeholder="Côte d'Ivoire">
                             </div>
 
                             <!-- Ville -->
@@ -120,12 +126,11 @@
                             </div> --}}
 
                             <!-- Photo de profil -->
-                            <div class="mb-4 md:col-span-2">
+                            <div class="mb-4 ">
                                 <label class="font-semibold" for="photo_profil">Photo de profil :</label>
                                 <input name="photo_profil" id="photo_profil" type="file" class="form-input mt-3">
                             </div>
                         </div>
-
                         <!-- Conditions d'utilisation -->
                         <div class="mb-4">
                             <div class="flex items-center">
@@ -135,6 +140,7 @@
                                 </label>
                             </div>
                         </div>
+
 
                         <!-- Bouton -->
                         <div class="mb-4">

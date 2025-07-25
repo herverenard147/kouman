@@ -73,14 +73,56 @@ class RegisteredClientController extends Controller
             'genre' => ['nullable', 'in:homme,femme,autre'],
             'date_naissance' => ['nullable', 'date'],
             'pays' => ['nullable', 'string', 'max:100'],
+            'adresse' => ['nullable', 'string', 'max:100'],
             'ville' => ['nullable', 'string', 'max:100'],
             'code_postal' => ['nullable', 'string', 'max:20'],
             'langue_preferee' => ['nullable', 'string', 'max:10'],
             'photo_profil' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
             'accept' => ['required', 'accepted'],
         ], [
-            'accept.accepted' => 'Vous devez accepter les conditions générales.',
+            'nom.required' => 'Le nom est requis.',
+            'nom.string' => 'Le nom doit être une chaîne de caractères.',
+            'nom.max' => 'Le nom ne peut pas dépasser 100 caractères.',
+
+            'prenom.required' => 'Le prénom est requis.',
+            'prenom.string' => 'Le prénom doit être une chaîne de caractères.',
+            'prenom.max' => 'Le prénom ne peut pas dépasser 100 caractères.',
+
+            'email.required' => 'L\'adresse e-mail est requise.',
+            'email.email' => 'L\'adresse e-mail n\'est pas valide.',
+            'email.max' => 'L\'adresse e-mail ne peut pas dépasser 100 caractères.',
+            'email.unique' => 'Cette adresse e-mail est déjà utilisée.',
+
+            'telephone.string' => 'Le numéro de téléphone doit être une chaîne de caractères.',
+            'telephone.max' => 'Le numéro de téléphone ne peut pas dépasser 20 caractères.',
+            'telephone.unique' => 'Ce numéro de téléphone est déjà utilisé.',
+
+            'password.required' => 'Le mot de passe est requis.',
             'password.confirmed' => 'La confirmation du mot de passe ne correspond pas.',
+            // Les autres règles Password::defaults() génèrent leurs propres messages selon la config de Laravel
+
+            'genre.in' => 'Le genre doit être "homme", "femme" ou "autre".',
+
+            'date_naissance.date' => 'La date de naissance doit être une date valide.',
+
+            'pays.string' => 'Le pays doit être une chaîne de caractères.',
+            'pays.max' => 'Le pays ne peut pas dépasser 100 caractères.',
+
+            'ville.string' => 'La ville doit être une chaîne de caractères.',
+            'ville.max' => 'La ville ne peut pas dépasser 100 caractères.',
+
+            'code_postal.string' => 'Le code postal doit être une chaîne de caractères.',
+            'code_postal.max' => 'Le code postal ne peut pas dépasser 20 caractères.',
+
+            'langue_preferee.string' => 'La langue préférée doit être une chaîne de caractères.',
+            'langue_preferee.max' => 'La langue préférée ne peut pas dépasser 10 caractères.',
+
+            'photo_profil.image' => 'Le fichier doit être une image.',
+            'photo_profil.mimes' => 'L\'image doit être au format jpg, jpeg ou png.',
+            'photo_profil.max' => 'La taille de l\'image ne peut pas dépasser 2 Mo.',
+
+            'accept.required' => 'Vous devez accepter les conditions.',
+            'accept.accepted' => 'Vous devez accepter les conditions.',
         ]);
 
         // Upload de la photo de profil si fournie
@@ -95,10 +137,11 @@ class RegisteredClientController extends Controller
             'prenom' => $validated['prenom'],
             'email' => $validated['email'],
             'telephone' => $validated['telephone'] ?? null,
-            'mot_de_passe' => Hash::make($validated['password']),
+            'password' => Hash::make($validated['password']),
             'genre' => $validated['genre'] ?? null,
             'date_naissance' => $validated['date_naissance'] ?? null,
             'pays' => $validated['pays'] ?? null,
+            'adresse' => $validated['adresse'] ?? null,
             'ville' => $validated['ville'] ?? null,
             'code_postal' => $validated['code_postal'] ?? null,
             // 'langue_preferee' => $validated['langue_preferee'] ?? null,

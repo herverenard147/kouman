@@ -4,9 +4,9 @@
         <div class="flex items-center space-x-1">
             <a href="#" class="xl:hidden block me-2">
                 {{-- Si ces images doivent changer en mode sombre, tu auras besoin de logique JS ou de deux images différentes --}}
-                <img src="{{ asset('images/logo-icon-32.png') }}" class="md:hidden block" alt="">
+                <img src="{{ asset('client/assets/images/logoG.ico') }}" class="md:hidden block" alt="">
                 <span class="md:block hidden">
-                    <img src=" {{ asset('images/di.ico') }}" class="inline-block" alt="">
+                    <img src=" {{ asset('client/assets/images/logoG.ico') }}" class="inline-block" alt="">
                     <img src=" {{ asset('client/assets/images/logoG.ico') }}" class="hidden" alt="">
                 </span>
             </a>
@@ -28,18 +28,18 @@
             </div>
 
         <ul class="list-none mb-0 space-x-1">
-            <li class="dropdown inline-block relative">
+            {{-- <li class="dropdown inline-block relative">
                 {{-- Adaptation des couleurs du bouton --}}
-                <button data-dropdown-toggle="dropdown" class="dropdown-toggle size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-[20px] text-center bg-gray-50 hover:bg-gray-100 border border-gray-100 text-slate-900
+                {{-- <button data-dropdown-toggle="dropdown" class="dropdown-toggle size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-[20px] text-center bg-gray-50 hover:bg-gray-100 border border-gray-100 text-slate-900
                     dark:bg-slate-800 dark:hover:bg-slate-700 dark:border-slate-700 dark:text-white rounded-md" type="button">
                     <img src="{{ asset('images/flags/usa.png') }}" class="size-6 rounded-md" alt="">
-                </button>
+                </button> --}}
                 {{-- Adaptation des couleurs du menu déroulant --}}
-                <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-36 rounded-md overflow-hidden bg-white shadow hidden dark:bg-slate-800" onclick="event.stopPropagation();">
+                {{-- <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-36 rounded-md overflow-hidden bg-white shadow hidden dark:bg-slate-800" onclick="event.stopPropagation();">
                     <ul class="list-none py-2 text-start">
-                        <li class="my-1">
+                        <li class="my-1"> --}}
                             {{-- Adaptation des couleurs des liens du menu déroulant --}}
-                            <a href="" class="flex items-center text-[15px] font-medium py-1.5 px-4 hover:text-green-600 text-slate-700 dark:text-gray-200"><img src="{{ asset('images/flags/germany.png') }}" class="size-6 rounded-md me-2 shadow" alt=""> German</a>
+                            {{-- <a href="" class="flex items-center text-[15px] font-medium py-1.5 px-4 hover:text-green-600 text-slate-700 dark:text-gray-200"><img src="{{ asset('images/flags/germany.png') }}" class="size-6 rounded-md me-2 shadow" alt=""> German</a>
                         </li>
                         <li class="my-1">
                             <a href="" class="flex items-center text-[15px] font-medium py-1.5 px-4 hover:text-green-600 text-slate-700 dark:text-gray-200"><img src="{{ asset('images/flags/italy.png') }}" class="size-6 rounded-md me-2 shadow" alt=""> Italian</a>
@@ -51,8 +51,8 @@
                             <a href="" class="flex items-center text-[15px] font-medium py-1.5 px-4 hover:text-green-600 text-slate-700 dark:text-gray-200"><img src="{{ asset('images/flags/spain.png') }}" class="size-6 rounded-md me-2 shadow" alt=""> Spanish</a>
                         </li>
                     </ul>
-                </div>
-            </li>
+                </div> --}}
+            {{-- </li>  --}}
             <li class="dropdown inline-block relative">
                 {{-- Adaptation des couleurs du bouton --}}
                 <button data-dropdown-toggle="dropdown" class="dropdown-toggle size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-[20px] text-center bg-gray-50 hover:bg-gray-100 border border-gray-100 text-slate-900
