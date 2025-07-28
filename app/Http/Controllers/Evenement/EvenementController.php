@@ -23,6 +23,15 @@ class EvenementController extends Controller
         $this->middleware('auth:partenaire');
     }
 
+    public function index()
+    {
+        $evenements = Evenement::where('idPartenaire', Auth::guard('partenaire')->id())->with('images')->get();
+        // dd($evenements);
+        return view('screens.add.evenement.evenement-list', compact('evenements'));
+        // return response()->file(resource_path('views/screens/add/Evenement/hebergement.blade.php'));
+
+    }
+
     public function createEvenement()
     {
         $equipements = Equipement::all();
@@ -60,7 +69,7 @@ class EvenementController extends Controller
             'pays' => 'nullable|string|max:255',
             'adresse' => 'nullable|string|max:255',
             'equipements' => 'nullable|array',
-            'equipements.*' => 'exists:equipements,idEquipement',
+            'equipements.*' => 'exists:equipements,id',
             'telephones.*.numero' => 'nullable|string|max:20',
             'images.*' => 'nullable|image|mimes:jpeg,png|max:10240',
         ]);

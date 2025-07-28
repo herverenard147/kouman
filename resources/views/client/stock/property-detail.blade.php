@@ -7,7 +7,7 @@ ob_start();
 include "$base_dir/navbar-dark.php"; // This file contains the shared navlink content
 $navlink_content = ob_get_clean(); // Capture the navlink content
 $page = 'dark';
-$fpage = 'foot';
+$fpage = 'foot1';
 
 // Optionally define the Hero block content
 ob_start();

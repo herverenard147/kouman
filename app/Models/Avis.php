@@ -9,6 +9,8 @@ class Avis extends Model
     protected $table = 'avis';
     protected $fillable = [
         'idHebergement',
+        'idClient',
+        'idExcursion',
         'note',
         'commentaire',
         'dateAvis'
@@ -17,6 +19,11 @@ class Avis extends Model
     public function hebergement()
     {
         return $this->belongsTo(Hebergement::class);
+    }
+
+    public function excursion()
+    {
+        return $this->belongsTo(Excursion::class);
     }
 
     public function utilisateur()

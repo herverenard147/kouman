@@ -23,7 +23,7 @@ class HebergementController extends Controller
      */
     public function index()
     {
-        $hebergements = Hebergement::where('id', Auth::guard('partenaire')->id())->with('images')->get();
+        $hebergements = Hebergement::where('idPartenaire', Auth::guard('partenaire')->id())->with('images')->get();
         // dd($hebergements);
         return view('screens.add.Hebergement.hebergement', compact('hebergements'));
         // return response()->file(resource_path('views/screens/add/Hebergement/hebergement.blade.php'));
@@ -47,10 +47,6 @@ class HebergementController extends Controller
      */
     public function store(StoreHebergementRequest $request)
     {
-
-        // dd($request->all());
-
-        // dd($request->all());
         $validated = $request->validated();
 
         // Créer la localisation
@@ -63,6 +59,7 @@ class HebergementController extends Controller
             'longitude' => $request->longitude,
         ]);
 
+
         // dd($localisation);
 
         // Créer l'hébergement
@@ -72,7 +69,6 @@ class HebergementController extends Controller
             'description' => $request->description,
             'prixParNuit' => $request->prixParNuit,
             'devise' => $request->devise,
-            'numeroDeTel' => $request->numeroDeTel,
             'idLocalisation' => $localisation->id,
             'idPartenaire' => Auth::guard('partenaire')->id(), // Assumes partenaire is linked to user
             'nombreChambres' => $request->nombreChambres,
@@ -84,7 +80,7 @@ class HebergementController extends Controller
 
         foreach ($request->input('telephones', []) as $telData) {
             $hebergement->telephones()->create([
-                'numero' => $telData['numero']
+                'numeroDeTel' => $telData['numero']
             ]);
         }
         // Associer les équipements

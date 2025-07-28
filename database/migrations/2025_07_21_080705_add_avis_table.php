@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('hebergements', function (Blueprint $table) {
-            $table->string('numeroDeTel')->after('nombreChambres');
+        Schema::table('avis', function (Blueprint $table) {
+            $table->foreignId('idExcursion')->nullable()->constrained('excursions')->onDelete('cascade');
+
         });
     }
 

@@ -15,7 +15,20 @@ return new class extends Migration
             $table->id();
             $table->string('nom', 100);
             $table->string('email', 100)->unique();
-            $table->string('mot_de_passe', 255);
+            $table->string('password', 255);
+            $table->string('prenom')->nullable();
+            $table->string('telephone', 20)->nullable();
+            $table->string('adresse')->nullable();
+            $table->string('ville')->nullable();
+            $table->string('pays')->nullable();
+            $table->string('code_postal', 20)->nullable();
+            $table->date('date_naissance')->nullable();
+            $table->enum('genre', ['homme', 'femme', 'autre'])->nullable();
+            $table->string('photo_profil')->nullable();
+            $table->string('langue_preferee', 10)->default('fr');
+            $table->boolean('newsletter')->default(false);
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

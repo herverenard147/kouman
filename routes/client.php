@@ -1,38 +1,62 @@
 <?php
 
+use App\Http\Controllers\Auth\Client\AuthenticatedClientController;
+use App\Http\Controllers\Auth\Client\ConfirmablePasswordClientController;
+use App\Http\Controllers\Auth\Client\NewPasswordClientController;
+use App\Http\Controllers\Auth\Client\PasswordClientController;
+use App\Http\Controllers\Auth\Client\PasswordResetLinkClientController;
+use App\Http\Controllers\Auth\Client\RegisteredClientController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
-
-Route::get('/', [ClientController::class, 'index'])->name('client.index');
+use App\Http\Controllers\MailContact;
 
 Route::get('/filtrer', [ClientController::class, 'filtrer'])->name('client.filtrer.services');
 
 Route::prefix('filtrer')->group( function(){
-    Route::get('/hebergements', [ClientController::class, 'filtrerHebergements'])->name('client.filtre.hebergements');
+    Route::get('/hebergements',[ClientController::class, 'filtrerHebergements'])->name('client.filtre.hebergements');
     Route::get('/vols', [ClientController::class, 'filtrerVols'])->name('client.filtre.vols');
     Route::get('/excursions', [ClientController::class, 'filtrerExcursions'])->name('client.filtre.excursions');
     Route::get('/evenements', [ClientController::class, 'filtrerEvenements'])->name('client.filtre.evenements');
 });
 
 
-Route::prefix('client')->group(function () {
-    Route::get('error', function () {
-        return view('client.404');
-    })->name('client.error.404');
+Route::get('/', [ClientController::class, 'index'])->name('client.index');
+
+Route::middleware(['guest:web'])->prefix('client')->group(function () {
+
+
+    Route::get('forgot-password', [PasswordResetLinkClientController::class, 'create'])
+        ->name('password.request');
+
+    Route::post('forgot-password', [PasswordResetLinkClientController::class, 'store'])
+        ->name('password.email');
+
+    Route::get('reset-password/{token}', [NewPasswordClientController::class, 'create'])
+        ->name('password.reset');
+
+    Route::post('reset-password', [NewPasswordClientController::class, 'store'])
+        ->name('password.store');
+
+
+
+    Route::post('/contact/envoyer', [MailContact::class, 'store'])->name('contact.envoyer');
+
+
+    Route::post('logout', [AuthenticatedClientController::class, 'destroy'])
+        ->name('client.logout');
+
     Route::view('terms', 'client.terms')->name('client.terms');
 
-    Route::get('auth-login', function () {
-        return view('client.auth-login');
-    })->name('client.auth.login');
+    Route::get('auth-login', [AuthenticatedClientController::class, 'create'])->name('client.auth.login');
+    Route::post('auth-login', [AuthenticatedClientController::class, 'store'])->name('client.auth.login.store');
 
     Route::get('about-us', function () {
         return view('client.aboutus');
     })->name('client.aboutus');
 
-    Route::get('auth-signup', function () {
-        return view('client.auth-signup');
-    })->name('client.auth.signup');
+    Route::get('auth-signup', [RegisteredClientController::class, 'create'])->name('client.auth.signup');
+    Route::post('auth-signup', [RegisteredClientController::class, 'store'])->name('client.auth.signup.store');
 
     Route::get('agencies', function () {
         return view('client.agencies');
@@ -51,16 +75,13 @@ Route::prefix('client')->group(function () {
         return view('client.agent-profile');
     })->name('client.agent.profile');
 
-    Route::get('auth-login', function () {
-        return view('client.auth-login');
-    })->name('client.auth.login');
 
     Route::get('auth-re-password', function () {
-        return view('client.auth-re-password');
+        return view('client.auth.re-password');
     })->name('client.auth.re.password');
 
     Route::get('auth-signup', function () {
-        return view('client.auth-signup');
+        return view('client.auth.signup');
     })->name('client.auth.signup');
 
     Route::get('blog-detail', function () {
@@ -145,4 +166,16 @@ Route::prefix('client')->group(function () {
     Route::get('sell', function () {
         return view('client.sell');
     })->name('client.sell');
+});
+
+Route::middleware('auth')
+    ->group( function(){
+
+
+    Route::get('confirm-password', [ConfirmablePasswordClientController::class, 'show'])
+        ->name('client.password.confirm');
+
+    Route::post('confirm-password', [ConfirmablePasswordClientController::class, 'store']);
+
+    Route::put('password', [PasswordClientController::class, 'update'])->name('client.password.update');
 });

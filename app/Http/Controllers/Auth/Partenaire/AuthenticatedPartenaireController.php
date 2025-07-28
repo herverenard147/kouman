@@ -1,17 +1,18 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth\Partenaire;
 
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\Auth\LoginClientRequest;
+use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\LoginPartenaireRequest;
 
-class AuthenticatedClientController extends Controller
+class AuthenticatedPartenaireController extends Controller
 {
-     public function __construct()
+    public function __construct()
     {
         if (Auth::guard('partenaire')->check()) {
             redirect()->route('partenaire.dashboard')->send();
@@ -28,8 +29,10 @@ class AuthenticatedClientController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginClientRequest $request): RedirectResponse
+    public function store(LoginPartenaireRequest $request): RedirectResponse
     {
+        // dd('Méthode store atteinte', $request->all());
+
         $request->authenticate();
 
         $request->session()->regenerate();
@@ -42,7 +45,7 @@ class AuthenticatedClientController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        Auth::guard('client')->logout();
+        Auth::guard('partenaire')->logout();
 
         $request->session()->invalidate();
 

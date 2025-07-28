@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth\Partenaire;
 
 use Illuminate\View\View;
 use App\Models\Partenaire;
@@ -117,7 +117,7 @@ class RegisteredPartenaireController extends Controller
             $partenaire = Partenaire::create([
                 'nom_entreprise' => $validated['nom_entreprise'],
                 'email' => $validated['email'],
-                'mot_de_passe' => Hash::make($validated['mot_de_passe']),
+                'password' => Hash::make($validated['mot_de_passe']),
                 'type'=> $validated['type'],
                 'téléphone' => $validated['téléphone'],
                 'adresse' => $validated['adresse'],

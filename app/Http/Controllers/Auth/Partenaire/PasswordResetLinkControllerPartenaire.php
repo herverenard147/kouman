@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Auth\Partenaire;
 
 use App\Http\Controllers\Controller;
 use Exception;
@@ -17,7 +17,7 @@ class PasswordResetLinkControllerPartenaire extends Controller
      */
     public function create(): View
     {
-        return view('auth.forgot-password-email');
+        return view('auth.partenaire.forgot-password-email');
     }
 
     /**
@@ -57,10 +57,10 @@ class PasswordResetLinkControllerPartenaire extends Controller
         } catch (\Exception $e) {
             // dd($e->getMessage());
             // Log l'erreur pour le dev
-            Log::error('Erreur lors de l\'inscription du partenaire : ' . $e->getMessage());
+            Log::error('Erreur lors de la modification de votre mot de passe : ' . $e->getMessage());
 
             return back()
-                ->with('error', 'Une erreur est survenue lors de l\'inscription. Veuillez réessayer.')
+                ->with('error', 'Une erreur est survenue lors de la modification de votre mot de passe. Veuillez réessayer.')
                 ->withInput();
         }
     }

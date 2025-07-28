@@ -1,42 +1,36 @@
 @php
-    $services = [
-        [
-            'icon' => 'mdi mdi-cards-heart',
-            'title' => 'Confortable',
-            'desc' =>
-                "Si la distribution des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa lecture.",
-        ],
-        [
-            'icon' => 'mdi mdi-shield-sun',
-            'title' => 'Sécurité renforcée',
-            'desc' =>
-                "Si la distribution des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa lecture.",
-        ],
-        [
-            'icon' => 'mdi mdi-star',
-            'title' => 'Luxe',
-            'desc' =>
-                "Si la distribution des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa lecture.",
-        ],
-        [
-            'icon' => 'mdi mdi-currency-usd',
-            'title' => 'Meilleur prix',
-            'desc' =>
-                "Si la distribution des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa lecture.",
-        ],
-        [
-            'icon' => 'mdi mdi-map-marker',
-            'title' => 'Emplacement stratégique',
-            'desc' =>
-                "Si la distribution des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa lecture.",
-        ],
-        [
-            'icon' => 'mdi mdi-chart-arc',
-            'title' => 'Efficacité',
-            'desc' =>
-                "Si la distribution des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa lecture.",
-        ],
-    ];
+$services = [
+    [
+        'icon' => 'uil uil-hotel',
+        'title' => 'Réservation d’hébergement',
+        'desc' => 'Accédez à un large choix d’hôtels, résidences et chambres, partout en Afrique, au meilleur prix.',
+    ],
+    [
+        'icon' => 'uil uil-plane',
+        'title' => 'Comparaison de vols',
+        'desc' => 'Comparez facilement les billets d’avion vers vos destinations africaines favorites pour toujours trouver la meilleure offre.',
+    ],
+    [
+        'icon' => 'uil uil-briefcase-alt',
+        'title' => 'Excursions & événements',
+        'desc' => 'Découvrez des activités culturelles, excursions, événements et expériences authentiques proposées par nos partenaires locaux.',
+    ],
+    [
+        'icon' => 'uil uil-shield-check',
+        'title' => 'Paiements sécurisés',
+        'desc' => 'Tous les paiements sont protégés grâce à notre plateforme sécurisée, pour une tranquillité d’esprit totale.',
+    ],
+    [
+        'icon' => 'uil uil-users-alt',
+        'title' => 'Support client africain',
+        'desc' => 'Notre équipe locale vous accompagne à chaque étape pour rendre votre voyage simple et agréable.',
+    ],
+    [
+        'icon' => 'uil uil-user-check',
+        'title' => 'Inscription partenaires',
+        'desc' => 'Les hôtels, agences et compagnies aériennes peuvent facilement rejoindre notre réseau et proposer leurs offres directement.',
+    ],
+];
 @endphp
 
 @foreach ($services as $item)

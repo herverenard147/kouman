@@ -1,6 +1,6 @@
 @php
     $page = 'light';
-    $fpage = 'foot';
+    $fpage = 'foot1';
 @endphp
 @extends('client.base.style.base')
 @section('title', 'Grid View Layout')
@@ -40,7 +40,7 @@
     <!-- End Hero -->
 
     <!-- Start -->
-    <section class="relative lg:py-24 py-16">
+    <section class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen">
         <div class="container relative">
             <div class="grid grid-cols-1 pb-8 text-center">
                 <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">Featured Properties

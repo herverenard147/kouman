@@ -11,8 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('hebergements', function (Blueprint $table) {
-            $table->integer('nombreSallesDeBain')->default(1)->after('nombreChambres');
+        Schema::create('chambre', function (Blueprint $table) {
+            $table->id();
+            $table->timestamps();
         });
     }
 
@@ -21,8 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('hebergements', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('chambre');
     }
 };

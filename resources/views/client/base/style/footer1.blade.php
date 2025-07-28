@@ -32,28 +32,28 @@
                     <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px] -mt-24">
                         <div class="lg:col-span-4 md:col-span-12">
                             <a href="#" class="text-[22px] focus:outline-none">
-                                <img src="{{ asset('/client/assets/images/logoG.ico') }}" class="block dark:hidden" alt="">
-                                <img src="{{ asset('/client/assets/images/logoG.ico') }}" class="hidden dark:block" alt="">
+                                <img src="{{ asset('/client/assets/images/logoG.ico') }}" class="block dark:hidden" alt="Afrique Évasion Logo">
+                                <img src="{{ asset('/client/assets/images/logoG.ico') }}" class="hidden dark:block" alt="Afrique Évasion Logo">
                             </a>
-                            <p class="mt-6 text-slate-400">Une excellente plateforme pour acheter, vendre et louer vos propriétés sans intermédiaires ni commissions.</p>
+                            <p class="mt-6 text-gray-300">Découvrez, comparez et réservez hôtels, vols, excursions et résidences à travers l’Afrique. Une plateforme 100 % directe, sans commissions.</p>
                         </div>
 
                         <div class="lg:col-span-2 md:col-span-4">
                             <h5 class="tracking-[1px] text-black dark:text-white font-semibold">Entreprise</h5>
                             <ul class="list-none footer-list mt-6">
-                                <li><a href="{{route('client.aboutus')}}" class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b me-1"></i> À propos</a></li>
-                                <li class="mt-[10px]"><a href="{{route('client.grid.sidebar')}}" class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b me-1"></i> Nos offres</a></li>
-                                <li class="mt-[10px]"><a href="{{route('client.pricing')}}" class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b me-1"></i> Tarification</a></li>
-                                <li class="mt-[10px]"><a href="{{route('client.agencies')}}" class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b me-1"></i> Partenaires</a></li>
+                                <li><a href="{{ route('client.aboutus') }}" class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b me-1"></i> À propos</a></li>
+                                <li class="mt-[10px]"><a href="{{ route('client.grid.sidebar') }}" class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b me-1"></i> Nos offres</a></li>
+                                <li class="mt-[10px]"><a href="{{ route('client.pricing') }}" class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b me-1"></i> Tarification</a></li>
+                                <li class="mt-[10px]"><a href="{{ route('client.agencies') }}" class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b me-1"></i> Partenaires</a></li>
                             </ul>
                         </div>
 
                         <div class="lg:col-span-3 md:col-span-4">
                             <h5 class="tracking-[1px] text-black dark:text-white font-semibold">Liens utiles</h5>
                             <ul class="list-none footer-list mt-6">
-                                <li><a href="{{route('client.terms')}}" class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b me-1"></i> Conditions d’utilisation</a></li>
-                                <li class="mt-[10px]"><a href="{{route('client.privacy')}}" class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b me-1"></i> Politique de confidentialité</a></li>
-                                <li class="mt-[10px]"><a href="{{route('client.contact')}}" class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b me-1"></i> Contact</a></li>
+                                <li><a href="{{ route('client.terms') }}" class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b me-1"></i> Conditions d’utilisation</a></li>
+                                <li class="mt-[10px]"><a href="{{ route('client.privacy') }}" class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b me-1"></i> Politique de confidentialité</a></li>
+                                <li class="mt-[10px]"><a href="{{ route('client.contact') }}" class="text-slate-400 hover:text-slate-500 dark:text-slate-300 dark:hover:text-slate-400 duration-500 ease-in-out"><i class="uil uil-angle-right-b me-1"></i> Contact</a></li>
                             </ul>
                         </div>
 
@@ -64,7 +64,7 @@
                                 <i data-feather="map-pin" class="size-5 text-green-600 me-3"></i>
                                 <div class="">
                                     <h6 class="text-slate-400 mb-2">Côte d'Ivoire, <br> Abidjan, Immeuble Longchamp, Plateau<br> 25 BP 469 ABIDJAN 25</h6>
-                                    <a href="https://www.google.com/maps/place/Immeuble+Longchamp+Du+Plateau/@5.3255037,-4.0275223,867m/data=!3m2!1e3!4b1!4m6!3m5!1s0xfc1eba100183785:0xc6e997b2eae0b484!8m2!3d5.3255037!4d-4.0226514!16s%2Fg%2F11nmf6mrgf?entry=ttu&g_ep=EgoyMDI1MDcxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="text-green-600 hover:text-green-700 duration-500 ease-in-out ">Voir sur Google Maps</a>
+                                    <a href="https://www.google.com/maps/place/Immeuble+Longchamp+Du+Plateau/@5.3255037,-4.0275223,867m/data=!3m2!1e3!4b1!4m6!3m5!1s0xfc1eba100183785:0xc6e997b2eae0b484!8m2!3d5.3255037!4d-4.0226514!16s%2Fg%2F11nmf6mrgf?entry=ttu&g_ep=EgoyMDI1MDcxMy4wIKXMDSoASAFQAw%3D%3D" target="_blank" class="text-green-600 hover:text-green-700 duration-500 ease-in-out">Voir sur Google Maps</a>
                                 </div>
                             </div>
 
@@ -93,7 +93,7 @@
         <div class="container relative text-center">
             <div class="grid md:grid-cols-2 items-center gap-6">
                 <div class="md:text-start text-center">
-                    <p class="mb-0 text-gray-300">© <script>document.write(new Date().getFullYear())</script> Afrique Évasion. Conception et développement par  par <a href="https://kwlegaltech.com/" target="_blank" class="text-reset">Kw Legal & Tech</a>.</p>
+                    <p class="mb-0 text-gray-300">© <script>document.write(new Date().getFullYear())</script> Afrique Évasion. Conception et développement par <a href="https://kwlegaltech.com/" target="_blank" class="text-reset">Kw Legal & Tech</a>.</p>
                 </div>
 
                 <ul class="list-none md:text-end text-center">

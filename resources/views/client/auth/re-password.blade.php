@@ -11,7 +11,7 @@
             <div class="flex justify-center">
                 <div
                     class="max-w-[400px] w-full m-auto p-6 bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-700 rounded-md">
-                    <a href="/index"><img src="{{asset('client/assets/images/b.ico')}}" class="mx-auto"
+                    <a href="/index"><img src="{{asset('client/assets/images/logo.ico')}}" class="mx-auto"
                             alt=""></a>
                     <h5 class="my-6 text-xl font-semibold">Réinitialisez votre mot de passe</h5>
                     <div class="grid grid-cols-1">

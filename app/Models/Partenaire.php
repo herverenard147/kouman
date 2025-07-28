@@ -18,10 +18,10 @@ class Partenaire extends Authenticatable implements MustVerifyEmail, Authenticat
     use CanResetPasswordTrait;
 
     protected $table = 'partenaires';
-   protected $fillable = [
+    protected $fillable = [
         'nom_entreprise',
         'email',
-        'mot_de_passe',
+        'password',
         'type',
         'téléphone',
         'adresse',
@@ -35,14 +35,9 @@ class Partenaire extends Authenticatable implements MustVerifyEmail, Authenticat
      * @var array
      */
     protected $hidden = [
-        'mot_de_passe',
+        'password',
         'remember_token',
     ];
-
-    public function getAuthPassword()
-    {
-        return $this->mot_de_passe;
-    }
 
     /**
      * The attributes that should be cast to native types.

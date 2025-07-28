@@ -43,7 +43,8 @@ class StoreHebergementRequest extends FormRequest
             'nombreSallesDeBain' => ['required', 'integer', 'min:1'],
             'capaciteMax' => ['required', 'integer', 'min:1'],
             'heureArrivee' => ['nullable', 'date_format:H:i'],
-            'numeroDeTel' => ['required', 'string', 'regex:/^[0-9]{8,15}$/'],
+            'telephones' => ['required', 'array'],
+            'telephones.*.numero' => ['required', 'string', 'regex:/^\+225\d{8,}$/'], // Numéro au format ivoirien
             'heureDepart' => [
                 'nullable',
                 'date_format:H:i',

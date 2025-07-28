@@ -1,25 +1,35 @@
 @php
-$features = [
-    [
-        'icon' => 'uil uil-estate',
-        'title' => 'Évaluer le bien',
-        'desc' => "Si la répartition des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa compréhension.",
-    ],
-    [
-        'icon' => 'uil uil-bag',
-        'title' => 'Rencontre avec un agent',
-        'desc' => "Si la répartition des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa compréhension.",
-    ],
-    [
-        'icon' => 'uil uil-key-skeleton',
-        'title' => 'Finaliser l’accord',
-        'desc' => "Si la répartition des lettres et des 'mots' est aléatoire, le lecteur ne sera pas distrait dans sa compréhension.",
-    ]
-];
-@endphp
+        $features = [
+            [
+                'icon' => 'uil uil-estate',
+                'title' => 'Explorer les offres',
+                'desc' => "Parcourez facilement les hébergements, vols, excursions et évènements proposés par nos partenaires africains.",
+            ],
+            [
+                'icon' => 'uil uil-bag',
+                'title' => 'Comparer et choisir',
+                'desc' => "Consultez les prix, les services et les avis pour faire un choix éclairé, adapté à vos besoins et à votre budget.",
+            ],
+            [
+                'icon' => 'uil uil-key-skeleton',
+                'title' => 'Réserver en confiance',
+                'desc' => "Réservez directement auprès du partenaire, sans intermédiaire, dans un cadre sécurisé et transparent.",
+            ],
+            [
+                'icon' => 'uil uil-user-plus',
+                'title' => 'Rejoindre notre réseau',
+                'desc' => "Vous êtes un hôtel, une agence ou un prestataire ? Inscrivez-vous facilement et commencez à proposer vos services.",
+            ],
+            [
+                'icon' => 'uil uil-headphones',
+                'title' => 'Support local dédié',
+                'desc' => "Notre équipe reste à votre écoute pour vous accompagner, où que vous soyez en Afrique.",
+            ],
+        ];
+        @endphp
 
+        {{-- Grid principale (ligne 1 - 3 éléments) --}}
 @foreach ($features as $item)
-<!-- Contenu -->
 <div class="group relative lg:px-10 transition-all duration-500 ease-in-out rounded-xl bg-transparent overflow-hidden text-center">
     <div class="relative overflow-hidden text-transparent -m-3">
         <i data-feather="hexagon" class="size-32 fill-green-600/5 mx-auto"></i>

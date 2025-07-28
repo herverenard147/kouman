@@ -56,59 +56,58 @@ $properties = [
     ]
 ];
 ?>
-
-<?php foreach ($properties as $item): ?>
-<div class="group rounded-xl bg-white shadow hover:shadow-xl overflow-hidden ease-in-out duration-500">
+@foreach ($properties as $item)
+<div class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl overflow-hidden transition duration-500">
     <div class="relative">
-        <!-- <img src="<?php
-        // echo $static_url, $item['img']; ?>" alt=""> -->
-        <img src="{{ asset($item['img']) }}" alt="">
+        <img src="{{ asset($item['img']) }}" alt="Image propriété" class="w-full h-64 object-cover">
 
-        <div class="absolute top-4 end-4">
-            <a href="javascript:void(0)" class="btn btn-icon bg-white shadow rounded-full text-slate-100 focus:text-red-600 hover:text-red-600"><i class="mdi mdi-heart text-[20px]"></i></a>
+        <div class="absolute top-4 right-4">
+            <a href="javascript:void(0)" class="btn btn-icon bg-white dark:bg-slate-800 shadow rounded-full text-slate-700 dark:text-slate-200 hover:text-red-600 transition duration-300">
+                <i class="mdi mdi-heart text-[20px]"></i>
+            </a>
         </div>
     </div>
 
     <div class="p-6">
-        <div class="pb-6">
-            <a href="{{route('partenaire.hebergement-detail.show',['id' => $item['id']])}}" class="text-lg hover:text-green-600 font-medium ease-in-out duration-500"><?php echo $item['title']; ?></a>
+        <div class="mb-4">
+            <a href="{{ route('partenaire.hebergement-detail.show', ['id' => $item['id']]) }}"
+               class="text-lg font-semibold text-slate-800 dark:text-white hover:text-green-600 dark:hover:text-green-400 transition">
+                {{ $item['title'] }}
+            </a>
         </div>
 
-        <ul class="py-6 border-y border-slate-100 flex items-center list-none">
-            <li class="flex items-center me-4">
-                <i class="mdi mdi-arrow-expand-all text-2xl me-2 text-green-600"></i>
-                <span><?php echo $item['sqf']; ?></span>
+        <ul class="flex flex-wrap items-center border-y border-slate-100 dark:border-slate-700 py-4 text-sm text-slate-600 dark:text-slate-300">
+            <li class="flex items-center me-6 mb-2">
+                <i class="mdi mdi-arrow-expand-all text-xl me-2 text-green-600"></i>
+                {{ $item['sqf'] }}
             </li>
-
-            <li class="flex items-center me-4">
-                <i class="mdi mdi-bed text-2xl me-2 text-green-600"></i>
-                <span><?php echo $item['beds']; ?></span>
+            <li class="flex items-center me-6 mb-2">
+                <i class="mdi mdi-bed text-xl me-2 text-green-600"></i>
+                {{ $item['beds'] }}
             </li>
-
-            <li class="flex items-center">
-                <i class="mdi mdi-shower text-2xl me-2 text-green-600"></i>
-                <span><?php echo $item['baths']; ?></span>
+            <li class="flex items-center mb-2">
+                <i class="mdi mdi-shower text-xl me-2 text-green-600"></i>
+                {{ $item['baths'] }}
             </li>
         </ul>
 
-        <ul class="pt-6 flex justify-between items-center list-none">
-            <li>
-                <span class="text-slate-400">Price</span>
-                <p class="text-lg font-medium"><?php echo $item['price']; ?></p>
-            </li>
+        <div class="pt-4 flex justify-between items-center">
+            <div>
+                <span class="text-slate-400 dark:text-slate-500 block text-sm">Prix</span>
+                <span class="text-lg font-semibold text-slate-800 dark:text-white">{{ $item['price'] }}</span>
+            </div>
 
-            <li>
-                <span class="text-slate-400">Rating</span>
-                <ul class="text-lg font-medium text-amber-400 list-none">
-                    <li class="inline"><i class="mdi mdi-star"></i></li>
-                    <li class="inline"><i class="mdi mdi-star"></i></li>
-                    <li class="inline"><i class="mdi mdi-star"></i></li>
-                    <li class="inline"><i class="mdi mdi-star"></i></li>
-                    <li class="inline"><i class="mdi mdi-star"></i></li>
-                    <li class="inline text-black">5.0(30)</li>
-                </ul>
-            </li>
-        </ul>
+            <div class="text-right">
+                <span class="text-slate-400 dark:text-slate-500 block text-sm">Note</span>
+                <div class="flex items-center space-x-1 text-amber-400 text-base">
+                    @for ($i = 0; $i < 5; $i++)
+                        <i class="mdi mdi-star"></i>
+                    @endfor
+                    <span class="text-sm text-black dark:text-white">(5.0 / 30)</span>
+                </div>
+            </div>
+        </div>
     </div>
-</div><!--end property content-->
-<?php endforeach; ?>
+</div>
+
+@endforeach

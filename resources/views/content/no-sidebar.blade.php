@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="light scroll-smooth" dir="ltr">
+<html lang="en" class="dark scroll-smooth" dir="ltr">
     <head>
         <meta charset="UTF-8">
         <title>@yield('title') | Afrique évasion</title>
@@ -86,5 +86,6 @@
         <script src="{{asset('js/plugins.init.js')}}"></script>
         <script src="{{asset('js/app.js')}}"></script>
         <!-- JAVASCRIPTS -->
+        @stack('scripts')
     </body>
 </html>

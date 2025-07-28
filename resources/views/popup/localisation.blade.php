@@ -197,7 +197,7 @@
 
     <div class="footer-bar">
         <div class="text-sm text-gray-700">
-            Lat: <span id="lat">–</span>, Lng: <span id="lng">–</span><br>
+            Latitude: <span id="lat">–</span>, Longitude: <span id="lng">–</span><br>
             <span id="reverseAddress" class="text-xs text-gray-500">Adresse : —</span>
         </div>
         <div>
@@ -223,10 +223,12 @@
             document.getElementById('reverseAddress').innerText = 'Adresse : ' + text;
         }
 
+
         function reverseGeocode(lat, lng) {
             fetch(`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lng}&format=json`)
                 .then(res => res.json())
                 .then(data => {
+                    console.log('reverseGeocode data.address:', data.address);
                     const display = data.display_name || '';
                     updateAddressText(display);
 

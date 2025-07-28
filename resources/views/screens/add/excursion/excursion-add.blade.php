@@ -2,7 +2,7 @@
 @section('title', 'Ajouter une excursion')
 
 @section('content')
-
+<div class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen">
     <div class="container-fluid relative px-3">
         <div class="layout-specing">
             <!-- Start Content -->
@@ -31,10 +31,10 @@
                 </div>
             @endif
 
-            {{-- <form action="{{ route('partenaire.excursion.store') }}" method="POST" enctype="multipart/form-data"> --}}
-            <form action="">
+            <form action="{{ route('partenaire.add.excursion.store') }}" method="POST" enctype="multipart/form-data">
+            {{-- <form action=""> --}}
                 @csrf
-                <div class="container relative">
+                <div class="w-full md:w-3/4 mx-auto">
                     <div class="grid md:grid-cols-1 grid-cols-1 gap-6 mt-6">
                         <!-- Section Images -->
                         <div class="rounded-md shadow p-6 bg-white h-fit mb-5">
@@ -62,6 +62,60 @@
                                     <label for="titre" class="font-medium">Titre de l'excursion :</label>
                                     <input name="titre" id="titre" type="text" class="form-input mt-2 @error('titre') border-red-500 @enderror" placeholder="Titre de l'excursion" value="{{ old('titre') }}" required>
                                     @error('titre') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+                                <!-- Itinéraire -->
+                                <div class="col-span-12">
+                                    <label for="itineraire" class="font-medium">Itinéraire :</label>
+                                    <textarea name="itineraire" id="itineraire" class="form-input mt-2 @error('itineraire') border-red-500 @enderror" rows="3" placeholder="Décrivez l’itinéraire prévu">{{ old('itineraire') }}</textarea>
+                                    @error('itineraire') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Nom du guide -->
+                                <div class="col-span-6">
+                                    <label for="nom_guide" class="font-medium">Nom du guide :</label>
+                                    <input name="nom_guide" id="nom_guide" type="text" class="form-input mt-2 @error('nom_guide') border-red-500 @enderror" value="{{ old('nom_guide') }}" placeholder="Nom complet du guide">
+                                    @error('nom_guide') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Langues parlées -->
+                                <div class="col-span-6">
+                                    <label for="langues" class="font-medium">Langues parlées :</label>
+                                    <input name="langues" id="langues" type="text" class="form-input mt-2 @error('langues') border-red-500 @enderror" value="{{ old('langues') }}" placeholder="Ex : Français, Anglais">
+                                    @error('langues') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Récurrence -->
+                                <div class="col-span-6">
+                                    <label for="recurrence" class="font-medium">Fréquence :</label>
+                                    <select name="recurrence" id="recurrence" class="form-input mt-2 @error('recurrence') border-red-500 @enderror">
+                                        @foreach(['ponctuelle', 'quotidienne', 'hebdomadaire', 'mensuelle'] as $freq)
+                                            <option value="{{ $freq }}" {{ old('recurrence') == $freq ? 'selected' : '' }}>
+                                                {{ ucfirst($freq) }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('recurrence') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Âge minimum -->
+                                <div class="col-span-6">
+                                    <label for="age_minimum" class="font-medium">Âge minimum requis :</label>
+                                    <input name="age_minimum" id="age_minimum" type="number" min="0" class="form-input mt-2 @error('age_minimum') border-red-500 @enderror" value="{{ old('age_minimum', 0) }}">
+                                    @error('age_minimum') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Conditions d’annulation -->
+                                <div class="col-span-12">
+                                    <label for="conditions" class="font-medium">Conditions d’annulation :</label>
+                                    <textarea name="conditions" id="conditions" class="form-input mt-2 @error('conditions') border-red-500 @enderror" rows="3" placeholder="Politique d’annulation, remboursement, etc.">{{ old('conditions') }}</textarea>
+                                    @error('conditions') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
+
+                                <!-- Moyens de paiement -->
+                                <div class="col-span-12">
+                                    <label for="moyens_paiement" class="font-medium">Moyens de paiement acceptés :</label>
+                                    <input name="moyens_paiement" id="moyens_paiement" type="text" class="form-input mt-2 @error('moyens_paiement') border-red-500 @enderror" value="{{ old('moyens_paiement') }}" placeholder="Ex : Orange Money, Visa, Cash">
+                                    @error('moyens_paiement') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <!-- Description -->
@@ -117,30 +171,30 @@
 
                                 <!-- Localisation -->
                                 <div class="col-span-6"><label for="ville" class="font-medium">Ville :</label>
-                                    <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror" value="{{ old('ville') }}">
+                                    <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror"  value="{{ old('ville') }}" readonly>
                                     @error('ville') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="col-span-6"><label for="pays" class="font-medium">Pays :</label>
-                                    <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror" value="{{ old('pays') }}">
+                                    <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror" value="{{ old('pays') }}" readonly>
                                     @error('pays') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="col-span-6">
                                     <label for="adresse" class="font-medium">Adresse (point de départ) :</label>
-                                    <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror" value="{{ old('adresse') }}">
+                                    <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror" value="{{ old('adresse') }}" readonly>
                                     @error('adresse') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="col-span-3">
                                     <label for="latitude" class="font-medium">Latitude :</label>
-                                    <input name="latitude" id="latitude" type="number" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror" value="{{ old('latitude') }}" required>
+                                    <input name="latitude" id="latitude" type="number" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror" value="{{ old('latitude') }}" required readonly>
                                     @error('latitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="col-span-3">
                                     <label for="longitude" class="font-medium">Longitude :</label>
-                                    <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror" value="{{ old('longitude') }}" required>
+                                    <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror" value="{{ old('longitude') }}" required readonly>
                                     @error('longitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
@@ -191,6 +245,7 @@
                     </div>
                 </div>
             </form>
+        </div>
     </div>
 </div>
 
@@ -428,18 +483,37 @@
             "Localisation",
             `width=${width},height=${height},top=${top},left=${left}`
         );
-
-        // Recevoir la position depuis la popup
         window.addEventListener('message', function (event) {
             if (event.origin !== window.location.origin) return;
 
             const { latitude, longitude, adresse, ville, pays } = event.data;
-            document.getElementById('latitude').value = latitude;
-            document.getElementById('longitude').value = longitude;
-            document.getElementById('adresse').value = adresse;
-            document.getElementById('ville').value = ville;
-            document.getElementById('pays').value = pays;
-        }, false);
+
+            console.log("📦 Données reçues :", event.data); // 👀 ici tu verras tout
+
+            // Assure-toi que latitude/longitude sont bien définies
+            if (latitude !== undefined && longitude !== undefined) {
+                document.getElementById('latitude').value = latitude;
+                document.getElementById('longitude').value = longitude;
+            }
+
+            if (adresse) document.getElementById('adresse').value = adresse;
+            if (ville) document.getElementById('ville').value = ville;
+            if (pays) document.getElementById('pays').value = pays;
+        });
+
+        // Recevoir la position depuis la popup
+        // window.addEventListener('message', function (event) {
+        //     if (event.origin !== window.location.origin) return;
+        //     if (!event.data || event.data.from !== 'localisation-popup') return;
+
+        //     const { latitude, longitude, adresse, ville, pays } = event.data;
+
+        //     document.getElementById('latitude').value = latitude;
+        //     document.getElementById('longitude').value = longitude;
+        //     if (adresse) document.getElementById('adresse').value = adresse;
+        //     if (ville) document.getElementById('ville').value = ville;
+        //     if (pays) document.getElementById('pays').value = pays;
+        // });
     }
     </script>
 @endpush

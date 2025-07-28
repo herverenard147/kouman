@@ -2,7 +2,7 @@
 @extends('layout.base')
 @section('title', 'Blogs')
 @section('content')
-
+<div class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen">
     <div class="container-fluid relative px-3">
         <div class="layout-specing">
             <!-- Start Content -->
@@ -105,7 +105,7 @@
         </div>
     </div>
     <!-- Modal -->
-
+</div>
     <script>
         const handleChange = () => {
             const fileUploader = document.querySelector('#input-file');

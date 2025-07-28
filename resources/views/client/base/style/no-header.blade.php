@@ -79,6 +79,7 @@
     <script src="{{ asset('client/assets/js/plugins.init.js') }}"></script>
     <script src="{{ asset('client/assets/js/app.js') }}"></script>
     <!-- JAVASCRIPTS -->
+    @stack('scripts')
 </body>
 
 </html>

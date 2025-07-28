@@ -12,10 +12,14 @@
         <div class="absolute inset-0 bg-black/50"></div>
         <div class="container relative z-3">
             <div class="grid md:grid-cols-12 mt-10">
-                <div class="lg:col-span-8 md:col-span-6">
-                    <h1 class="font-semibold text-white lg:leading-normal leading-normal text-4xl lg:text-6xl mb-6">
-                        Trouvez le <br> <span class="typewrite" data-period="2000"
-                            data-type='[ "logement", "villa", "bureau" ]'></span> parfait pour vous
+                <div class="lg:col-span-10 md:col-span-6">
+                    <h1 class="font-semibold text-white text-4xl lg:text-6xl leading-tight lg:leading-tight mb-6">
+                        Trouvez <br class="hidden lg:block">
+                        <span class="inline-block">
+                            <span class="typewrite text-primary font-bold" data-period="2000"
+                                data-type='["l’hébergement", "l’excursion", "l’évènement", "le vol", "la chambre"]'></span>
+                        </span>
+                        parfait(e) pour vous
                     </h1>
                     <p class="text-white/70 text-xl max-w-xl">
                         Une excellente plateforme pour acheter, vendre et louer vos biens sans intermédiaire ni commission.
@@ -112,8 +116,8 @@
     </div>
 
     <!-- Début Section -->
-    <section class="relative md:py-24 py-16">
-        <div class="container relative">
+    <section class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen">
+        <div class="container relative pt-5">
             <div class="grid md:grid-cols-12 grid-cols-1 items-center gap-[30px]">
                 <div class="md:col-span-5">
                     <div class="relative">
@@ -129,30 +133,66 @@
                     </div>
                 </div>
 
-                <div class="md:col-span-7">
-                    <div class="lg:ms-4">
-                        <h4 class="mb-6 md:text-3xl text-2xl lg:leading-normal leading-normal font-semibold">
-                            Efficacité. <br> Transparence. Contrôle.
-                        </h4>
-                        <p class="text-slate-400 max-w-xl">
-                            Afrique évasion a développé une plateforme pour le marché immobilier qui permet aux acheteurs et vendeurs
-                            d’effectuer des transactions par eux-mêmes. Elle offre efficacité, transparence des coûts et
-                            autonomie. Afrique évasion, c’est l’immobilier réinventé.
+                <div class="lg:col-span-7 md:col-span-6">
+                    <div class="lg:ms-6">
+                        <h4 class="text-2xl leading-normal font-semibold mb-4">Efficacité. Transparence. Contrôle.</h4>
+                        <p class="text-slate-400 max-w-xl mb-6">
+                            Afrique Évasion révolutionne les voyages en Afrique en connectant directement les voyageurs avec les hébergeurs, compagnies aériennes, agences d’excursions et organisateurs d’événements. Réservez en toute liberté, sans intermédiaire ni frais cachés.
                         </p>
 
-                        <div class="mt-4">
-                            <a href="" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md mt-3">En savoir plus</a>
+                        <ul class="space-y-4 mt-6">
+                            <li class="flex items-start gap-3">
+                                <div class="text-primary text-xl">
+                                    <i class="uil uil-check-circle"></i>
+                                </div>
+                                <span class="text-slate-500 leading-relaxed">
+                                    Réservez des hébergements uniques dans toute l’Afrique
+                                </span>
+                            </li>
+
+                            <li class="flex items-start gap-3">
+                                <div class="text-primary text-xl">
+                                    <i class="uil uil-check-circle"></i>
+                                </div>
+                                <span class="text-slate-500 leading-relaxed">
+                                    Comparez les meilleurs vols pour vos destinations
+                                </span>
+                            </li>
+
+                            <li class="flex items-start gap-3">
+                                <div class="text-primary text-xl">
+                                    <i class="uil uil-check-circle"></i>
+                                </div>
+                                <span class="text-slate-500 leading-relaxed">
+                                    Participez à des excursions et événements locaux authentiques
+                                </span>
+                            </li>
+
+                            <li class="flex items-start gap-3">
+                                <div class="text-primary text-xl">
+                                    <i class="uil uil-check-circle"></i>
+                                </div>
+                                <span class="text-slate-500 leading-relaxed">
+                                    Gagnez du temps et de l'argent grâce à une plateforme 100% sans commission
+                                </span>
+                            </li>
+                        </ul>
+
+                        <div class="mt-6">
+                            <a href="{{ route('client.aboutus') }}" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md mt-3">
+                                En savoir plus
+                            </a>
                         </div>
                     </div>
-                </div>
+                </div><!-- fin texte -->
             </div>
         </div>
 
         <div class="container relative lg:mt-24 mt-16">
             <div class="grid grid-cols-1 pb-8 text-center">
-                <h3 class="mb-4 md:text-3xl text-2xl font-semibold">Biens en vedette</h3>
+                <h3 class="mb-4 md:text-3xl text-2xl font-semibold">Offres en vedette</h3>
                 <p class="text-slate-400 max-w-xl mx-auto">
-                    Une excellente plateforme pour acheter, vendre et louer vos biens sans intermédiaire ni commission.
+                    Découvrez les meilleures offres d’hébergements, de vols et d’activités sélectionnées pour vous par nos partenaires.
                 </p>
             </div>
 
@@ -164,10 +204,10 @@
         </div>
 
         <div class="container relative lg:mt-24 mt-16">
-            <div class="grid grid-cols-1 pb-8">
-                <h3 class="mb-4 md:text-3xl text-2xl font-semibold">Catégories d'annonces</h3>
-                <p class="text-slate-400 max-w-xl">
-                    Une excellente plateforme pour acheter, vendre et louer vos biens sans intermédiaire ni commission.
+            <div class="grid grid-cols-1 pb-8 text-center">
+                <h3 class="mb-4 md:text-3xl text-2xl font-semibold">Catégories de services</h3>
+                <p class="text-slate-400 max-w-xl mx-auto">
+                    Explorez nos différentes catégories : hébergements, excursions, événements et plus encore.
                 </p>
             </div>
 
@@ -180,7 +220,7 @@
             <div class="grid grid-cols-1 pb-8 text-center">
                 <h3 class="mb-4 md:text-3xl text-2xl font-semibold">Ce que disent nos clients</h3>
                 <p class="text-slate-400 max-w-xl mx-auto">
-                    Une excellente plateforme pour acheter, vendre et louer vos biens sans intermédiaire ni commission.
+                    Nos utilisateurs partagent leurs expériences de réservation réussie, sans frais cachés ni commissions.
                 </p>
             </div>
 
