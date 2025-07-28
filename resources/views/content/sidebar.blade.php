@@ -60,7 +60,7 @@
                     'title' => 'Vol',
                     'items' => [
                         ['label' => 'Ajouter', 'route' => 'partenaire.add.vol'],
-                        ['label' => 'Liste', 'route' => '#'], // À compléter
+                        ['label' => 'Liste', 'route' => ''], // À compléter
                     ]
                 ])
             @endif
