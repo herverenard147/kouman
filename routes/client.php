@@ -6,6 +6,10 @@ use App\Http\Controllers\Auth\Client\NewPasswordClientController;
 use App\Http\Controllers\Auth\Client\PasswordClientController;
 use App\Http\Controllers\Auth\Client\PasswordResetLinkClientController;
 use App\Http\Controllers\Auth\Client\RegisteredClientController;
+use App\Http\Controllers\ClientProfileController;
+use App\Http\Controllers\Client\CartController;
+use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\Client\CheckoutController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
@@ -13,8 +17,8 @@ use App\Http\Controllers\MailContact;
 
 Route::get('/filtrer', [ClientController::class, 'filtrer'])->name('client.filtrer.services');
 
-Route::prefix('filtrer')->group( function(){
-    Route::get('/hebergements',[ClientController::class, 'filtrerHebergements'])->name('client.filtre.hebergements');
+Route::prefix('filtrer')->group(function () {
+    Route::get('/hebergements', [ClientController::class, 'filtrerHebergements'])->name('client.filtre.hebergements');
     Route::get('/vols', [ClientController::class, 'filtrerVols'])->name('client.filtre.vols');
     Route::get('/excursions', [ClientController::class, 'filtrerExcursions'])->name('client.filtre.excursions');
     Route::get('/evenements', [ClientController::class, 'filtrerEvenements'])->name('client.filtre.evenements');
@@ -169,13 +173,51 @@ Route::middleware(['guest:web'])->prefix('client')->group(function () {
 });
 
 Route::middleware('auth')
-    ->group( function(){
+    ->group(function () {
 
 
-    Route::get('confirm-password', [ConfirmablePasswordClientController::class, 'show'])
-        ->name('client.password.confirm');
+        Route::get('confirm-password', [ConfirmablePasswordClientController::class, 'show'])
+            ->name('client.password.confirm');
 
-    Route::post('confirm-password', [ConfirmablePasswordClientController::class, 'store']);
+        Route::post('confirm-password', [ConfirmablePasswordClientController::class, 'store']);
 
-    Route::put('password', [PasswordClientController::class, 'update'])->name('client.password.update');
+        Route::put('password', [PasswordClientController::class, 'update'])->name('client.password.update');
+    });
+
+Route::middleware(['auth:client'])->group(function () {
+    Route::get('/mon-profil', function () {
+        return view('screens.profile-setting');
+    })->name('client.profile');
+});
+
+Route::middleware(['auth:client'])->group(function () {
+    
+    // Edition du profil (formulaire affichage + update infos perso)
+    Route::get('/mon-profil', [ClientProfileController::class, 'edit'])->name('client.profile');
+    Route::put('/mon-profil', [ClientProfileController::class, 'update'])->name('client.update');
+
+    // Mise à jour mot de passe
+    Route::put('/mon-profil/password', [ClientProfileController::class, 'updatePassword'])->name('client.updatePassword');
+
+    // Suppression du compte
+    Route::delete('/mon-profil', [ClientProfileController::class, 'destroy'])->name('client.deleteAccount');
+
+    // Acceder au panier du compte
+    Route::get('/mon-panier', [CartController::class, 'index'])->name('client.cart.index');
+
+    // Ajouter au panier
+    Route::post('/ajouter-au-panier', [CartController::class, 'addToCart'])->name('client.cart.add');
+    Route::delete('/panier/remove/{id}', [CartController::class, 'remove'])->name('client.cart.remove');
+    Route::put('/panier/update/{id}', [CartController::class, 'update'])->name('client.cart.update');
+
+
+
+    // Pour le checkout
+    Route::get('/checkout', [CheckoutController::class, 'index'])->name('client.checkout');
+    Route::post('/checkout', [CheckoutController::class, 'submit'])->name('client.checkout.submit');
+
+
+    Route::get('/offres', [PropertyController::class, 'index'])->name('client.grid.sidebar');
+
+
 });
