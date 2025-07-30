@@ -11,7 +11,7 @@ class ClientProfileController extends Controller
     public function edit()
     {
         $client = Auth::guard('client')->user();
-        return view('screens.profile-setting', compact('client'));
+        return view('client.profile-setting', compact('client'));
     }
 
     public function update(Request $request)

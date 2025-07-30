@@ -26,7 +26,7 @@
     <!-- Google Map -->
 
     <!-- Start Section-->
-    <section class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen">
+    <section class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen py-12">
         <div class="container relative">
             <div class="grid md:grid-cols-12 grid-cols-1 items-center gap-[30px]">
 
@@ -39,7 +39,7 @@
                 <div class="lg:col-span-5 md:col-span-6">
                     <div class="lg:me-5">
                         <div class="bg-white dark:bg-slate-900 rounded-md shadow dark:shadow-gray-700 p-6">
-                            <h3 class="mb-6 text-2xl leading-normal font-medium">Get in touch !</h3>
+                            <h3 class="mb-6 text-2xl leading-normal font-medium">Contactez-nous !</h3>
                             @if (session('success'))
                                 <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4">
                                     {{ session('success') }}

@@ -1,8 +1,9 @@
-@extends('layout.base')
+@extends('content.no-sidebar')
 
 @section('title', 'Modifier mon compte')
 
 @section('content')
+
 <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 py-12 px-4 sm:px-6 lg:px-8">
 
     <div class="max-w-7xl mx-auto">

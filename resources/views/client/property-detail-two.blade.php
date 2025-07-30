@@ -1,119 +1,286 @@
 @php
-    $page = 'light';
-    $fpage = 'foot1';
+$page = 'light';
+$fpage = 'foot1';
 @endphp
+
 @extends('client.base.style.base')
-@section('title', 'Grid View Layout')
+@section('title', $item['title'] ?? 'Détail')
 @section('content')
-    <!-- Start -->
-    <section class="relative md:py-24 pt-24 pb-16">
-        <div class="container relative">
-            <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
-                <div class="lg:col-span-8 md:col-span-7">
-                    <div class="grid grid-cols-1 relative">
-                        <div class="tiny-one-item">
-                            <div class="tiny-slide">
-                                <img src="{{ asset('client/assets/images/property/single/1.jpg') }}" class="rounded-md shadow dark:shadow-gray-700" alt="">
-                            </div>
 
-                            <div class="tiny-slide">
-                                <img src="{{ asset('client/assets/images/property/single/2.jpg') }}" class="rounded-md shadow dark:shadow-gray-700" alt="">
-                            </div>
+<section class="relative md:py-24 pt-24 pb-16 mt-10">
+    <div class="container relative">
+        <div class="grid md:grid-cols-12 grid-cols-1 gap-[30px]">
 
-                            <div class="tiny-slide">
-                                <img src="{{ asset('client/assets/images/property/single/3.jpg') }}" class="rounded-md shadow dark:shadow-gray-700" alt="">
-                            </div>
-
-                            <div class="tiny-slide">
-                                <img src="{{ asset('client/assets/images/property/single/4.jpg') }}" class="rounded-md shadow dark:shadow-gray-700" alt="">
-                            </div>
-
-                            <div class="tiny-slide">
-                                <img src="{{ asset('client/assets/images/property/single/5.jpg') }}" class="rounded-md shadow dark:shadow-gray-700" alt="">
-                            </div>
+            {{-- Colonne principale --}}
+            <div class="lg:col-span-8 md:col-span-7">
+                {{-- Carousel simple (images) --}}
+                <div class="grid grid-cols-1 relative">
+                    <div class="tiny-one-item">
+                        @forelse(($item['images'] ?? []) as $img)
+                        <div class="tiny-slide">
+                            <img src="{{ $img }}" class="rounded-md shadow dark:shadow-gray-700 w-full h-auto" alt="">
                         </div>
-                    </div>
-
-                    <h4 class="text-2xl font-medium mt-6 mb-3">4BHK Luxury Family Home</h4>
-                    <span class="text-slate-400 flex items-center"><i data-feather="map-pin" class="size-5 me-2"></i> 10765 Hillshire Ave, Baton Rouge, LA 70810, USA</span>
-
-                    <ul class="py-6 flex items-center list-none">
-                        <li class="flex items-center lg:me-6 me-4">
-                            <i class="uil uil-compress-arrows lg:text-3xl text-2xl me-2 text-green-600"></i>
-                            <span class="lg:text-xl">8000sqf</span>
-                        </li>
-
-                        <li class="flex items-center lg:me-6 me-4">
-                            <i class="uil uil-bed-double lg:text-3xl text-2xl me-2 text-green-600"></i>
-                            <span class="lg:text-xl">4 Beds</span>
-                        </li>
-
-                        <li class="flex items-center">
-                            <i class="uil uil-bath lg:text-3xl text-2xl me-2 text-green-600"></i>
-                            <span class="lg:text-xl">4 Baths</span>
-                        </li>
-                    </ul>
-
-                    <p class="text-slate-400">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-                    <p class="text-slate-400 mt-4">But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.</p>
-                    <p class="text-slate-400 mt-4">Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure.</p>
-
-                    <div class="w-full leading-[0] border-0 mt-6">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39206.002432144705!2d-95.4973981212445!3d29.709510002925988!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8640c16de81f3ca5%3A0xf43e0b60ae539ac9!2sGerald+D.+Hines+Waterwall+Park!5e0!3m2!1sen!2sin!4v1566305861440!5m2!1sen!2sin" style="border:0" class="w-full h-[500px]" allowfullscreen></iframe>
+                        @empty
+                        <div class="tiny-slide">
+                            <img src="{{ $item['img'] ?? '' }}" class="rounded-md shadow dark:shadow-gray-700 w-full h-auto" alt="">
+                        </div>
+                        @endforelse
                     </div>
                 </div>
 
-                <div class="lg:col-span-4 md:col-span-5">
-                    <div class="sticky top-20">
-                        <div class="rounded-md bg-slate-50 dark:bg-slate-800 shadow dark:shadow-gray-700">
-                            <div class="p-6">
-                                <h5 class="text-2xl font-medium">Price:</h5>
+                <h4 class="text-2xl font-medium mt-6 mb-3">
+                    {{ $item['title'] ?? '' }}
+                </h4>
 
-                                <div class="flex justify-between items-center mt-4">
-                                    <span class="text-xl font-medium">$ 45,231</span>
+                @if(!empty($item['localisation']))
+                <span class="text-slate-400 flex items-center">
+                    <i data-feather="map-pin" class="size-5 me-2"></i> {{ $item['localisation'] }}
+                </span>
+                @endif
 
-                                    <span class="bg-green-600/10 text-green-600 text-sm px-2.5 py-0.75 rounded h-6">For Sale</span>
-                                </div>
+                {{-- Bandeau caractéristiques selon la catégorie --}}
+                <ul class="py-6 flex flex-wrap items-center gap-6 list-none">
+                    @if(($item['categorie'] ?? '') === 'hebergement')
+                    <li class="flex items-center gap-2">
+                        <i class="uil uil-bed-double lg:text-3xl text-2xl text-green-600"></i>
+                        <span class="lg:text-xl">{{ $item['nombreChambres'] ?? 0 }} chambre(s)</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="uil uil-bath lg:text-3xl text-2xl text-green-600"></i>
+                        <span class="lg:text-xl">{{ $item['nombreSallesDeBain'] ?? 0 }} salle(s) de bain</span>
+                    </li>
+                    @if(!empty($item['capaciteMax']))
+                    <li class="flex items-center gap-2">
+                        <i class="uil uil-users-alt lg:text-3xl text-2xl text-green-600"></i>
+                        <span class="lg:text-xl">{{ $item['capaciteMax'] }} pers.</span>
+                    </li>
+                    @endif
+                    @if(!empty($item['noteMoyenne']))
+                    <li class="flex items-center gap-2">
+                        <i class="uil uil-star lg:text-3xl text-2xl text-yellow-500"></i>
+                        <span class="lg:text-xl">{{ $item['noteMoyenne'] }}/5</span>
+                    </li>
+                    @endif
+                    @endif
 
-                                <ul class="list-none mt-4">
-                                    <li class="flex justify-between items-center">
-                                        <span class="text-slate-400 text-sm">Days on Afrique évasion</span>
-                                        <span class="font-medium text-sm">124 Days</span>
-                                    </li>
+                    @if(($item['categorie'] ?? '') === 'vol')
+                    <li class="flex items-center gap-2">
+                        <i class="uil uil-plane-departure lg:text-3xl text-2xl text-green-600"></i>
+                        <span class="lg:text-xl">{{ $item['depart'] ?? '-' }} → {{ $item['arrivee'] ?? '-' }}</span>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <i class="uil uil-building lg:text-3xl text-2xl text-green-600"></i>
+                        <span class="lg:text-xl">{{ $item['compagnie'] ?? '-' }} @if(!empty($item['numeroVol'])) • {{ $item['numeroVol'] }} @endif</span>
+                    </li>
+                    @if(!empty($item['dateDepart']) || !empty($item['dateArrivee']))
+                    <li class="flex items-center gap-2">
+                        <i class="uil uil-clock lg:text-3xl text-2xl text-green-600"></i>
+                        <span class="lg:text-xl">
+                            {{ $item['dateDepart'] ?? '' }}
+                            @if(!empty($item['dateArrivee'])) → {{ $item['dateArrivee'] }} @endif
+                        </span>
+                    </li>
+                    @endif
+                    @endif
 
-                                    <li class="flex justify-between items-center mt-2">
-                                        <span class="text-slate-400 text-sm">Price per sq ft</span>
-                                        <span class="font-medium text-sm">$ 186</span>
-                                    </li>
+                    @if(($item['categorie'] ?? '') === 'excursion')
+                    @php $d = $item['duree'] ?? null; @endphp
+                    <li class="flex items-center gap-2">
+                        <i class="uil uil-clock lg:text-3xl text-2xl text-green-600"></i>
+                        <span class="lg:text-xl">
+                            @if($d !== null) {{ $d }} {{ $d > 1 ? 'heures' : 'heure' }} @else - @endif
+                        </span>
+                    </li>
+                    @if(!empty($item['capaciteMax']))
+                    <li class="flex items-center gap-2">
+                        <i class="uil uil-users-alt lg:text-3xl text-2xl text-green-600"></i>
+                        <span class="lg:text-xl">{{ $item['capaciteMax'] }} pers.</span>
+                    </li>
+                    @endif
+                    @if(!empty($item['ageMinimum']))
+                    <li class="flex items-center gap-2">
+                        <i class="uil uil-user lg:text-3xl text-2xl text-green-600"></i>
+                        <span class="lg:text-xl">Âge min. : {{ $item['ageMinimum'] }} ans</span>
+                    </li>
+                    @endif
+                    @endif
 
-                                    <li class="flex justify-between items-center mt-2">
-                                        <span class="text-slate-400 text-sm">Monthly Payment (estimate)</span>
-                                        <span class="font-medium text-sm">$ 1497/Monthly</span>
-                                    </li>
-                                </ul>
+                    @if(($item['categorie'] ?? '') === 'evenement')
+                    @php $d = $item['duree'] ?? null; @endphp
+                    <li class="flex items-center gap-2">
+                        <i class="uil uil-clock lg:text-3xl text-2xl text-green-600"></i>
+                        <span class="lg:text-xl">
+                            @if($d !== null) {{ $d }} {{ $d > 1 ? 'heures' : 'heure' }} @else - @endif
+                        </span>
+                    </li>
+                    @if(!empty($item['capaciteMax']))
+                    <li class="flex items-center gap-2">
+                        <i class="uil uil-users-alt lg:text-3xl text-2xl text-green-600"></i>
+                        <span class="lg:text-xl">{{ $item['capaciteMax'] }} pers.</span>
+                    </li>
+                    @endif
+                    @if(!empty($item['statut']))
+                    <li class="flex items-center gap-2">
+                        <i class="uil uil-check-circle lg:text-3xl text-2xl text-green-600"></i>
+                        <span class="lg:text-xl capitalize">{{ $item['statut'] }}</span>
+                    </li>
+                    @endif
+                    @endif
+                </ul>
+
+                {{-- Description --}}
+                @if(!empty($item['description']))
+                <div class="prose prose-slate max-w-none dark:prose-invert text-slate-600 dark:text-slate-300">
+                    {!! nl2br(e($item['description'])) !!}
+                </div>
+                @endif
+
+                {{-- Map (optionnel) : garde ton iframe si tu as une adresse connue --}}
+                {{-- <div class="w-full leading-[0] border-0 mt-6">
+                    <iframe ... class="w-full h-[500px]" allowfullscreen></iframe>
+                </div> --}}
+            </div>
+
+            {{-- Colonne prix + actions --}}
+            <div class="lg:col-span-4 md:col-span-5">
+                <div class="sticky top-20">
+                    <div class="rounded-md bg-slate-50 dark:bg-slate-800 shadow dark:shadow-gray-700">
+                        <div class="p-6">
+                            <h5 class="text-2xl font-medium">Prix :</h5>
+                            <div class="flex justify-between items-center mt-4">
+                                <span class="text-xl font-medium">{{ $item['price'] ?? '' }}</span>
+                                @if(($item['categorie'] ?? '') === 'hebergement')
+                                <span class="bg-green-600/10 text-green-600 text-sm px-2.5 py-0.5 rounded h-6">Par nuit</span>
+                                @elseif(($item['categorie'] ?? '') === 'vol')
+                                <span class="bg-green-600/10 text-green-600 text-sm px-2.5 py-0.5 rounded h-6">Billet</span>
+                                @elseif(($item['categorie'] ?? '') === 'excursion')
+                                <span class="bg-green-600/10 text-green-600 text-sm px-2.5 py-0.5 rounded h-6">Par personne</span>
+                                @elseif(($item['categorie'] ?? '') === 'evenement')
+                                <span class="bg-green-600/10 text-green-600 text-sm px-2.5 py-0.5 rounded h-6">Entrée</span>
+                                @endif
                             </div>
 
-                            <div class="flex">
-                                <div class="p-1 w-1/2">
-                                    <a href="" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md w-full">Book Now</a>
-                                </div>
-                                <div class="p-1 w-1/2">
-                                    <a href="" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md w-full">Offer Now</a>
-                                </div>
-                            </div>
+                            {{-- Infos rapides à droite (facultatif) --}}
+                            <ul class="list-none mt-4 space-y-2 text-sm">
+                                @if(($item['categorie'] ?? '') === 'hebergement')
+                                @if(!empty($item['heureArrivee']) || !empty($item['heureDepart']))
+                                <li class="flex justify-between">
+                                    <span class="text-slate-400">Arrivée / Départ</span>
+                                    <span class="font-medium">
+                                        {{ $item['heureArrivee'] ?? '-' }} / {{ $item['heureDepart'] ?? '-' }}
+                                    </span>
+                                </li>
+                                @endif
+                                @if(!empty($item['numeroDeTel']))
+                                <li class="flex justify-between">
+                                    <span class="text-slate-400">Contact</span>
+                                    <span class="font-medium">{{ $item['numeroDeTel'] }}</span>
+                                </li>
+                                @endif
+                                @endif
+
+                                @if(($item['categorie'] ?? '') === 'vol')
+                                <li class="flex justify-between">
+                                    <span class="text-slate-400">Compagnie</span>
+                                    <span class="font-medium">{{ $item['compagnie'] ?? '-' }}</span>
+                                </li>
+                                @if(!empty($item['numeroVol']))
+                                <li class="flex justify-between">
+                                    <span class="text-slate-400">N° vol</span>
+                                    <span class="font-medium">{{ $item['numeroVol'] }}</span>
+                                </li>
+                                @endif
+                                @endif
+
+                                @if(($item['categorie'] ?? '') === 'excursion' && !empty($item['ageMinimum']))
+                                <li class="flex justify-between">
+                                    <span class="text-slate-400">Âge minimum</span>
+                                    <span class="font-medium">{{ $item['ageMinimum'] }} ans</span>
+                                </li>
+                                @endif
+
+                                {{-- ================== AJOUT : Infos Partenaire ================== --}}
+                                @php
+                                $idPartenaireCtx = $item['idPartenaire'] ?? request('idPartenaire');
+                                $nomPartenaire = $item['partenaireNom'] ?? null;
+                                $telPartenaire = $item['partenaireTel'] ?? null;
+                                $mailPartenaire = $item['partenaireMail'] ?? null;
+                                $sitePartenaire = $item['partenaireSite'] ?? null;
+                                @endphp
+
+                                @if($nomPartenaire || $idPartenaireCtx)
+                                <li class="flex justify-between">
+                                    <span class="text-slate-400">Partenaire</span>
+                                    <span class="font-medium">
+                                        {{ $nomPartenaire ?? ('ID: '.$idPartenaireCtx) }}
+                                    </span>
+                                </li>
+                                @endif
+
+                                @if($telPartenaire)
+                                <li class="flex justify-between">
+                                    <span class="text-slate-400">Tél. partenaire</span>
+                                    <span class="font-medium">{{ $telPartenaire }}</span>
+                                </li>
+                                @endif
+
+                                @if($mailPartenaire)
+                                <li class="flex justify-between">
+                                    <span class="text-slate-400">Email partenaire</span>
+                                    <span class="font-medium">{{ $mailPartenaire }}</span>
+                                </li>
+                                @endif
+
+                                @if($sitePartenaire)
+                                <li class="flex justify-between">
+                                    <span class="text-slate-400">Site partenaire</span>
+                                    <span class="font-medium">
+                                        <a href="{{ str_starts_with($sitePartenaire, 'http') ? $sitePartenaire : 'https://'.$sitePartenaire }}"
+                                            target="_blank" rel="noopener" class="text-green-600 hover:underline">
+                                            {{ $sitePartenaire }}
+                                        </a>
+                                    </span>
+                                </li>
+                                @endif
+                                {{-- ================== /AJOUT ================== --}}
+                            </ul>
+
                         </div>
 
-                        <div class="mt-12 text-center">
-                            <h3 class="mb-6 text-xl leading-normal font-medium text-black dark:text-white">Have Question ? Get in touch!</h3>
+                        <div class="flex py-6">
+                            <div class="p-1 w-full flex justify-center">
+                                <form action="{{ route('client.cart.add') }}" method="POST" class="w-full max-w-xs">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{ $item['id'] ?? '' }}">
+                                    <input type="hidden" name="name" value="{{ $item['title'] ?? '' }}">
+                                    <input type="hidden" name="price" value="{{ isset($item['price_num']) ? $item['price_num'] : (isset($item['price']) ? preg_replace('/\D+/', '', $item['price']) : '') }}">
+                                    <input type="hidden" name="image" value="{{ $item['img'] ?? '' }}">
 
-                            <div class="mt-6">
-                                <a href="{{route('client.contact')}}" class="btn bg-transparent hover:bg-green-600 border border-green-600 text-green-600 hover:text-white rounded-md"><i class="uil uil-phone align-middle me-2"></i> Contact us</a>
+                                    {{-- NEW --}}
+                                    <input type="hidden" name="idPartenaire" value="{{ $item['idPartenaire'] ?? '' }}">
+                                    <input type="hidden" name="nomPartenaire" value="{{ $item['partenaireNom'] ?? '' }}">
+
+                                    <button type="submit"
+                                        class="w-full px-3 py-2 rounded bg-green-600 hover:bg-green-700 text-white text-sm shadow text-center">
+                                        Ajouter au panier
+                                    </button>
+                                </form>
                             </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-12 text-center">
+                        <h3 class="mb-6 text-xl leading-normal font-medium text-black dark:text-white">Des questions ?</h3>
+                        <div class="mt-6">
+                            <a href="{{ route('client.contact') }}" class="btn bg-transparent hover:bg-green-600 border border-green-600 text-green-600 hover:text-white rounded-md">
+                                <i class="uil uil-phone align-middle me-2"></i> Nous contacter
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
-    </section><!--end section-->
-    <!-- End -->
+    </div>
+</section>
 @endsection
