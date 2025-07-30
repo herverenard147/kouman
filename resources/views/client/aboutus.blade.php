@@ -31,7 +31,7 @@
     </div>
 
     {{-- Comment ça fonctionne --}}
-    <section class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen">
+    <section class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen py-12">
         <div class="container relative">
             @include('client.base.components.home.control')
         </div>

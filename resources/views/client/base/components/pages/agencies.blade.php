@@ -1,52 +1,12 @@
 @php
-    $agencies = [
-        [
-            'img' => '/images/agency/1.png',
-            'name' => 'Realty Zen',
-            'title' => 'Real Estate Agency',
-        ],
-        [
-            'img' => '/images/agency/2.png',
-            'name' => 'Highrises Realty',
-            'title' => 'Real Estate Agency',
-        ],
-        [
-            'img' => '/images/agency/3.png',
-            'name' => 'Avenue Realty',
-            'title' => 'Real Estate Agency',
-        ],
-        [
-            'img' => '/images/agency/4.png',
-            'name' => 'Ambrose Properties',
-            'title' => 'Real Estate Agency',
-        ],
-        [
-            'img' => '/images/agency/5.png',
-            'name' => 'Arrow Realtors',
-            'title' => 'Real Estate Agency',
-        ],
-        [
-            'img' => '/images/agency/6.png',
-            'name' => 'Aspire Brokers',
-            'title' => 'Real Estate Agency',
-        ],
-        [
-            'img' => '/images/agency/7.png',
-            'name' => 'Beachfront Properties',
-            'title' => 'Real Estate Agency',
-        ],
-        [
-            'img' => '/images/agency/8.png',
-            'name' => 'Climb Real Estate',
-            'title' => 'Real Estate Agency',
-        ],
-        [
-            'img' => '/images/agency/9.png',
-            'name' => 'Dream Homes',
-            'title' => 'Real Estate Agency',
-        ],
-    ];
+    if (!isset($agencies)) {  // <-- AJOUT : fallback seulement si le contrôleur n'a rien fourni
+        $agencies = [
+            ['img' => '/images/agency/1.png', 'name' => 'Realty Zen', 'title' => 'Real Estate Agency'],
+            ['img' => '/images/agency/2.png', 'name' => 'Highrises Realty', 'title' => 'Real Estate Agency'],
+        ];
+    }
 @endphp
+
 
 @foreach ($agencies as $item)
     <div class="group text-center">

@@ -1,20 +1,20 @@
 <?php
 
+// app/Http/Controllers/PartenaireController.php
+
 namespace App\Http\Controllers;
 
+use App\Models\Partenaire;
 use App\Models\Evenement;
 use App\Models\Excursion;
 use App\Models\Hebergement;
-use App\Models\Partenaire;
 use App\Models\Vol;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PartenaireController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // ... tes méthodes existantes (index, show, etc.)
     public function index()
     {
         $partenaireId = Auth::guard('partenaire')->id();
@@ -58,8 +58,6 @@ class PartenaireController extends Controller
         ];
 
         return view('screens.index', compact('user', 'properties'));
-
-
     }
 
     /**
@@ -114,5 +112,35 @@ class PartenaireController extends Controller
     public function destroy(Partenaire $partenaire)
     {
         //
+    }
+
+    /**
+     * Liste publique des partenaires (alimente $agencies pour la vue).
+     */
+    public function publicIndex(Request $request)
+    {
+        $partenaires = Partenaire::orderBy('nom_entreprise')
+            ->get(['id', 'nom_entreprise', 'type', 'siteWeb']);
+
+        // On mappe vers le même schéma que l'include attend: img / name / title
+        $agencies = $partenaires->map(function (Partenaire $p) {
+            // Image par défaut (compatible avec asset('client/assets' . $item['img']))
+            $relativeLogo = '/images/agency/1.png';
+
+            // Si tu déposes des logos réels dans public/client/assets/partners/{id}.png,
+            // ils seront pris automatiquement :
+            $candidate = public_path("client/assets/partners/{$p->id}.png");
+            if (file_exists($candidate)) {
+                $relativeLogo = "/partners/{$p->id}.png";
+            }
+
+            return [
+                'img'   => $relativeLogo,
+                'name'  => $p->nom_entreprise,
+                'title' => $p->type ?: 'Partenaire',
+            ];
+        });
+
+        return view('client.agencies', compact('agencies'));
     }
 }

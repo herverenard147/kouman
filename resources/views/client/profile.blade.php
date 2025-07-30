@@ -1,4 +1,4 @@
-@extends('layout.base')
+@extends('client.base.style.no-header')
 
 @section('title', 'Profil utilisateur')
 

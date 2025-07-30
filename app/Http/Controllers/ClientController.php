@@ -8,51 +8,54 @@ use App\Models\Excursion;
 use App\Models\Hebergement;
 use App\Models\Localisations;
 use App\Models\Vol;
+use App\Http\Controllers\PropertyController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request, PropertyController $properties)
     {
-        // Récupérer les données
-        $hebergements = Hebergement::all()->map(function ($item) {
-            $item->type = 'hebergement';
-            return $item;
-        });
+        // Récupère les offres à afficher sur l'accueil (ex: 8 items)
+        $items = $properties->buildItems($request, perPage: 8);
 
-        $vols = Vol::all()->map(function ($item) {
-            $item->type = 'vol';
-            return $item;
-        });
+        // Prépare la liste des catégories dynamiques
+        $categories = [
+    [
+        'slug'  => 'hebergement',
+        'label' => 'Hébergements',
+        'icon'  => 'uil uil-home',
+        'image' => asset('https://img.freepik.com/photos-gratuite/belle-villa-luxe-jardin_1150-12614.jpg'), // exemple chemin image
+        'count' => DB::table('hebergements')->count(),
+    ],
+    [
+        'slug'  => 'vol',
+        'label' => 'Vols',
+        'icon'  => 'uil uil-plane',
+        'image' => asset('https://img.freepik.com/photos-gratuite/avion-vol-coucher-soleil_1112-1311.jpg'),
+        'count' => DB::table('vols')->count(),
+    ],
+    [
+        'slug'  => 'excursion',
+        'label' => 'Excursions',
+        'icon'  => 'uil uil-map',
+        'image' => asset('https://img.freepik.com/photos-gratuite/paysage-tropical-soleil-plage_1150-11064.jpg'),
+        'count' => DB::table('excursions')->count(),
+    ],
+    [
+        'slug'  => 'evenement',
+        'label' => 'Événements',
+        'icon'  => 'uil uil-calender',
+        'image' => asset('https://img.freepik.com/photos-gratuite/foule-concert-lumiere-scene_1150-17717.jpg'),
+        'count' => DB::table('evenements')->count(),
+    ],
+];
 
-        $excursions = Excursion::all()->map(function ($item) {
-            $item->type = 'excursion';
-            return $item;
-        });
 
-        $evenements = Evenement::all()->map(function ($item) {
-            $item->type = 'evenement';
-            return $item;
-        });
-
-        $localisations = Localisations::all()->map(function ($item) {
-            $item->type = 'localisation';
-            return $item;
-        });
-
-        // Fusionner les collections
-        $items = $hebergements
-            ->concat($vols)
-            ->concat($excursions)
-            ->concat($evenements);
-
-        // Trier (optionnel) par date ou autre, par exemple ici par 'created_at' décroissant
-        $items = $items->sortByDesc('created_at');
-        // dd($evenements, $vols, $excursions, $hebergements);
-        return view('client.index', compact('items', 'localisations')); // Adjust the view as needed
+        return view('client.index', compact('items', 'categories'));
     }
 
 
