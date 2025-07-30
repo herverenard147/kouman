@@ -26,7 +26,7 @@ $fpage = 'foot1';
                 </p>
 
                 <div class="mt-4">
-                    <a href="" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md mt-3">En savoir plus</a>
+                    <a href="{{ route('client.aboutus') }}" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md mt-3">En savoir plus</a>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@ $fpage = 'foot1';
                     {{-- Rechercher --}}
                     <div>
                         <label class="form-label font-medium text-slate-900 dark:text-white">
-                            Rechercher : <span class="text-red-600">*</span>
+                            Rechercher : {{--<span class="text-red-600">*</span>--}}
                         </label>
                         <div class="filter-search-form relative filter-border mt-2">
                             <i class="uil uil-search icons"></i>
@@ -118,19 +118,17 @@ $fpage = 'foot1';
                     {{-- Bouton --}}
                     <div class="lg:mt-6">
                         <input type="submit" id="search-buy"
-                            class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white searchbtn submit-btn w-full !h-[60px] lg:rounded-none rounded mt-2"
+                            class="btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white searchbtn submit-btn w-full !h-[62px] lg:rounded-none rounded mt-2"
                             value="Rechercher">
                     </div>
-
                 </div>
             </div>
         </form>
-
     </div>
 </div>
 
 <!-- Début Section -->
-<section class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen">
+<section class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen py-12">
     <div class="container relative pt-5">
         <div class="grid md:grid-cols-12 grid-cols-1 items-center gap-[30px]">
             <div class="md:col-span-5">
@@ -210,11 +208,12 @@ $fpage = 'foot1';
             </p>
         </div>
 
-        <div class="grid grid-cols-1 mt-8 relative">
+        <div class="mt-8 relative">
             <div class="tiny-home-slide-three">
-                @include("client.base.components.listing.listing-grid")
+                @include('client.base.components.listing.listing-grid', ['items' => $items, 'asSlides' => true])
             </div>
         </div>
+
     </div>
 
     <div class="container relative lg:mt-24 mt-16">
@@ -226,9 +225,33 @@ $fpage = 'foot1';
         </div>
 
         <div class="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 mt-8 md:gap-[30px] gap-3">
-            @include('client/base/components/home/categories')
+            @foreach($categories as $cat)
+            <a href="{{ route('client.grid.sidebar', ['categorie' => $cat['slug']]) }}"
+                class="group relative rounded-xl overflow-hidden shadow hover:shadow-lg transition bg-white dark:bg-slate-900">
+
+                <div class="aspect-[4/3] flex items-center justify-center bg-green-50">
+                    <div class="aspect-[4/3] flex items-center justify-center bg-green-50">
+                        <img src="{{ $cat['image'] }}" alt="{{ $cat['label'] }}" class="w-full h-full object-cover opacity-95" />
+                    </div>
+                </div>
+
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div class="absolute inset-x-0 bottom-0 p-4 flex items-center justify-between">
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <i class="{{ $cat['icon'] }} text-white text-xl"></i>
+                            <span class="text-white font-semibold">{{ $cat['label'] }}</span>
+                        </div>
+                        <span class="text-white/80 text-sm">
+                            {{ number_format($cat['count'], 0, ',', ' ') }} offre(s)
+                        </span>
+                    </div>
+                </div>
+            </a>
+            @endforeach
         </div>
     </div>
+
 
     <div class="container relative lg:mt-24 mt-16">
         <div class="grid grid-cols-1 pb-8 text-center">

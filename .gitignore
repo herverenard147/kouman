@@ -20,6 +20,8 @@
 /storage/*.key
 /storage/pail
 /vendor
+/public/index.php
+/public/.htaccess
 Homestead.json
 Homestead.yaml
 npm-debug.log

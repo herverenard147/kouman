@@ -89,7 +89,7 @@ $user = $client ?? $partenaire;
 
 
             <li class="inline mb-0">
-                <a href="{{ route('base.components.chat') }}"
+                <a href="{{ route('client.cart.index') }}"
                     class="btn btn-icon bg-yellow-500 hover:bg-yellow-600 border-yellow-500 dark:border-yellow-500 text-white rounded-full relative">
                     <i data-feather="shopping-cart" class="size-4 stroke-[3]"></i>
 

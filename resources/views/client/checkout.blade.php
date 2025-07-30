@@ -1,4 +1,4 @@
-@extends('layout.base')
+@extends('content.no-sidebar')
 
 @section('title', 'Finalisation de commande')
 

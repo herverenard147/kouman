@@ -26,7 +26,7 @@
     <!-- End Hero -->
 
     <!-- Start -->
-    <section class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen">
+    <section class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen py-12">
         <div class="container relative">
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-[30px]">
 
