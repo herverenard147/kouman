@@ -43,6 +43,7 @@ Route::middleware(['guest:web'])->prefix('client')->group(function () {
         ->name('password.store');
 
 
+    Route::get('/offres', [PropertyController::class, 'index'])->name('client.grid.sidebar');
 
     Route::post('/contact/envoyer', [MailContact::class, 'store'])->name('contact.envoyer');
 
@@ -191,7 +192,7 @@ Route::middleware(['auth:client'])->group(function () {
 });
 
 Route::middleware(['auth:client'])->group(function () {
-    
+
     // Edition du profil (formulaire affichage + update infos perso)
     Route::get('/mon-profil', [ClientProfileController::class, 'edit'])->name('client.profile');
     Route::put('/mon-profil', [ClientProfileController::class, 'update'])->name('client.update');
@@ -217,7 +218,6 @@ Route::middleware(['auth:client'])->group(function () {
     Route::post('/checkout', [CheckoutController::class, 'submit'])->name('client.checkout.submit');
 
 
-    Route::get('/offres', [PropertyController::class, 'index'])->name('client.grid.sidebar');
 
 
 });

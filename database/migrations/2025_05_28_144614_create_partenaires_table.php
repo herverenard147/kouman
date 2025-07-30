@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('statut', 100);
             $table->string('password', 255);
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('numeroDeTel', 20)->nullable()->change();
             $table->rememberToken();
             $table->timestamps();
         });

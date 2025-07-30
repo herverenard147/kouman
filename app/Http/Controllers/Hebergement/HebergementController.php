@@ -23,7 +23,9 @@ class HebergementController extends Controller
      */
     public function index()
     {
-        $hebergements = Hebergement::where('idPartenaire', Auth::guard('partenaire')->id())->with('images')->get();
+        $hebergements = Hebergement::where('idPartenaire', Auth::guard('partenaire')->id())
+        ->with('imagePrincipale', 'images', 'type', 'localisation', 'avis') // ajoute les relations nécessaires
+        ->paginate(6); // nombre d'éléments par page
         // dd($hebergements);
         return view('screens.add.Hebergement.hebergement', compact('hebergements'));
         // return response()->file(resource_path('views/screens/add/Hebergement/hebergement.blade.php'));
@@ -80,7 +82,7 @@ class HebergementController extends Controller
 
         foreach ($request->input('telephones', []) as $telData) {
             $hebergement->telephones()->create([
-                'numeroDeTel' => $telData['numero']
+                'numero' => $telData['numero']
             ]);
         }
         // Associer les équipements
