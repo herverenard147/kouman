@@ -155,7 +155,8 @@ class HebergementController extends Controller
      */
     public function edit(string $id)
     {
-       $hebergement = Hebergement::with([
+        // dd($id);
+        $hebergement = Hebergement::with([
             'imagePrincipale', // Correction : remplacé 'estPrincipale' par 'imagePrincipale'
             'images',
             'localisation',
@@ -166,8 +167,9 @@ class HebergementController extends Controller
             'prixSaisonniers',
             'politiqueAnnulation'
         ])
-        ->where('id', Auth::guard('partenaire')->id()) // Correction : 'id' → 'idPartenaire'
+        ->where('idPartenaire', Auth::guard('partenaire')->id()) // Correction : 'id' → 'idPartenaire'
         ->findOrFail($id);
+        // dd($hebergement);
         $familles = FamilleTypeHebergements::with('types')->get();
         $equipements = Equipement::all();
         $politiques = PolitiquesAnnulation::all();

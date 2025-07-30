@@ -14,7 +14,7 @@
         </div>
 
         <div class="grid xl:grid-cols-5 md:grid-cols-3 grid-cols-1 mt-6 gap-6">
-            @include('base.components.Dashboard.total-properties', [
+            @include('base.components.dashboard.total-properties', [
                 'properties' => $properties,
             ])
         </div>
@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="p-6">
-                        @include('base.components.Dashboard.sales-data')
+                        @include('base.components.dashboard.sales-data')
                     </div>
                 </div>
             </div>
@@ -113,7 +113,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @include('base.components.Dashboard.recent-transections')
+                                @include('base.components.dashboard.recent-transections')
                             </tbody>
                         </table>
                     </div>
@@ -133,7 +133,7 @@
                     </div>
 
                     <div class="relative overflow-x-auto block w-full max-h-[284px] p-6" data-simplebar>
-                        @include('base.components.Dashboard.top-properties')
+                        @include('base.components.dashboard.top-properties')
                     </div>
                 </div>
             </div>
