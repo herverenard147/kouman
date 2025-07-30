@@ -1,7 +1,40 @@
 @extends('layout.base')
 @section('title', 'Modifier l\'hébergement')
 @section('content')
+  {{-- <div class="relative rounded border border-gray-300 p-1 bg-white shadow max-w-[150px] image-preview" data-image-id="{{ $image->idImage }}">
+                                    <button type="button" class="absolute top-1 left-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 mark-delete-image" data-image-id="{{ $image->idImage }}">✕</button>
+                                    <img src="{{ asset('storage/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-auto object-cover rounded">
+                                    <input type="hidden" name="images_to_keep[{{ $image->idImage }}]" value="1" class="image-keep-input">
+                                    @if($image->estPrincipale)
+                                        <span class="absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded">Principale</span>
+                                    @endif
+                                </div> --}}
+{{-- <p class="font-medium mb-4">Téléchargez l'image de votre propriété ici (max 10 images, 10MB chacun)</p>
 
+                                    <div id="preview-box" class="preview-box flex flex-wrap gap-4 overflow-x-auto max-h-60 bg-gray-50 p-4 rounded-md shadow-inner text-center text-slate-400">
+                                        @if($hebergement->images->isEmpty())
+                                            Supports JPG et PNG. Taille max : 10MB.
+                                        @else
+                                            @foreach($hebergement->images as $index => $image)
+                                                <div class="relative rounded border border-gray-300 p-1 bg-white shadow max-w-[150px] image-preview" data-image-id="{{ $image->idImage }}">
+                                                    <button type="button" class="absolute top-1 left-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 mark-delete-image" data-image-id="{{ $image->idImage }}">✕</button>
+                                                    <img src="{{ asset('storage/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-auto object-cover rounded">
+                                                    <input type="hidden" name="images_to_keep[{{ $image->idImage }}]" value="1" class="image-keep-input">
+                                                    @if($index === 0 && !$image->estSupprime)
+                                                        <span class="absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded principal-badge">Principale</span>
+                                                    @endif
+                                                </div>
+                                            @endforeach
+                                        @endif
+                                        <!-- Conteneur pour les nouvelles images -->
+                                        <div id="new-images-preview" class="flex flex-wrap gap-4"></div>
+                                    </div>
+
+                                    <input type="file" id="input-file" name="images[]" accept="image/jpeg,image/png" multiple hidden onchange="handleImageChange()">
+                                    <label for="input-file" class="btn-upload btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-6 cursor-pointer">
+                                        Ajouter des images
+                                    </label> --}}
+<div class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen">
     <div class="container-fluid relative px-3">
         <div class="layout-specing">
             <!-- Start Content -->
@@ -37,40 +70,9 @@
                     <div class="grid md:grid-cols-1 grid-cols-1 gap-6 mt-6">
                         <div class="md:col-span-12 col-span-12">
                             <div class="rounded-md shadow p-6 bg-white h-fit mb-5">
-                                {{-- <div class="relative rounded border border-gray-300 p-1 bg-white shadow max-w-[150px] image-preview" data-image-id="{{ $image->idImage }}">
-                                    <button type="button" class="absolute top-1 left-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 mark-delete-image" data-image-id="{{ $image->idImage }}">✕</button>
-                                    <img src="{{ asset('storage/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-auto object-cover rounded">
-                                    <input type="hidden" name="images_to_keep[{{ $image->idImage }}]" value="1" class="image-keep-input">
-                                    @if($image->estPrincipale)
-                                        <span class="absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded">Principale</span>
-                                    @endif
-                                </div> --}}
+
                                 <div>
-                                    {{-- <p class="font-medium mb-4">Téléchargez l'image de votre propriété ici (max 10 images, 10MB chacun)</p>
 
-                                    <div id="preview-box" class="preview-box flex flex-wrap gap-4 overflow-x-auto max-h-60 bg-gray-50 p-4 rounded-md shadow-inner text-center text-slate-400">
-                                        @if($hebergement->images->isEmpty())
-                                            Supports JPG et PNG. Taille max : 10MB.
-                                        @else
-                                            @foreach($hebergement->images as $index => $image)
-                                                <div class="relative rounded border border-gray-300 p-1 bg-white shadow max-w-[150px] image-preview" data-image-id="{{ $image->idImage }}">
-                                                    <button type="button" class="absolute top-1 left-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 mark-delete-image" data-image-id="{{ $image->idImage }}">✕</button>
-                                                    <img src="{{ asset('storage/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-auto object-cover rounded">
-                                                    <input type="hidden" name="images_to_keep[{{ $image->idImage }}]" value="1" class="image-keep-input">
-                                                    @if($index === 0 && !$image->estSupprime)
-                                                        <span class="absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded principal-badge">Principale</span>
-                                                    @endif
-                                                </div>
-                                            @endforeach
-                                        @endif
-                                        <!-- Conteneur pour les nouvelles images -->
-                                        <div id="new-images-preview" class="flex flex-wrap gap-4"></div>
-                                    </div>
-
-                                    <input type="file" id="input-file" name="images[]" accept="image/jpeg,image/png" multiple hidden onchange="handleImageChange()">
-                                    <label for="input-file" class="btn-upload btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-6 cursor-pointer">
-                                        Ajouter des images
-                                    </label> --}}
                                     <p class="font-medium mb-4">Téléchargez les images de votre propriété (max 10 images, 10MB chacune, JPG/PNG)</p>
                                     <div id="preview-box" class="preview-box flex flex-wrap gap-4 overflow-x-auto max-h-60 bg-gray-50 p-4 rounded-md shadow-inner text-center text-slate-400">
                                         @if($hebergement->images->isEmpty())
@@ -346,7 +348,7 @@
             <!-- End Content -->
         </div>
     </div><!--end container-->
-
+</div>
 <script>
 
     const selectedFiles = [];

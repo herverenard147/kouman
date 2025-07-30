@@ -1,170 +1,173 @@
-@php
-$grids = [
-    [
-        'id' => 1,
-        'img' => '/images/property/1.jpg',
-        'sqf' => '8000sqf',
-        'beds' => '4 Beds',
-        'baths' => '4 Baths',
-        'price' => '$5000',
-        'title' => '10765 Hillshire Ave, Baton Rouge, LA 70810, USA',
-    ],
-    [
-        'id' => 2,
-        'img' => '/images/property/2.jpg',
-        'sqf' => '8000sqf',
-        'beds' => '4 Beds',
-        'baths' => '4 Baths',
-        'price' => '$5000',
-        'title' => '59345 STONEWALL DR, Plaquemine, LA 70764, USA',
-    ],
-    [
-        'id' => 3,
-        'img' => '/images/property/3.jpg',
-        'sqf' => '8000sqf',
-        'beds' => '4 Beds',
-        'baths' => '4 Baths',
-        'price' => '$5000',
-        'title' => '3723 SANDBAR DR, Addis, LA 70710, USA',
-    ],
-    [
-        'id' => 4,
-        'img' => '/images/property/4.jpg',
-        'sqf' => '8000sqf',
-        'beds' => '4 Beds',
-        'baths' => '4 Baths',
-        'price' => '$5000',
-        'title' => 'Lot 21 ROYAL OAK DR, Prairieville, LA 70769, USA',
-    ],
-    [
-        'id' => 5,
-        'img' => '/images/property/5.jpg',
-        'sqf' => '8000sqf',
-        'beds' => '4 Beds',
-        'baths' => '4 Baths',
-        'price' => '$5000',
-        'title' => '710 BOYD DR, Unit #1102, Baton Rouge, LA 70808, USA',
-    ],
-    [
-        'id' => 6,
-        'img' => '/images/property/6.jpg',
-        'sqf' => '8000sqf',
-        'beds' => '4 Beds',
-        'baths' => '4 Baths',
-        'price' => '$5000',
-        'title' => '5133 MCLAIN WAY, Baton Rouge, LA 70809, USA',
-    ],
-    [
-        'id' => 7,
-        'img' => '/images/property/7.jpg',
-        'sqf' => '8000sqf',
-        'beds' => '4 Beds',
-        'baths' => '4 Baths',
-        'price' => '$5000',
-        'title' => '2141 Fiero Street, Baton Rouge, LA 70808',
-    ],
-    [
-        'id' => 8,
-        'img' => '/images/property/8.jpg',
-        'sqf' => '8000sqf',
-        'beds' => '4 Beds',
-        'baths' => '4 Baths',
-        'price' => '$5000',
-        'title' => '9714 Inniswold Estates Ave, Baton Rouge, LA 70809',
-    ],
-    [
-        'id' => 9,
-        'img' => '/images/property/9.jpg',
-        'sqf' => '8000sqf',
-        'beds' => '4 Beds',
-        'baths' => '4 Baths',
-        'price' => '$5000',
-        'title' => '1433 Beckenham Dr, Baton Rouge, LA 70808, USA',
-    ],
-    [
-        'id' => 10,
-        'img' => '/images/property/10.jpg',
-        'sqf' => '8000sqf',
-        'beds' => '4 Beds',
-        'baths' => '4 Baths',
-        'price' => '$5000',
-        'title' => '1574 Sharlo Ave, Baton Rouge, LA 70820, USA',
-    ],
-    [
-        'id' => 11,
-        'img' => '/images/property/11.jpg',
-        'sqf' => '8000sqf',
-        'beds' => '4 Beds',
-        'baths' => '4 Baths',
-        'price' => '$5000',
-        'title' => '2528 BOCAGE LAKE DR, Baton Rouge, LA 70809, USA',
-    ],
-    [
-        'id' => 12,
-        'img' => '/images/property/12.jpg',
-        'sqf' => '8000sqf',
-        'beds' => '4 Beds',
-        'baths' => '4 Baths',
-        'price' => '$5000',
-        'title' => '1533 NICHOLSON DR, Baton Rouge, LA 70802, USA',
-    ],
-];
-@endphp
+{{-- listing-grid.blade.php : affiche les cards à partir de $items --}}
 
-@foreach ($grids as $item)
-    <div
-        class="group rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl dark:hover:shadow-xl dark:shadow-gray-700 dark:hover:shadow-gray-700 overflow-hidden ease-in-out duration-500">
-        <div class="relative">
-            <img src="{{ asset('client/assets' .$item['img']) }}" alt="">
+@forelse ($items as $item)
+<div class="flex flex-col h-full rounded-xl bg-white dark:bg-slate-900 shadow hover:shadow-xl overflow-hidden transition">
+    {{-- Image ratio fixe pour des cartes alignées --}}
+    <div class="relative aspect-[16/9]">
+        <img src="{{ $item['img'] ?? '' }}" alt="{{ $item['title'] ?? '' }}"
+            class="absolute inset-0 w-full h-full object-cover" />
+        <div class="absolute top-4 right-4">
+            <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/90 shadow">
+                <i class="mdi mdi-heart text-[20px] text-slate-700"></i>
+            </span>
+        </div>
+    </div>
 
-            <div class="absolute top-4 end-4">
-                <a href="javascript:void(0)"
-                    class="btn btn-icon bg-white dark:bg-slate-900 shadow dark:shadow-gray-700 rounded-full text-slate-100 dark:text-slate-700 focus:text-red-600 dark:focus:text-red-600 hover:text-red-600 dark:hover:text-red-600"><i
-                        class="mdi mdi-heart text-[20px]"></i></a>
-            </div>
+    <div class="p-6 flex flex-col flex-1">
+        <div class="pb-2">
+            @if(!empty($item['categorie']))
+            <span class="text-xs px-2 py-1 rounded bg-green-50 text-green-700 border border-green-100">
+                {{ ucfirst($item['categorie']) }}
+            </span>
+            @endif
         </div>
 
-        <div class="p-6">
-            <div class="pb-6">
-                <a href="{{route('client.property.detail.two', ['id' => $item['id']])}}"
-                    class="text-lg hover:text-green-600 font-medium ease-in-out duration-500">{{ $item['title'] }}</a>
+        <div class="pb-4">
+            <a href="{{ route('client.property.detail.two', ['id' => $item['id'] ?? 0]) }}"
+                class="text-base sm:text-lg font-medium hover:text-green-600 transition-colors">
+                {{ $item['title'] ?? '' }}
+            </a>
+        </div>
+
+        {{-- ====================== Hébergements ====================== --}}
+        @if(($item['categorie'] ?? '') === 'hebergement')
+        <ul class="py-4 border-y border-slate-100 dark:border-slate-800 flex items-center gap-4 text-sm">
+            <li class="flex items-center gap-2">
+                <i class="uil uil-bed-double text-xl text-green-600"></i>
+                <span>{{ $item['beds'] ?? '-' }}</span>
+            </li>
+            <li class="flex items-center gap-2">
+                <i class="uil uil-bath text-xl text-green-600"></i>
+                <span>{{ $item['baths'] ?? '-' }}</span>
+            </li>
+            <li class="flex items-center gap-2">
+                <i class="uil uil-users-alt text-xl text-green-600"></i>
+                <span>{{ $item['capaciteMax'] ?? '-' }} <span class="text-slate-500">pers.</span></span>
+            </li>
+        </ul>
+
+        @if(!empty($item['noteMoyenne']))
+        <div class="mt-2 flex items-center gap-1 text-yellow-500">
+            <i class="uil uil-star text-xl"></i>
+            <span class="font-semibold">{{ $item['noteMoyenne'] }}/5</span>
+        </div>
+        @endif
+        @endif
+
+        {{-- ====================== Vols ====================== --}}
+        @if(($item['categorie'] ?? '') === 'vol')
+        <ul class="py-4 border-y border-slate-100 dark:border-slate-800 flex flex-wrap items-center gap-4 text-sm">
+            <li class="flex items-center gap-2">
+                <i class="uil uil-plane-departure text-xl text-green-600"></i>
+                <span>{{ $item['depart'] ?? '-' }} <span class="text-slate-400">→</span> {{ $item['arrivee'] ?? '-' }}</span>
+            </li>
+            <li class="flex items-center gap-2">
+                <i class="uil uil-building text-xl text-green-600"></i>
+                <span>{{ $item['compagnie'] ?? '-' }} @if(!empty($item['numeroVol'])) • {{ $item['numeroVol'] }} @endif</span>
+            </li>
+            @if(!empty($item['dateDepart']) || !empty($item['dateArrivee']))
+            <li class="flex items-center gap-2">
+                <i class="uil uil-schedule text-xl text-green-600"></i>
+                <span>
+                    {{ $item['dateDepart'] ?? '' }}
+                    @if(!empty($item['dateArrivee'])) <span class="text-slate-400">→</span> {{ $item['dateArrivee'] }} @endif
+                </span>
+            </li>
+            @endif
+        </ul>
+        @endif
+
+        {{-- ====================== Excursions ====================== --}}
+        @if(($item['categorie'] ?? '') === 'excursion')
+        <ul class="py-4 border-y border-slate-100 dark:border-slate-800 flex flex-col gap-2 text-sm">
+            {{-- Durée en entier + libellé heure/heures --}}
+            @php $d = $item['duree'] ?? null; @endphp
+            <li class="flex items-center gap-2">
+                <i class="uil uil-clock text-xl text-green-600"></i>
+                <span>
+                    @if($d !== null)
+                    {{ $d }} {{ $d > 1 ? 'heures' : 'heure' }}
+                    @else
+                    -
+                    @endif
+                </span>
+            </li>
+
+            {{-- Capacité --}}
+            @if(!empty($item['capaciteMax']))
+            <li class="flex items-center gap-2">
+                <i class="uil uil-users-alt text-xl text-green-600"></i>
+                <span>{{ $item['capaciteMax'] }} <span class="text-slate-500">pers.</span></span>
+            </li>
+            @endif
+
+            {{-- Âge minimum --}}
+            @if(!empty($item['ageMinimum']))
+            <li class="flex items-center gap-2">
+                <i class="uil uil-user text-xl text-green-600"></i>
+                <span>Âge min. : {{ $item['ageMinimum'] }} ans</span>
+            </li>
+            @endif
+
+            {{-- Itinéraire (tronqué pour éviter les textes trop longs) --}}
+            @if(!empty($item['itineraire']))
+            @php
+            $itin = strip_tags($item['itineraire']);
+            $itinShort = mb_strlen($itin) > 100 ? mb_substr($itin, 0, 100).'…' : $itin;
+            @endphp
+            <li class="flex items-center gap-2">
+                <i class="uil uil-map-marker text-xl text-green-600"></i>
+                <span title="{{ $itin }}">{{ $itinShort }}</span>
+            </li>
+            @endif
+        </ul>
+        @endif
+
+
+        {{-- ====================== Événements ====================== --}}
+        @if(($item['categorie'] ?? '') === 'evenement')
+        <ul class="py-4 border-y border-slate-100 dark:border-slate-800 flex items-center gap-4 text-sm">
+            <li class="flex items-center gap-2">
+                <i class="uil uil-clock text-xl text-green-600"></i>
+                <span>{{ $item['duree'] ?? '-' }} heure(s)</span>
+            </li>
+            @if(!empty($item['capaciteMax']))
+            <li class="flex items-center gap-2">
+                <i class="uil uil-users-alt text-xl text-green-600"></i>
+                <span>{{ $item['capaciteMax'] }} <span class="text-slate-500">pers.</span></span>
+            </li>
+            @endif
+            @if(!empty($item['statut']))
+            <li class="flex items-center gap-2">
+                <i class="uil uil-check-circle text-xl text-green-600"></i>
+                <span class="capitalize">{{ $item['statut'] }}</span>
+            </li>
+            @endif
+        </ul>
+        @endif
+
+        <div class="mt-auto pt-4 flex items-center justify-between">
+            <div>
+                <span class="text-slate-400 text-sm">Prix</span>
+                <p class="text-lg font-semibold leading-tight">{{ $item['price'] ?? '' }}</p>
             </div>
 
-            <ul class="py-6 border-y border-slate-100 dark:border-gray-800 flex items-center list-none">
-                <li class="flex items-center me-4">
-                    <i class="uil uil-compress-arrows text-2xl me-2 text-green-600"></i>
-                    <span>{{ $item['sqf'] }}</span>
-                </li>
-
-                <li class="flex items-center me-4">
-                    <i class="uil uil-bed-double text-2xl me-2 text-green-600"></i>
-                    <span>{{ $item['beds'] }}</span>
-                </li>
-
-                <li class="flex items-center">
-                    <i class="uil uil-bath text-2xl me-2 text-green-600"></i>
-                    <span>{{ $item['baths'] }}</span>
-                </li>
-            </ul>
-
-            <ul class="pt-6 flex justify-between items-center list-none">
-                <li>
-                    <span class="text-slate-400">Price</span>
-                    <p class="text-lg font-medium">{{ $item['price'] }}</p>
-                </li>
-                
-                <li>
-                    <span class="text-slate-400">Rating</span>
-                    <ul class="text-lg font-medium text-amber-400 list-none">
-                        <li class="inline"><i class="mdi mdi-star"></i></li>
-                        <li class="inline"><i class="mdi mdi-star"></i></li>
-                        <li class="inline"><i class="mdi mdi-star"></i></li>
-                        <li class="inline"><i class="mdi mdi-star"></i></li>
-                        <li class="inline"><i class="mdi mdi-star"></i></li>
-                        <li class="inline text-black dark:text-white">5.0(30)</li>
-                    </ul>
-                </li>
-            </ul>
+            <form action="{{ route('client.cart.add') }}" method="POST">
+                @csrf
+                <input type="hidden" name="id" value="{{ $item['id'] ?? '' }}">
+                <input type="hidden" name="name" value="{{ $item['title'] ?? '' }}">
+                <input type="hidden" name="price" value="{{ isset($item['price_num']) ? $item['price_num'] : (isset($item['price']) ? preg_replace('/\D+/', '', $item['price']) : '') }}">
+                <input type="hidden" name="image" value="{{ $item['img'] ?? '' }}">
+                <button type="submit"
+                    class="inline-flex items-center px-3 py-2 rounded bg-green-600 hover:bg-green-700 text-white text-sm shadow">
+                    Ajouter au panier
+                </button>
+            </form>
         </div>
-    </div><!--end property content-->
-@endforeach
+    </div>
+</div>
+@empty
+<div class="col-span-2 p-6 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600">
+    Aucun résultat ne correspond à vos filtres.
+</div>
+@endforelse

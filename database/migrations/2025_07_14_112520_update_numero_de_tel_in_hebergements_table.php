@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('hebergements', function (Blueprint $table) {
-            $table->string('numeroDeTel', 20)->change();
         });
     }
 

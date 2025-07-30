@@ -23,7 +23,9 @@ class HebergementController extends Controller
      */
     public function index()
     {
-        $hebergements = Hebergement::where('idPartenaire', Auth::guard('partenaire')->id())->with('images')->get();
+        $hebergements = Hebergement::where('idPartenaire', Auth::guard('partenaire')->id())
+        ->with('imagePrincipale', 'images', 'type', 'localisation', 'avis') // ajoute les relations nécessaires
+        ->paginate(6); // nombre d'éléments par page
         // dd($hebergements);
         return view('screens.add.Hebergement.hebergement', compact('hebergements'));
         // return response()->file(resource_path('views/screens/add/Hebergement/hebergement.blade.php'));
@@ -80,7 +82,7 @@ class HebergementController extends Controller
 
         foreach ($request->input('telephones', []) as $telData) {
             $hebergement->telephones()->create([
-                'numeroDeTel' => $telData['numero']
+                'numero' => $telData['numero']
             ]);
         }
         // Associer les équipements
@@ -153,7 +155,8 @@ class HebergementController extends Controller
      */
     public function edit(string $id)
     {
-       $hebergement = Hebergement::with([
+        // dd($id);
+        $hebergement = Hebergement::with([
             'imagePrincipale', // Correction : remplacé 'estPrincipale' par 'imagePrincipale'
             'images',
             'localisation',
@@ -164,8 +167,9 @@ class HebergementController extends Controller
             'prixSaisonniers',
             'politiqueAnnulation'
         ])
-        ->where('id', Auth::guard('partenaire')->id()) // Correction : 'id' → 'idPartenaire'
+        ->where('idPartenaire', Auth::guard('partenaire')->id()) // Correction : 'id' → 'idPartenaire'
         ->findOrFail($id);
+        // dd($hebergement);
         $familles = FamilleTypeHebergements::with('types')->get();
         $equipements = Equipement::all();
         $politiques = PolitiquesAnnulation::all();
