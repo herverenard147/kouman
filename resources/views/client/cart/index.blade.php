@@ -1,6 +1,10 @@
-@extends('content.no-sidebar')
-@section('title', 'Mon Panier')
+@php
+$page = 'light';
+$fpage = 'foot1';
+@endphp
+
 @extends('client.base.style.base')
+@section('title', 'Mon Panier')
 @section('content')
 
 <!-- Start Hero -->
@@ -9,7 +13,7 @@
     <div class="container relative">
         <div class="grid grid-cols-1 text-center mt-10">
             <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
-                <span class="block bg-clip-text text-transparent bg-green-500">Votre Panier</span>
+                <span class="block bg-clip-text text-transparent bg-white">Votre Panier</span>
             </h1>
             <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-300 sm:mt-4">
                 Ici vous trouverez toutes les offres que vous avez ajouter au panier, Finalisez votre commande
@@ -107,7 +111,7 @@
                                             alt="{{ $item['name'] }}"
                                             class="h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
                                             loading="lazy">
-                                        <div class="absolute inset-0 bg-black bg-opacity-10 group-hover:bg-opacity-20 transition-all duration-300"></div>
+                                        <div class="absolute inset-0 bg-opacity-10 group-hover:bg-opacity-20 transition-all duration-300"></div>
                                     </div>
                                     <div class="ml-4">
                                         <div class="text-base font-semibold text-gray-900">{{ $item['name'] }}</div>

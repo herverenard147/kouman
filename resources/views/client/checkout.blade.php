@@ -1,16 +1,35 @@
-@extends('content.no-sidebar')
+@php
+$page = 'light';
+$fpage = 'foot1';
+@endphp
 
+@extends('client.base.style.base')
 @section('title', 'Finalisation de commande')
 
 @section('content')
+<!-- Start Hero -->
+<section class="relative table w-full py-32 lg:py-36 bg-[url('{{ asset('client/assets/images/bg/01.jpg') }}')] bg-no-repeat bg-center bg-cover">
+    <div class="absolute inset-0 bg-black opacity-80"></div>
+    <div class="container relative">
+        <div class="grid grid-cols-1 text-center mt-10">
+            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
+                <span class="block bg-clip-text text-transparent bg-white">Finalisez votre commande</span>
+            </h1>
+        </div>
+    </div>
+</section>
+<div class="relative">
+    <div class="shape overflow-hidden z-1 text-white dark:text-slate-900">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+<!-- End Hero -->
 <div class="min-h-screen bg-white dark:bg-slate-900 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
         <!-- En-tête avec étapes de commande -->
         <div class="text-center mb-16">
-            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
-                <span class="block bg-clip-text text-transparent bg-green-500">Finalisez votre commande</span>
-            </h1>
-            
             <div class="mt-8 flex justify-center px-4">
                 <div class="flex items-center bg-white rounded-full px-6 py-2 shadow-sm">
                     <!-- Étape Panier -->
@@ -22,14 +41,14 @@
                         </div>
                         <div class="ml-2 text-sm font-medium text-gray-700">Panier</div>
                     </div>
-                    
+
                     <!-- Flèche -->
                     <div class="mx-2 text-green-500">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
                     </div>
-                    
+
                     <!-- Étape Livraison (active) -->
                     <div class="flex items-center">
                         <div class="flex-shrink-0 h-8 w-8 rounded-full bg-green-600 flex items-center justify-center">
@@ -37,14 +56,14 @@
                         </div>
                         <div class="ml-2 text-sm font-medium text-gray-900">Livraison</div>
                     </div>
-                    
+
                     <!-- Flèche -->
                     <div class="mx-2 text-green-500">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
                     </div>
-                    
+
                     <!-- Étape Paiement -->
                     <div class="flex items-center">
                         <div class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
@@ -83,8 +102,8 @@
                                     </svg>
                                 </div>
                                 <input type="text" name="name" value="{{ old('name', auth('client')->user()->name ?? '') }}"
-                                       class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg transition duration-200"
-                                       placeholder="Votre nom complet" required>
+                                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg transition duration-200"
+                                    placeholder="Votre nom complet" required>
                             </div>
                         </div>
 
@@ -98,8 +117,8 @@
                                     </svg>
                                 </div>
                                 <input type="tel" name="phone" value="{{ old('phone') }}"
-                                       class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg transition duration-200"
-                                       placeholder="Votre numéro de téléphone" required>
+                                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg transition duration-200"
+                                    placeholder="Votre numéro de téléphone" required>
                             </div>
                         </div>
 
@@ -114,8 +133,8 @@
                                     </svg>
                                 </div>
                                 <input type="text" name="address" value="{{ old('address') }}"
-                                       class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg transition duration-200"
-                                       placeholder="Votre adresse complète" required>
+                                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg transition duration-200"
+                                    placeholder="Votre adresse complète" required>
                             </div>
                         </div>
 
@@ -129,8 +148,8 @@
                                     </svg>
                                 </div>
                                 <select name="country"
-                                        class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg transition duration-200 appearance-none bg-white"
-                                        required>
+                                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg transition duration-200 appearance-none text-black"
+                                    required>
                                     <option value="">-- Sélectionnez un pays --</option>
                                     <option value="Côte d'Ivoire" {{ old('country') === "Côte d'Ivoire" ? 'selected' : '' }}>Côte d'Ivoire</option>
                                     <option value="Sénégal" {{ old('country') === "Sénégal" ? 'selected' : '' }}>Sénégal</option>
@@ -143,8 +162,8 @@
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Notes de livraison (optionnel)</label>
                             <textarea name="notes" rows="3"
-                                      class="focus:ring-indigo-500 focus:border-indigo-500 block w-full px-4 py-3 border border-gray-300 rounded-lg transition duration-200"
-                                      placeholder="Instructions spéciales pour la livraison...">{{ old('notes') }}</textarea>
+                                class="focus:ring-indigo-500 focus:border-indigo-500 block w-full px-4 py-3 border border-gray-300 rounded-lg transition duration-200 text-black"
+                                placeholder="Instructions spéciales pour la livraison...">{{ old('notes') }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -235,10 +254,10 @@
                             <li class="py-4 flex justify-between items-start">
                                 <div class="flex items-start">
                                     <div class="flex-shrink-0 h-16 w-16 rounded-lg overflow-hidden border border-gray-200 mr-4">
-                                        <img src="{{ $item['image'] ?? 'https://via.placeholder.com/100' }}" 
-                                             alt="{{ $item['name'] }}" 
-                                             class="h-full w-full object-cover object-center"
-                                             loading="lazy">
+                                        <img src="{{ $item['image'] ?? 'https://via.placeholder.com/100' }}"
+                                            alt="{{ $item['name'] }}"
+                                            class="h-full w-full object-cover object-center"
+                                            loading="lazy">
                                     </div>
                                     <div>
                                         <h3 class="text-base font-medium text-gray-900">{{ $item['name'] }}</h3>
@@ -269,7 +288,7 @@
 
                         <!-- Bouton de confirmation -->
                         <button type="submit"
-                                class="w-full mt-8 flex justify-center items-center px-6 py-4 border border-transparent text-lg font-medium rounded-xl text-white bg-green-500 hover:to-blue-600 shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                            class="w-full mt-8 flex justify-center items-center px-6 py-4 border border-transparent text-lg font-medium rounded-xl text-white bg-green-500 hover:to-blue-600 shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                             Confirmer la commande
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
