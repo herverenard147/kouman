@@ -224,25 +224,33 @@ $fpage = 'foot1';
             </p>
         </div>
 
-        <div class="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 mt-8 md:gap-[30px] gap-3">
+        <!-- Grille centrée -->
+        <div
+            class="mt-8 md:gap-[30px] gap-3 grid justify-center
+           [grid-template-columns:repeat(auto-fit,minmax(220px,220px))]">
             @foreach($categories as $cat)
             <a href="{{ route('client.grid.sidebar', ['categorie' => $cat['slug']]) }}"
-                class="group relative rounded-xl overflow-hidden shadow hover:shadow-lg transition bg-white dark:bg-slate-900">
+                class="group relative rounded-xl overflow-hidden shadow hover:shadow-lg transition bg-white dark:bg-slate-900 w-[220px]">
 
-                <div class="aspect-[4/3] flex items-center justify-center bg-green-50">
-                    <div class="aspect-[4/3] flex items-center justify-center bg-green-50">
-                        <img src="{{ $cat['image'] }}" alt="{{ $cat['label'] }}" class="w-full h-full object-cover opacity-95" />
-                    </div>
+                <!-- Image -->
+                <div class="aspect-[4/3] relative">
+                    <img
+                        src="{{ $cat['image'] }}"
+                        alt="{{ $cat['label'] }}"
+                        class="w-full h-full object-cover opacity-95 transition duration-300 ease-out group-hover:brightness-60" />
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent
+                      transition-colors duration-300 group-hover:from-black/80 group-hover:via-black/50"></div>
                 </div>
 
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
-                <div class="absolute inset-x-0 bottom-0 p-4 flex items-center justify-between">
+                <!-- Contenu -->
+                <div class="absolute inset-x-0 bottom-0 p-4 flex items-center justify-between z-10">
                     <div>
                         <div class="flex items-center gap-2">
                             <i class="{{ $cat['icon'] }} text-white text-xl"></i>
                             <span class="text-white font-semibold">{{ $cat['label'] }}</span>
                         </div>
-                        <span class="text-white/80 text-sm">
+                        <span class="text-white/90 text-sm">
                             {{ number_format($cat['count'], 0, ',', ' ') }} offre(s)
                         </span>
                     </div>
@@ -251,6 +259,7 @@ $fpage = 'foot1';
             @endforeach
         </div>
     </div>
+
 
 
     <div class="container relative lg:mt-24 mt-16">

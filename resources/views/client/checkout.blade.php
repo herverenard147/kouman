@@ -3,12 +3,12 @@
 @section('title', 'Finalisation de commande')
 
 @section('content')
-<div class="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+<div class="min-h-screen bg-white dark:bg-slate-900 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
         <!-- En-tête avec étapes de commande -->
         <div class="text-center mb-16">
             <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
-                <span class="block bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500">Finalisez votre commande</span>
+                <span class="block bg-clip-text text-transparent bg-green-500">Finalisez votre commande</span>
             </h1>
             
             <div class="mt-8 flex justify-center px-4">
@@ -24,7 +24,7 @@
                     </div>
                     
                     <!-- Flèche -->
-                    <div class="mx-2 text-gray-400">
+                    <div class="mx-2 text-green-500">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -39,7 +39,7 @@
                     </div>
                     
                     <!-- Flèche -->
-                    <div class="mx-2 text-gray-400">
+                    <div class="mx-2 text-green-500">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -65,7 +65,7 @@
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
                     <div class="px-8 py-6 border-b border-gray-200 bg-gray-50">
                         <h2 class="text-2xl font-bold text-gray-900 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                             </svg>
@@ -223,7 +223,7 @@
                 <div class="bg-white rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
                     <div class="px-8 py-6 border-b border-gray-200 bg-gray-50">
                         <h2 class="text-2xl font-bold text-gray-900 flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
                             </svg>
                             Récapitulatif
@@ -263,13 +263,13 @@
                             </div>
                             <div class="flex justify-between text-lg font-bold pt-4">
                                 <span class="text-gray-900">Total TTC</span>
-                                <span class="text-indigo-600">{{ number_format($total, 0, ',', ' ') }} FCFA</span>
+                                <span class="text-green-500">{{ number_format($total, 0, ',', ' ') }} FCFA</span>
                             </div>
                         </div>
 
                         <!-- Bouton de confirmation -->
                         <button type="submit"
-                                class="w-full mt-8 flex justify-center items-center px-6 py-4 border border-transparent text-lg font-medium rounded-xl text-white bg-gradient-to-r from-indigo-600 to-blue-500 hover:from-indigo-700 hover:to-blue-600 shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                                class="w-full mt-8 flex justify-center items-center px-6 py-4 border border-transparent text-lg font-medium rounded-xl text-white bg-green-500 hover:to-blue-600 shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                             Confirmer la commande
                             <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />

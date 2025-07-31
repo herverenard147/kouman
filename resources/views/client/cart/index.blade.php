@@ -1,17 +1,37 @@
 @extends('content.no-sidebar')
 @section('title', 'Mon Panier')
-
+@extends('client.base.style.base')
 @section('content')
-<div class="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+
+<!-- Start Hero -->
+<section class="relative table w-full py-32 lg:py-36 bg-[url('{{ asset('client/assets/images/bg/01.jpg') }}')] bg-no-repeat bg-center bg-cover">
+    <div class="absolute inset-0 bg-black opacity-80"></div>
+    <div class="container relative">
+        <div class="grid grid-cols-1 text-center mt-10">
+            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
+                <span class="block bg-clip-text text-transparent bg-green-500">Votre Panier</span>
+            </h1>
+            <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-300 sm:mt-4">
+                Ici vous trouverez toutes les offres que vous avez ajouter au panier, Finalisez votre commande
+            </p>
+        </div>
+    </div>
+</section>
+<div class="relative">
+    <div class="shape overflow-hidden z-1 text-white dark:text-slate-900">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+<!-- End Hero -->
+<div class="min-h-screen bg-white dark:bg-slate-900 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-7xl mx-auto">
         <!-- En-tête -->
         <div class="text-center mb-16">
-            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl">
-                <span class="block bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-500">Votre Panier</span>
-            </h1>
             <div class="mt-6 flex justify-center items-center">
                 <div class="flex items-center bg-white rounded-full px-6 py-2 shadow-sm">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                     <span class="ml-2 text-lg font-medium text-gray-600">{{ count($cart) }} article(s)</span>
@@ -27,14 +47,14 @@
                         </div>
                         <div class="ml-2 text-sm font-medium text-gray-700">Panier</div>
                     </div>
-                    
+
                     <!-- Flèche -->
-                    <div class="mx-2 text-gray-400">
+                    <div class="mx-2 text-green-500">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
                     </div>
-                    
+
                     <!-- Étape Livraison (active) -->
                     <div class="flex items-center">
                         <div class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
@@ -42,14 +62,14 @@
                         </div>
                         <div class="ml-2 text-sm font-medium text-gray-500">Livraison</div>
                     </div>
-                    
+
                     <!-- Flèche -->
-                    <div class="mx-2 text-gray-400">
+                    <div class="mx-2 text-green-500">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
                     </div>
-                    
+
                     <!-- Étape Paiement -->
                     <div class="flex items-center">
                         <div class="flex-shrink-0 h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
@@ -60,7 +80,7 @@
                 </div>
             </div>
         </div>
-        
+
 
         @if (count($cart) > 0)
         <!-- Contenu du panier - Version desktop -->
@@ -69,7 +89,7 @@
                 <table class="w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
-                            <th scope="col" class="px-6 py-4 text-left text-sm font-semibold text-gray-900 uppercase tracking-wider">Article</th>
+                            <th scope="col" class="px-6 py-4 text-left text-sm font-semibold text-gray-900 uppercase tracking-wider">Offre</th>
                             <th scope="col" class="px-4 py-4 text-left text-sm font-semibold text-gray-900 uppercase tracking-wider">Prix</th>
                             <th scope="col" class="px-4 py-4 text-left text-sm font-semibold text-gray-900 uppercase tracking-wider">Quantité</th>
                             <th scope="col" class="px-4 py-4 text-left text-sm font-semibold text-gray-900 uppercase tracking-wider">Actions</th>
@@ -151,7 +171,7 @@
 
                             <!-- Total -->
                             <td class="px-4 py-4">
-                                <div class="text-base font-bold text-indigo-600">
+                                <div class="text-base font-bold text-green-500">
                                     {{ number_format($item['price'] * $item['quantity'], 0, ',', ' ') }} FCFA
                                 </div>
                             </td>
@@ -250,7 +270,7 @@
         <div class="flex flex-col items-end space-y-6">
             <div class="w-full md:w-2/5 bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
                 <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mr-2 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 14l6-6m-5.5.5h.01m4.99 5h.01M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16l3.5-2 3.5 2 3.5-2 3.5 2z" />
                     </svg>
                     Récapitulatif
@@ -269,7 +289,7 @@
 
                     <div class="flex justify-between items-center pt-4">
                         <span class="text-xl font-bold text-gray-900">Total TTC</span>
-                        <span class="text-2xl font-bold text-indigo-600">{{ number_format($total, 0, ',', ' ') }} FCFA</span>
+                        <span class="text-2xl font-bold text-green-500">{{ number_format($total, 0, ',', ' ') }} FCFA</span>
                     </div>
                 </div>
 
@@ -287,14 +307,14 @@
         <!-- Panier vide -->
         <div class="text-center py-16">
             <div class="mx-auto h-48 w-48 flex items-center justify-center bg-indigo-50 rounded-full mb-8">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
             </div>
             <h2 class="text-3xl font-extrabold text-white mb-4">Votre panier est vide</h2>
             <p class="text-xl text-white max-w-md mx-auto mb-8">Commencez votre shopping et découvrez nos produits exceptionnels</p>
             <div>
-                <a href="{{ route('client.grid.sidebar') }}" class="inline-flex items-center px-8 py-3 border border-transparent text-lg font-medium rounded-xl text-white bg-gradient-to-r from-indigo-600 to-blue-500 hover:from-indigo-700 hover:to-blue-600 shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                <a href="{{ route('client.grid.sidebar') }}" class="inline-flex items-center px-8 py-3 border border-transparent text-lg font-medium rounded-xl text-white bg-green-500 hover:to-blue-600 shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                     Explorer la boutique
                     <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />

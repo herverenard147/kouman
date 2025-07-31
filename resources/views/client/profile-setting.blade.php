@@ -1,21 +1,31 @@
 @extends('content.no-sidebar')
 
 @section('title', 'Modifier mon compte')
-
+@extends('client.base.style.base')
 @section('content')
-
-<div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50 dark:from-slate-900 dark:to-slate-800 py-12 px-4 sm:px-6 lg:px-8">
-
-    <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-12">
-            <h1 class="text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
-                <span class="block bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-blue-600">Paramètres du compte</span>
-            </h1>
+<!-- Start Hero -->
+<section class="relative table w-full py-32 lg:py-36 bg-[url('{{ asset('client/assets/images/bg/01.jpg') }}')] bg-no-repeat bg-center bg-cover">
+    <div class="absolute inset-0 bg-black opacity-80"></div>
+    <div class="container relative">
+        <div class="grid grid-cols-1 text-center mt-10">
+            <h3 class="md:text-4xl text-3xl md:leading-normal leading-normal font-medium text-white">Parametre du Compte</h3>
             <p class="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-300 sm:mt-4">
                 Gérez vos informations personnelles, votre sécurité et vos préférences
             </p>
         </div>
+    </div>
+</section>
+<div class="relative">
+    <div class="shape overflow-hidden z-1 text-white dark:text-slate-900">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+<!-- End Hero -->
+<div class="min-h-screen bg-white dark:bg-slate-900 dark:from-slate-900 dark:to-slate-800 py-12 px-4 sm:px-6 lg:px-8">
 
+    <div class="max-w-7xl mx-auto">
         <div class="grid lg:grid-cols-12 gap-8">
             <!-- Colonne de gauche - Profil -->
             <div class="lg:col-span-4 space-y-6">
@@ -27,9 +37,9 @@
                                 <div class="absolute inset-0 bg-gradient-to-br from-green-400 to-blue-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md"></div>
                                 <div class="relative h-32 w-32 rounded-full ring-4 ring-white dark:ring-slate-700 shadow-lg overflow-hidden">
                                     <img src="{{ Auth::user()->photo ? asset('uploads/users/' . Auth::user()->photo) : asset('/images/client/default.jpg') }}"
-                                         class="h-full w-full object-cover"
-                                         id="profile-image"
-                                         alt="Photo de profil">
+                                        class="h-full w-full object-cover"
+                                        id="profile-image"
+                                        alt="Photo de profil">
                                     <label for="pro-img" class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
@@ -39,7 +49,7 @@
                                     <input id="pro-img" name="profile-image" type="file" class="hidden" onchange="loadFile(event)" />
                                 </div>
                             </div>
-                            
+
                             <div class="mt-6 text-center">
                                 <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
                                     {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
@@ -117,7 +127,7 @@
                                             placeholder="Votre prénom" required>
                                     </div>
                                 </div>
-                                
+
                                 <!-- Nom -->
                                 <div>
                                     <label for="nom" class="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-3">Nom</label>
@@ -366,13 +376,13 @@
                             </div>
 
                             <form method="POST" action="{{ route('client.deleteAccount') }}">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn bg-red-600 hover:bg-red-700 border-red-600 hover:border-red-700 text-white rounded-md px-8 py-3"
-                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.')">
-                                Supprimer
-                            </button>
-                        </form>
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn bg-red-600 hover:bg-red-700 border-red-600 hover:border-red-700 text-white rounded-md px-8 py-3"
+                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.')">
+                                    Supprimer
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
