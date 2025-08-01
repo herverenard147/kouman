@@ -1,9 +1,30 @@
-@extends('content.no-sidebar')
+@php
+$page = 'light';
+$fpage = 'foot1';
+@endphp
 
+@extends('client.base.style.base')
 @section('title', 'Confirmation de commande')
 
 @section('content')
-<div class="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+<!-- Start Hero -->
+<section class="relative table w-full py-32 lg:py-36 bg-[url('{{ asset('client/assets/images/bg/01.jpg') }}')] bg-no-repeat bg-center bg-cover">
+    <div class="absolute inset-0 bg-black opacity-80"></div>
+    <div class="container relative">
+        <div class="grid grid-cols-1 text-center mt-10">
+            <h3 class="md:text-4xl text-3xl md:leading-normal leading-normal font-medium text-white">Confirmation de Commande</h3>
+        </div>
+    </div>
+</section>
+<div class="relative">
+    <div class="shape overflow-hidden z-1 text-white dark:text-slate-900">
+        <svg viewBox="0 0 2880 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 48H1437.5H2880V0H2160C1442.5 52 720 0 720 0H0V48Z" fill="currentColor"></path>
+        </svg>
+    </div>
+</div>
+<!-- End Hero -->
+<div class="min-h-screen bg-white dark:bg-slate-900 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-5xl mx-auto">
         <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
             <div class="px-8 py-6 border-b border-gray-200 bg-green-50">
@@ -66,7 +87,7 @@
                             ][$pm] ?? 'Paiement';
                             @endphp
                             @if($pm)
-                            <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-100 shrink-0">
+                            <span class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-50 text-green-500 border border-indigo-100 shrink-0">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
                                     @if($pm === 'momo')
                                     <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.95.69l1.5 4.49a1 1 0 01-.5 1.2l-2.26 1.13a11.04 11.04 0 005.52 5.52l1.13-2.26a1 1 0 011.2-.5l4.5 1.5a1 1 0 01.69.95V19a2 2 0 01-2 2h-1C9.72 21 3 14.28 3 6V5z" />
@@ -209,7 +230,7 @@
 
                             <div class="mt-4 pt-4 border-t border-dashed border-gray-200 flex items-center justify-between">
                                 <span class="text-lg font-semibold text-gray-900">Total TTC</span>
-                                <span class="text-2xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-blue-600">
+                                <span class="text-2xl font-extrabold bg-clip-text text-transparent bg-green-500">
                                     {{ number_format($order['grand_total'], 0, ',', ' ') }} FCFA
                                 </span>
                             </div>
