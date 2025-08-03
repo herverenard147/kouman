@@ -2,7 +2,7 @@
 <div class="top-header bg-white dark:bg-slate-900 shadow-sm"> {{-- Ajout d'une ombre légère --}}
     <div class="header-bar flex justify-between">
         <div class="flex items-center space-x-1">
-            <a href="#" class="xl:hidden block me-2">
+            <a href="{{route('client.index')}}" class="xl:hidden block me-2">
                 {{-- Si ces images doivent changer en mode sombre, tu auras besoin de logique JS ou de deux images différentes --}}
                 <img src="{{ asset('client/assets/images/logoG.ico') }}" class="md:hidden block" alt="">
                 <span class="md:block hidden">

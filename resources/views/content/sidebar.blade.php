@@ -2,7 +2,7 @@
 <nav id="sidebar" class="sidebar-wrapper sidebar-dark">
     <div class="sidebar-content">
         <div class="sidebar-brand">
-            <a href="{{route('index')}}"><img src="{{ asset('client/assets/images/logoG.ico') }}" alt=""></a>
+            <a href="{{route('client.index')}}"><img src="{{ asset('client/assets/images/logoG.ico') }}" alt="Afrique évasion"></a>
         </div>
 
         <ul class="sidebar-menu border-t border-white/10" data-simplebar style="height: calc(100% - 70px);">
