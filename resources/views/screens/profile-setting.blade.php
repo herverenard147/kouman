@@ -38,7 +38,7 @@
                                     <input id="pro-img" name="profile-image" type="file" class="hidden" onchange="loadFile(event)" />
                                 </div>
                             </div>
-                            
+
                             <div class="mt-6 text-center">
                                 <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
                                     {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
@@ -111,7 +111,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                             </svg>
                                         </div>
-                                        <input id="prenom" type="text" name="prenom" value="{{ old('prenom', $client->prenom) }}"
+                                        <input id="prenom" type="text" name="prenom" value="{{ old('prenom', $partenaire->prenom) }}"
                                             class="block w-full pl-12 pr-5 py-4 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-200"
                                             placeholder="Votre prénom" required>
                                     </div>
@@ -126,7 +126,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                                             </svg>
                                         </div>
-                                        <input id="nom" type="text" name="nom" value="{{ old('nom', $client->nom) }}"
+                                        <input id="nom" type="text" name="nom" value="{{ old('nom', $partenaire->nom) }}"
                                             class="block w-full pl-12 pr-5 py-4 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-200"
                                             placeholder="Votre nom" required>
                                     </div>
@@ -141,7 +141,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                             </svg>
                                         </div>
-                                        <input id="email" type="email" name="email" value="{{ old('email', $client->email) }}"
+                                        <input id="email" type="email" name="email" value="{{ old('email', $partenaire->email) }}"
                                             class="block w-full pl-12 pr-5 py-4 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-200"
                                             placeholder="Votre email" required>
                                     </div>
@@ -156,7 +156,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                                             </svg>
                                         </div>
-                                        <input id="telephone" type="text" name="telephone" value="{{ old('telephone', $client->telephone) }}"
+                                        <input id="telephone" type="text" name="telephone" value="{{ old('telephone', $partenaire->telephone) }}"
                                             class="block w-full pl-12 pr-5 py-4 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-200"
                                             placeholder="Votre téléphone">
                                     </div>
@@ -172,7 +172,7 @@
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                                             </svg>
                                         </div>
-                                        <input id="adresse" type="text" name="adresse" value="{{ old('adresse', $client->adresse) }}"
+                                        <input id="adresse" type="text" name="adresse" value="{{ old('adresse', $partenaire->adresse) }}"
                                             class="block w-full pl-12 pr-5 py-4 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-200"
                                             placeholder="Votre adresse complète">
                                     </div>
@@ -181,7 +181,7 @@
                                 <!-- Ville -->
                                 <div>
                                     <label for="ville" class="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-3">Ville</label>
-                                    <input id="ville" type="text" name="ville" value="{{ old('ville', $client->ville) }}"
+                                    <input id="ville" type="text" name="ville" value="{{ old('ville', $partenaire->ville) }}"
                                         class="block w-full px-5 py-4 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 shadow-sm transition duration-200"
                                         placeholder="Votre ville">
                                 </div>
@@ -189,7 +189,7 @@
                                 <!-- Code postal -->
                                 <div>
                                     <label for="code_postal" class="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-3">Code postal</label>
-                                    <input id="code_postal" type="text" name="code_postal" value="{{ old('code_postal', $client->code_postal) }}"
+                                    <input id="code_postal" type="text" name="code_postal" value="{{ old('code_postal', $partenaire->code_postal) }}"
                                         class="block w-full px-5 py-4 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 shadow-sm transition duration-200"
                                         placeholder="Code postal">
                                 </div>
@@ -200,11 +200,11 @@
                                     <select id="pays" name="pays"
                                         class="block w-full px-5 py-4 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 shadow-sm transition duration-200">
                                         <option value="">Sélectionnez un pays</option>
-                                        <option value="Côte d'Ivoire" {{ old('pays', $client->pays) === "Côte d'Ivoire" ? 'selected' : '' }}>Côte d'Ivoire</option>
-                                        <option value="France" {{ old('pays', $client->pays) === 'France' ? 'selected' : '' }}>France</option>
-                                        <option value="Belgique" {{ old('pays', $client->pays) === 'Belgique' ? 'selected' : '' }}>Belgique</option>
-                                        <option value="Suisse" {{ old('pays', $client->pays) === 'Suisse' ? 'selected' : '' }}>Suisse</option>
-                                        <option value="Canada" {{ old('pays', $client->pays) === 'Canada' ? 'selected' : '' }}>Canada</option>
+                                        <option value="Côte d'Ivoire" {{ old('pays', $partenaire->pays) === "Côte d'Ivoire" ? 'selected' : '' }}>Côte d'Ivoire</option>
+                                        <option value="France" {{ old('pays', $partenaire->pays) === 'France' ? 'selected' : '' }}>France</option>
+                                        <option value="Belgique" {{ old('pays', $partenaire->pays) === 'Belgique' ? 'selected' : '' }}>Belgique</option>
+                                        <option value="Suisse" {{ old('pays', $partenaire->pays) === 'Suisse' ? 'selected' : '' }}>Suisse</option>
+                                        <option value="Canada" {{ old('pays', $partenaire->pays) === 'Canada' ? 'selected' : '' }}>Canada</option>
                                         <!-- Ajouter d'autres pays -->
                                     </select>
                                 </div>
@@ -215,9 +215,9 @@
                                     <select id="genre" name="genre"
                                         class="block w-full px-5 py-4 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 shadow-sm transition duration-200">
                                         <option value="">Non spécifié</option>
-                                        <option value="homme" {{ old('genre', $client->genre) === 'homme' ? 'selected' : '' }}>Homme</option>
-                                        <option value="femme" {{ old('genre', $client->genre) === 'femme' ? 'selected' : '' }}>Femme</option>
-                                        <option value="autre" {{ old('genre', $client->genre) === 'autre' ? 'selected' : '' }}>Autre</option>
+                                        <option value="homme" {{ old('genre', $partenaire->genre) === 'homme' ? 'selected' : '' }}>Homme</option>
+                                        <option value="femme" {{ old('genre', $partenaire->genre) === 'femme' ? 'selected' : '' }}>Femme</option>
+                                        <option value="autre" {{ old('genre', $partenaire->genre) === 'autre' ? 'selected' : '' }}>Autre</option>
                                     </select>
                                 </div>
 
@@ -226,9 +226,9 @@
                                     <label for="langue_preferee" class="block text-lg font-medium text-gray-700 dark:text-gray-300 mb-3">Langue préférée</label>
                                     <select id="langue_preferee" name="langue_preferee"
                                         class="block w-full px-5 py-4 border border-gray-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 shadow-sm transition duration-200">
-                                        <option value="fr" {{ old('langue_preferee', $client->langue_preferee) === 'fr' ? 'selected' : '' }}>Français</option>
-                                        <option value="en" {{ old('langue_preferee', $client->langue_preferee) === 'en' ? 'selected' : '' }}>Anglais</option>
-                                        <option value="es" {{ old('langue_preferee', $client->langue_preferee) === 'es' ? 'selected' : '' }}>Espagnol</option>
+                                        <option value="fr" {{ old('langue_preferee', $partenaire->langue_preferee) === 'fr' ? 'selected' : '' }}>Français</option>
+                                        <option value="en" {{ old('langue_preferee', $partenaire->langue_preferee) === 'en' ? 'selected' : '' }}>Anglais</option>
+                                        <option value="es" {{ old('langue_preferee', $partenaire->langue_preferee) === 'es' ? 'selected' : '' }}>Espagnol</option>
                                     </select>
                                 </div>
                             </div>

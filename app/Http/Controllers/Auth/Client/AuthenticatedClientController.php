@@ -23,7 +23,7 @@ class AuthenticatedClientController extends Controller
      */
     public function create(): View
     {
-        return view('client.auth.login');
+        return view('auth.client.login');
     }
 
     /**

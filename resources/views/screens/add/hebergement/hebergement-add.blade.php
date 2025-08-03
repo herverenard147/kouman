@@ -190,7 +190,7 @@
                                 </div>
                                 <div class="md:col-span-4 col-span-12">
                                     <label for="codePostal" class="font-medium text-slate-900 dark:text-white">Code postal <strong>*</strong>:</label>
-                                    <input name="codePostal" id="codePostal" type="text" class="form-input mt-2 @error('codePostal') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Code postal" value="{{ old('codePostal') }}" required >
+                                    <input name="codePostal" id="codePostal" type="text" class="form-input mt-2 @error('codePostal') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Code postal" value="{{ old('codePostal') }}">
                                     @error('codePostal')
                                         <span class="text-red-600 text-sm">{{ $message }}</span>
                                     @enderror

@@ -1,5 +1,9 @@
 @extends('layout.base')
-@section('title', 'Détail de {{ $hebergement->nom }}')
+
+@section('title')
+    Détail de l'hébergement {{ $hebergement->nom }}
+@endsection
+
 @section('content')
     <div class="container-fluid relative px-3">
         <div class="layout-specing">

@@ -21,7 +21,7 @@ class RegisteredClientController extends Controller
      */
     public function create(): View
     {
-        return view('client.auth.signup');
+        return view('auth.client.signup');
     }
 
     /**
