@@ -1,12 +1,12 @@
 @extends('content.no-sidebar')
-@section('title', 'Login')
+@section('title', 'Se connecter en tant que partenaire')
 @section('content')
     <section class="min-h-screen flex items-center py-4 px-4 bg-[url('{{ asset('images/01.jpg') }}')] bg-no-repeat bg-center bg-cover relative overflow-hidden">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>
         <div class="relative z-10 w-full max-w-xl">
             <div class="bg-white dark:bg-slate-900 shadow-md rounded-lg px-8 py-10">
                 <div class="p-6">
-                    <a href="{{ route('login') }}">
+                    <a href="{{ route('partenaire.login') }}">
                         <img src="{{ asset('client/assets/images/logoG.ico') }}" class="mx-auto" alt="Logo">
                     </a>
                     <h5 class="my-6 text-xl font-semibold text-slate-900 dark:text-white">Se Connecter</h5>

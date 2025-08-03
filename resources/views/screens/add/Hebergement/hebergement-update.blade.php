@@ -9,7 +9,7 @@
                                         <span class="absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded">Principale</span>
                                     @endif
                                 </div> --}}
-{{-- <p class="font-medium mb-4">Téléchargez l'image de votre propriété ici (max 10 images, 10MB chacun)</p>
+{{-- <p class="font-medium text-slate-900 dark:text-white mb-4">Téléchargez l'image de votre propriété ici (max 10 images, 10MB chacun)</p>
 
                                     <div id="preview-box" class="preview-box flex flex-wrap gap-4 overflow-x-auto max-h-60 bg-gray-50 p-4 rounded-md shadow-inner text-center text-slate-400">
                                         @if($hebergement->images->isEmpty())
@@ -43,9 +43,9 @@
                 <h5 class="text-lg font-semibold">Modifier l'hébergement : {{ $hebergement->nom }}</h5>
 
                 <ul class="tracking-[0.5px] inline-block sm:mt-0 mt-3">
-                    <li class="inline-block capitalize text-[16px] font-medium duration-500 hover:text-green-600"><a href="{{route('partenaire.dashboard')}}">Afrique évasion</a></li>
+                    <li class="inline-block capitalize text-[16px] font-medium text-slate-900 dark:text-white duration-500 hover:text-green-600"><a href="{{route('partenaire.dashboard')}}">Afrique évasion</a></li>
                     <li class="inline-block text-base text-slate-950 mx-0.5 ltr:rotate-0 rtl:rotate-180"><i class="mdi mdi-chevron-right"></i></li>
-                    <li class="inline-block capitalize text-[16px] font-medium text-green-600" aria-current="page">Ajouter un hebergement</li>
+                    <li class="inline-block capitalize text-[16px] font-medium text-slate-900 dark:text-white text-green-600" aria-current="page">Ajouter un hebergement</li>
                 </ul>
             </div>
 
@@ -73,7 +73,7 @@
 
                                 <div>
 
-                                    <p class="font-medium mb-4">Téléchargez les images de votre propriété (max 10 images, 10MB chacune, JPG/PNG)</p>
+                                    <p class="font-medium text-slate-900 dark:text-white mb-4">Téléchargez les images de votre propriété (max 10 images, 10MB chacune, JPG/PNG)</p>
                                     <div id="preview-box" class="preview-box flex flex-wrap gap-4 overflow-x-auto max-h-60 bg-gray-50 p-4 rounded-md shadow-inner text-center text-slate-400">
                                         @if($hebergement->images->isEmpty())
                                             Supports JPG et PNG. Taille max : 10MB.
@@ -109,19 +109,19 @@
                             @enderror
                         </div>
                         <div class="md:col-span-12 col-span-12">
-                            <div class="rounded-md shadow p-6 bg-white h-fit">
+                            <div class="rounded-md shadow p-6 bg-white dark:bg-slate-800 h-fit">
                                 <div class="grid grid-cols-12 gap-5">
                                     <div class="col-span-12">
-                                        <label for="nom" class="font-medium">Nom :</label>
-                                        <input name="nom" id="nom" type="text" class="form-input mt-2 @error('nom') border-red-500 @enderror" placeholder="Nom de l'hébergement" value="{{ old('nom', $hebergement->nom) }}" required>
+                                        <label for="nom" class="font-medium text-slate-900 dark:text-white text-slate-900 dark:text-white">Nom :</label>
+                                        <input name="nom" id="nom" type="text" class="form-input mt-2 @error('nom') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Nom de l'hébergement" value="{{ old('nom', $hebergement->nom) }}" required>
                                         @error('nom')
                                             <span class="text-red-600 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="md:col-span-6 col-span-12">
-                                        <label class="font-semibold block mb-2" for="familyType">Famille d'hébergement :</label>
-                                        <select name="familyType" id="familyType" class="form-select w-full border border-gray-300 rounded-md p-2 @error('familyType') border-red-500 @enderror" required>
+                                        <label class="font-semibold block mb-2 text-slate-900 dark:text-white" for="familyType">Famille d'hébergement :</label>
+                                        <select name="familyType" id="familyType" class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('familyType') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
                                             <option value="" disabled {{ old('familyType', $hebergement->type->idFamilleType) ? '' : 'selected' }}>-- Sélectionner une famille --</option>
                                             @foreach($familles as $famille)
                                                 <option value="{{ $famille->idFamilleType }}" {{ old('familyType', $hebergement->type->idFamilleType) == $famille->idFamilleType ? 'selected' : '' }}>{{ $famille->nomFamille }}</option>
@@ -133,9 +133,9 @@
                                     </div>
 
                                     <div class="md:col-span-6 col-span-12">
-                                        <label class="font-semibold block mb-2" for="idType">Type d'hébergement :</label>
-                                        <select name="idType" id="typePartenaire" class="form-select w-full border border-gray-300 rounded-md p-2 @error('idType') border-red-500 @enderror" required>
-                                            <option value="{{ old('idType', $hebergement->type->nomType) }}" disabled {{ old('idType', $hebergement->type->idType) ? '' : 'selected' }}>{{ $hebergement->type->nomType }}</option>
+                                        <label class="font-semibold block mb-2 text-slate-900 dark:text-white" for="idType">Type d'hébergement :</label>
+                                        <select name="idType" id="typePartenaire" class="form-select w-full border border-gray-300 rounded-md p-2 @error('idType') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
+                                            <option value=" {{ old('idType', $hebergement->type->nomType) }}" disabled {{ old('idType', $hebergement->type->idType) ? '' : 'selected' }}>{{ $hebergement->type->nomType }}</option>
                                         </select>
                                         @error('idType')
                                             <span class="text-red-600 text-sm">{{ $message }}</span>
@@ -143,18 +143,18 @@
                                     </div>
 
                                     <div class="col-span-12">
-                                        <label for="description" class="font-medium">Description :</label>
-                                        <textarea name="description" id="description" rows="5" class="form-input mt-2 @error('description') border-red-500 @enderror" placeholder="Décrivez votre hébergement...">{{ old('description', $hebergement->description) }}</textarea>
+                                        <label for="description" class="font-medium text-slate-900 dark:text-white">Description :</label>
+                                        <textarea name="description" id="description" rows="5" class="form-input mt-2 @error('description') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Décrivez votre hébergement...">{{ old('description', $hebergement->description) }}</textarea>
                                         @error('description')
                                             <span class="text-red-600 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="md:col-span-4 col-span-12">
-                                        <label for="prixParNuit" class="font-medium">Prix par nuit :</label>
+                                        <label for="prixParNuit" class="font-medium text-slate-900 dark:text-white">Prix par nuit :</label>
                                         <div class="form-icon relative mt-2">
                                             <i class="bi bi-currency-dollar absolute top-2 start-4 text-green-600"></i>
-                                            <input name="prixParNuit" id="prixParNuit" type="number" step="0.01" class="form-input ps-11 @error('prixParNuit') border-red-500 @enderror" placeholder="0.00" value="{{ old('prixParNuit',$hebergement->prixParNuit) }}">
+                                            <input name="prixParNuit" id="prixParNuit" type="number" step="0.01" class="form-input ps-11 @error('prixParNuit') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="0.00" value="{{ old('prixParNuit',$hebergement->prixParNuit) }}">
                                         </div>
                                         @error('prixParNuit')
                                             <span class="text-red-600 text-sm">{{ $message }}</span>
@@ -162,8 +162,8 @@
                                     </div>
 
                                     <div class="md:col-span-4 col-span-12">
-                                        <label for="devise" class="font-medium">Devise :</label>
-                                        <select name="devise" id="devise" class="form-select w-full border border-gray-300 rounded-md p-2 @error('devise') border-red-500 @enderror" required>
+                                        <label for="devise" class="font-medium text-slate-900 dark:text-white">Devise :</label>
+                                        <select name="devise" id="devise" class="form-select w-full border border-gray-300 rounded-md p-2 @error('devise') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" required>
                                             <option value="CFA" {{ old('devise', $hebergement->devise) == 'CFA' ? 'selected' : '' }}>CFA (CFA)</option>
                                             <option value="EUR" {{ old('devise', $hebergement->devise) == 'EUR' ? 'selected' : '' }}>EUR (€)</option>
                                             <option value="USD" {{ old('devise', $hebergement->devise) == 'USD' ? 'selected' : '' }}>USD ($)</option>
@@ -177,8 +177,8 @@
                                     </div>
 
                                     <div class="md:col-span-4 col-span-12">
-                                        <label for="idPolitiqueAnnulation" class="font-medium">Politique d'annulation :</label>
-                                        <select name="idPolitiqueAnnulation" id="politiqueAnnulation" class="form-select w-full border border-gray-300 rounded-md p-2 @error('idPolitiqueAnnulation') border-red-500 @enderror">
+                                        <label for="idPolitiqueAnnulation" class="font-medium text-slate-900 dark:text-white">Politique d'annulation :</label>
+                                        <select name="idPolitiqueAnnulation" id="politiqueAnnulation" class="form-select w-full border border-gray-300 rounded-md p-2 @error('idPolitiqueAnnulation') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600">
                                             <option value="{{ $hebergement->idPolitiqueAnnulation }}" selected>{{ $hebergement->politiqueAnnulation->nom ?? 'aucun' }}</option>
                                             @foreach($politiques as $politique)
                                                 <option value="{{ $politique->id }}" {{ old('idPolitiqueAnnulation', $hebergement->idPolitiqueAnnulation) == $politique->id ? 'selected' : '' }}>{{ $politique->nom }}</option>
@@ -190,59 +190,59 @@
                                     </div>
 
                                     <div class="md:col-span-6 col-span-12">
-                                        <label for="ville" class="font-medium">Ville :</label>
-                                        <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror" placeholder="Ville" value="{{ old('ville', $hebergement->localisation->ville) }}">
+                                        <label for="ville" class="font-medium text-slate-900 dark:text-white">Ville :</label>
+                                        <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Ville" value="{{ old('ville', $hebergement->localisation->ville) }}">
                                         @error('ville')
                                             <span class="text-red-600 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="md:col-span-6 col-span-12">
-                                        <label for="pays" class="font-medium">Pays :</label>
-                                        <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror" placeholder="Pays" value="{{ old('pays', $hebergement->localisation->pays) }}">
+                                        <label for="pays" class="font-medium text-slate-900 dark:text-white">Pays :</label>
+                                        <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Pays" value="{{ old('pays', $hebergement->localisation->pays) }}">
                                         @error('pays')
                                             <span class="text-red-600 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div Saying-md class="col-span-4 col-span-12">
-                                        <label for="adresse" class="font-medium">Adresse :</label>
+                                        <label for="adresse" class="font-medium text-slate-900 dark:text-white">Adresse :</label>
                                         {{-- <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse')" placeholder="Adresse complète" value="{{ oldValue }}"> --}}
-                                        <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror" placeholder="Adresse complète" value="{{ old('adresse', $hebergement->localisation->adresse) }}">
+                                        <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Adresse complète" value="{{ old('adresse', $hebergement->localisation->adresse) }}">
                                         @error('adresse')
                                             <span class="text-red-600 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="md:col-span-4 col-span-12">
-                                        <label for="codePostal" class="font-medium">Code postal :</label>
-                                        <input name="codePostal" id="codePostal" type="text" class="form-input mt-2 @error('codePostal') border-red-500 @enderror" placeholder="Code postal" value="{{ old('codePostal', $hebergement->localisation->codePostal) }}">
+                                        <label for="codePostal" class="font-medium text-slate-900 dark:text-white">Code postal :</label>
+                                        <input name="codePostal" id="codePostal" type="text" class="form-input mt-2 @error('codePostal') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Code postal" value="{{ old('codePostal', $hebergement->localisation->codePostal) }}">
                                         @error('codePostal')
                                             <span class="text-red-600 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="md:col-span-4 col-span-12">
-                                        <label for="latitude" class="font-medium">Latitude :</label>
-                                        <input name="latitude" id="latitude" type="number" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror" placeholder="Latitude" value="{{ old('latitude', $hebergement->localisation->latitude) }}">
+                                        <label for="latitude" class="font-medium text-slate-900 dark:text-white">Latitude :</label>
+                                        <input name="latitude" id="latitude" type="number" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Latitude" value="{{ old('latitude', $hebergement->localisation->latitude) }}">
                                         @error('latitude')
                                             <span class="text-red-600 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="md:col-span-4 col-span-12">
-                                        <label for="longitude" class="font-medium">Longitude :</label>
-                                        <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror" placeholder="Longitude" value="{{ old('longitude', $hebergement->localisation->longitude) }}">
+                                        <label for="longitude" class="font-medium text-slate-900 dark:text-white">Longitude :</label>
+                                        <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Longitude" value="{{ old('longitude', $hebergement->localisation->longitude) }}">
                                         @error('longitude')
                                             <span class="text-red-600 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="md:col-span-4 col-span-12">
-                                        <label for="nombreChambres" class="font-medium">Nombre de chambres :</label>
+                                        <label for="nombreChambres" class="font-medium text-slate-900 dark:text-white">Nombre de chambres :</label>
                                         <div class="form-icon relative mt-2">
                                             <i class="bi bi-door-open absolute top-3 start-4 text-green-600"></i>
-                                            <input name="nombreChambres" id="nombreChambres" type="number" class="form-input ps-11 @error('nombreChambres') border-red-500 @enderror" placeholder="0" value="{{ old('nombreChambres', $hebergement->nombreChambres) }}">
+                                            <input name="nombreChambres" id="nombreChambres" type="number" class="form-input ps-11 @error('nombreChambres') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="0" value="{{ old('nombreChambres', $hebergement->nombreChambres) }}">
                                         </div>
                                         @error('nombreChambres')
                                             <span class="text-red-600 text-sm">{{ $message }}</span>
@@ -250,18 +250,18 @@
                                     </div>
 
                                     <div class="md:col-span-4 col-span-12">
-                                        <label for="nombreSallesDeBain" class="font-medium">Nombre de salles de bain :</label>
-                                        <input name="nombreSallesDeBain" id="nombreSallesDeBain" type="number" class="form-input mt-2 @error('nombreSallesDeBain') border-red-500 @enderror" value="{{ old('nombreSallesDeBain', $hebergement->nombreSallesDeBain) }}">
+                                        <label for="nombreSallesDeBain" class="font-medium text-slate-900 dark:text-white">Nombre de salles de bain :</label>
+                                        <input name="nombreSallesDeBain" id="nombreSallesDeBain" type="number" class="form-input mt-2 @error('nombreSallesDeBain') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" value="{{ old('nombreSallesDeBain', $hebergement->nombreSallesDeBain) }}">
                                         @error('nombreSallesDeBain')
                                             <span class="text-red-600 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="md:col-span-4 col-span-12">
-                                        <label for="capaciteMax" class="font-medium">Capacité maximum :</label>
+                                        <label for="capaciteMax" class="font-medium text-slate-900 dark:text-white">Capacité maximum :</label>
                                         <div class="form-icon relative mt-2">
                                             <i class="bi bi-person absolute top-3 start-4 text-green-600"></i>
-                                            <input name="capaciteMax" id="capaciteMax" type="number" class="form-input ps-11 @error('capaciteMax') border-red-500 @enderror" placeholder="1" value="{{ old('capaciteMax', $hebergement->capaciteMax) }}">
+                                            <input name="capaciteMax" id="capaciteMax" type="number" class="form-input ps-11 @error('capaciteMax') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="1" value="{{ old('capaciteMax', $hebergement->capaciteMax) }}">
                                         </div>
                                         @error('capaciteMax')
                                             <span class="text-red-600 text-sm">{{ $message }}</span>
@@ -269,28 +269,39 @@
                                     </div>
 
                                     <div class="md:col-span-4 col-span-12">
-                                        <label for="heureArrivee" class="font-medium">Heure de check-in :</label>
-                                        <input name="heureArrivee" id="heureArrivee" type="time" class="form-input mt-2 @error('heureArrivee') border-red-500 @enderror" value="{{ old('heureArrivee', $hebergement->heureArrivee) }}">
+                                        <label for="heureArrivee" class="font-medium text-slate-900 dark:text-white">Heure de check-in :</label>
+                                        <input name="heureArrivee" id="heureArrivee" type="time" class="form-input mt-2 @error('heureArrivee') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" value="{{ old('heureArrivee', $hebergement->heureArrivee) }}">
                                         @error('heureArrivee')
                                             <span class="text-red-600 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
 
                                     <div class="md:col-span-4 col-span-12">
-                                        <label for="heureDepart" class="font-medium">Heure de check-out :</label>
-                                        <input name="heureDepart" id="heureDepart" type="time" class="form-input mt-2 @error('heureDepart') border-red-500 @enderror" value="{{ old('heureDepart', $hebergement->heureDepart) }}">
+                                        <label for="heureDepart" class="font-medium text-slate-900 dark:text-white">Heure de check-out :</label>
+                                        <input name="heureDepart" id="heureDepart" type="time" class="form-input mt-2 @error('heureDepart') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" value="{{ old('heureDepart', $hebergement->heureDepart) }}">
                                         @error('heureDepart')
                                             <span class="text-red-600 text-sm">{{ $message }}</span>
                                         @enderror
                                     </div>
 
+                                    @php
+                                        $equipementsSelectionnes = old('equipements', $hebergement->equipements->pluck('id')->toArray() ?? []);
+                                    @endphp
+
                                     <div class="col-span-12">
-                                        <label class="font-semibold block mb-2">Équipements :</label>
+                                        <label class="font-medium text-slate-900 dark:text-white">Équipements :</label>
                                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                                             @foreach($equipements as $equipement)
                                                 <div class="flex items-center">
-                                                    <input type="checkbox" name="equipements[]" id="equipement_{{ $equipement->idEquipement }}" value="{{ $equipement->idEquipement }}" class="form-checkbox @error('equipements') border-red-500 @enderror" {{ in_array($equipement->idEquipement, old('equipements', $hebergement->equipements->pluck('idEquipement')->toArray())) ? 'checked' : '' }}>
-                                                    <label for="equipement_{{ $equipement->idEquipement }}" class="ms-2">{{ $equipement->nom }}</label>
+                                                    <input
+                                                        type="checkbox"
+                                                        name="equipements[]"
+                                                        id="equipement_{{ $equipement->id }}"
+                                                        value="{{ $equipement->id }}"
+                                                        class="form-checkbox @error('equipements') border-red-500 @enderror "
+                                                        {{ in_array($equipement->id, $equipementsSelectionnes) ? 'checked' : '' }}
+                                                    >
+                                                    <label for="equipement_{{ $equipement->id }}" class="ms-2 font-medium text-slate-900 dark:text-white">{{ $equipement->nom }}</label>
                                                 </div>
                                             @endforeach
                                         </div>
@@ -299,30 +310,31 @@
                                         @enderror
                                     </div>
 
+
                                     <div class="col-span-12">
-                                        <label class="font-semibold block mb-2">Prix saisonniers (optionnel) :</label>
+                                        <label class="font-medium text-slate-900 dark:text-white">Prix saisonniers (optionnel) :</label>
                                         <div id="prix-saisonniers-container">
                                             @php $prixSaisonniers = old('prixSaisonniers', $hebergement->prixSaisonniers ?? [[]]); @endphp
 
                                             @foreach($prixSaisonniers as $i => $saisonnier)
                                                 <div class="grid grid-cols-12 gap-2 mb-2">
                                                     <div class="md:col-span-4 col-span-12">
-                                                        <label class="font-semibold block mb-2">Date de début :</label>
-                                                        <input name="prixSaisonniers[{{ $i }}][dateDebut]" type="date" class="form-input @error("prixSaisonniers.$i.dateDebut") border-red-500 @enderror" value="{{ old("prixSaisonniers.$i.dateDebut", $saisonnier['dateDebut'] ?? '') }}">
+                                                        <label class="font-medium text-slate-900 dark:text-white block mb-2">Date de début :</label>
+                                                        <input name="prixSaisonniers[{{ $i }}][dateDebut]" type="date" class="form-input @error("prixSaisonniers.$i.dateDebut") border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" value="{{ old("prixSaisonniers.$i.dateDebut", $saisonnier['dateDebut'] ?? '') }}">
                                                         @error("prixSaisonniers.$i.dateDebut")
                                                             <span class="text-red-600 text-sm">{{ $message }}</span>
                                                         @enderror
                                                     </div>
                                                     <div class="md:col-span-4 col-span-12">
-                                                        <label class="font-semibold block mb-2">Date de fin :</label>
-                                                        <input name="prixSaisonniers[{{ $i }}][dateFin]" type="date" class="form-input @error("prixSaisonniers.$i.dateFin") border-red-500 @enderror" value="{{ old("prixSaisonniers.$i.dateFin", $saisonnier['dateFin'] ?? '') }}">
+                                                        <label class="font-medium text-slate-900 dark:text-white block mb-2">Date de fin :</label>
+                                                        <input name="prixSaisonniers[{{ $i }}][dateFin]" type="date" class="form-input @error("prixSaisonniers.$i.dateFin") border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" value="{{ old("prixSaisonniers.$i.dateFin", $saisonnier['dateFin'] ?? '') }}">
                                                         @error("prixSaisonniers.$i.dateFin")
                                                             <span class="text-red-600 text-sm">{{ $message }}</span>
                                                         @enderror
                                                     </div>
                                                     <div class="md:col-span-4 col-span-12">
-                                                        <label class="font-semibold block mb-2">Prix par nuit :</label>
-                                                        <input name="prixSaisonniers[{{ $i }}][prixParNuit]" type="number" step="0.01" class="form-input @error("prixSaisonniers.$i.prixParNuit") border-red-500 @enderror" value="{{ old("prixSaisonniers.$i.prixParNuit", $saisonnier['prixParNuit'] ?? '') }}">
+                                                        <label class="font-medium text-slate-900 dark:text-white block mb-2">Prix par nuit :</label>
+                                                        <input name="prixSaisonniers[{{ $i }}][prixParNuit]" type="number" step="0.01" class="form-input @error("prixSaisonniers.$i.prixParNuit") border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" value="{{ old("prixSaisonniers.$i.prixParNuit", $saisonnier['prixParNuit'] ?? '') }}">
                                                         @error("prixSaisonniers.$i.prixParNuit")
                                                             <span class="text-red-600 text-sm">{{ $message }}</span>
                                                         @enderror

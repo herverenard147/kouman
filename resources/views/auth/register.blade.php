@@ -227,7 +227,9 @@
     <div class="relative z-10 w-full max-w-2xl">
         <div class="bg-white dark:bg-slate-900 shadow-md rounded-lg px-8 py-10">
             <div class="text-center mb-6">
-                <img src="{{ asset('client/assets/images/logoG.ico') }}" class="mx-auto w-32 h-auto" alt="Logo">
+                <a href="{{ route('partenaire.register.index') }}">
+                    <img src="{{ asset('client/assets/images/logoG.ico') }}" class="mx-auto w-32 h-auto" alt="Logo">
+                </a>
             </div>
 
             <h5 class="text-xl font-semibold mb-6 text-center text-slate-900 dark:text-white">Créez votre compte</h5>
