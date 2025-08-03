@@ -22,7 +22,7 @@
                     {{-- Adaptation des couleurs du champ de recherche --}}
                     <input type="text" class="form-input w-56 ps-9 py-2 px-3 h-8 rounded-md outline-none border
                         bg-white dark:bg-slate-700 border-gray-200 dark:border-gray-600
-                        text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-400 focus:ring-0" name="s" id="searchItem" placeholder="Search...">
+                        text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-400 focus:ring-0" name="s" id="searchItem" placeholder="Recherche...">
                 </div>
             </div>
             </div>
