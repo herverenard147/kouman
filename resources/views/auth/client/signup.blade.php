@@ -100,7 +100,7 @@
 
                             <!-- Confirmation -->
                             <div class="mb-4 relative">
-                                <label for="password_confirmation" class="font-medium text-slate-700 dark:text-white">Mot de passe :</label>
+                                <label for="password_confirmation" class="font-medium text-slate-700 dark:text-white">Confirmer votre Mot de passe :</label>
 
                                 <input name="password_confirmation" id="password_confirmation" type="password"
                                     class="form-input mt-3 pr-12 bg-white dark:bg-slate-800 dark:text-white dark:placeholder-slate-500 @error('password') border-red-500 @enderror"

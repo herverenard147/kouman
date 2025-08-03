@@ -44,7 +44,7 @@ class StoreHebergementRequest extends FormRequest
             'capaciteMax' => ['required', 'integer', 'min:1'],
             'heureArrivee' => ['nullable', 'date_format:H:i'],
             'telephones' => ['required', 'array'],
-            'telephones.*.numero' => ['required', 'string', 'regex:/^\+225\d{8,}$/'], // Numéro au format ivoirien
+            // 'telephones.*.numero' => ['required', 'string', 'regex:/^\+225\d{8,}$/'], // Numéro au format ivoirien
             'heureDepart' => [
                 'nullable',
                 'date_format:H:i',
