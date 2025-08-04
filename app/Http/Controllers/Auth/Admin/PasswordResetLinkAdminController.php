@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 
-class PasswordResetLinkClientController extends Controller
+class PasswordResetLinkAdminController extends Controller
 {
     public function create()
     {
-        return view('auth.client.forgot-password-email'); // vue formulaire email
+        return view('admin.auth.forgot-password'); // vue formulaire email
     }
 
     public function store(Request $request)

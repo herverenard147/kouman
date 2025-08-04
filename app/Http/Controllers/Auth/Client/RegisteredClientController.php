@@ -23,44 +23,7 @@ class RegisteredClientController extends Controller
     {
         return view('auth.client.signup');
     }
-
-    /**
-     * Handle an incoming registration request.
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    // public function store(Request $request): RedirectResponse
-    // {
-    //     // dd('benvenue dans la méthode store de RegisteredPartenaireController');
-    //     $request->validate([
-    //         'nom_entreprise' => ['required', 'string', 'max:255'],
-    //         'email' => ['required', 'string', 'lowercase', 'email', 'max:100', 'unique:'.Partenaire::class],
-    //         'mot_de_passe' => ['required', 'confirmed', Rules\Password::defaults()],
-    //         'type' => ['required', 'string', 'max:100'],
-    //         'téléphone' => ['required', 'string', 'max:100'],
-    //         'adresse' => ['required', 'string', 'max:100'],
-    //         'siteWeb' => ['required', 'string', 'max:100'],
-    //         // 'statut' => ['required', 'string', 'max:100'],
-    //     ]);
-
-    //     $partenaire = Partenaire::create([
-    //         'nom_entreprise' => $request->nom_entreprise,
-    //         'email' => $request->email,
-    //         'mot_de_passe' => Hash::make($request->password),
-    //         'type'=> $request->type,
-    //         'téléphone' => $request->téléphone,
-    //         'adresse' => $request->adresse,
-    //         'siteWeb' => $request->siteWeb,
-    //         'statut' => $request->statut,
-    //     ]);
-
-    //     dd($partenaire);
-    //     event(new Registered($partenaire));
-
-    //     Auth::guard('partenaire')->login($partenaire);
-
-    //     return redirect(route(name: 'partenaire.dashboard', absolute: false));
-    // }
+    
   public function store(Request $request): RedirectResponse
 {
     try {
