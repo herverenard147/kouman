@@ -165,10 +165,10 @@ class PropertyController extends Controller
     private function coverFor(string $categorie, int $id): string
     {
         return match ($categorie) {
-            'hebergement' => 'https://img.freepik.com/photos-gratuite/belle-villa-luxe-jardin_1150-12614.jpg',
-            'vol'         => 'https://img.freepik.com/photos-gratuite/avion-vol-coucher-soleil_1112-1311.jpg',
-            'excursion'   => 'https://img.freepik.com/photos-gratuite/paysage-tropical-soleil-plage_1150-11064.jpg',
-            'evenement'   => 'https://img.freepik.com/photos-gratuite/foule-concert-lumiere-scene_1150-17717.jpg',
+            'hebergement' => 'https://cdn.pixabay.com/photo/2017/01/14/12/48/hotel-1979406_1280.jpg',
+            'vol'         => 'https://cdn.pixabay.com/photo/2020/02/27/20/48/aircraft-4885805_1280.jpg',
+            'excursion'   => 'https://cdn.pixabay.com/photo/2020/04/17/07/20/travel-5053561_1280.jpg',
+            'evenement'   => 'https://cdn.pixabay.com/photo/2016/11/22/19/15/hand-1850120_1280.jpg',
             default       => 'https://via.placeholder.com/1200x675?text=Image',
         };
     }

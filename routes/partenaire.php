@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Support\Facades\Auth;
@@ -35,18 +36,17 @@ Route::middleware('guest:partenaire')->prefix('partenaire')->group(function () {
         ->name('partenaire.password.reset');
     // Traitement du nouveau mot de passe (POST)
     Route::post('reset-password', [NewPasswordPartenaireController::class, 'store'])
-    ->name('partenaire.password.update');
+        ->name('partenaire.password.update');
 
     Route::get('terms', fn() => view('screens.terms'))->name('partenaire.terms');
 
-    Route::get('/register', [RegisteredPartenaireController::class, 'create'])->name( 'partenaire.register.index');
+    Route::get('/register', [RegisteredPartenaireController::class, 'create'])->name('partenaire.register.index');
     Route::post('/register', [RegisteredPartenaireController::class, 'store'])->name('partenaire.register.store');
-
 });
 
 
 Route::middleware(['auth:partenaire'])
-    ->prefix( 'partenaire')
+    ->prefix('partenaire')
     ->group(function () {
         Route::get('/', [PartenaireController::class, 'index'])->name('partenaire.dashboard');
         Route::get('chat', fn() => view('screens.chat'))->name('partenaire.chat');
@@ -67,10 +67,26 @@ Route::middleware(['auth:partenaire'])
         Route::get('starter', fn() => view('screens.starter'))->name('partenaire.starter');
         Route::get('thankyou', fn() => view('screens.thankyou'))->name('partenaire.thankyou');
 
-        Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
-        ->name('logout');
+        // ================= PROFIL PARTENAIRE =================
+        // Affichage du profil
+        Route::get('profile', [PartenaireController::class, 'profile'])
+            ->name('partenaire.profile');
 
-        Route::group(['prefix' => 'hebergement'], function(){
+        // Page d’édition du profil
+        Route::get('profile/edit', [PartenaireController::class, 'editProfile'])
+            ->name('partenaire.profile.edit');
+
+        Route::put('profile/password', [PartenaireController::class, 'updatePassword'])->name('partenaire.password.update');
+        Route::delete('account/delete', [PartenaireController::class, 'deleteAccount'])->name('partenaire.account.delete');
+
+        // Sauvegarde des modifications
+        Route::put('profile/update', [PartenaireController::class, 'updateProfile'])
+            ->name('partenaire.profile.update');
+
+        Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
+            ->name('logout');
+
+        Route::group(['prefix' => 'hebergement'], function () {
 
             Route::get('/', [HebergementController::class, 'index'])->name('partenaire.hebergement');
             Route::get('detail/{id}', [HebergementController::class, 'show'])->name('partenaire.hebergement-detail.show');
@@ -81,7 +97,7 @@ Route::middleware(['auth:partenaire'])
             // Route::delete('images-hebergement/{id}', [ImageHebergementController::class, 'destroy']);
         });
 
-        Route::group(['prefix' => 'excursion'], function(){
+        Route::group(['prefix' => 'excursion'], function () {
 
             Route::get('/', [ExcursionController::class, 'index'])->name('partenaire.excursion');
             Route::get('detail/{id}', [ExcursionController::class, 'show'])->name('partenaire.excursion.show');
@@ -92,7 +108,7 @@ Route::middleware(['auth:partenaire'])
             // Route::delete('images-hebergement/{id}', [ImageHebergementController::class, 'destroy']);
         });
 
-        Route::group(['prefix' => 'event'], function(){
+        Route::group(['prefix' => 'event'], function () {
 
             Route::get('/', [EvenementController::class, 'index'])->name('partenaire.event');
             Route::get('detail/{id}', [EvenementController::class, 'show'])->name('partenaire.event-detail.show');
@@ -115,7 +131,6 @@ Route::middleware(['auth:partenaire'])
             Route::get('/types-par-famille/{idFamille}', [TypeHebergementController::class, 'getTypesByFamille']);
 
             Route::post('hebergement', [HebergementController::class, 'store'])->name('partenaire.add.hebergement.store');
-
         });
         Route::get('/popup-localisation', function () {
             return view('popup.localisation');
@@ -123,4 +138,4 @@ Route::middleware(['auth:partenaire'])
         Route::get('/localisation-popup', function () {
             return view('popup.localisation-popup'); // le fichier où se trouve ton script
         })->name('partenaire.localisation.popup');
-});
+    });

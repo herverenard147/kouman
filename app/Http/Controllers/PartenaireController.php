@@ -1,7 +1,5 @@
 <?php
 
-// app/Http/Controllers/PartenaireController.php
-
 namespace App\Http\Controllers;
 
 use App\Models\Partenaire;
@@ -11,10 +9,78 @@ use App\Models\Hebergement;
 use App\Models\Vol;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class PartenaireController extends Controller
 {
-    // ... tes méthodes existantes (index, show, etc.)
+    public function profile()
+    {
+        $partenaire = auth('partenaire')->user();
+        return view('partenaire.profile', compact('partenaire'));
+    }
+
+    public function editProfile()
+    {
+        $partenaire = auth('partenaire')->user();
+        return view('partenaire.edit-profile', compact('partenaire'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $partenaire = auth('partenaire')->user();
+
+        $data = $request->validate([
+            'nom_entreprise' => 'required|string|max:255',
+            'email'         => 'required|email',
+            'telephone'     => 'nullable',
+            'adresse'       => 'nullable',
+            'siteWeb'       => 'nullable|url',
+            'image'         => 'nullable|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $request->file('image')->store('partenaires', 'public');
+        }
+
+        $partenaire->update($data);
+
+        return redirect()->route('partenaire.profile')->with('success', 'Profil mis à jour avec succès');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ]);
+
+        $partenaire = auth('partenaire')->user();
+
+        if (!Hash::check($request->current_password, $partenaire->password)) {
+            // Message personnalisé d'erreur
+            return back()->with('password_error', 'Mot de passe actuel incorrect');
+        }
+
+        $partenaire->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        // Message personnalisé de succès
+        return back()->with('password_success', 'Mot de passe mis à jour avec succès');
+    }
+
+    // ✅ Nouveau : suppression définitive du compte
+    public function deleteAccount()
+    {
+        $partenaire = auth('partenaire')->user();
+
+        Auth::guard('partenaire')->logout();
+
+        $partenaire->delete();
+
+        return redirect('/')->with('success', 'Votre compte a été supprimé définitivement.');
+    }
+
     public function index()
     {
         $partenaireId = Auth::guard('partenaire')->id();
@@ -25,13 +91,13 @@ class PartenaireController extends Controller
         $nombreV = Vol::where('idPartenaire', $partenaireId)->count();
 
         $user = Auth::guard('partenaire')->user();
-        // dd($nombreE,$nombreEx, $nombreH, $nombreV);
+
         $properties = [
             [
                 'icon' => 'mdi mdi-account-group-outline text-[28px]',
                 'title' => "Nombre d'hébergements",
                 'total' => $nombreH,
-                'debut' => 0, // tu peux ajuster selon objectif
+                'debut' => 0,
                 'symbol' => '',
             ],
             [
@@ -60,75 +126,28 @@ class PartenaireController extends Controller
         return view('screens.index', compact('user', 'properties'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(Partenaire $partenaire)
     {
-        // On récupère l'ID de l'utilisateur connecté
         $id = Auth::guard('partenaire')->id();
 
-        // On charge directement depuis la base avec les relations
         $partenaire = Partenaire::with(['hebergements', 'excursions', 'evenements', 'vols'])->findOrFail($id);
 
         return view('screens.profile', compact('partenaire'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Partenaire $partenaire)
-    {
-        //
-    }
+    public function create() {}
+    public function store(Request $request) {}
+    public function edit(Partenaire $partenaire) {}
+    public function update(Request $request, Partenaire $partenaire) {}
+    public function destroy(Partenaire $partenaire) {}
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Partenaire $partenaire)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Partenaire $partenaire)
-    {
-        //
-    }
-
-    /**
-     * Liste publique des partenaires (alimente $agencies pour la vue).
-     */
     public function publicIndex(Request $request)
     {
-        $partenaires = Partenaire::orderBy('nom_entreprise')
-            ->get(['id', 'nom_entreprise', 'type', 'siteWeb']);
+        $partenaires = Partenaire::orderBy('nom_entreprise')->get(['id', 'nom_entreprise', 'type', 'siteWeb']);
 
-        // On mappe vers le même schéma que l'include attend: img / name / title
         $agencies = $partenaires->map(function (Partenaire $p) {
-            // Image par défaut (compatible avec asset('client/assets' . $item['img']))
             $relativeLogo = '/images/agency/1.png';
 
-            // Si tu déposes des logos réels dans public/client/assets/partners/{id}.png,
-            // ils seront pris automatiquement :
             $candidate = public_path("client/assets/partners/{$p->id}.png");
             if (file_exists($candidate)) {
                 $relativeLogo = "/partners/{$p->id}.png";
