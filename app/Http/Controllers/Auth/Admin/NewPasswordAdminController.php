@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
 
-class NewPasswordClientController extends Controller
+class NewPasswordAdminController extends Controller
 {
     public function create(Request $request, $token = null)
     {
-        return view('auth.client.reset-password', [
+        return view('client.auth.reset-password', [
             'token' => $token,
             'email' => $request->email,
         ]);

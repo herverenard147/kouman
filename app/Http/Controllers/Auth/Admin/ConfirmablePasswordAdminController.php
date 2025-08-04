@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
-class ConfirmablePasswordClientController extends Controller
+class ConfirmablePasswordAdminController extends Controller
 {
     /**
      * Show the confirm password view.
@@ -35,6 +35,6 @@ class ConfirmablePasswordClientController extends Controller
 
         $request->session()->put('auth.password_confirmed_at', time());
 
-        return redirect()->intended(route('client.index', absolute: false));
+        return redirect()->intended(route('client.dashboard', absolute: false));
     }
 }
