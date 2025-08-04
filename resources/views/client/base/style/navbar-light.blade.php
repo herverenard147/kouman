@@ -123,7 +123,7 @@ $user = $client ?? $partenaire;
                     <div class="dropdown-menu absolute left-1/2 -translate-x-1/2 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white dark:bg-slate-900 shadow hidden" onclick="event.stopPropagation();">
                         <ul class="py-2 text-start text-slate-900 dark:text-white">
                             <li>
-                                <a href="{{ route('client.profile') }}" class="block py-1 px-4 hover:text-green-600">
+                                <a href="{{ route('partenaire.profile') }}" class="block py-1 px-4 hover:text-green-600">
                                     Mon Profil
                                 </a>
                             </li>
@@ -199,7 +199,6 @@ $user = $client ?? $partenaire;
                         Connexion partenaire
                     </a>
                 </li>
-
             @endauth
         </ul>
 
