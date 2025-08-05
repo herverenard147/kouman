@@ -21,7 +21,8 @@ class PropertyController extends Controller
         // --- Hébergements ---
         if ($categorie === '' || $categorie === 'hebergement') {
             $rows = DB::table('hebergements')
-                ->select('id', 'nom', 'prixParNuit as prix', 'devise', 'nombreChambres', 'nombreSallesDeBain', 'capaciteMax', 'noteMoyenne', 'idPartenaire')
+                ->select('id', 'nom', 'prixParNuit as prix', 'devise', 'nombreChambres', 'nombreSallesDeBain', 'capaciteMax', 'noteMoyenne', 'idPartenaire', 'stock')
+                ->where('statut', 'actif') // uniquement actifs
                 ->when($search !== '', fn($q) => $q->where('nom', 'like', "%{$search}%"))
                 ->when(!is_null($prixMin), fn($q) => $q->where('prixParNuit', '>=', $prixMin))
                 ->when(!is_null($prixMax), fn($q) => $q->where('prixParNuit', '<=', $prixMax))
@@ -39,7 +40,8 @@ class PropertyController extends Controller
                     'price_num'    => (int) $r->prix,
                     'title'        => $r->nom,
                     'categorie'    => 'hebergement',
-                    'idPartenaire' => $r->idPartenaire, // +++
+                    'idPartenaire' => $r->idPartenaire,
+                    'stock'        => $r->stock ?? null,
                 ];
             }));
         }
@@ -47,7 +49,8 @@ class PropertyController extends Controller
         // --- Vols ---
         if ($categorie === '' || $categorie === 'vol') {
             $rows = DB::table('vols')
-                ->select('id', 'compagnie', 'numeroVol', 'villeDepart', 'villeArrivee', 'prix', 'devise', 'dateDepart', 'dateArrivee', 'idPartenaire')
+                ->select('id', 'compagnie', 'numeroVol', 'villeDepart', 'villeArrivee', 'prix', 'devise', 'dateDepart', 'dateArrivee', 'idPartenaire', 'placesDisponibles')
+                ->where('statut', 'actif') // uniquement actifs
                 ->when($search !== '', function ($q) use ($search) {
                     $q->where(function ($w) use ($search) {
                         $w->where('compagnie', 'like', "%{$search}%")
@@ -62,19 +65,20 @@ class PropertyController extends Controller
 
             $cards = $cards->merge($rows->map(function ($r) {
                 return [
-                    'id'           => $r->id,
-                    'img'          => $this->coverFor('vol', $r->id),
-                    'price'        => $this->fmtPrice($r->prix, $r->devise ?? 'FCFA'),
-                    'price_num'    => (int) $r->prix,
-                    'title'        => "Vol {$r->villeDepart} → {$r->villeArrivee}",
-                    'categorie'    => 'vol',
-                    'compagnie'    => $r->compagnie,
-                    'numeroVol'    => $r->numeroVol,
-                    'depart'       => $r->villeDepart,
-                    'arrivee'      => $r->villeArrivee,
-                    'dateDepart'   => $r->dateDepart,
-                    'dateArrivee'  => $r->dateArrivee,
-                    'idPartenaire' => $r->idPartenaire, // +++
+                    'id'               => $r->id,
+                    'img'              => $this->coverFor('vol', $r->id),
+                    'price'            => $this->fmtPrice($r->prix, $r->devise ?? 'FCFA'),
+                    'price_num'        => (int) $r->prix,
+                    'title'            => "Vol {$r->villeDepart} → {$r->villeArrivee}",
+                    'categorie'        => 'vol',
+                    'compagnie'        => $r->compagnie,
+                    'numeroVol'        => $r->numeroVol,
+                    'depart'           => $r->villeDepart,
+                    'arrivee'          => $r->villeArrivee,
+                    'dateDepart'       => $r->dateDepart,
+                    'dateArrivee'      => $r->dateArrivee,
+                    'idPartenaire'     => $r->idPartenaire,
+                    'placesDisponibles' => $r->placesDisponibles ?? null,
                 ];
             }));
         }
@@ -82,7 +86,8 @@ class PropertyController extends Controller
         // --- Excursions ---
         if ($categorie === '' || $categorie === 'excursion') {
             $rows = DB::table('excursions')
-                ->select('id', 'titre', 'prix', 'devise', 'duree', 'capacite_max', 'itineraire', 'age_minimum', 'partenaire_id')
+                ->select('id', 'titre', 'prix', 'devise', 'duree', 'capacite_max', 'itineraire', 'age_minimum', 'partenaire_id', 'stock')
+                ->where('statut', 'actif') // uniquement actifs
                 ->when($search !== '', fn($q) => $q->where('titre', 'like', "%{$search}%"))
                 ->when(!is_null($prixMin), fn($q) => $q->where('prix', '>=', $prixMin))
                 ->when(!is_null($prixMax), fn($q) => $q->where('prix', '<=', $prixMax))
@@ -100,7 +105,8 @@ class PropertyController extends Controller
                     'capaciteMax'  => $r->capacite_max,
                     'itineraire'   => $r->itineraire,
                     'ageMinimum'   => $r->age_minimum,
-                    'idPartenaire' => $r->partenaire_id, // +++
+                    'idPartenaire' => $r->partenaire_id,
+                    'stock'        => $r->stock ?? null,
                 ];
             }));
         }
@@ -108,7 +114,8 @@ class PropertyController extends Controller
         // --- Événements ---
         if ($categorie === '' || $categorie === 'evenement') {
             $rows = DB::table('evenements')
-                ->select('id', 'titre', 'prix', 'devise', 'duree', 'capacite_max', 'statut', 'description', 'idPartenaire')
+                ->select('id', 'titre', 'prix', 'devise', 'duree', 'capacite_max', 'statut', 'description', 'idPartenaire', 'stock')
+                ->where('statut', 'actif') // uniquement actifs
                 ->when($search !== '', fn($q) => $q->where('titre', 'like', "%{$search}%"))
                 ->when(!is_null($prixMin), fn($q) => $q->where('prix', '>=', $prixMin))
                 ->when(!is_null($prixMax), fn($q) => $q->where('prix', '<=', $prixMax))
@@ -126,7 +133,8 @@ class PropertyController extends Controller
                     'capaciteMax'  => $r->capacite_max,
                     'statut'       => $r->statut,
                     'description'  => $r->description,
-                    'idPartenaire' => $r->idPartenaire, // +++
+                    'idPartenaire' => $r->idPartenaire,
+                    'stock'        => $r->stock ?? null,
                 ];
             }));
         }
@@ -138,8 +146,8 @@ class PropertyController extends Controller
 
         // IMPORTANT : fixe le path (utile si tu réutilises sur /)
         $paginator = new LengthAwarePaginator($slice, $total, $perPage, $page, [
-            'path'  => $request->url(),              // ex: /offres ou /
-            'query' => $request->query(),            // conserve les filtres
+            'path'  => $request->url(),
+            'query' => $request->query(),
         ]);
 
         return $paginator;
@@ -201,7 +209,9 @@ class PropertyController extends Controller
                     'heureDepart'         => $r->heureDepart ?? null,
                     'numeroDeTel'         => $r->numeroDeTel ?? null,
                     'statut'              => $r->statut ?? null,
+                    'stock'               => $r->stock ?? null,
                 ], $meta);
+
                 break;
 
 
@@ -228,7 +238,9 @@ class PropertyController extends Controller
                     'dateArrivee'  => $r->dateArrivee,
                     'statut'       => $r->statut ?? null,
                     'description'  => null,
+                    'placesDisponibles' => $r->placesDisponibles ?? null,
                 ], $meta);
+
                 break;
 
 
@@ -254,6 +266,7 @@ class PropertyController extends Controller
                     'ageMinimum'   => $r->age_minimum ?? null,
                     'statut'       => $r->statut ?? null,
                     'description'  => $r->description ?? null,
+                    'stock'        => $r->stock ?? null,
                 ], $meta);
                 break;
 
@@ -278,10 +291,9 @@ class PropertyController extends Controller
                     'capaciteMax'  => $r->capacite_max ?? null,
                     'statut'       => $r->statut ?? null,
                     'description'  => $r->description ?? null,
+                    'stock'        => $r->stock ?? null,
                 ], $meta);
                 break;
-
-
             default:
                 abort(404);
         }

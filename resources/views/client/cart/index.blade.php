@@ -146,12 +146,17 @@ $fpage = 'foot1';
                                             name="quantity"
                                             value="{{ $item['quantity'] }}"
                                             min="1"
-                                            class="quantity-input w-12 text-center border-0 focus:ring-0 focus:outline-none text-base font-medium text-gray-900"
-                                            data-product-id="{{ $productId }}">
+                                            max="{{ $item['stock'] }}"
+                                            data-stock="{{ $item['stock'] }}"
+                                            data-product-id="{{ $productId }}"
+                                            class="quantity-input w-12 text-center border-0 focus:ring-0 focus:outline-none text-base font-medium text-gray-900">
+
 
                                         <!-- Bouton + -->
                                         <button type="button"
-                                            class="increment-btn px-3 py-2 bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors flex items-center justify-center border-l border-gray-300">
+                                            class="increment-btn px-3 py-2 bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors flex items-center justify-center border-l border-gray-300"
+                                            @if($item['quantity']>= $item['stock']) disabled @endif
+                                            >
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6" />
                                             </svg>
@@ -249,16 +254,22 @@ $fpage = 'foot1';
                                             name="quantity"
                                             value="{{ $item['quantity'] }}"
                                             min="1"
-                                            class="quantity-input w-12 text-center border-0 focus:ring-0 focus:outline-none text-base font-medium text-gray-900"
-                                            data-product-id="{{ $productId }}">
+                                            max="{{ $item['stock'] }}"
+                                            data-stock="{{ $item['stock'] }}"
+                                            data-product-id="{{ $productId }}"
+                                            class="quantity-input w-12 text-center border-0 focus:ring-0 focus:outline-none text-base font-medium text-gray-900">
+
 
                                         <!-- Bouton + -->
                                         <button type="button"
-                                            class="increment-btn px-3 py-2 bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors flex items-center justify-center">
+                                            class="increment-btn px-3 py-2 bg-gray-100 text-gray-600 hover:bg-gray-200 transition-colors flex items-center justify-center border-l border-gray-300"
+                                            @if($item['quantity']>= $item['stock']) disabled @endif
+                                            >
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6" />
                                             </svg>
                                         </button>
+
                                     </div>
                                 </form>
                             </div>
