@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
-class StoreHebergementRequest extends FormRequest
+class UpdateHebergementRequest extends FormRequest
 {
      public function authorize(): bool
     {
@@ -17,14 +17,17 @@ class StoreHebergementRequest extends FormRequest
     public function rules(): array
     {
         // dd($this->all());
+        $hebergement = $this->route('id'); // doit être injecté dans ta route
+        // dd($hebergement);
         return [
             'nom' => [
                 'required',
                 'string',
                 'max:255',
                 Rule::unique('hebergements', 'nom')
+                    ->ignore($hebergement) // on ignore l'ID de l'hébergement actuel
                     ->where(fn ($query) =>
-                        $query->where('idPartenaire', Auth::guard('partenaire')->user()->id)
+                        $query->where('idPartenaire', Auth::guard('partenaire')->id())
                     ),
             ],
             'idType' => ['required', 'exists:types_hebergement,id'],
@@ -43,8 +46,6 @@ class StoreHebergementRequest extends FormRequest
             'nombreSallesDeBain' => ['required', 'integer', 'min:1'],
             'capaciteMax' => ['required', 'integer', 'min:1'],
             'heureArrivee' => ['nullable', 'date_format:H:i'],
-            'telephones' => ['required', 'array'],
-            // 'telephones.*.numero' => ['required', 'string', 'regex:/^\+225\d{8,}$/'], // Numéro au format ivoirien
             'heureDepart' => [
                 'nullable',
                 'date_format:H:i',
@@ -54,15 +55,16 @@ class StoreHebergementRequest extends FormRequest
                     }
                 },
             ],
+            'telephones' => ['required', 'array'],
+            'telephones.*.numero' => ['required', 'phone:CI,FR,US', 'distinct', 'max:20'],
             'equipements' => ['nullable', 'array'],
             'equipements.*' => ['exists:equipements,id'],
-            'images' => ['required', 'array', 'min:1'],
+            'images' => ['nullable', 'array', 'min:1'], // en update c'est souvent nullable
             'images.*' => ['image', 'mimes:jpeg,png,jpg,mp4', 'max:10240'],
             'prixSaisonniers' => ['nullable', 'array'],
             'prixSaisonniers.*.dateDebut' => ['nullable', 'date', 'after:today'],
             'prixSaisonniers.*.dateFin' => ['nullable', 'date', 'after_or_equal:prixSaisonniers.*.dateDebut'],
             'prixSaisonniers.*.prixParNuit' => ['nullable', 'numeric', 'min:0'],
-            'telephones.*.numero' => ['required', 'phone:CI,FR,US', 'distinct', 'max:20'],
         ];
     }
 

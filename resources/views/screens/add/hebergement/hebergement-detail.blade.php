@@ -124,7 +124,7 @@
                 <div class="lg:w-1/2 md:w-1/2 p-1">
                     <div class="group relative overflow-hidden rounded-md shadow h-full">
                         <img
-                            src="{{ $hebergement->imagePrincipale->estPrincipale ? asset('storage/' . $hebergement->imagePrincipale->url) : asset('/images/property/single/1.jpg') }}"
+                            src="{{ $hebergement->imagePrincipale ? asset('storage/' . $hebergement->imagePrincipale->url) : asset('/images/property/single/1.jpg') }}"
                             alt="Image principale de {{ $hebergement->nom }}"
                             class="w-full h-full object-cover"
                         >

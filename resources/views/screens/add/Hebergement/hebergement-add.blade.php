@@ -52,7 +52,7 @@
                                 </div>
                                 <p class="font-medium mb-4 text-slate-900 dark:text-white"> <strong>NB:</strong>  La première image sera votre image principale. <br> Vous ne Pouvez Téléverser que 10 images.</p>
 
-                                <input type="file" id="input-file" name="images[]" accept="image/jpeg,image/png" multiple class="hidden" onchange="handleImageChange()">
+                                <input type="file" id="input-file" name="images[]" accept="image/jpeg,image/png,image/jpg,image/mp4" multiple class="hidden" onchange="handleImageChange()">
                                 <label for="input-file" class="btn-upload btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-6 cursor-pointer">
                                     Ajouter des images
                                 </label>
@@ -329,270 +329,271 @@
 </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const form = document.getElementById('form-hebergement');
-        const inputFile = document.getElementById('input-file');
-        const previewBox = document.getElementById('preview-box');
-        const errorContainer = document.getElementById('image-errors');
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('form-hebergement');
+            const inputFile = document.getElementById('input-file');
+            const previewBox = document.getElementById('preview-box');
+            const errorContainer = document.getElementById('image-errors');
 
-        const maxImages = 10;
-        const maxSize = 10 * 1024 * 1024;
-        let selectedFiles = [];
+            const maxImages = 10;
+            const maxSize = 10 * 1024 * 1024;
+            let selectedFiles = [];
 
-        inputFile.addEventListener('change', handleImageChange);
-        form.addEventListener('submit', function (e) {
-            injectFilesToForm();
-        });
+            inputFile.addEventListener('change', handleImageChange);
+            form.addEventListener('submit', function (e) {
+                injectFilesToForm();
+            });
 
-        function handleImageChange(e) {
-            const files = Array.from(e.target.files);
-            const errors = [];
-            const validFiles = [];
+            function handleImageChange(e) {
+                const files = Array.from(e.target.files);
+                const errors = [];
+                const validFiles = [];
 
-            if (selectedFiles.length + files.length > maxImages) {
-                errors.push(`Vous ne pouvez pas ajouter plus de ${maxImages} images.`);
-            }
-
-            for (let file of files) {
-                if (!['image/jpeg', 'image/png'].includes(file.type)) {
-                    errors.push(`"${file.name}" n'est pas une image valide (JPG/PNG).`);
-                    continue;
+                if (selectedFiles.length + files.length > maxImages) {
+                    errors.push(`Vous ne pouvez pas ajouter plus de ${maxImages} images.`);
                 }
 
-                if (file.size > maxSize) {
-                    errors.push(`"${file.name}" dépasse 10MB.`);
-                    continue;
+                for (let file of files) {
+                    if (!['image/jpeg', 'image/png'].includes(file.type)) {
+                        errors.push(`"${file.name}" n'est pas une image valide (JPG/PNG).`);
+                        continue;
+                    }
+
+                    if (file.size > maxSize) {
+                        errors.push(`"${file.name}" dépasse 10MB.`);
+                        continue;
+                    }
+
+                    if (selectedFiles.find(f => f.name === file.name && f.size === file.size)) {
+                        errors.push(`"${file.name}" est déjà sélectionné.`);
+                        continue;
+                    }
+
+                    validFiles.push(file);
                 }
 
-                if (selectedFiles.find(f => f.name === file.name && f.size === file.size)) {
-                    errors.push(`"${file.name}" est déjà sélectionné.`);
-                    continue;
+                if (errors.length > 0) {
+                    displayErrors(errors);
                 }
 
-                validFiles.push(file);
-            }
-
-            if (errors.length > 0) {
-                displayErrors(errors);
-            }
-
-            validFiles.forEach((file, index) => {
-                selectedFiles.push(file);
-                addPreview(file, selectedFiles.length - 1);
-            });
-        }
-
-        function addPreview(file, index) {
-            if (selectedFiles.length === 1 && previewBox.innerHTML.includes('Supports JPG et PNG')) {
-                previewBox.innerHTML = '';
-            }
-
-            const wrapper = document.createElement('div');
-            wrapper.className = 'relative rounded border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-slate-700 shadow max-w-[150px] image-preview';
-            wrapper.dataset.index = index;
-
-            const img = document.createElement('img');
-            img.className = 'w-full h-auto object-cover rounded';
-            img.src = URL.createObjectURL(file);
-            img.onload = () => URL.revokeObjectURL(img.src);
-
-            const deleteBtn = document.createElement('button');
-            deleteBtn.innerHTML = '✕';
-            deleteBtn.className = 'absolute top-1 left-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600';
-            deleteBtn.type = 'button';
-            deleteBtn.addEventListener('click', () => {
-                selectedFiles.splice(index, 1);
-                wrapper.remove();
-                refreshPreviews();
-            });
-
-            wrapper.appendChild(deleteBtn);
-            wrapper.appendChild(img);
-
-            if (index === 0) {
-                const badge = document.createElement('span');
-                badge.className = 'absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded principal-badge';
-                badge.textContent = 'Principale';
-                wrapper.appendChild(badge);
-            }
-
-            previewBox.appendChild(wrapper);
-        }
-
-        function refreshPreviews() {
-            previewBox.innerHTML = '';
-            selectedFiles.forEach((file, i) => {
-                addPreview(file, i);
-            });
-
-            if (selectedFiles.length === 0) {
-                previewBox.innerHTML = '<p class="text-slate-400 dark:text-gray-300">Supports JPG et PNG. Taille max : 10MB.</p>';
-            }
-        }
-
-        function displayErrors(errors) {
-            errorContainer.innerHTML = '';
-            errors.forEach(msg => {
-                const li = document.createElement('div');
-                li.textContent = msg;
-                errorContainer.appendChild(li);
-            });
-        }
-
-        function injectFilesToForm() {
-            const dataTransfer = new DataTransfer();
-            selectedFiles.forEach(file => dataTransfer.items.add(file));
-            inputFile.files = dataTransfer.files;
-        }
-    });
-
-
-    function updateTypePartenaireDropdown() {
-        const familyType = document.getElementById('familyType').value;
-        const typePartenaire = document.getElementById('typePartenaire');
-
-        typePartenaire.innerHTML = '<option disabled selected>Chargement...</option>';
-        typePartenaire.disabled = true;
-
-        if (!familyType) {
-            typePartenaire.innerHTML = '<option value="" disabled selected>-- Sélectionner un type --</option>';
-            typePartenaire.disabled = false; // Enable if no selection is available
-            return;
-        }
-
-        fetch(`/partenaire/add/types-par-famille/${familyType}`)
-            .then(response => response.json())
-            .then(data => {
-                typePartenaire.innerHTML = '<option value="" disabled selected>-- Sélectionner un type --</option>';
-                data.forEach(type => {
-                    const option = document.createElement('option');
-                    option.value = type.id;      // adapte selon ta clé primaire dans ta table
-                    option.textContent = type.nomType;  // adapte selon le champ nom dans ta table
-                    typePartenaire.appendChild(option);
+                validFiles.forEach((file, index) => {
+                    selectedFiles.push(file);
+                    addPreview(file, selectedFiles.length - 1);
                 });
-                typePartenaire.disabled = false;
-            })
-            .catch(error => {
-                console.error('Erreur de chargement des types :', error);
-                typePartenaire.innerHTML = '<option disabled selected>Erreur de chargement</option>';
-                typePartenaire.disabled = false; // Re-enable on error
-            });
-    }
-
-    // Fonction pour ajouter dynamiquement des champs de prix saisonniers
-    let prixSaisonnierIndex = 1; // On commence à 1 car le bloc 0 est déjà présent
-
-    document.getElementById('add-prix-saison').addEventListener('click', function () {
-        const container = document.getElementById('prix-saisonniers-container');
-
-        // Créer un nouveau bloc HTML avec les bons noms
-        const newBlock = document.createElement('div');
-        newBlock.className = 'grid grid-cols-12 gap-2 mb-2';
-        newBlock.innerHTML = `
-                <div class="md:col-span-4 col-span-12">
-                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white">Date de début :</label>
-                    <input name="prixSaisonniers[${prixSaisonnierIndex}][dateDebut]" type="date" class="form-input bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Date de début">
-                </div>
-                <div class="md:col-span-4 col-span-12">
-                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white">Date de fin:</label>
-                    <input type="date" name="prixSaisonniers[${prixSaisonnierIndex}][dateFin]" class="form-input bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Date de fin">
-                </div>
-                <div class="md:col-span-4 col-span-12">
-                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white">Prix par nuit :</label>
-                    <input type="number" step="0.01" name="prixSaisonniers[${prixSaisonnierIndex}][prixParNuit]" class="form-input bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Prix par nuit">
-                </div>
-                <div class="col-span-12"> {{-- Changed to col-span-12 for better mobile layout, adjust if needed --}}
-                    <button type="button" class="remove-block btn bg-white dark:bg-slate-700 text-red-600 border border-red-300 dark:border-red-600 hover:bg-red-50 dark:hover:bg-red-800 rounded-md px-2 py-1 w-full mt-2">
-                        Retirer cette période
-                    </button>
-                </div>
-        `;
-
-        container.appendChild(newBlock);
-        prixSaisonnierIndex++;
-    });
-
-    // Gestion du clic sur les boutons "✕" pour les prix saisonniers
-    document.getElementById('prix-saisonniers-container').addEventListener('click', function (e) {
-        if (e.target && e.target.classList.contains('remove-block')) {
-            const row = e.target.closest('.grid');
-            if (row) row.remove();
-        }
-    });
-
-    // Écouteur pour le dropdown famille d'hébergement
-    document.getElementById('familyType').addEventListener('change', updateTypePartenaireDropdown);
-
-    // Appel initial pour gérer les anciennes valeurs au chargement et peupler le type d'hébergement
-    document.addEventListener('DOMContentLoaded', () => {
-        updateTypePartenaireDropdown();
-        // If old('idType') exists, try to pre-select it after types are loaded
-        const oldTypeId = "{{ old('idType') }}";
-        if (oldTypeId) {
-            // A small delay to ensure options are loaded by updateTypePartenaireDropdown
-            setTimeout(() => {
-                const typePartenaire = document.getElementById('typePartenaire');
-                if (typePartenaire) {
-                    typePartenaire.value = oldTypeId;
-                }
-            }, 100);
-        }
-    });
-
-    let telephoneIndex = 1;
-
-    document.getElementById('add-telephone').addEventListener('click', function () {
-        const container = document.getElementById('telephones-container');
-        const newBlock = document.createElement('div');
-        newBlock.className = 'grid grid-cols-12 gap-2 mb-2 telephone-item'; // Added telephone-item class
-        newBlock.innerHTML = `
-            <div class="md:col-span-4 col-span-10"> {{-- Adjusted for button --}}
-                <input name="telephones[${telephoneIndex}][numero]" type="text" class="form-input bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="+2250700000000">
-            </div>
-            <div class="md:col-span-2 col-span-2"> {{-- Small column for remove button --}}
-                <button type="button" class="remove-telephone btn bg-white dark:bg-slate-700 text-red-600 border border-red-300 dark:border-red-600 hover:bg-red-50 dark:hover:bg-red-800 rounded-md px-2 py-1 w-full">✕</button>
-            </div>
-        `;
-        container.appendChild(newBlock);
-        telephoneIndex++;
-    });
-
-    // Event listener for removing telephone fields
-    document.getElementById('telephones-container').addEventListener('click', function(e) {
-        if (e.target && e.target.classList.contains('remove-telephone')) {
-            e.target.closest('.telephone-item').remove();
-        }
-    });
-
-
-    function openMapPopup() {
-        const width = 600;
-        const height = 500;
-        const left = (screen.width / 2) - (width / 2);
-        const top = (screen.height / 2) - (height / 2);
-
-        const mapWindow = window.open(
-            "/partenaire/popup-localisation", // à créer dans Laravel
-            "Localisation",
-            `width=${width},height=${height},top=${top},left=${left}`
-        );
-        window.addEventListener('message', function (event) {
-            if (event.origin !== window.location.origin) return;
-
-            const { latitude, longitude, adresse, ville, pays } = event.data;
-
-            console.log("📦 Données reçues :", event.data); // 👀 ici tu verras tout
-
-            // Assure-toi que latitude/longitude sont bien définies
-            if (latitude !== undefined && longitude !== undefined) {
-                document.getElementById('latitude').value = latitude;
-                document.getElementById('longitude').value = longitude;
             }
 
-            if (adresse) document.getElementById('adresse').value = adresse;
-            if (ville) document.getElementById('ville').value = ville;
-            if (pays) document.getElementById('pays').value = pays;
+            function addPreview(file, index) {
+                if (selectedFiles.length === 1 && previewBox.innerHTML.includes('Supports JPG et PNG')) {
+                    previewBox.innerHTML = '';
+                }
+
+                const wrapper = document.createElement('div');
+                wrapper.className = 'relative rounded border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-slate-700 shadow max-w-[150px] image-preview';
+                wrapper.dataset.index = index;
+
+                const img = document.createElement('img');
+                img.className = 'w-full h-auto object-cover rounded';
+                img.src = URL.createObjectURL(file);
+                img.onload = () => URL.revokeObjectURL(img.src);
+
+                const deleteBtn = document.createElement('button');
+                deleteBtn.innerHTML = '✕';
+                deleteBtn.className = 'absolute top-1 left-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600';
+                deleteBtn.type = 'button';
+                deleteBtn.addEventListener('click', () => {
+                    selectedFiles.splice(index, 1);
+                    wrapper.remove();
+                    refreshPreviews();
+                });
+
+                wrapper.appendChild(deleteBtn);
+                wrapper.appendChild(img);
+
+                if (index === 0) {
+                    const badge = document.createElement('span');
+                    badge.className = 'absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded principal-badge';
+                    badge.textContent = 'Principale';
+                    wrapper.appendChild(badge);
+                }
+
+                previewBox.appendChild(wrapper);
+            }
+
+            function refreshPreviews() {
+                previewBox.innerHTML = '';
+                selectedFiles.forEach((file, i) => {
+                    addPreview(file, i);
+                });
+
+                if (selectedFiles.length === 0) {
+                    previewBox.innerHTML = '<p class="text-slate-400 dark:text-gray-300">Supports JPG et PNG. Taille max : 10MB.</p>';
+                }
+            }
+
+            function displayErrors(errors) {
+                errorContainer.innerHTML = '';
+                errors.forEach(msg => {
+                    const li = document.createElement('div');
+                    li.textContent = msg;
+                    errorContainer.appendChild(li);
+                });
+            }
+
+            function injectFilesToForm() {
+                const dataTransfer = new DataTransfer();
+                selectedFiles.forEach(file => dataTransfer.items.add(file));
+                inputFile.files = dataTransfer.files;
+            }
         });
-    }
+
+
+        function updateTypePartenaireDropdown() {
+            const familyType = document.getElementById('familyType').value;
+            const typePartenaire = document.getElementById('typePartenaire');
+
+            typePartenaire.innerHTML = '<option disabled selected>Chargement...</option>';
+            typePartenaire.disabled = true;
+
+            if (!familyType) {
+                typePartenaire.innerHTML = '<option value="" disabled selected>-- Sélectionner un type --</option>';
+                typePartenaire.disabled = false; // Enable if no selection is available
+                return;
+            }
+
+            fetch(`/partenaire/add/types-par-famille/${familyType}`)
+                .then(response => response.json())
+                .then(data => {
+                    typePartenaire.innerHTML = '<option value="" disabled selected>-- Sélectionner un type --</option>';
+                    data.forEach(type => {
+                        const option = document.createElement('option');
+                        option.value = type.id;      // adapte selon ta clé primaire dans ta table
+                        option.textContent = type.nomType;  // adapte selon le champ nom dans ta table
+                        typePartenaire.appendChild(option);
+                    });
+                    typePartenaire.disabled = false;
+                })
+                .catch(error => {
+                    console.error('Erreur de chargement des types :', error);
+                    typePartenaire.innerHTML = '<option disabled selected>Erreur de chargement</option>';
+                    typePartenaire.disabled = false; // Re-enable on error
+                });
+        }
+
+        // Fonction pour ajouter dynamiquement des champs de prix saisonniers
+        let prixSaisonnierIndex = 1; // On commence à 1 car le bloc 0 est déjà présent
+
+        document.getElementById('add-prix-saison').addEventListener('click', function () {
+            const container = document.getElementById('prix-saisonniers-container');
+
+            // Créer un nouveau bloc HTML avec les bons noms
+            const newBlock = document.createElement('div');
+            newBlock.className = 'grid grid-cols-12 gap-2 mb-2';
+            newBlock.innerHTML = `
+                    <div class="md:col-span-4 col-span-12">
+                        <label class="font-semibold block mb-2 text-slate-900 dark:text-white">Date de début :</label>
+                        <input name="prixSaisonniers[${prixSaisonnierIndex}][dateDebut]" type="date" class="form-input bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Date de début">
+                    </div>
+                    <div class="md:col-span-4 col-span-12">
+                        <label class="font-semibold block mb-2 text-slate-900 dark:text-white">Date de fin:</label>
+                        <input type="date" name="prixSaisonniers[${prixSaisonnierIndex}][dateFin]" class="form-input bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Date de fin">
+                    </div>
+                    <div class="md:col-span-4 col-span-12">
+                        <label class="font-semibold block mb-2 text-slate-900 dark:text-white">Prix par nuit :</label>
+                        <input type="number" step="0.01" name="prixSaisonniers[${prixSaisonnierIndex}][prixParNuit]" class="form-input bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Prix par nuit">
+                    </div>
+                    <div class="col-span-12"> {{-- Changed to col-span-12 for better mobile layout, adjust if needed --}}
+                        <button type="button" class="remove-block btn bg-white dark:bg-slate-700 text-red-600 border border-red-300 dark:border-red-600 hover:bg-red-50 dark:hover:bg-red-800 rounded-md px-2 py-1 w-full mt-2">
+                            Retirer cette période
+                        </button>
+                    </div>
+            `;
+
+            container.appendChild(newBlock);
+            prixSaisonnierIndex++;
+        });
+
+        // Gestion du clic sur les boutons "✕" pour les prix saisonniers
+        document.getElementById('prix-saisonniers-container').addEventListener('click', function (e) {
+            if (e.target && e.target.classList.contains('remove-block')) {
+                const row = e.target.closest('.grid');
+                if (row) row.remove();
+            }
+        });
+
+        // Écouteur pour le dropdown famille d'hébergement
+        document.getElementById('familyType').addEventListener('change', updateTypePartenaireDropdown);
+
+        // Appel initial pour gérer les anciennes valeurs au chargement et peupler le type d'hébergement
+        document.addEventListener('DOMContentLoaded', () => {
+            updateTypePartenaireDropdown();
+            // If old('idType') exists, try to pre-select it after types are loaded
+            const oldTypeId = "{{ old('idType') }}";
+            if (oldTypeId) {
+                // A small delay to ensure options are loaded by updateTypePartenaireDropdown
+                setTimeout(() => {
+                    const typePartenaire = document.getElementById('typePartenaire');
+                    if (typePartenaire) {
+                        typePartenaire.value = oldTypeId;
+                    }
+                }, 100);
+            }
+        });
+
+        let telephoneIndex = 1;
+
+        document.getElementById('add-telephone').addEventListener('click', function () {
+            const container = document.getElementById('telephones-container');
+            const newBlock = document.createElement('div');
+            newBlock.className = 'grid grid-cols-12 gap-2 mb-2 telephone-item'; // Added telephone-item class
+            newBlock.innerHTML = `
+                <div class="md:col-span-4 col-span-10"> {{-- Adjusted for button --}}
+                    <input name="telephones[${telephoneIndex}][numero]" type="text" class="form-input bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="+2250700000000">
+                </div>
+                <div class="md:col-span-2 col-span-2"> {{-- Small column for remove button --}}
+                    <button type="button" class="remove-telephone btn bg-white dark:bg-slate-700 text-red-600 border border-red-300 dark:border-red-600 hover:bg-red-50 dark:hover:bg-red-800 rounded-md px-2 py-1 w-full">✕</button>
+                </div>
+            `;
+            container.appendChild(newBlock);
+            telephoneIndex++;
+        });
+
+        // Event listener for removing telephone fields
+        document.getElementById('telephones-container').addEventListener('click', function(e) {
+            if (e.target && e.target.classList.contains('remove-telephone')) {
+                e.target.closest('.telephone-item').remove();
+            }
+        });
+
+
+        function openMapPopup() {
+            const width = 600;
+            const height = 500;
+            const left = (screen.width / 2) - (width / 2);
+            const top = (screen.height / 2) - (height / 2);
+
+            const mapWindow = window.open(
+                "/partenaire/popup-localisation", // à créer dans Laravel
+                "Localisation",
+                `width=${width},height=${height},top=${top},left=${left}`
+            );
+            window.addEventListener('message', function (event) {
+                if (event.origin !== window.location.origin) return;
+
+                const { latitude, longitude, adresse, ville, pays } = event.data;
+
+                console.log("📦 Données reçues :", event.data); // 👀 ici tu verras tout
+
+                // Assure-toi que latitude/longitude sont bien définies
+                if (latitude !== undefined && longitude !== undefined) {
+                    document.getElementById('latitude').value = latitude;
+                    document.getElementById('longitude').value = longitude;
+                }
+
+                if (adresse) document.getElementById('adresse').value = adresse;
+                if (ville) document.getElementById('ville').value = ville;
+                if (pays) document.getElementById('pays').value = pays;
+            });
+        }
+
 </script>
 @endsection
