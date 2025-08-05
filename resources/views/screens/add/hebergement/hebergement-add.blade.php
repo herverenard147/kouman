@@ -144,7 +144,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="md:col-span-6 col-span-12">
+                                <div class="md:col-span-4 col-span-12">
                                     <label for="ville" class="font-medium text-slate-900 dark:text-white">Ville <strong>*</strong>:</label>
                                     <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Ville" value="{{ old('ville') }}" required readonly>
                                     @error('ville')
@@ -152,7 +152,7 @@
                                     @enderror
                                 </div>
 
-                                <div class="md:col-span-6 col-span-12">
+                                <div class="md:col-span-4 col-span-12">
                                     <label for="pays" class="font-medium text-slate-900 dark:text-white">Pays <strong>*</strong>:</label>
                                     <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Pays" value="{{ old('pays') }}" required readonly>
                                     @error('pays')
@@ -183,13 +183,14 @@
                                     @enderror
                                 </div>
 
-                                <div class="md:col-span-4 col-span-12">
+                                <div class="md:col-span-4 col-span-12 flex justify-center items-center">
                                     <button type="button" onclick="openMapPopup()" class="btn bg-green-600 text-white rounded-md px-4 py-2 hover:bg-green-700">
                                         Ajouter ma localisation
                                     </button>
                                 </div>
+
                                 <div class="md:col-span-4 col-span-12">
-                                    <label for="codePostal" class="font-medium text-slate-900 dark:text-white">Code postal <strong>*</strong>:</label>
+                                    <label for="codePostal" class="font-medium text-slate-900 dark:text-white">Code postal :</label>
                                     <input name="codePostal" id="codePostal" type="text" class="form-input mt-2 @error('codePostal') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Code postal" value="{{ old('codePostal') }}">
                                     @error('codePostal')
                                         <span class="text-red-600 text-sm">{{ $message }}</span>
