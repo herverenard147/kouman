@@ -110,7 +110,6 @@ $fpage = 'foot1';
                 <div class="mt-8">
                     {{ $items->withQueryString()->links() }}
                 </div>
-
             </div>
         </div>
     </div>

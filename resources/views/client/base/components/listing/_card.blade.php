@@ -86,6 +86,20 @@
         </ul>
         @endif
 
+
+        @php
+        $categorie = strtolower($item['categorie'] ?? '');
+        $stock = isset($item['stock']) ? (int) $item['stock'] : null;
+        $places = isset($item['placesDisponibles']) ? (int) $item['placesDisponibles'] : null;
+
+        $isAvailable = true;
+        if ($categorie === 'vol') {
+        $isAvailable = $places !== null && $places > 0;
+        } elseif (in_array($categorie, ['hebergement', 'excursion', 'evenement'])) {
+        $isAvailable = $stock !== null && $stock > 0;
+        }
+        @endphp
+
         <div class="mt-auto pt-4 flex items-center justify-between">
             <div>
                 <span class="text-slate-400 text-sm">Prix</span>
@@ -98,14 +112,18 @@
                 <input type="hidden" name="name" value="{{ $item['title'] ?? '' }}">
                 <input type="hidden" name="price" value="{{ isset($item['price_num']) ? $item['price_num'] : (isset($item['price']) ? preg_replace('/\D+/', '', $item['price']) : '') }}">
                 <input type="hidden" name="image" value="{{ $item['img'] ?? '' }}">
-                {{-- Pour enregistrer aussi l'id partenaire et le nom du partenaire lorqu'on ajoute dans le panier --}}
-                <input type="hidden" name="idPartenaire" value="{{ $item['idPartenaire'] ?? '' }}">
                 <input type="hidden" name="categorie" value="{{ $item['categorie'] ?? '' }}">
+                <input type="hidden" name="idPartenaire" value="{{ $item['idPartenaire'] ?? '' }}">
                 <input type="hidden" name="nomPartenaire" value="{{ $item['partenaireNom'] ?? '' }}">
-                <button type="submit" class="inline-flex items-center px-3 py-2 rounded bg-green-600 hover:bg-green-700 text-white text-sm shadow">
-                    Ajouter au panier
+
+                <button type="submit"
+                    class="inline-flex items-center px-3 py-2 rounded text-white text-sm shadow
+            {{ $isAvailable ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-400 cursor-not-allowed' }}"
+                    {{ $isAvailable ? '' : 'disabled' }}>
+                    {{ $isAvailable ? 'Ajouter au panier' : 'Indisponible' }}
                 </button>
             </form>
         </div>
+
     </div>
 </div>

@@ -28,28 +28,28 @@ class ClientController extends Controller
         'slug'  => 'hebergement',
         'label' => 'Hébergements',
         'icon'  => 'uil uil-home',
-        'image' => asset('https://img.freepik.com/photos-gratuite/belle-villa-luxe-jardin_1150-12614.jpg'), // exemple chemin image
+        'image' => asset('https://cdn.pixabay.com/photo/2017/01/14/12/48/hotel-1979406_1280.jpg'), // exemple chemin image
         'count' => DB::table('hebergements')->count(),
     ],
     [
         'slug'  => 'vol',
         'label' => 'Vols',
         'icon'  => 'uil uil-plane',
-        'image' => asset('https://img.freepik.com/photos-gratuite/avion-vol-coucher-soleil_1112-1311.jpg'),
+        'image' => asset('https://cdn.pixabay.com/photo/2020/02/27/20/48/aircraft-4885805_1280.jpg'),
         'count' => DB::table('vols')->count(),
     ],
     [
         'slug'  => 'excursion',
         'label' => 'Excursions',
         'icon'  => 'uil uil-map',
-        'image' => asset('https://img.freepik.com/photos-gratuite/paysage-tropical-soleil-plage_1150-11064.jpg'),
+        'image' => asset('https://cdn.pixabay.com/photo/2020/04/17/07/20/travel-5053561_1280.jpg'),
         'count' => DB::table('excursions')->count(),
     ],
     [
         'slug'  => 'evenement',
         'label' => 'Événements',
         'icon'  => 'uil uil-calender',
-        'image' => asset('https://img.freepik.com/photos-gratuite/foule-concert-lumiere-scene_1150-17717.jpg'),
+        'image' => asset('https://cdn.pixabay.com/photo/2016/11/22/19/15/hand-1850120_1280.jpg'),
         'count' => DB::table('evenements')->count(),
     ],
 ];
