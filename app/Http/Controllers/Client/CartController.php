@@ -22,36 +22,53 @@ class CartController extends Controller
 
     public function addToCart(Request $request)
     {
-        // 1) Lire et valider le minimum
         $productId    = (int) $request->input('id');
         $name         = (string) $request->input('name');
-        $price        = (int) $request->input('price');   // en centimes / entier (comme chez toi)
+        $price        = (int) $request->input('price');
         $image        = (string) $request->input('image', '');
         $idPartenaire = $request->filled('idPartenaire') ? (int) $request->input('idPartenaire') : null;
+        $categorie    = (string) $request->input('categorie', '');
 
-        // 2) Recalculer / sécuriser le nom du partenaire côté serveur
+        // Vérifier le stock selon la catégorie
+        $stock = null;
+        switch ($categorie) {
+            case 'vol':
+                $stock = DB::table('vols')->where('id', $productId)->value('placesDisponibles');
+                break;
+            case 'hebergement':
+                $stock = DB::table('hebergements')->where('id', $productId)->value('stock');
+                break;
+            case 'excursion':
+                $stock = DB::table('excursions')->where('id', $productId)->value('stock');
+                break;
+            case 'evenement':
+                $stock = DB::table('evenements')->where('id', $productId)->value('stock');
+                break;
+        }
+
+        if ($stock !== null && $stock <= 0) {
+            return redirect()->back()->with('error', 'Cet article n\'est pas disponible pour le moment.');
+        }
+
+        // Rechercher le partenaire
         $nomPartenaire = null;
         if (!is_null($idPartenaire)) {
-            $nomPartenaire = DB::table('partenaires')
-                ->where('id', $idPartenaire)
-                ->value('nom_entreprise'); // null si inexistant
-            // Si l'id envoyé ne correspond à aucun partenaire, on l'ignore
-            if (is_null($nomPartenaire)) {
-                $idPartenaire = null;
-            }
+            $nomPartenaire = DB::table('partenaires')->where('id', $idPartenaire)->value('nom_entreprise');
+            if (is_null($nomPartenaire)) $idPartenaire = null;
         }
 
-        // 3) Charger le panier
+        // Gérer le panier
         $cart = session()->get('cart', []);
-
-        // 4) Clé de ligne : évite les collisions (même produit chez partenaires différents)
-        //    Exemple: "42" devient "42-p7" si idPartenaire=7
         $lineKey = (string) $productId;
-        if (!is_null($idPartenaire)) {
-            $lineKey .= '-p' . $idPartenaire;
+        if (!is_null($idPartenaire)) $lineKey .= '-p' . $idPartenaire;
+
+        $currentQty = isset($cart[$lineKey]) ? $cart[$lineKey]['quantity'] : 0;
+        $maxQty     = $stock ?? PHP_INT_MAX;
+
+        if ($currentQty + 1 > $maxQty) {
+            return redirect()->back()->with('error', 'Quantité maximale atteinte pour cet article.');
         }
 
-        // 5) Ajouter / incrémenter
         if (isset($cart[$lineKey])) {
             $cart[$lineKey]['quantity'] += 1;
         } else {
@@ -61,38 +78,61 @@ class CartController extends Controller
                 'price'          => $price,
                 'image'          => $image,
                 'quantity'       => 1,
-
-                // 🔹 Contexte partenaire
-                'idPartenaire'   => $idPartenaire,     // peut être null
-                'nomPartenaire'  => $nomPartenaire,    // peut être null
+                'idPartenaire'   => $idPartenaire,
+                'nomPartenaire'  => $nomPartenaire,
+                'categorie'      => $categorie,
+                'stock'          => $stock,  // <== ici on ajoute le stock
             ];
         }
 
-        // 6) Sauvegarder
         session()->put('cart', $cart);
-
         return redirect()->back()->with('success', 'Produit ajouté au panier.');
     }
 
     public function update(Request $request, $id)
     {
         $cart = session()->get('cart', []);
-
         $quantity = (int) $request->input('quantity');
 
+        if (!isset($cart[$id])) {
+            return redirect()->back()->with('error', 'Article introuvable dans le panier.');
+        }
+
+        $line = $cart[$id];
+        $productId    = $line['product_id'] ?? null;
+        $categorie    = $line['categorie'] ?? '';
+        $idPartenaire = $line['idPartenaire'] ?? null;
+
+        // Lire le stock dispo
+        $stock = null;
+        switch ($categorie) {
+            case 'vol':
+                $stock = DB::table('vols')->where('id', $productId)->value('placesDisponibles');
+                break;
+            case 'hebergement':
+                $stock = DB::table('hebergements')->where('id', $productId)->value('stock');
+                break;
+            case 'excursion':
+                $stock = DB::table('excursions')->where('id', $productId)->value('stock');
+                break;
+            case 'evenement':
+                $stock = DB::table('evenements')->where('id', $productId)->value('stock');
+                break;
+        }
+
+        $maxQty = $stock ?? PHP_INT_MAX;
+
         if ($quantity <= 0) {
-            // Supprimer le produit si la quantité est 0
             unset($cart[$id]);
+        } elseif ($quantity > $maxQty) {
+            return redirect()->back()->with('error', 'La quantité demandée dépasse la disponibilité.');
         } else {
-            // Mettre à jour la quantité si l'article existe
-            if (isset($cart[$id])) {
-                $cart[$id]['quantity'] = $quantity;
-            }
+            $cart[$id]['quantity'] = $quantity;
+            $cart[$id]['stock'] = $maxQty; // Mise à jour du stock en session
         }
 
         session()->put('cart', $cart);
 
-        // Si c'est une requête AJAX, on renvoie une réponse JSON
         if ($request->ajax()) {
             return response()->json([
                 'success' => true,
@@ -102,6 +142,8 @@ class CartController extends Controller
 
         return redirect()->back()->with('success', 'Panier mis à jour');
     }
+
+
 
     public function remove($id)
     {

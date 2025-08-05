@@ -199,6 +199,27 @@ $fpage = 'foot1';
                                 </li>
                                 @endif
 
+                                {{-- Stock ou places disponibles --}}
+                                @php
+                                $cat = $item['categorie'] ?? '';
+                                @endphp
+
+                                @if($cat === 'vol' && isset($item['placesDisponibles']))
+                                <li class="flex justify-between">
+                                    <span class="text-slate-400">Places restantes</span>
+                                    <span class="font-medium text-green-600">
+                                        {{ $item['placesDisponibles'] > 0 ? $item['placesDisponibles'] : 'Complet' }}
+                                    </span>
+                                </li>
+                                @elseif(in_array($cat, ['hebergement', 'excursion', 'evenement']) && isset($item['stock']))
+                                <li class="flex justify-between">
+                                    <span class="text-slate-400">Disponibilité</span>
+                                    <span class="font-medium {{ $item['stock'] > 0 ? 'text-green-600' : 'text-red-600' }}">
+                                        {{ $item['stock'] > 0 ? $item['stock'].' disponible(s)' : 'Complet' }}
+                                    </span>
+                                </li>
+                                @endif
+
                                 {{-- ================== AJOUT : Infos Partenaire ================== --}}
                                 @php
                                 $idPartenaireCtx = $item['idPartenaire'] ?? request('idPartenaire');
@@ -247,6 +268,20 @@ $fpage = 'foot1';
 
                         </div>
 
+                        @php
+                        $categorie = strtolower($item['categorie'] ?? '');
+                        $stock = isset($item['stock']) ? (int) $item['stock'] : null;
+                        $places = isset($item['placesDisponibles']) ? (int) $item['placesDisponibles'] : null;
+
+                        $isAvailable = true;
+
+                        if ($categorie === 'vol') {
+                        $isAvailable = $places !== null && $places > 0;
+                        } elseif (in_array($categorie, ['hebergement', 'excursion', 'evenement'])) {
+                        $isAvailable = $stock !== null && $stock > 0;
+                        }
+                        @endphp
+
                         <div class="flex py-6">
                             <div class="p-1 w-full flex justify-center">
                                 <form action="{{ route('client.cart.add') }}" method="POST" class="w-full max-w-xs">
@@ -255,18 +290,20 @@ $fpage = 'foot1';
                                     <input type="hidden" name="name" value="{{ $item['title'] ?? '' }}">
                                     <input type="hidden" name="price" value="{{ isset($item['price_num']) ? $item['price_num'] : (isset($item['price']) ? preg_replace('/\D+/', '', $item['price']) : '') }}">
                                     <input type="hidden" name="image" value="{{ $item['img'] ?? '' }}">
-
-                                    {{-- NEW --}}
+                                    <input type="hidden" name="categorie" value="{{ $item['categorie'] ?? '' }}">
                                     <input type="hidden" name="idPartenaire" value="{{ $item['idPartenaire'] ?? '' }}">
                                     <input type="hidden" name="nomPartenaire" value="{{ $item['partenaireNom'] ?? '' }}">
 
                                     <button type="submit"
-                                        class="w-full px-3 py-2 rounded bg-green-600 hover:bg-green-700 text-white text-sm shadow text-center">
-                                        Ajouter au panier
+                                        class="w-full px-3 py-2 rounded text-white text-sm shadow text-center
+                       {{ $isAvailable ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-400 cursor-not-allowed' }}"
+                                        {{ $isAvailable ? '' : 'disabled' }}>
+                                        {{ $isAvailable ? 'Ajouter au panier' : 'Indisponible' }}
                                     </button>
                                 </form>
                             </div>
                         </div>
+
                     </div>
 
                     <div class="mt-12 text-center">
