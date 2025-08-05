@@ -87,7 +87,7 @@ class PropertyController extends Controller
         if ($categorie === '' || $categorie === 'excursion') {
             $rows = DB::table('excursions')
                 ->select('id', 'titre', 'prix', 'devise', 'duree', 'capacite_max', 'itineraire', 'age_minimum', 'partenaire_id', 'stock')
-                ->where('statut', 'actif') // uniquement actifs
+                ->where('statut', 'active') // uniquement active
                 ->when($search !== '', fn($q) => $q->where('titre', 'like', "%{$search}%"))
                 ->when(!is_null($prixMin), fn($q) => $q->where('prix', '>=', $prixMin))
                 ->when(!is_null($prixMax), fn($q) => $q->where('prix', '<=', $prixMax))
