@@ -22,6 +22,7 @@ class PropertyController extends Controller
         if ($categorie === '' || $categorie === 'hebergement') {
             $rows = DB::table('hebergements')
                 ->select('id', 'nom', 'prixParNuit as prix', 'devise', 'nombreChambres', 'nombreSallesDeBain', 'capaciteMax', 'noteMoyenne', 'idPartenaire', 'stock')
+                ->where('statut', 'actif') // uniquement actifs
                 ->when($search !== '', fn($q) => $q->where('nom', 'like', "%{$search}%"))
                 ->when(!is_null($prixMin), fn($q) => $q->where('prixParNuit', '>=', $prixMin))
                 ->when(!is_null($prixMax), fn($q) => $q->where('prixParNuit', '<=', $prixMax))
@@ -49,6 +50,7 @@ class PropertyController extends Controller
         if ($categorie === '' || $categorie === 'vol') {
             $rows = DB::table('vols')
                 ->select('id', 'compagnie', 'numeroVol', 'villeDepart', 'villeArrivee', 'prix', 'devise', 'dateDepart', 'dateArrivee', 'idPartenaire', 'placesDisponibles')
+                ->where('statut', 'actif') // uniquement actifs
                 ->when($search !== '', function ($q) use ($search) {
                     $q->where(function ($w) use ($search) {
                         $w->where('compagnie', 'like', "%{$search}%")
@@ -85,6 +87,7 @@ class PropertyController extends Controller
         if ($categorie === '' || $categorie === 'excursion') {
             $rows = DB::table('excursions')
                 ->select('id', 'titre', 'prix', 'devise', 'duree', 'capacite_max', 'itineraire', 'age_minimum', 'partenaire_id', 'stock')
+                ->where('statut', 'actif') // uniquement actifs
                 ->when($search !== '', fn($q) => $q->where('titre', 'like', "%{$search}%"))
                 ->when(!is_null($prixMin), fn($q) => $q->where('prix', '>=', $prixMin))
                 ->when(!is_null($prixMax), fn($q) => $q->where('prix', '<=', $prixMax))
@@ -112,6 +115,7 @@ class PropertyController extends Controller
         if ($categorie === '' || $categorie === 'evenement') {
             $rows = DB::table('evenements')
                 ->select('id', 'titre', 'prix', 'devise', 'duree', 'capacite_max', 'statut', 'description', 'idPartenaire', 'stock')
+                ->where('statut', 'actif') // uniquement actifs
                 ->when($search !== '', fn($q) => $q->where('titre', 'like', "%{$search}%"))
                 ->when(!is_null($prixMin), fn($q) => $q->where('prix', '>=', $prixMin))
                 ->when(!is_null($prixMax), fn($q) => $q->where('prix', '<=', $prixMax))
