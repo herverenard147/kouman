@@ -28,7 +28,7 @@ class ClientController extends Controller
         'slug'  => 'hebergement',
         'label' => 'Hébergements',
         'icon'  => 'uil uil-home',
-        'image' => asset('https://img.freepik.com/photos-gratuite/belle-villa-luxe-jardin_1150-12614.jpg'), // exemple chemin image
+        'image' => asset('https://cdn.pixabay.com/photo/2017/01/14/12/48/hotel-1979406_1280.jpg'), // exemple chemin image
         'count' => DB::table('hebergements')->count(),
     ],
     [
