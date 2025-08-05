@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\PolitiquesAnnulation;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreHebergementRequest;
+use App\Http\Requests\UpdateHebergementRequest;
 use App\Models\FamilleTypeHebergements;
 use Illuminate\Support\Facades\Storage;
 
@@ -180,40 +181,15 @@ class HebergementController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateHebergementRequest $request, string $id)
     {
         $partenaire = Auth::guard('partenaire')->user();
-        $hebergement = Hebergement::where('id', $partenaire->id)
-            ->findOrFail($id);
+        $hebergement = Hebergement::where('id', $id)
+                    ->where('idPartenaire', $partenaire->id)
+                    ->firstOrFail();
 
         // Validation des données
-        $validated = $request->validate([
-            'nom' => 'required|string|max:255',
-            'familyType' => 'required|exists:familles_types_hebergement,idFamilleType',
-            'idType' => 'required|exists:types_hebergement,idType',
-            'description' => 'nullable|string',
-            'prixParNuit' => 'required|numeric|min:0',
-            'devise' => 'required|in:CFA,EUR,USD,GBP,CAD,AUD',
-            'idPolitiqueAnnulation' => 'required|exists:politiques_annulation,idPolitiqueAnnulation',
-            'nombreChambres' => 'required|integer|min:1',
-            'nombreSallesDeBain' => 'required|integer|min:1',
-            'capaciteMax' => 'required|integer|min:1',
-            'heureArrivee' => 'nullable|date_format:H:i',
-            'heureDepart' => 'nullable|date_format:H:i',
-            'ville' => 'nullable|string|max:255',
-            'pays' => 'nullable|string|max:255',
-            'adresse' => 'nullable|string|max:255',
-            'codePostal' => 'nullable|string|max:20',
-            'latitude' => 'nullable|numeric|between:-90,90',
-            'longitude' => 'nullable|numeric|between:-180,180',
-            'images.*' => 'nullable|image|mimes:jpeg,png|max:10240',
-            'equipements' => 'nullable|array',
-            'equipements.*' => 'exists:equipements,idEquipement',
-            'prixSaisonniers.*.dateDebut' => 'nullable|date',
-            'prixSaisonniers.*.dateFin' => 'nullable|date|after_or_equal:prixSaisonniers.*.dateDebut',
-            'prixSaisonniers.*.prixParNuit' => 'nullable|numeric|min:0',
-            'images_to_keep.*' => 'in:0,1',
-        ]);
+        $validated = $request->validated();
 
         $localisationData = array_filter([
             'ville' => $request->ville,
@@ -238,7 +214,7 @@ class HebergementController extends Controller
             'description' => $validated['description'],
             'prixParNuit' => $validated['prixParNuit'],
             'devise' => $validated['devise'],
-            'numeroDeTel' => $validated['numeroDeTel'],
+            // 'numeroDeTel' => $validated['numeroDeTel'],
             'idPolitiqueAnnulation' => $validated['idPolitiqueAnnulation'],
             'nombreChambres' => $validated['nombreChambres'],
             'nombreSallesDeBain' => $validated['nombreSallesDeBain'],
@@ -247,6 +223,27 @@ class HebergementController extends Controller
             'heureDepart' => $validated['heureDepart'],
             'idLocalisation' => $hebergement->idLocalisation,
         ]);
+
+        $hebergement->telephones()->delete();
+        foreach ($request->input('telephones', []) as $telData) {
+            $hebergement->telephones()->create([
+                'numero' => $telData['numero']
+            ]);
+        }
+
+        // 1. Supprimer les images marquées
+        if ($request->has('images_to_keep')) {
+            // Récupérer le tableau des images à conserver, ou tableau vide si rien envoyé
+            $imagesToKeep = $request->images_to_keep;
+
+            foreach ($hebergement->images as $image) {
+                // Supprimer seulement si l'image est explicitement marquée pour suppression (0)
+                if (array_key_exists($image->id, $imagesToKeep) && $imagesToKeep[$image->id] == 0) {
+                    Storage::delete($image->url);
+                    $image->delete();
+                }
+            }
+        }
 
 
         // Gérer les nouvelles images
@@ -260,7 +257,7 @@ class HebergementController extends Controller
             foreach ($newImages as $index => $image) {
                 $path = $image->store('hebergements', 'public');
                 ImagesHebergement::create([
-                    'idHebergement' => $hebergement->idHebergement,
+                    'idHebergement' => $hebergement->id,
                     'url' => $path,
                     'estPrincipale' => $index === 0 && !$hebergement->imagePrincipale,
                 ]);
@@ -276,7 +273,7 @@ class HebergementController extends Controller
             foreach ($request->prixSaisonniers as $saisonnier) {
                 if ($saisonnier['dateDebut'] && $saisonnier['dateFin'] && $saisonnier['prixParNuit']) {
                     PrixHebergement::create([
-                        'idHebergement' => $hebergement->idHebergement,
+                        'idHebergement' => $hebergement->id,
                         'dateDebut' => $saisonnier['dateDebut'],
                         'dateFin' => $saisonnier['dateFin'],
                         'prixParNuit' => $saisonnier['prixParNuit'],
@@ -284,8 +281,8 @@ class HebergementController extends Controller
                 }
             }
         }
-
-        return redirect()->route('partenaire.hebergement-detail.show', $hebergement->idHebergement)
+        // dd($hebergement->toArray(), $request->all());
+        return redirect()->route('partenaire.hebergement-detail.show', $hebergement->id)
             ->with('success', 'Hébergement mis à jour avec succès.');
     }
 
@@ -296,8 +293,10 @@ class HebergementController extends Controller
     public function destroy(string $id)
     {
         $partenaire = Auth::guard('partenaire')->user();
-        $hebergement = Hebergement::where('id', $partenaire->id)
-            ->findOrFail($id);
+        $hebergement = Hebergement::where('id', $id)
+                    ->where('idPartenaire', $partenaire->id)
+                    ->firstOrFail();
+
 
         // Supprimer les images associées
         foreach ($hebergement->images as $image) {
@@ -312,7 +311,6 @@ class HebergementController extends Controller
         if ($hebergement->localisation) {
             $hebergement->localisation->delete();
         }
-
 
         return redirect()->route('partenaire.hebergement')
             ->with('success', 'Hébergement supprimé avec succès.');
