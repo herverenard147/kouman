@@ -7,22 +7,29 @@
         <div class="layout-specing">
             <!-- Start Content -->
             <div class="md:flex justify-between items-center">
-                <h5 class="text-lg font-semibold">Ajouter une nouvelle excursion</h5>
+                <h5 class="text-lg font-semibold text-slate-900 dark:text-white">Ajouter une nouvelle excursion</h5>
 
                 <ul class="tracking-[0.5px] inline-block sm:mt-0 mt-3">
-                    <li class="inline-block capitalize text-[16px] font-medium duration-500 hover:text-green-600"><a href="{{ route('partenaire.dashboard') }}">Afrique évasion</a></li>
-                    <li class="inline-block text-base text-slate-950 mx-0.5 ltr:rotate-0 rtl:rotate-180"><i class="mdi mdi-chevron-right"></i></li>
-                    <li class="inline-block capitalize text-[16px] font-medium text-green-600" aria-current="page">Excursion</li>
+                    {{-- Lien de fil d'Ariane normal: S'adapte au mode sombre --}}
+                    <li class="inline-block capitalize text-[16px] font-medium text-slate-900 dark:text-white duration-500 text-slate-700 dark:text-gray-300 hover:text-green-600">
+                        <a href="{{route('partenaire.dashboard')}}">Afrique évasion</a>
+                    </li>
+                    {{-- Séparateur de fil d'Ariane: S'adapte au mode sombre --}}
+                    <li class="inline-block text-base text-slate-950 dark:text-gray-400 mx-0.5 ltr:rotate-0 rtl:rotate-180">
+                        <i class="mdi mdi-chevron-right"></i>
+                    </li>
+                    {{-- Élément actif du fil d'Ariane: La couleur verte est déjà bien contrastée --}}
+                    <li class="inline-block capitalize text-[16px] font-medium text-green-600" aria-current="page">Ajouter une Excursion</li>
                 </ul>
             </div>
 
             @if(session('success'))
-                <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4">
+                <div class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-4 py-2 rounded mb-4">
                     {{ session('success') }}
                 </div>
             @endif
             @if($errors->any())
-                <div class="bg-red-100 text-red-800 px-4 py-2 rounded mb-4">
+                <div class="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-4 py-2 rounded mb-4">
                     <ul>
                         @foreach($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -37,14 +44,18 @@
                 <div class="w-full md:w-3/4 mx-auto">
                     <div class="grid md:grid-cols-1 grid-cols-1 gap-6 mt-6">
                         <!-- Section Images -->
-                        <div class="rounded-md shadow p-6 bg-white h-fit mb-5">
+                        <div class="rounded-md shadow p-6 bg-white dark:bg-slate-800 h-fit mb-5">
                             <div>
-                                <p class="font-medium mb-4">Téléchargez les images de votre excursion (max 10 images, 10MB chacune, JPG/PNG)</p>
-                                <div id="preview-box" class="preview-box flex flex-wrap gap-4 overflow-x-auto max-h-60 bg-gray-50 p-4 rounded-md shadow-inner text-center text-slate-400">
+                                <p class="font-medium text-slate-900 dark:text-white mb-4 text-slate-900 dark:text-white">Téléchargez l'image de votre propriété ici (max 10 images, 10MB chacun)</p>
+
+                                {{-- Zone de prévisualisation des images --}}
+                                <div id="preview-box" class="preview-box flex flex-wrap gap-4 overflow-x-auto max-h-60 bg-gray-50 dark:bg-slate-700 p-4 rounded-md shadow-inner text-center text-slate-400 dark:text-gray-300">
                                     Supports JPG et PNG. Taille max : 10MB.
                                 </div>
-                                <input type="file" id="input-file" name="images[]" accept="image/jpeg,image/png" multiple class="hidden" onchange="handleImageChange()">
-                                <label for="input-file" class="btn-upload btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-6 cursor-pointer inline-block">
+                                <p class="font-medium text-slate-900 dark:text-white mb-4 text-slate-900 dark:text-white"> <strong>NB:</strong>  La première image sera votre image principale. <br> Vous ne Pouvez Téléverser que 10 images.</p>
+
+                                <input type="file" id="input-file" name="images[]" accept="image/jpeg,image/png,image/jpg,image/mp4" multiple class="hidden" onchange="handleImageChange()">
+                                <label for="input-file" class="btn-upload btn bg-green-600 hover:bg-green-700 border-green-600 hover:border-green-700 text-white rounded-md mt-6 cursor-pointer">
                                     Ajouter des images
                                 </label>
                                 <div id="image-errors" class="text-red-600 text-sm mt-2"></div>
@@ -54,40 +65,40 @@
                             </div>
                         </div>
                         <!-- Autres champs -->
-                        <div class="rounded-md shadow p-6 bg-white h-fit mb-5">
+                        <div class="rounded-md shadow p-6 bg-white dark:bg-slate-800 h-fit mb-5">
                             <div class="grid grid-cols-12 gap-5">
 
                                 <!-- Titre -->
                                 <div class="col-span-12">
-                                    <label for="titre" class="font-medium">Titre de l'excursion :</label>
-                                    <input name="titre" id="titre" type="text" class="form-input mt-2 @error('titre') border-red-500 @enderror" placeholder="Titre de l'excursion" value="{{ old('titre') }}" required>
+                                    <label for="titre" class="font-medium text-slate-900 dark:text-white">Titre de l'excursion :</label>
+                                    <input name="titre" id="titre" type="text" class="form-input mt-2 @error('titre') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" placeholder="Titre de l'excursion" value="{{ old('titre') }}" required>
                                     @error('titre') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
                                 <!-- Itinéraire -->
                                 <div class="col-span-12">
-                                    <label for="itineraire" class="font-medium">Itinéraire :</label>
-                                    <textarea name="itineraire" id="itineraire" class="form-input mt-2 @error('itineraire') border-red-500 @enderror" rows="3" placeholder="Décrivez l’itinéraire prévu">{{ old('itineraire') }}</textarea>
+                                    <label for="itineraire" class="font-medium text-slate-900 dark:text-white">Itinéraire :</label>
+                                    <textarea name="itineraire" id="itineraire" class="form-input mt-2 @error('itineraire') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" rows="3" placeholder="Décrivez l’itinéraire prévu">{{ old('itineraire') }}</textarea>
                                     @error('itineraire') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <!-- Nom du guide -->
                                 <div class="col-span-6">
-                                    <label for="nom_guide" class="font-medium">Nom du guide :</label>
-                                    <input name="nom_guide" id="nom_guide" type="text" class="form-input mt-2 @error('nom_guide') border-red-500 @enderror" value="{{ old('nom_guide') }}" placeholder="Nom complet du guide">
+                                    <label for="nom_guide" class="font-medium text-slate-900 dark:text-white">Nom du guide :</label>
+                                    <input name="nom_guide" id="nom_guide" type="text" class="form-input mt-2 @error('nom_guide') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('nom_guide') }}" placeholder="Nom complet du guide">
                                     @error('nom_guide') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <!-- Langues parlées -->
                                 <div class="col-span-6">
-                                    <label for="langues" class="font-medium">Langues parlées :</label>
-                                    <input name="langues" id="langues" type="text" class="form-input mt-2 @error('langues') border-red-500 @enderror" value="{{ old('langues') }}" placeholder="Ex : Français, Anglais">
+                                    <label for="langues" class="font-medium text-slate-900 dark:text-white">Langues parlées :</label>
+                                    <input name="langues" id="langues" type="text" class="form-input mt-2 @error('langues') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('langues') }}" placeholder="Ex : Français, Anglais">
                                     @error('langues') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <!-- Récurrence -->
                                 <div class="col-span-6">
-                                    <label for="recurrence" class="font-medium">Fréquence :</label>
-                                    <select name="recurrence" id="recurrence" class="form-input mt-2 @error('recurrence') border-red-500 @enderror">
+                                    <label for="recurrence" class="font-medium text-slate-900 dark:text-white">Fréquence :</label>
+                                    <select name="recurrence" id="recurrence" class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('recurrence') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
                                         @foreach(['ponctuelle', 'quotidienne', 'hebdomadaire', 'mensuelle'] as $freq)
                                             <option value="{{ $freq }}" {{ old('recurrence') == $freq ? 'selected' : '' }}>
                                                 {{ ucfirst($freq) }}
@@ -99,62 +110,69 @@
 
                                 <!-- Âge minimum -->
                                 <div class="col-span-6">
-                                    <label for="age_minimum" class="font-medium">Âge minimum requis :</label>
-                                    <input name="age_minimum" id="age_minimum" type="number" min="0" class="form-input mt-2 @error('age_minimum') border-red-500 @enderror" value="{{ old('age_minimum', 0) }}">
+                                    <label for="age_minimum" class="font-medium text-slate-900 dark:text-white">Âge minimum requis :</label>
+                                    <input name="age_minimum" id="age_minimum" type="number" min="0" class="form-input mt-2 @error('age_minimum') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('age_minimum', 0) }}">
                                     @error('age_minimum') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <!-- Conditions d’annulation -->
-                                <div class="col-span-12">
-                                    <label for="conditions" class="font-medium">Conditions d’annulation :</label>
-                                    <textarea name="conditions" id="conditions" class="form-input mt-2 @error('conditions') border-red-500 @enderror" rows="3" placeholder="Politique d’annulation, remboursement, etc.">{{ old('conditions') }}</textarea>
-                                    @error('conditions') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                <div class="col-span-6">
+                                    <label for="idPolitiqueAnnulation" class="font-medium text-slate-900 dark:text-white">Politique d'annulation:</label>
+                                    <select name="idPolitiqueAnnulation" id="idPolitiqueAnnulation" class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('idPolitiqueAnnulation') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+                                        <option value="" selected>Aucune</option>
+                                        @foreach($politiques as $politique)
+                                            <option value="{{ $politique->id }}" {{ old('idPolitiqueAnnulation') == $politique->id ? 'selected' : '' }}>{{ $politique->nom }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('idPolitiqueAnnulation')
+                                        <span class="text-red-600 text-sm">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <!-- Moyens de paiement -->
-                                <div class="col-span-12">
-                                    <label for="moyens_paiement" class="font-medium">Moyens de paiement acceptés :</label>
-                                    <input name="moyens_paiement" id="moyens_paiement" type="text" class="form-input mt-2 @error('moyens_paiement') border-red-500 @enderror" value="{{ old('moyens_paiement') }}" placeholder="Ex : Orange Money, Visa, Cash">
+                                <div class="col-span-6">
+                                    <label for="moyens_paiement" class="font-medium text-slate-900 dark:text-white">Moyens de paiement acceptés :</label>
+                                    <input name="moyens_paiement" id="moyens_paiement" type="text" class="form-input mt-2 @error('moyens_paiement') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('moyens_paiement') }}" placeholder="Ex : Orange Money, Visa, Cash">
                                     @error('moyens_paiement') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <!-- Description -->
                                 <div class="col-span-12">
-                                    <label for="description" class="font-medium">Description :</label>
-                                    <textarea name="description" id="description" class="form-input mt-2 @error('description') border-red-500 @enderror">{{ old('description') }}</textarea>
+                                    <label for="description" class="font-medium text-slate-900 dark:text-white">Description :</label>
+                                    <textarea name="description" id="description" class="form-input mt-2 @error('description') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">{{ old('description') }}</textarea>
                                     @error('description') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <!-- Date / Heure -->
                                 <div class="col-span-6">
-                                    <label for="date" class="font-medium">Date de l'excursion :</label>
-                                    <input name="date" id="date" type="date" class="form-input mt-2 @error('date') border-red-500 @enderror" value="{{ old('date') }}">
+                                    <label for="date" class="font-medium text-slate-900 dark:text-white">Date de l'excursion :</label>
+                                    <input name="date" id="date" type="date" class="form-input mt-2 @error('date') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('date') }}">
                                     @error('date') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="col-span-6">
-                                    <label for="heure_debut" class="font-medium">Heure de début :</label>
-                                    <input name="heure_debut" id="heure_debut" type="time" class="form-input mt-2 @error('heure_debut') border-red-500 @enderror" value="{{ old('heure_debut') }}">
+                                    <label for="heure_debut" class="font-medium text-slate-900 dark:text-white">Heure de début :</label>
+                                    <input name="heure_debut" id="heure_debut" type="time" class="form-input mt-2 @error('heure_debut') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('heure_debut') }}">
                                     @error('heure_debut') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <!-- Durée -->
                                 <div class="col-span-6">
-                                    <label for="duree" class="font-medium">Durée (en heures) :</label>
-                                    <input name="duree" id="duree" type="number" step="0.1" min="0.5" max="24" class="form-input mt-2 @error('duree') border-red-500 @enderror" value="{{ old('duree') }}" required>
+                                    <label for="duree" class="font-medium text-slate-900 dark:text-white">Durée (en heures) :</label>
+                                    <input name="duree" id="duree" type="number" step="0.1" min="0.5" max="24" class="form-input mt-2 @error('duree') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('duree') }}" required>
                                     @error('duree') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <!-- Prix / Devise -->
                                 <div class="col-span-6">
-                                    <label for="prix" class="font-medium">Prix par personne :</label>
-                                    <input name="prix" id="prix" type="number" step="0.01" min="0" class="form-input mt-2 @error('prix') border-red-500 @enderror" value="{{ old('prix') }}" required>
+                                    <label for="prix" class="font-medium text-slate-900 dark:text-white">Prix par personne :</label>
+                                    <input name="prix" id="prix" type="number" step="0.01" min="0" class="form-input mt-2 @error('prix') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('prix') }}" required>
                                     @error('prix') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="col-span-6">
-                                    <label for="devise" class="font-medium">Devise :</label>
-                                    <select name="devise" id="devise" class="form-input mt-2 @error('devise') border-red-500 @enderror" required>
+                                    <label for="devise" class="font-medium text-slate-900 dark:text-white">Devise :</label>
+                                    <select name="devise" id="devise" class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('devise') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
                                         @foreach(['CFA', 'EUR', 'USD', 'GBP', 'CAD', 'AUD'] as $dev)
                                             <option value="{{ $dev }}" {{ old('devise') == $dev ? 'selected' : '' }}>{{ $dev }}</option>
                                         @endforeach
@@ -164,37 +182,37 @@
 
                                 <!-- Capacité -->
                                 <div class="col-span-6">
-                                    <label for="capacite_max" class="font-medium">Capacité maximale :</label>
-                                    <input name="capacite_max" id="capacite_max" type="number" min="1" class="form-input mt-2 @error('capacite_max') border-red-500 @enderror" value="{{ old('capacite_max', 1) }}" required>
+                                    <label for="capacite_max" class="font-medium text-slate-900 dark:text-white">Capacité maximale :</label>
+                                    <input name="capacite_max" id="capacite_max" type="number" min="1" class="form-input mt-2 @error('capacite_max') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('capacite_max', 1) }}" required>
                                     @error('capacite_max') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <!-- Localisation -->
-                                <div class="col-span-6"><label for="ville" class="font-medium">Ville :</label>
-                                    <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror"  value="{{ old('ville') }}" readonly>
+                                <div class="col-span-6"><label for="ville" class="font-medium text-slate-900 dark:text-white">Ville :</label>
+                                    <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white"  value="{{ old('ville') }}" readonly>
                                     @error('ville') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
-                                <div class="col-span-6"><label for="pays" class="font-medium">Pays :</label>
-                                    <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror" value="{{ old('pays') }}" readonly>
+                                <div class="col-span-6"><label for="pays" class="font-medium text-slate-900 dark:text-white">Pays :</label>
+                                    <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('pays') }}" readonly>
                                     @error('pays') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="col-span-6">
-                                    <label for="adresse" class="font-medium">Adresse (point de départ) :</label>
-                                    <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror" value="{{ old('adresse') }}" readonly>
+                                    <label for="adresse" class="font-medium text-slate-900 dark:text-white">Adresse (point de départ) :</label>
+                                    <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('adresse') }}" readonly>
                                     @error('adresse') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="col-span-3">
-                                    <label for="latitude" class="font-medium">Latitude :</label>
-                                    <input name="latitude" id="latitude" type="number" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror" value="{{ old('latitude') }}" required readonly>
+                                    <label for="latitude" class="font-medium text-slate-900 dark:text-white">Latitude :</label>
+                                    <input name="latitude" id="latitude" type="number" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('latitude') }}" required readonly>
                                     @error('latitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="col-span-3">
-                                    <label for="longitude" class="font-medium">Longitude :</label>
-                                    <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror" value="{{ old('longitude') }}" required readonly>
+                                    <label for="longitude" class="font-medium text-slate-900 dark:text-white">Longitude :</label>
+                                    <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('longitude') }}" required readonly>
                                     @error('longitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
@@ -207,23 +225,23 @@
 
                                 <!-- Équipements -->
                                 <div class="col-span-12">
-                                    <label class="font-medium">Équipements inclus :</label>
+                                    <label class="font-medium text-slate-900 dark:text-white">Équipements inclus :</label>
                                     <div class="mt-2">
                                         @foreach($equipements as $equipement)
                                             <label class="inline-flex items-center mr-4">
-                                                <input type="checkbox" name="equipements[]" value="{{ $equipement->idEquipement }}" class="form-checkbox" {{ in_array($equipement->idEquipement, old('equipements', [])) ? 'checked' : '' }}>
-                                                <span class="ml-2">{{ $equipement->nom }}</span>
+                                                <input type="checkbox" name="equipements[]" value="{{ $equipement->idEquipement }}" class="form-checkbox @error('equipements') border-red-500 @enderror text-green-600 bg-gray-100 dark:bg-slate-700 border-gray-300 dark:border-gray-600 focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-slate-800" {{ in_array($equipement->idEquipement, old('equipements', [])) ? 'checked' : '' }}>
+                                                <span class="ml-2 text-slate-900 dark:text-white">{{ $equipement->nom }}</span>
                                             </label>
                                         @endforeach
                                     </div>
                                 </div>
                                 <!-- Téléphones -->
                                 <div class="col-span-12">
-                                    <label class="font-semibold block mb-2">Numéros de téléphone :</label>
+                                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white">Numéros de téléphone :</label>
                                     <div id="telephones-container">
                                         <div class="grid grid-cols-12 gap-2 mb-2">
                                             <div class="col-span-4">
-                                                <input name="telephones[0][numero]" type="text" class="form-input" placeholder="+2250700000000" value="{{ old('telephones.0.numero') }}">
+                                                <input name="telephones[0][numero]" type="text" class="form-input  @error('telephones.0.numero') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="+2250700000000" value="{{ old('telephones.0.numero') }}">
                                             </div>
                                         </div>
                                     </div>
@@ -237,7 +255,7 @@
 
                                 <!-- Boutons -->
                                 <div class="col-span-12 flex justify-end space-x-4 mt-6">
-                                    <a href="{{ route('partenaire.dashboard') }}" class="btn bg-gray-500 hover:bg-gray-600 text-white rounded-md px-4 py-2">Annuler</a>
+                                    <a href="{{ route('partenaire.dashboard') }}" class="btn bg-red-500 hover:bg-red-600 text-white rounded-md px-4 py-2">Annuler</a>
                                     <button type="submit" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md px-4 py-2">Ajouter l'excursion</button>
                                 </div>
                             </div>
@@ -488,7 +506,7 @@
 
             const { latitude, longitude, adresse, ville, pays } = event.data;
 
-            console.log("📦 Données reçues :", event.data); // 👀 ici tu verras tout
+            console.log(" Données reçues :", event.data); // 👀 ici tu verras tout
 
             // Assure-toi que latitude/longitude sont bien définies
             if (latitude !== undefined && longitude !== undefined) {

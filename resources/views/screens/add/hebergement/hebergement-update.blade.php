@@ -42,7 +42,7 @@
             method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
-                <div class="container relative">
+                <div class="w-full md:w-3/4 mx-auto">
                     <div class="grid md:grid-cols-1 grid-cols-1 gap-6 mt-6">
                         <div class="md:col-span-12 col-span-12">
                             <div class="rounded-md shadow p-6 bg-white dark:bg-slate-800 h-fit mb-5">

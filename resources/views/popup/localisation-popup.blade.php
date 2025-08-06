@@ -97,7 +97,16 @@
                     updateAddressText(display);
 
                     currentAddress.adresse = display;
-                    currentAddress.ville = data.address.city || data.address.town || data.address.village || '';
+                    currentAddress.ville = data.address.city ||
+                                            data.address.city_district || // ici on récupère "Abidjan"
+                                            data.address.town ||
+                                            data.address.village ||
+                                            data.address.hamlet ||
+                                            data.address.municipality ||
+                                            data.address.state_district ||
+                                            data.address.county ||
+                                            data.address.state ||
+                                            '';
                     currentAddress.pays = data.address.country || '';
                 })
                 .catch(() => {

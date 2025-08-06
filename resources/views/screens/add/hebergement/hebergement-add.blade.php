@@ -18,7 +18,7 @@
                         <i class="mdi mdi-chevron-right"></i>
                     </li>
                     {{-- Élément actif du fil d'Ariane: La couleur verte est déjà bien contrastée --}}
-                    <li class="inline-block capitalize text-[16px] font-medium text-green-600" aria-current="page">Ajouter un hebergement</li>
+                    <li class="inline-block capitalize text-[16px] font-medium text-green-600" aria-current="page">Ajouter un hébergement</li>
                 </ul>
             </div>
 
@@ -39,7 +39,7 @@
             @endif
             <form action="{{ route('partenaire.add.hebergement.store') }}" method="POST" enctype="multipart/form-data" id="form-hebergement">
                 @csrf
-                <div class="container relative">
+                <div class="w-full md:w-3/4 mx-auto">
                     <div class="grid md:grid-cols-1 grid-cols-1 gap-6 mt-6">
                         {{-- Section Téléchargement d'images --}}
                         <div class="rounded-md shadow p-6 bg-white dark:bg-slate-800 h-fit mb-5">
