@@ -79,6 +79,7 @@ class HebergementController extends Controller
             'idPolitiqueAnnulation' => $request->idPolitiqueAnnulation,
             'heureArrivee' => $request->heureArrivee,
             'heureDepart' => $request->heureDepart,
+            'stock' => $request->stock,
         ]);
 
         foreach ($request->input('telephones', []) as $telData) {
