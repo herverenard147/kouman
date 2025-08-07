@@ -362,8 +362,8 @@
                 }
 
                 for (let file of files) {
-                    if (!['image/jpeg', 'image/png'].includes(file.type)) {
-                        errors.push(`"${file.name}" n'est pas une image valide (JPG/PNG).`);
+                    if (!['image/jpeg', 'image/png', 'image/jpg', 'image/mp4'].includes(file.type)) {
+                        errors.push(`"${file.name}" n'est pas une image valide (JPG/PNG/MP4).`);
                         continue;
                     }
 

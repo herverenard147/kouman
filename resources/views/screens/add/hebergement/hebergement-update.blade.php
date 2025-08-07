@@ -143,6 +143,17 @@
                                     </div>
 
                                     <div class="md:col-span-4 col-span-12">
+                                        <label for="stock" class="font-medium text-slate-900 dark:text-white">Stock :</label>
+                                        <div class="form-icon relative mt-2">
+                                            <i class="bi bi-currency-dollar absolute top-2 start-4 text-green-600"></i>
+                                            <input name="stock" id="stock" type="number" step="0.01" class="form-input ps-11 @error('stock') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="0.00" value="{{ old('stock',$hebergement->stock) }}">
+                                        </div>
+                                        @error('stock')
+                                            <span class="text-red-600 text-sm">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+
+                                    <div class="md:col-span-4 col-span-12">
                                         <label for="devise" class="font-medium text-slate-900 dark:text-white">Devise :</label>
                                         <select name="devise" id="devise" class="form-select w-full border border-gray-300 rounded-md p-2 @error('devise') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" required>
                                             <option value="CFA" {{ old('devise', $hebergement->devise) == 'CFA' ? 'selected' : '' }}>CFA (CFA)</option>
@@ -389,180 +400,6 @@
             e.target.closest('.grid').remove();
         }
     });
-    // document.addEventListener('DOMContentLoaded', () => {
-
-
-    //     const selectedFiles = [];
-    //     const maxImages = 10;
-    //     const maxSize = 10 * 1024 * 1024; // 10MB
-
-    //     const previewBox = document.getElementById('preview-box'); // images existantes
-    //     const newImagesPreview = document.getElementById('new-images-preview'); // nouvelles images uploadées
-    //     const inputFile = document.getElementById('input-file');
-    //     const errorContainer = document.getElementById('image-errors');
-
-    //     if (!inputFile || !previewBox || !newImagesPreview) return;
-
-    //     inputFile.addEventListener('change', handleImageChange);
-    //     initExistingImageDeletion();
-    //     updatePrincipalBadge();
-
-    //     function handleImageChange() {
-    //         const newFiles = Array.from(inputFile.files);
-    //         // Compte les images existantes **non supprimées**
-    //         const existingCount = previewBox.querySelectorAll('.image-preview:not(.marked-deleted)').length;
-    //         const errors = [];
-
-    //         const validFiles = newFiles.filter(file => {
-    //             if (selectedFiles.some(f => f.name === file.name && f.size === file.size)) {
-    //                 errors.push(`Le fichier "${file.name}" est déjà sélectionné.`);
-    //                 return false;
-    //             }
-    //             if (!['image/jpeg', 'image/png' , 'image/jpg','image/mp4'].includes(file.type)) {
-    //                 errors.push(`Le fichier "${file.name}" doit être au format JPG, PNG ou MP4.`);
-    //                 return false;
-    //             }
-    //             if (file.size > maxSize) {
-    //                 errors.push(`Le fichier "${file.name}" dépasse la taille maximale de 10MB.`);
-    //                 return false;
-    //             }
-    //             return true;
-    //         });
-
-    //         if (existingCount + selectedFiles.length + validFiles.length > maxImages) {
-    //             const allowedCount = maxImages - existingCount - selectedFiles.length;
-    //             if (allowedCount > 0) {
-    //                 validFiles.splice(allowedCount);
-    //                 errors.push(`Seules les ${allowedCount} premières images valides ont été ajoutées (limite de ${maxImages} images).`);
-    //             } else {
-    //                 errors.push(`La limite de ${maxImages} images est atteinte.`);
-    //                 validFiles.length = 0;
-    //             }
-    //         }
-
-    //         displayErrors(errors);
-
-    //         validFiles.forEach(file => {
-    //             selectedFiles.push(file);
-    //             addNewImagePreview(file);
-    //         });
-
-    //         updateInputFiles();
-    //         inputFile.value = '';
-    //     }
-
-    //     // Prévisualisation des nouvelles images (uploadées)
-    //     function addNewImagePreview(file) {
-    //         const wrapper = document.createElement('div');
-    //         wrapper.className = 'relative rounded border border-gray-300 p-1 bg-white shadow max-w-[150px] image-preview';
-    //         wrapper.dataset.index = selectedFiles.length - 1;
-
-    //         const deleteBtn = document.createElement('button');
-    //         deleteBtn.innerHTML = '✕';
-    //         deleteBtn.className = 'absolute top-1 left-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600';
-    //         deleteBtn.type = 'button';
-
-    //         const img = document.createElement('img');
-    //         img.className = 'w-full h-auto object-cover rounded';
-    //         img.src = URL.createObjectURL(file);
-    //         img.onload = () => URL.revokeObjectURL(img.src);
-
-    //         wrapper.appendChild(deleteBtn);
-    //         wrapper.appendChild(img);
-    //         newImagesPreview.appendChild(wrapper);
-
-    //         deleteBtn.addEventListener('click', () => {
-    //             const index = parseInt(wrapper.dataset.index);
-    //             selectedFiles.splice(index, 1);
-    //             wrapper.remove();
-
-    //             updateNewPreviewIndices();
-    //             updatePrincipalBadge();
-    //             updateInputFiles();
-    //         });
-
-    //         updatePrincipalBadge();
-    //     }
-
-    //     function updateNewPreviewIndices() {
-    //         const wrappers = newImagesPreview.querySelectorAll('.image-preview');
-    //         wrappers.forEach((wrapper, index) => {
-    //             wrapper.dataset.index = index;
-    //         });
-    //     }
-
-    //     // Met à jour le badge "Principale" sur la première image visible (existante ou nouvelle)
-    //     function updatePrincipalBadge() {
-    //         // Retire tous les badges dans previewBox
-    //         previewBox.querySelectorAll('.principal-badge').forEach(badge => badge.remove());
-    //         newImagesPreview.querySelectorAll('.principal-badge').forEach(badge => badge.remove());
-
-    //         // Trouve la première image existante non supprimée
-    //         const firstExisting = previewBox.querySelector('.image-preview:not(.marked-deleted)');
-    //         if (firstExisting) {
-    //             const principalBadge = document.createElement('span');
-    //             principalBadge.className = 'absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded principal-badge';
-    //             principalBadge.textContent = 'Principale';
-    //             firstExisting.appendChild(principalBadge);
-    //         } else {
-    //             // Sinon la première nouvelle image
-    //             const firstNew = newImagesPreview.querySelector('.image-preview');
-    //             if (firstNew) {
-    //                 const principalBadge = document.createElement('span');
-    //                 principalBadge.className = 'absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded principal-badge';
-    //                 principalBadge.textContent = 'Principale';
-    //                 firstNew.appendChild(principalBadge);
-    //             }
-    //         }
-    //     }
-
-    //     // Injecte uniquement les nouvelles images dans l'input file (pour upload)
-    //     function updateInputFiles() {
-    //         const dataTransfer = new DataTransfer();
-    //         selectedFiles.forEach(file => dataTransfer.items.add(file));
-    //         inputFile.files = dataTransfer.files;
-    //     }
-
-    //     function displayErrors(errors) {
-    //         errorContainer.innerHTML = '';
-    //         if (errors.length > 0) {
-    //             const ul = document.createElement('ul');
-    //             ul.className = 'list-disc pl-5';
-    //             errors.forEach(error => {
-    //                 const li = document.createElement('li');
-    //                 li.textContent = error;
-    //                 ul.appendChild(li);
-    //             });
-    //             errorContainer.appendChild(ul);
-    //         }
-    //     }
-
-    //     // Gestion des suppressions des images existantes (toggle marquage et input hidden)
-    //     function initExistingImageDeletion() {
-    //         document.querySelectorAll('.mark-delete-image').forEach(button => {
-    //             button.addEventListener('click', function () {
-    //                 const imageId = this.dataset.imageId;
-    //                 const preview = document.querySelector(`.image-preview[data-image-id="${imageId}"]`);
-    //                 const input = preview.querySelector('.image-keep-input');
-
-    //                 if (preview.classList.contains('marked-deleted')) {
-    //                     preview.classList.remove('marked-deleted', 'opacity-50');
-    //                     input.value = '1';
-    //                     button.textContent = '✕';
-    //                 } else {
-    //                     preview.classList.add('marked-deleted', 'opacity-50');
-    //                     input.value = '0';
-    //                     button.textContent = '↩';
-    //                 }
-    //                 updatePrincipalBadge();
-    //             });
-    //         });
-    //     }
-    // });
-
-
-    // Fonction pour ajouter dynamiquement des champs de prix saisonniers
-
 
     document.addEventListener('DOMContentLoaded', () => {
 

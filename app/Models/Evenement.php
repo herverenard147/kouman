@@ -7,7 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 class Evenement extends Model
 {
     protected $table = 'evenements';
-    protected $fillable = ['titre', 'description', 'duree', 'prix', 'devise', 'capacite_max', 'partenaire_id', 'localisation_id', 'statut'];
+    protected $fillable = [
+        'titre',
+        'description',
+        'duree',
+        'prix',
+        'stock',
+        'devise',
+        'capacite_max',
+        'partenaire_id',
+        'localisation_id',
+        'statut'
+    ];
 
     public function images()
     {

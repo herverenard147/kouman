@@ -51,7 +51,7 @@ class HebergementController extends Controller
     public function store(StoreHebergementRequest $request)
     {
         $validated = $request->validated();
-
+        // dd($validated);
         // Créer la localisation
         $localisation = Localisations::create([
             'ville' => $request->ville,
@@ -81,7 +81,7 @@ class HebergementController extends Controller
             'heureDepart' => $request->heureDepart,
             'stock' => $request->stock,
         ]);
-
+        // dd($hebergement->toArray());
         foreach ($request->input('telephones', []) as $telData) {
             $hebergement->telephones()->create([
                 'numero' => $telData['numero']
