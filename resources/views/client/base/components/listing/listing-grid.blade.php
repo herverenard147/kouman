@@ -3,16 +3,16 @@
 @if(!empty($asSlides))
 {{-- MODE SLIDER : chaque enfant direct = 1 slide --}}
 @php
-$collection = $items instanceof \Illuminate\Pagination\LengthAwarePaginator
-? $items->getCollection()
-: collect($items);
+    $collection = $items instanceof \Illuminate\Pagination\LengthAwarePaginator
+    ? $items->getCollection()
+    : collect($items);
 
-// Déduplique par categorie|id pour éviter tout doublon visuel
-$itemsUnique = $collection->unique(function ($i) {
-$cat = is_array($i) ? ($i['categorie'] ?? '') : ($i->categorie ?? '');
-$pid = is_array($i) ? ($i['id'] ?? '') : ($i->id ?? '');
-return $cat.'|'.$pid;
-})->values();
+    // Déduplique par categorie|id pour éviter tout doublon visuel
+    $itemsUnique = $collection->unique(function ($i) {
+    $cat = is_array($i) ? ($i['categorie'] ?? '') : ($i->categorie ?? '');
+    $pid = is_array($i) ? ($i['id'] ?? '') : ($i->id ?? '');
+    return $cat.'|'.$pid;
+    })->values();
 @endphp
 
 @forelse ($itemsUnique as $item)
