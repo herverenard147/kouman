@@ -53,7 +53,7 @@ class ClientController extends Controller
                 'count' => DB::table('evenements')->count(),
             ],
         ];
-        dd($items, $categories);
+        // dd($items, $categories);
 
         return view('client.index', compact('items', 'categories'));
     }
