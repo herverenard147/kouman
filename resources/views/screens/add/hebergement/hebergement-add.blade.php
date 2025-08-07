@@ -118,7 +118,7 @@
 
                                 <div class="md:col-span-4 col-span-12">
                                     <label for="stock" class="font-medium text-slate-900 dark:text-white">Stock <strong>*</strong>:</label>
-                                    <input name="stock" id="stock" type="number" step="0.000001" class="form-input mt-2 @error('stock') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Stock" value="{{ old('stock', '') }}" required readonly>
+                                    <input name="stock" id="stock" type="number" step="0.000001" class="form-input mt-2 @error('stock') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Stock" value="{{ old('stock', '') }}" required>
                                     @error('stock')
                                         <span class="text-red-600 text-sm">{{ $message }}</span>
                                     @enderror
