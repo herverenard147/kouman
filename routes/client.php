@@ -13,6 +13,7 @@ use App\Http\Controllers\PropertyController;
 use App\Http\Controllers\Client\CheckoutController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MailContact;
 
 /*
@@ -112,6 +113,8 @@ Route::middleware(['auth:client'])->group(function () {
     Route::get('/mon-profil', [ClientProfileController::class, 'edit'])->name('client.profile');
     Route::put('/mon-profil', [ClientProfileController::class, 'update'])->name('client.update');
     Route::put('/mon-profil/password', [ClientProfileController::class, 'updatePassword'])->name('client.updatePassword');
+    Route::post('/profile/upload', [ProfileController::class, 'upload'])->name('profile.upload');
+    Route::delete('/profile/photo', [ProfileController::class, 'deletePhoto'])->name('profile.deletePhoto');
     Route::delete('/mon-profil', [ClientProfileController::class, 'destroy'])->name('client.deleteAccount');
 
     // Panier

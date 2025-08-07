@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PropertyController extends Controller
 {
@@ -170,16 +171,70 @@ class PropertyController extends Controller
     }
 
     /** À adapter pour tes colonnes d'images réelles */
+    /** Retourne l'URL de couverture d'un item selon sa catégorie et son ID */
+
     private function coverFor(string $categorie, int $id): string
     {
-        return match ($categorie) {
-            'hebergement' => 'https://cdn.pixabay.com/photo/2017/01/14/12/48/hotel-1979406_1280.jpg',
-            'vol'         => 'https://cdn.pixabay.com/photo/2020/02/27/20/48/aircraft-4885805_1280.jpg',
-            'excursion'   => 'https://cdn.pixabay.com/photo/2020/04/17/07/20/travel-5053561_1280.jpg',
-            'evenement'   => 'https://cdn.pixabay.com/photo/2016/11/22/19/15/hand-1850120_1280.jpg',
-            default       => 'https://via.placeholder.com/1200x675?text=Image',
-        };
+        $image = null;
+
+        switch ($categorie) {
+            case 'hebergement':
+                $image = DB::table('images_hebergements')
+                    ->where('idHebergement', $id)
+                    ->where('estPrincipale', true)
+                    ->value('url');
+                break;
+
+            case 'vol':
+                $image = 'https://cdn.pixabay.com/photo/2020/02/27/20/48/aircraft-4885805_1280.jpg';
+                break;
+
+            case 'excursion':
+                $image = DB::table('images_excursions')
+                    ->where('idExcursion', $id)
+                    ->where('estPrincipale', true)
+                    ->value('url');
+                break;
+
+            case 'evenement':
+                $image = DB::table('images_evenement')
+                    ->where('idEvenement', $id)
+                    ->where('estPrincipale', true)
+                    ->value('url');
+                break;
+        }
+
+        // ✅ Si c’est une URL absolue, retourne-la telle quelle
+        if ($image && Str::startsWith($image, ['http://', 'https://'])) {
+            return $image;
+        }
+
+        // ✅ Si une image locale est trouvée
+        if ($image) {
+            return asset("storage/{$image}");
+        }
+
+        // ✅ Sinon : images par défaut distinctes selon la catégorie
+        switch ($categorie) {
+            case 'hebergement':
+                return 'https://cdn.pixabay.com/photo/2017/01/14/12/48/hotel-1979406_1280.jpg';
+
+            case 'excursion':
+                return 'https://cdn.pixabay.com/photo/2020/04/17/07/20/travel-5053561_1280.jpg';
+
+            case 'evenement':
+                return 'https://cdn.pixabay.com/photo/2016/11/22/19/15/hand-1850120_1280.jpg';
+
+            case 'vol':
+                return 'https://cdn.pixabay.com/photo/2020/02/27/20/48/aircraft-4885805_1280.jpg';
+
+            default:
+                return asset('images/placeholder.jpg');
+        }
     }
+
+
+
 
     // (Optionnel) page détail si tu en as besoin
     public function show(string $categorie, int $id)
