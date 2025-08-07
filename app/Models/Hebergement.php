@@ -16,6 +16,7 @@ class Hebergement extends Model
         'description',
         'prixParNuit',
         'devise',
+        'stock',
         'idLocalisation',
         'idPartenaire',
         'noteMoyenne',

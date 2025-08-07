@@ -18,6 +18,7 @@ class Excursion extends Model
         'partenaire_id',
         'localisation_id',
         'statut',
+        'stock',
         'itineraire',
         'nom_guide',
         'langues',
