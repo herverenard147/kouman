@@ -24,6 +24,7 @@ class HebergementSeeder extends Seeder
                 'heureArrivee' => '14:00:00',
                 'heureDepart' => '12:00:00',
                 'idType' => 1,
+                'stock' => 1,
                 'idLocalisation' => 1,
                 'idPartenaire' => 1,
                 'idPolitiqueAnnulation' => 1,
@@ -44,6 +45,7 @@ class HebergementSeeder extends Seeder
                 'idType' => 2,
                 'idLocalisation' => 2,
                 'idPartenaire' => 2,
+                'stock' => 4,
                 'idPolitiqueAnnulation' => 2,
             ],
             [
@@ -56,6 +58,7 @@ class HebergementSeeder extends Seeder
                 'nombreSallesDeBain' => 1,
                 'numeroDeTel' => '22503040506',
                 'capaciteMax' => 2,
+                'stock' => 2,
                 'statut' => 'actif',
                 'heureArrivee' => '13:00:00',
                 'heureDepart' => '11:00:00',
