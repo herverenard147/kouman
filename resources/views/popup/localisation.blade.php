@@ -233,8 +233,7 @@
                     updateAddressText(display);
 
                     currentAddress.adresse = display;
-                    currentAddress.ville =
-                                            data.address.city ||
+                    currentAddress.ville =  data.address.city ||
                                             data.address.city_district || // ici on récupère "Abidjan"
                                             data.address.town ||
                                             data.address.village ||

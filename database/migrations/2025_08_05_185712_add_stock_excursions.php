@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('excursions', function (Blueprint $table) {
             if (!Schema::hasColumn('excursions', 'stock')) {
-                $table->integer('stock')->notNullable();
+                $table->integer('stock')->default(0)->notNullable();
             }
         });
     }
