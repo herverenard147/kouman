@@ -24,6 +24,7 @@ class Partenaire extends Authenticatable implements MustVerifyEmail, Authenticat
         'password',
         'type',
         'téléphone',
+        'stock',
         'adresse',
         'siteWeb',
         'statut',
