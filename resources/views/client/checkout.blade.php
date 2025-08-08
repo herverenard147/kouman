@@ -102,7 +102,7 @@ $fpage = 'foot1';
                                     </svg>
                                 </div>
                                 <input type="text" name="name" value="{{ old('name', auth('client')->user()->name ?? '') }}"
-                                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg transition duration-200"
+                                    class="focus:ring-indigo-500 focus:border-indigo-500 text-black block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg transition duration-200"
                                     placeholder="Votre nom complet" required>
                             </div>
                         </div>
@@ -117,7 +117,7 @@ $fpage = 'foot1';
                                     </svg>
                                 </div>
                                 <input type="tel" name="phone" value="{{ old('phone') }}"
-                                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg transition duration-200"
+                                    class="focus:ring-indigo-500 focus:border-indigo-500 text-black block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg transition duration-200"
                                     placeholder="Votre numéro de téléphone" required>
                             </div>
                         </div>
@@ -133,7 +133,7 @@ $fpage = 'foot1';
                                     </svg>
                                 </div>
                                 <input type="text" name="address" value="{{ old('address') }}"
-                                    class="focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg transition duration-200"
+                                    class="focus:ring-indigo-500 focus:border-indigo-500 text-black block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg transition duration-200"
                                     placeholder="Votre adresse complète" required>
                             </div>
                         </div>
