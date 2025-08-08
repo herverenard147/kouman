@@ -24,7 +24,6 @@ return new class extends Migration
             $table->time('heureArrivee')->nullable();
             $table->time('heureDepart')->nullable();
             $table->integer('nombreSallesDeBain')->default(1);
-            $table->string('numeroDeTel')->nullable();
             $table->timestamps();
 
             $table->unsignedBigInteger('idType'); // Type compatible avec idType de types_hebergement

@@ -215,7 +215,6 @@ class HebergementController extends Controller
             'description' => $validated['description'],
             'prixParNuit' => $validated['prixParNuit'],
             'devise' => $validated['devise'],
-            // 'numeroDeTel' => $validated['numeroDeTel'],
             'idPolitiqueAnnulation' => $validated['idPolitiqueAnnulation'],
             'nombreChambres' => $validated['nombreChambres'],
             'nombreSallesDeBain' => $validated['nombreSallesDeBain'],

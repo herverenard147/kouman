@@ -35,7 +35,7 @@
                     </ul>
                 </div>
             @endif
-            
+
             <div class="md:flex mt-4">
                 <!-- Image principale -->
                 <div class="lg:w-1/2 md:w-1/2 p-1">
@@ -172,6 +172,10 @@
                                 <li class="flex justify-between items-center mt-2">
                                     <span class="text-slate-400 text-sm">Type</span>
                                     <span class="font-medium text-sm">{{ $hebergement->type->nomType ?? 'N/A' }}</span>
+                                </li>
+                                <li class="flex justify-between items-center mt-2">
+                                    <span class="text-slate-400 text-sm">Stock</span>
+                                    <span class="font-medium text-sm">{{ $hebergement->stock ?? 'N/A' }}</span>
                                 </li>
                                 <li class="flex justify-between items-center mt-2">
                                     <span class="text-slate-400 text-sm">Heure d'arrivée</span>

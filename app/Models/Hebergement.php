@@ -20,7 +20,6 @@ class Hebergement extends Model
         'idLocalisation',
         'idPartenaire',
         'noteMoyenne',
-        'numeroDeTel',
         'nombreChambres',
         'nombreSallesDeBain',
         'idPolitiqueAnnulation',
