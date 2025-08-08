@@ -38,20 +38,71 @@ $fpage = 'foot1';
                 <div class="bg-white dark:bg-slate-800 rounded-2xl shadow-xl overflow-hidden transition-all duration-300 hover:shadow-2xl">
                     <div class="p-6">
                         <div class="flex flex-col items-center">
-                            <div class="relative group">
-                                <div class="absolute inset-0 bg-gradient-to-br from-green-400 to-blue-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md"></div>
-                                <div class="relative h-32 w-32 rounded-full ring-4 ring-white dark:ring-slate-700 shadow-lg overflow-hidden">
-                                    <img src="{{ Auth::user()->photo ? asset('uploads/users/' . Auth::user()->photo) : asset('/images/client/default.jpg') }}"
-                                        class="h-full w-full object-cover"
-                                        id="profile-image"
-                                        alt="Photo de profil">
-                                    <label for="pro-img" class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        </svg>
-                                    </label>
-                                    <input id="pro-img" name="profile-image" type="file" class="hidden" onchange="loadFile(event)" />
+                            <div class="flex flex-col items-center space-y-4 group">
+                                <!-- Avatar Upload Form -->
+                                <div class="flex flex-col items-center space-y-6 group">
+
+                                    <!-- Form Upload -->
+                                    <form method="POST" action="{{ route('profile.upload') }}" enctype="multipart/form-data" class="flex flex-col items-center space-y-4">
+                                        @csrf
+
+                                        <!-- Avatar Container -->
+                                        <div class="relative group">
+                                            <!-- Gradient Blur Background -->
+                                            <div class="absolute inset-0 bg-gradient-to-br from-green-400 to-blue-500 rounded-full opacity-30 transition-opacity duration-300 blur-md z-0"></div>
+
+                                            <!-- Image Container -->
+                                            <!-- Delete Icon (Top Right) -->
+                                            @if (Auth::user()->photo_profil)
+                                            <button type="button" onclick="openDeleteModal()" class="relative top-1 right-1 bg-white rounded-full p-1 hover:bg-red-500 hover:text-white transition">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-500 hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                </svg>
+                                            </button>
+                                            @endif
+                                            <div class="relative h-32 w-32 rounded-full ring-4 ring-white dark:ring-slate-700 shadow-lg overflow-hidden z-10">
+
+                                                <img
+                                                    id="profile-image"
+                                                    class="h-full w-full object-cover"
+                                                    src="{{ Auth::user()->photo_profil 
+                    ? asset('storage/clients/profils/' . Auth::user()->photo_profil) 
+                    : asset('/images/client/userdefault.webp') }}"
+                                                    alt="Photo de profil">
+
+                                                <!-- Upload Overlay -->
+                                                <label for="pro-img" class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                    </svg>
+                                                </label>
+
+                                                <input id="pro-img" name="profile-image" type="file" class="hidden" onchange="loadFile(event)" />
+
+                                            </div>
+                                        </div>
+
+                                        <!-- Submit Button -->
+                                        <button type="submit" class="px-5 py-2 bg-green-600 hover:bg-green-700 text-white font-semibold rounded shadow-md transition duration-300">
+                                            Enregistrer la photo
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div id="delete-Modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                                <div class="bg-white rounded-lg p-6 w-full max-w-md">
+                                    <h3 class="text-lg font-semibold mb-4">Confirmer la suppression</h3>
+                                    <p class="text-gray-600 mb-6">Êtes-vous sûr de vouloir supprimer la photo ? Cette action est irréversible.</p>
+                                    <form action="{{ route('profile.deletePhoto') }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <div class="flex justify-end space-x-4">
+                                            <button type="button" id="close-delete-modal" class="btn bg-gray-500 hover:bg-gray-600 text-white rounded-md px-4 py-2">Annuler</button>
+                                            <button type="submit" class="btn bg-red-600 hover:bg-red-700 text-white rounded-md px-4 py-2">Supprimer</button>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
 
@@ -421,6 +472,14 @@ $fpage = 'foot1';
         output.onload = function() {
             URL.revokeObjectURL(output.src);
         }
+    }
+
+    function openDeleteModal() {
+        document.getElementById('delete-Modal').classList.remove('hidden');
+    }
+
+    function closeDeleteModal() {
+        document.getElementById('deleteModal').classList.add('hidden');
     }
 </script>
 
