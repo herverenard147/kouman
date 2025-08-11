@@ -35,7 +35,7 @@
                     </ul>
                 </div>
             @endif
-
+            
             <div class="md:flex mt-4">
                 <!-- Image principale -->
                 <div class="lg:w-1/2 md:w-1/2 p-1">
@@ -90,7 +90,6 @@
                     </div>
                 </div>
             </div>
-
 
             <div class="grid lg:grid-cols-12 md:grid-cols-2 gap-6 mt-6">
                 <!-- Section détails -->
@@ -174,15 +173,11 @@
                                     <span class="font-medium text-sm">{{ $hebergement->type->nomType ?? 'N/A' }}</span>
                                 </li>
                                 <li class="flex justify-between items-center mt-2">
-                                    <span class="text-slate-400 text-sm">Stock</span>
-                                    <span class="font-medium text-sm">{{ $hebergement->stock ?? 'N/A' }}</span>
-                                </li>
-                                <li class="flex justify-between items-center mt-2">
                                     <span class="text-slate-400 text-sm">Heure d'arrivée</span>
                                     <span class="font-medium text-sm">{{ $hebergement->heureArrivee ?? 'N/A' }}</span>
                                 </li>
                             </ul>
-                        </div>
+                      </div>
 
                         <div class="flex">
                             <div class="p-1 w-1/2">

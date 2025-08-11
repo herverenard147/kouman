@@ -1,66 +1,43 @@
-@extends('content.no-sidebar')
-@section('title', 'Reset Password')
+@extends('layouts.app') {{-- ou ton layout principal --}}
+
+@section('title', 'Mot de passe oublié')
+
 @section('content')
+<div class="container mx-auto max-w-md mt-10">
+    <div class="bg-white rounded-lg shadow p-6">
+        <h2 class="text-2xl font-bold mb-4">Réinitialiser le mot de passe</h2>
 
-
-    <section class="h-screen flex items-center justify-center relative overflow-hidden bg-[url('{{ asset('images/01.jpg') }}')] bg-no-repeat bg-center bg-cover">
-        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>
-        <div class="container">
-            <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1">
-                <div class="relative overflow-hidden bg-white shadow-md rounded-md">
-                    <div class="p-6">
-                        <a href="">
-                            <img src="{{ asset('client/assets/images/logoG.ico') }}" class="mx-auto block" alt="">
-                            <img src="{{ asset('client/assets/images/logoG.ico') }}" class="mx-auto hidden" alt="">
-                        </a>
-                        <h5 class="my-6 text-xl font-semibold">Modifier votre mot de passe</h5>
-                        @if(session('status'))
-                            <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        @if($errors->any())
-                            <div class="bg-red-100 text-red-800 px-4 py-2 rounded mb-4">
-                                <ul>
-                                    @foreach($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
-                        <div class="grid grid-cols-1">
-                            <p class="text-slate-400 mb-6">Veuillez saisir votre adresse e-mail. Vous recevrez un lien pour créer un nouveau mot de passe par e-mail.</p>
-                            <form class="text-start" method="POST" action="{{route('client.password.email')}}">
-                                @csrf
-                                <div class="grid grid-cols-1">
-                                    <div class="mb-4">
-                                        <label class="font-medium" for="LoginEmail">Addresse Email :</label>
-                                        <input name="email" id="LoginEmail" type="email" class="form-input mt-3" placeholder="name@example.com">
-                                    </div>
-                                    @error('email')
-                                        <span class="text-red-600 text-sm">{{ $message }}</span>
-                                    @enderror
-                                    <div class="mb-4">
-                                        <button type="submit" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md w-full">Envoyer</button>
-
-                                        {{-- <a href="{{route('partenaire.reset-password.store')}}" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md w-full">Envoyer</a> --}}
-                                    </div>
-
-                                    <div class="text-center">
-                                        <span class="text-slate-400 me-2">Vous vous souvenez de votre mot de passe ? </span><a href="{{route('partenaire.login')}}" class="text-black font-medium">Sign in</a>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div class="px-6 py-2 bg-slate-50 text-center">
-                        <p class="mb-0 text-slate-400">© <script>document.write(new Date().getFullYear())</script> Kw Legal & Tech. Designed by <a href="https://kwlegaltech.com/" target="_blank" class="text-reset">KW Legal & Tech</a>.</p>
-                    </div>
-                </div>
+        @if (session('success'))
+            <div class="bg-green-100 text-green-700 p-3 rounded mb-4">
+                {{ session('success') }}
             </div>
-        </div>
-    </section><!--end section -->
+        @endif
 
+        @if ($errors->any())
+            <div class="bg-red-100 text-red-700 p-3 rounded mb-4">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
+
+        <form method="POST" action="{{ route('client.auth.re.password.send') }}">
+            @csrf
+            <div class="mb-4">
+                <label for="email" class="block font-medium mb-1">Adresse e-mail</label>
+                <input type="email" id="email" name="email" value="{{ old('email') }}" required
+                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            </div>
+
+            <button type="submit"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded w-full">
+                Envoyer le lien de réinitialisation
+            </button>
+        </form>
+
+        <div class="text-center mt-4">
+            <a href="{{ route('login') }}" class="text-sm text-gray-500 hover:underline">Retour à la connexion</a>
+        </div>
+    </div>
+</div>
 @endsection
