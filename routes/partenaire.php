@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\Partenaire\RegisteredPartenaireController;
 use App\Http\Controllers\Auth\Partenaire\NewPasswordPartenaireController;
 use App\Http\Controllers\Auth\Partenaire\AuthenticatedPartenaireController;
 use App\Http\Controllers\Auth\Partenaire\PasswordResetLinkControllerPartenaire;
+use App\Http\Controllers\Chambre\ChambreController;
 use App\Http\Controllers\Partenaire\OrderController;
 
 // Route::middleware( [ 'auth:partenaire'])
@@ -100,6 +101,17 @@ Route::middleware(['auth:partenaire'])
             // Route::delete('images-hebergement/{id}', [ImageHebergementController::class, 'destroy']);
         });
 
+        Route::group(['prefix' => 'chambre'], function () {
+
+            Route::get('/', [ChambreController::class, 'index'])->name('partenaire.chambre');
+            Route::get('detail/{id}', [ChambreController::class, 'show'])->name('partenaire.chambre.show');
+
+            Route::get('update/{id}', [ChambreController::class, 'edit'])->name('partenaire.chambre.edit');
+            Route::put('update/{id}', [ChambreController::class, 'update'])->name('partenaire.chambre.update');
+            Route::delete('delette/{id}', [ChambreController::class, 'destroy'])->name('partenaire.chambre.destroy');
+            // Route::delete('images-hebergement/{id}', [ImageHebergementController::class, 'destroy']);
+        });
+        
         Route::group(['prefix' => 'excursion'], function () {
 
             Route::get('/', [ExcursionController::class, 'index'])->name('partenaire.excursion');
@@ -124,16 +136,23 @@ Route::middleware(['auth:partenaire'])
 
         Route::get('review', fn() => view('screens.review'))->name('partenaire.review');
 
-        Route::group(['prefix' => 'add'], function () {
+         Route::group(['prefix' => 'add'], function () {
             Route::get('event', [EvenementController::class, 'createEvenement'])->name('partenaire.add.event');
             Route::post('event', [EvenementController::class, 'storeEvenement'])->name('partenaire.add.event.store');
+
             Route::get('excursion', [ExcursionController::class, 'createExcursion'])->name('partenaire.add.excursion');
             Route::post('excursion', [ExcursionController::class, 'storeExcursion'])->name('partenaire.add.excursion.store');
+
             Route::get('hebergement', [HebergementController::class, 'create'])->name('partenaire.add.hebergement');
+            Route::post('hebergement', [HebergementController::class, 'store'])->name('partenaire.add.hebergement.store');
+
+            Route::get('chambre', [ChambreController::class, 'create'])->name('partenaire.add.chambre');
+            Route::post('chambre', [ChambreController::class, 'store'])->name('partenaire.add.chambre.store');
+
             Route::get('vol', fn() => view('screens.add.vol'))->name('partenaire.add.vol');
+
             Route::get('/types-par-famille/{idFamille}', [TypeHebergementController::class, 'getTypesByFamille']);
 
-            Route::post('hebergement', [HebergementController::class, 'store'])->name('partenaire.add.hebergement.store');
         });
         Route::get('/popup-localisation', function () {
             return view('popup.localisation');
