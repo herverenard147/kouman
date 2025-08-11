@@ -11,8 +11,8 @@
             <!-- Profil -->
             <div class="bg-gray-50 dark:bg-slate-800 p-6 flex flex-col items-center justify-center">
                 <div class="relative">
-                    @if($partenaire->image)
-                    <img src="{{ asset('imageDes/uploads/'.$partenaire->image) }}" alt="Profil"
+                    @if($partenaire->photo_profil)
+                    <img src="{{ asset('imageDes/uploads/'.$partenaire->photo_profil) }}" alt="Profil"
                         class="w-32 h-32 rounded-full object-cover border-4 border-green-500 shadow">
                     @else
                     <div class="w-32 h-32 rounded-full bg-gray-200 dark:bg-slate-700 flex items-center justify-center border-4 border-green-500 shadow">
@@ -20,7 +20,7 @@
                     </div>
                     @endif
                     <label class="absolute bottom-0 right-0 bg-green-600 hover:bg-green-700 p-2 rounded-full cursor-pointer shadow">
-                        <input type="file" name="image" class="hidden">
+                        <input type="file" name="photo_profil" class="hidden">
                         <i data-feather="camera" class="w-4 h-4 text-white"></i>
                     </label>
                 </div>
