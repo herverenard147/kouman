@@ -45,7 +45,7 @@
                             </div>
 
                             <div class="mb-4">
-                                <label class="font-medium" for="password">Mot de passe :</label>
+                                <label class="font-medium" for="password">Mot de passe : ( minimum 8 caractères) ( minimum 8 caractères)</label>
                                 <input name="password" id="password" type="password" class="form-input mt-3 w-full @error('password') border-red-500 @enderror" placeholder="Mot de passe" required>
                                 @error('password')
                                     <span class="text-red-600 text-sm">{{ $message }}</span>

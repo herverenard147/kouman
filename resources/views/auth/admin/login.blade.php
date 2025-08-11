@@ -40,7 +40,7 @@
                             </div>
 
                             <div class="mb-4 relative">
-                                <label for="LoginPassword" class="font-medium text-slate-700 dark:text-white">Mot de passe :</label>
+                                <label for="LoginPassword" class="font-medium text-slate-700 dark:text-white">Mot de passe : ( minimum 8 caractères)</label>
 
                                 <input name="password" id="LoginPassword" type="password"
                                     class="form-input mt-3 pr-12 bg-white dark:bg-slate-800 dark:text-white dark:placeholder-slate-500 @error('password') border-red-500 @enderror"

@@ -5,7 +5,7 @@
 @section('content')
 <div class="md:flex justify-between items-center">
     <h5 class="text-lg font-semibold text-gray-900 dark:text-white">Tous vos elements</h5>
-    
+
     <ul class="tracking-[0.5px] inline-block sm:mt-0 mt-3">
         <li class="inline-block capitalize text-[16px] font-medium duration-500 hover:text-green-600 dark:hover:text-green-500"><a href="{{route('index')}}" class="text-gray-600 dark:text-gray-300">Afrique évasion</a></li>
         <li class="inline-block text-base text-slate-950 dark:text-gray-400 mx-0.5 ltr:rotate-0 rtl:rotate-180"><i class="mdi mdi-chevron-right"></i></li>
@@ -17,8 +17,8 @@
         <div class="flex flex-col md:flex-row gap-8">
             <!-- Colonne gauche -->
             <div class="md:w-1/3 bg-green-50 dark:bg-slate-800 rounded-lg p-6 shadow-md flex flex-col items-center">
-                @if($partenaire->image)
-                <img src="{{ asset('imageDes/uploads/'.$partenaire->image) }}" alt="Photo de profil"
+                @if($partenaire->photo_profil)
+                <img src="{{ asset('imageDes/uploads/'.$partenaire->photo_profil) }}" alt="Photo de profil"
                     class="w-40 h-40 rounded-full object-cover shadow-lg mb-4 border-4 border-green-600">
                 @else
                 <div class="w-40 h-40 rounded-full bg-gray-200 flex items-center justify-center shadow-lg mb-4 border-4 border-green-600">
