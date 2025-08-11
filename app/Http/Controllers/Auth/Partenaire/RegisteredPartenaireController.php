@@ -36,7 +36,7 @@ class RegisteredPartenaireController extends Controller
     //         'email' => ['required', 'string', 'lowercase', 'email', 'max:100', 'unique:'.Partenaire::class],
     //         'mot_de_passe' => ['required', 'confirmed', Rules\Password::defaults()],
     //         'type' => ['required', 'string', 'max:100'],
-    //         'téléphone' => ['required', 'string', 'max:100'],
+    //         'telephone' => ['required', 'string', 'max:100'],
     //         'adresse' => ['required', 'string', 'max:100'],
     //         'siteWeb' => ['required', 'string', 'max:100'],
     //         // 'statut' => ['required', 'string', 'max:100'],
@@ -47,7 +47,7 @@ class RegisteredPartenaireController extends Controller
     //         'email' => $request->email,
     //         'mot_de_passe' => Hash::make($request->password),
     //         'type'=> $request->type,
-    //         'téléphone' => $request->téléphone,
+    //         'telephone' => $request->telephone,
     //         'adresse' => $request->adresse,
     //         'siteWeb' => $request->siteWeb,
     //         'statut' => $request->statut,
@@ -65,16 +65,17 @@ class RegisteredPartenaireController extends Controller
         // dd($request->all());
         try {
             $validated = $request->validate([
-                'nom_entreprise' => ['required', 'string', 'max:255'],
+                'nom_entreprise' => ['required', 'string', 'max:255', 'unique:partenaires,nom_entreprise'],
                 'email' => ['required', 'string', 'email', 'max:100', 'unique:partenaires,email'],
                 'mot_de_passe' => ['required', 'confirmed', Rules\Password::defaults()],
                 'type' => 'required|in:hotel,agence_voyage,compagnie_aerienne,residence',
-                'téléphone' => ['required', 'string', 'max:100', 'unique:partenaires,téléphone'],
-                'adresse' => ['required', 'string', 'max:100'],
+                'telephone' => ['required', 'phone:CI,FR,US', 'max:20', 'unique:partenaires,telephone'],
+                'adresse' => ['required', 'string', 'max:200'],
                 'siteWeb' => ['nullable', 'url', 'max:100', 'unique:partenaires,siteWeb'],
-                'AcceptT&C' => ['required', 'accepted']
+                'AcceptT&C' => ['required', 'accepted'],
                 // Tu peux décommenter si nécessaire :
                 // 'statut' => ['required', 'string', 'max:100'],
+                'photo_profil' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
             ], [
                 // Messages personnalisés en français
                 'nom_entreprise.required' => 'Le nom de l\'entreprise est requis.',
@@ -95,14 +96,14 @@ class RegisteredPartenaireController extends Controller
                 'type.string' => 'Le type de partenaire doit être une chaîne de caractères.',
                 'type.max' => 'Le type de partenaire ne doit pas dépasser 100 caractères.',
 
-                'téléphone.required' => 'Le numéro de téléphone est requis.',
-                'téléphone.string' => 'Le numéro de téléphone doit être une chaîne de caractères.',
-                'téléphone.max' => 'Le numéro de téléphone ne doit pas dépasser 100 caractères.',
-                'téléphone.unique' => 'Ce numéro de téléphone est déjà utilisé.',
+                'telephone.required' => 'Le numéro de telephone est requis.',
+                'telephone.string' => 'Le numéro de telephone doit être une chaîne de caractères.',
+                'telephone.max' => 'Le numéro de telephone ne doit pas dépasser 100 caractères.',
+                'telephone.unique' => 'Ce numéro de telephone est déjà utilisé.',
 
                 'adresse.required' => 'L\'adresse est requise.',
                 'adresse.string' => 'L\'adresse doit être une chaîne de caractères.',
-                'adresse.max' => 'L\'adresse ne doit pas dépasser 100 caractères.',
+                'adresse.max' => 'L\'adresse ne doit pas dépasser 200 caractères.',
 
                 'siteWeb.required' => 'L\'URL du site web est requise.',
                 'siteWeb.url' => 'L\'URL du site web doit être valide (ex. https://exemple.com).',
@@ -111,7 +112,17 @@ class RegisteredPartenaireController extends Controller
 
                 'AcceptT&C.required' => 'Vous devez accepter les termes et conditions.',
                 'AcceptT&C.accepted' => 'Vous devez accepter les termes et conditions.',
+
+                'photo_profil.image' => 'Le fichier doit être une image.',
+                'photo_profil.mimes' => 'L\'image doit être au format jpg, jpeg ou png.',
+                'photo_profil.max' => 'La taille de l\'image ne peut pas dépasser 2 Mo.',
             ]);
+
+            // Upload de la photo de profil si fournie
+            $photoProfil = null;
+            if ($request->hasFile('photo_profil')) {
+                $photoProfil = $request->file('photo_profil')->store('clients/profils', 'public');
+            }
 
             // Création du partenaire
             $partenaire = Partenaire::create([
@@ -119,12 +130,14 @@ class RegisteredPartenaireController extends Controller
                 'email' => $validated['email'],
                 'password' => Hash::make($validated['mot_de_passe']),
                 'type'=> $validated['type'],
-                'téléphone' => $validated['téléphone'],
+                'telephone' => $validated['telephone'],
                 'adresse' => $validated['adresse'],
                 'siteWeb' => $validated['siteWeb'],
                 'statut' => $request->statut ?? 'en_attente', // Valeur par défaut si
+                'photo_profil' => $photoProfil,
 
             ]);
+            // dd($partenaire);
 
             // dd($partenaire);
             // Lancer l’événement Registered si besoin (facultatif)

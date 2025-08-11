@@ -23,11 +23,12 @@ class Partenaire extends Authenticatable implements MustVerifyEmail, Authenticat
         'email',
         'password',
         'type',
-        'téléphone',
+        'telephone',
         'stock',
         'adresse',
         'siteWeb',
         'statut',
+        'photo_profil',
     ];
 
     /**
