@@ -22,7 +22,6 @@ class PartenaireController extends Controller
     public function editProfile()
     {
         $partenaire = auth('partenaire')->user();
-        // dd($partenaire); // Debugging line to check the partenaire data
         return view('partenaire.edit-profile', compact('partenaire'));
     }
 

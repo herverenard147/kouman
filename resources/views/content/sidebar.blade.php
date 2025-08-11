@@ -32,6 +32,19 @@
                 ])
             @endif
 
+
+            {{-- Chambre / Hotel --}}
+            @if(Auth::guard('partenaire')->user()->type === 'hotel')
+                @include('base.components.sidebar.section', [
+                    'icon' => 'mdi mdi-file-document-outline',
+                    'title' => 'Chambre',
+                    'items' => [
+                        ['label' => 'Ajouter', 'route' => 'partenaire.add.chambre'],
+                        ['label' => 'Liste', 'route' => 'partenaire.chambre'],
+                    ]
+                ])
+            @endif
+
             {{-- Événement et Excursion (Résidence, Hôtel, Événementiel) --}}
             @if(in_array(Auth::guard('partenaire')->user()->type, ['residence', 'hotel', 'evenementiel']))
                 @include('base.components.sidebar.section', [
