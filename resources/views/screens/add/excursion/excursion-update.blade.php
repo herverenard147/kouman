@@ -44,7 +44,7 @@
                                         @if(isset($excursionImages) && count($excursionImages) > 0)
                                             @foreach($excursionImages as $image)
                                                 <div class="relative w-24 h-24">
-                                                    <img src="{{ asset('storage/' . $image->path) }}" alt="Image excursion" class="object-cover w-full h-full rounded-md">
+                                                    <img src="{{ asset('imageDes/uploads/' . $image->path) }}" alt="Image excursion" class="object-cover w-full h-full rounded-md">
                                                     <!-- Ici tu peux ajouter un bouton pour supprimer l'image si besoin -->
                                                 </div>
                                             @endforeach

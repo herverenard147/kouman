@@ -39,7 +39,7 @@ $user = $client ?? $partenaire;
                         <span
                             class="btn btn-icon bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
                             @if ($user && $user->image)
-                            <img src="{{ asset('storage/'.$user->image) }}" class="rounded-md object-cover w-full h-full" alt="Photo de profil">
+                            <img src="{{ asset('imageDes/uploads/'.$user->image) }}" class="rounded-md object-cover w-full h-full" alt="Photo de profil">
                             @else
                             <i data-feather="user" class="size-4 stroke-[3]"></i>
                             @endif
@@ -113,7 +113,7 @@ $user = $client ?? $partenaire;
                         <span
                             class="btn btn-icon bg-green-600 hover:bg-green-700 border-green-600 dark:border-green-600 text-white rounded-full">
                             @if ($user && $user->image)
-                            <img src="{{ asset('storage/'.$user->image) }}" class="rounded-md object-cover w-full h-full" alt="Photo de profil">
+                            <img src="{{ asset('imageDes/uploads/'.$user->image) }}" class="rounded-md object-cover w-full h-full" alt="Photo de profil">
                             @else
                             <i data-feather="user" class="size-4 stroke-[3]"></i>
                             @endif
