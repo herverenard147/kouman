@@ -16,12 +16,15 @@
 /node_modules
 /public/build
 /public/hot
+/public/imageDes
 /public/storage
 /storage/*.key
 /storage/pail
 /vendor
 /public/index.php
+/public/favicon.ico
 /public/.htaccess
+/public/robots.txt
 Homestead.json
 Homestead.yaml
 npm-debug.log

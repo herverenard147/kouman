@@ -121,7 +121,7 @@ class RegisteredPartenaireController extends Controller
             // Upload de la photo de profil si fournie
             $photoProfil = null;
             if ($request->hasFile('photo_profil')) {
-                $photoProfil = $request->file('photo_profil')->store('clients/profils', 'public');
+                $photoProfil = $request->file('photo_profil')->store('partenaires/profils', 'public');
             }
 
             // Création du partenaire
