@@ -334,7 +334,7 @@ $fpage = 'foot1';
             <p class="text-xl text-white max-w-md mx-auto mb-8">Commencez votre shopping et découvrez nos produits exceptionnels</p>
             <div>
                 <a href="{{ route('client.grid.sidebar') }}" class="inline-flex items-center px-8 py-3 border border-transparent text-lg font-medium rounded-xl text-white bg-green-500 hover:to-blue-600 shadow-lg transition-all duration-300 transform hover:-translate-y-1">
-                    Explorer la boutique
+                    Explorer nos offres
                     <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
                     </svg>
