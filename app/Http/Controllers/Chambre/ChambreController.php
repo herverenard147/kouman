@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Chambre;
 
 
 use App\Models\Equipement;
-use App\Models\Excursion;
+use App\Models\Chambre;
 use App\Models\ImageExcursion;
 use App\Models\Localisation;
 use App\Models\ExcursionDate;
@@ -26,7 +26,7 @@ class ChambreController extends Controller
 
      public function index()
     {
-        $excursions = Excursion::with(['partenaire', 'localisation', 'avisClients'])->latest()->get();
+        $excursions = Chambre::with(['partenaire', 'localisation', 'avisClients'])->latest()->get();
         $serviceIds = $excursions->flatMap(function ($excursion) {
             return $excursion->avisClients->pluck('service_id');
         })->unique()->values();
@@ -87,7 +87,7 @@ class ChambreController extends Controller
             'moyens_paiement' => 'nullable|string',
         ]);
 
-        $excursion = Excursion::create([
+        $excursion = Chambre::create([
             'titre' => $validated['titre'],
             'description' => $validated['description'],
             'duree' => $validated['duree'],
@@ -145,15 +145,15 @@ class ChambreController extends Controller
             Log::info('Aucune image reçue dans la requête.', ['files' => $request->allFiles()]);
         }
 
-        return redirect()->route('partenaire.excursion')->with('success', 'Excursion ajoutée avec succès.');
+        return redirect()->route('partenaire.excursion')->with('success', 'Chambre ajoutée avec succès.');
     }
 
 
-    public function edit(Excursion $excursion)
+    public function edit(Chambre $excursion)
     {
         // $this->authorize('update', $excursion); // facultatif
 
-        $excursion = Excursion::with(['equipements', 'localisation'])->findOrFail($excursion->id);
+        $excursion = Chambre::with(['equipements', 'localisation'])->findOrFail($excursion->id);
         $equipements = Equipement::all();
         return view('partenaire.excursion-detail.edit', compact('excursion', 'equipements'));
     }
@@ -162,7 +162,7 @@ class ChambreController extends Controller
 
     public function update(Request $request, $id)
     {
-        $excursion = Excursion::findOrFail($id);
+        $excursion = Chambre::findOrFail($id);
 
         $validated = $request->validate([
             'titre' => [
@@ -231,13 +231,13 @@ class ChambreController extends Controller
             }
         }
 
-        return redirect()->route('partenaire.excursion')->with('success', 'Excursion mise à jour avec succès.');
+        return redirect()->route('partenaire.excursion')->with('success', 'Chambre mise à jour avec succès.');
     }
 
 
     public function destroy($id)
     {
-        $excursion = Excursion::with('images')->findOrFail($id);
+        $excursion = Chambre::with('images')->findOrFail($id);
 
         // Supprimer les images du stockage
         foreach ($excursion->images as $image) {
@@ -253,7 +253,7 @@ class ChambreController extends Controller
 
         $excursion->delete();
 
-        return redirect()->route('partenaire.excursion')->with('success', 'Excursion supprimée avec succès.');
+        return redirect()->route('partenaire.excursion')->with('success', 'Chambre supprimée avec succès.');
     }
 
 
