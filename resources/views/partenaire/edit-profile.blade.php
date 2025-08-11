@@ -1,34 +1,11 @@
-@php
-$page = 'light';
-$fpage = 'foot1';
-@endphp
+@extends('layout.base')
 
-@extends('client.base.style.base')
-
-@section('title', 'Modifier le profil')
+@section('title', 'Modification Profil utilisateur')
 
 @section('content')
-<!-- Hero -->
-<section class="relative w-full py-28 bg-[url('{{ asset('client/assets/images/bg/01.jpg') }}')] bg-cover bg-center">
-    <div class="absolute inset-0 bg-black opacity-80"></div>
-    <div class="container relative text-center text-white">
-        <h1 class="text-4xl font-extrabold">Paramètres du Compte</h1>
-        <p class="mt-3 max-w-2xl mx-auto text-lg text-gray-300">
-            Gérez vos informations personnelles et vos préférences en toute simplicité.
-        </p>
-    </div>
-</section>
-<div class="relative">
-    <div class="shape overflow-hidden text-white dark:text-slate-900">
-        <svg viewBox="0 0 2880 48" xmlns="http://www.w3.org/2000/svg">
-            <path d="M0 48H2880V0H2160C1440 48 720 0 0 0V48Z" fill="currentColor" />
-        </svg>
-    </div>
-</div>
-
 <!-- Main -->
-<section class="max-w-6xl mx-auto py-12 px-4">
-    <div class="bg-white dark:bg-slate-900 rounded-2xl shadow-lg border border-gray-200 dark:border-slate-700 overflow-hidden">
+<section class="max-w-6xl mx-auto py-10 px-3">
+    <div class="bg-slate-900 dark:bg-slate-900 rounded-2xl shadow-lg border border-gray-200 dark:border-slate-700 overflow-hidden py-10 px-3">
         <div class="grid md:grid-cols-3">
 
             <!-- Profil -->
