@@ -34,7 +34,7 @@ $fpage = 'foot1';
         <!-- Photo -->
         <div class="flex items-center gap-4">
             @if($partenaire->image)
-            <img src="{{ asset('storage/'.$partenaire->image) }}" class="w-24 h-24 rounded-full object-cover" alt="Profil">
+            <img src="{{ asset('imageDes/uploads/'.$partenaire->image) }}" class="w-24 h-24 rounded-full object-cover" alt="Profil">
             @else
             <div class="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center">
                 <i data-feather="user"></i>

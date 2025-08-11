@@ -37,14 +37,14 @@
                 <div class="lg:w-1/2 md:w-1/2 p-1">
                     <div class="group relative overflow-hidden rounded-md shadow h-full">
                         <img
-                            src="{{ $hebergement->imagePrincipale ? asset('storage/' . $hebergement->imagePrincipale->url) : asset('/images/property/single/1.jpg') }}"
+                            src="{{ $hebergement->imagePrincipale ? asset('imageDes/uploads/' . $hebergement->imagePrincipale->url) : asset('/images/property/single/1.jpg') }}"
                             alt="Image principale de {{ $hebergement->nom }}"
                             class="w-full h-full object-cover"
                         >
                         <div class="absolute inset-0 group-hover:bg-slate-900/70 duration-500 ease-in-out"></div>
                         <div class="absolute top-1/2 -translate-y-1/2 start-0 end-0 text-center invisible group-hover:visible">
                             <a
-                                href="{{ $hebergement->imagePrincipale ? asset('storage/' . $hebergement->imagePrincipale->url) : asset('/images/property/single/1.jpg') }}"
+                                href="{{ $hebergement->imagePrincipale ? asset('imageDes/uploads/' . $hebergement->imagePrincipale->url) : asset('/images/property/single/1.jpg') }}"
                                 class="btn btn-icon bg-green-600 hover:bg-green-700 text-white rounded-full lightbox"
                             >
                                 <i class="mdi mdi-camera-outline"></i>
@@ -64,10 +64,10 @@
                         @foreach ($imagesSecondaires->take(2) as $image)
                             <div class="w-1/2 p-1">
                                 <div class="group relative overflow-hidden rounded-md shadow">
-                                    <img src="{{ asset('storage/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-48 object-cover">
+                                    <img src="{{ asset('imageDes/uploads/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-48 object-cover">
                                     <div class="absolute inset-0 group-hover:bg-slate-900/70 duration-500 ease-in-out"></div>
                                     <div class="absolute top-1/2 -translate-y-1/2 start-0 end-0 text-center invisible group-hover:visible">
-                                        <a href="{{ asset('storage/' . $image->url) }}" class="btn btn-icon bg-green-600 hover:bg-green-700 text-white rounded-full lightbox">
+                                        <a href="{{ asset('imageDes/uploads/' . $image->url) }}" class="btn btn-icon bg-green-600 hover:bg-green-700 text-white rounded-full lightbox">
                                             <i class="mdi mdi-camera-outline"></i>
                                         </a>
                                     </div>
@@ -90,10 +90,10 @@
                         @foreach ($imagesSecondaires->skip(2)->take(2) as $image)
                             <div class="w-1/2 p-1">
                                 <div class="group relative overflow-hidden rounded-md shadow">
-                                    <img src="{{ asset('storage/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-48 object-cover">
+                                    <img src="{{ asset('imageDes/uploads/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-48 object-cover">
                                     <div class="absolute inset-0 group-hover:bg-slate-900/70 duration-500 ease-in-out"></div>
                                     <div class="absolute top-1/2 -translate-y-1/2 start-0 end-0 text-center invisible group-hover:visible">
-                                        <a href="{{ asset('storage/' . $image->url) }}" class="btn btn-icon bg-green-600 hover:bg-green-700 text-white rounded-full lightbox">
+                                        <a href="{{ asset('imageDes/uploads/' . $image->url) }}" class="btn btn-icon bg-green-600 hover:bg-green-700 text-white rounded-full lightbox">
                                             <i class="mdi mdi-camera-outline"></i>
                                         </a>
                                     </div>
@@ -120,14 +120,14 @@
     <div class="lg:w-1/2 md:w-1/2 p-1">
         <div class="group relative overflow-hidden rounded-md shadow h-full">
             <img
-                src="{{ $hebergement->imagePrincipale ? asset('storage/' . $hebergement->imagePrincipale->url) : asset('/images/property/single/1.jpg') }}"
+                src="{{ $hebergement->imagePrincipale ? asset('imageDes/uploads/' . $hebergement->imagePrincipale->url) : asset('/images/property/single/1.jpg') }}"
                 alt="Image principale de {{ $hebergement->nom }}"
                 class="w-full h-full object-cover"
             >
             <div class="absolute inset-0 group-hover:bg-slate-900/70 duration-500 ease-in-out"></div>
             <div class="absolute top-1/2 -translate-y-1/2 start-0 end-0 text-center invisible group-hover:visible">
                 <a
-                    href="{{ $hebergement->imagePrincipale ? asset('storage/' . $hebergement->imagePrincipale->url) : asset('/images/property/single/1.jpg') }}"
+                    href="{{ $hebergement->imagePrincipale ? asset('imageDes/uploads/' . $hebergement->imagePrincipale->url) : asset('/images/property/single/1.jpg') }}"
                     class="btn btn-icon bg-green-600 hover:bg-green-700 text-white rounded-full lightbox"
                 >
                     <i class="mdi mdi-camera-outline"></i>
@@ -148,10 +148,10 @@
             @foreach ($imagesSecondaires as $image)
                 <div class="p-1">
                     <div class="group relative overflow-hidden rounded-md shadow">
-                        <img src="{{ asset('storage/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-48 object-cover">
+                        <img src="{{ asset('imageDes/uploads/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-48 object-cover">
                         <div class="absolute inset-0 group-hover:bg-slate-900/70 duration-500 ease-in-out"></div>
                         <div class="absolute top-1/2 -translate-y-1/2 start-0 end-0 text-center invisible group-hover:visible">
-                            <a href="{{ asset('storage/' . $image->url) }}" class="btn btn-icon bg-green-600 hover:bg-green-700 text-white rounded-full lightbox">
+                            <a href="{{ asset('imageDes/uploads/' . $image->url) }}" class="btn btn-icon bg-green-600 hover:bg-green-700 text-white rounded-full lightbox">
                                 <i class="mdi mdi-camera-outline"></i>
                             </a>
                         </div>

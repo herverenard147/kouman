@@ -39,7 +39,7 @@
                             <div class="rounded-md shadow p-6 bg-white h-fit mb-5">
                                 {{-- <div class="relative rounded border border-gray-300 p-1 bg-white shadow max-w-[150px] image-preview" data-image-id="{{ $image->idImage }}">
                                     <button type="button" class="absolute top-1 left-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 mark-delete-image" data-image-id="{{ $image->idImage }}">✕</button>
-                                    <img src="{{ asset('storage/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-auto object-cover rounded">
+                                    <img src="{{ asset('imageDes/uploads/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-auto object-cover rounded">
                                     <input type="hidden" name="images_to_keep[{{ $image->idImage }}]" value="1" class="image-keep-input">
                                     @if($image->estPrincipale)
                                         <span class="absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded">Principale</span>
@@ -55,7 +55,7 @@
                                             @foreach($hebergement->images as $index => $image)
                                                 <div class="relative rounded border border-gray-300 p-1 bg-white shadow max-w-[150px] image-preview" data-image-id="{{ $image->idImage }}">
                                                     <button type="button" class="absolute top-1 left-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 mark-delete-image" data-image-id="{{ $image->idImage }}">✕</button>
-                                                    <img src="{{ asset('storage/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-auto object-cover rounded">
+                                                    <img src="{{ asset('imageDes/uploads/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-auto object-cover rounded">
                                                     <input type="hidden" name="images_to_keep[{{ $image->idImage }}]" value="1" class="image-keep-input">
                                                     @if($index === 0 && !$image->estSupprime)
                                                         <span class="absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded principal-badge">Principale</span>
@@ -79,7 +79,7 @@
                                             @foreach($hebergement->images as $index => $image)
                                                 <div class="relative rounded border border-gray-300 p-1 bg-white shadow max-w-[150px] image-preview" data-image-id="{{ $image->idImage }}">
                                                     <button type="button" class="absolute top-1 left-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 mark-delete-image" data-image-id="{{ $image->idImage }}">✕</button>
-                                                    <img src="{{ asset('storage/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-auto object-cover rounded">
+                                                    <img src="{{ asset('imageDes/uploads/' . $image->url) }}" alt="Image de {{ $hebergement->nom }}" class="w-full h-auto object-cover rounded">
                                                     <input type="hidden" name="images_to_keep[{{ $image->idImage }}]" value="1" class="image-keep-input">
                                                     @if($index === 0 && !$image->estSupprime)
                                                         <span class="absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded principal-badge">Principale</span>

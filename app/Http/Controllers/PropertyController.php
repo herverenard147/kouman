@@ -211,7 +211,7 @@ class PropertyController extends Controller
 
         // ✅ Si une image locale est trouvée
         if ($image) {
-            return asset("storage/{$image}");
+            return asset("imageDes/uploads/{$image}");
         }
 
         // ✅ Sinon : images par défaut distinctes selon la catégorie

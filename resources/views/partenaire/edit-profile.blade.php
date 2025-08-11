@@ -44,7 +44,7 @@ $fpage = 'foot1';
         <div>
             <label class="block font-semibold mb-1">Photo de profil</label>
             @if($partenaire->image)
-                <img src="{{ asset('storage/'.$partenaire->image) }}" class="w-24 h-24 rounded-full object-cover mb-2" alt="Profil">
+                <img src="{{ asset('imageDes/uploads/'.$partenaire->image) }}" class="w-24 h-24 rounded-full object-cover mb-2" alt="Profil">
             @endif
             <input type="file" name="image" class="block w-full text-sm text-gray-700 border border-gray-300 rounded-md shadow-sm p-2">
         </div>

@@ -10,7 +10,7 @@
                 @endphp
 
                 <img
-                    src="{{ $imagePrincipale ? asset('storage/' . $imagePrincipale->url) : asset('images/no-image.png') }}"
+                    src="{{ $imagePrincipale ? asset('imageDes/uploads/' . $imagePrincipale->url) : asset('images/no-image.png') }}"
                     alt="Image de {{ $hebergement->nom }} à {{ $hebergement->localisation->ville ?? 'N/A' }}"
                     class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                 >

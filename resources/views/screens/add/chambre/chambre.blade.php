@@ -18,7 +18,7 @@
             </div>
 
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-6">
-                @include('screens.add.Hebergement.hebergement-list', ['chambres' => $chambres])
+                @include('screens.add.chambre.chambre-list', ['chambres' => $chambres])
             </div>
 
             {{-- The original pagination condition ! $chambres seems incorrect.
