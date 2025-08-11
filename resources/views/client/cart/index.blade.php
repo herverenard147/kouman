@@ -170,9 +170,13 @@ $fpage = 'foot1';
                                 <form action="{{ route('client.cart.remove', $productId) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="button" onclick="confirmDelete(this)" class="text-red-500 hover:text-red-700 transition-colors p-2 rounded-full hover:bg-red-50">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                    <button type="button" onclick="deleteCartItem(this)"
+                                        class="text-red-500 hover:text-red-700 transition-colors p-2 rounded-full hover:bg-red-50">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                            viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7
+               m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                         </svg>
                                     </button>
                                 </form>
@@ -345,7 +349,6 @@ $fpage = 'foot1';
 @push('scripts')
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Gestion des quantités
         document.querySelectorAll('.quantity-input').forEach(input => {
             const form = input.closest('.cart-update-form');
             if (!form) return;
@@ -353,7 +356,16 @@ $fpage = 'foot1';
             const decBtn = form.querySelector('.decrement-btn');
             const incBtn = form.querySelector('.increment-btn');
 
+            const min = 1;
+            const max = parseInt(input.dataset.stock, 10) || 1;
+
+            const updateButtonsState = (val) => {
+                if (decBtn) decBtn.disabled = (val <= min);
+                if (incBtn) incBtn.disabled = (val >= max);
+            };
+
             const sendUpdate = (val) => {
+                updateButtonsState(val); // met à jour l'état des boutons
                 const url = form.getAttribute('data-update-url');
                 fetch(url, {
                         method: 'POST',
@@ -371,7 +383,6 @@ $fpage = 'foot1';
                     .then(r => r.json())
                     .then(data => {
                         if (data.success) {
-                            // Recharge la page pour recalculer totaux/compteurs
                             window.location.reload();
                         } else {
                             console.error('Mise à jour échouée', data);
@@ -380,53 +391,47 @@ $fpage = 'foot1';
                     .catch(err => console.error('Erreur maj panier :', err));
             };
 
+            // Initialisation
+            updateButtonsState(parseInt(input.value, 10) || min);
+
             if (decBtn) {
                 decBtn.addEventListener('click', () => {
-                    const val = Math.max(0, parseInt(input.value || '0', 10) - 1);
-                    input.value = val;
-                    sendUpdate(val);
+                    let val = parseInt(input.value || min, 10);
+                    if (val > min) {
+                        val--;
+                        input.value = val;
+                        sendUpdate(val);
+                    }
                 });
             }
 
             if (incBtn) {
                 incBtn.addEventListener('click', () => {
-                    const val = Math.max(0, parseInt(input.value || '0', 10) + 1);
-                    input.value = val;
-                    sendUpdate(val);
+                    let val = parseInt(input.value || min, 10);
+                    if (val < max) {
+                        val++;
+                        input.value = val;
+                        sendUpdate(val);
+                    }
                 });
             }
 
             input.addEventListener('change', () => {
-                let val = parseInt(input.value || '0', 10);
-                if (isNaN(val) || val < 0) val = 0;
+                let val = parseInt(input.value || min, 10);
+                if (isNaN(val) || val < min) val = min;
+                if (val > max) val = max;
                 input.value = val;
                 sendUpdate(val);
             });
         });
 
-        // Suppression avec confirmation (SweetAlert2 si dispo, sinon confirm())
-        window.confirmDelete = function(button) {
-            const submitForm = () => button.closest('form').submit();
-
-            if (typeof Swal !== 'undefined') {
-                Swal.fire({
-                    title: 'Confirmation',
-                    text: "Voulez-vous vraiment retirer cet article du panier ?",
-                    icon: 'question',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Oui, supprimer',
-                    cancelButtonText: 'Annuler'
-                }).then((result) => {
-                    if (result.isConfirmed) submitForm();
-                });
-            } else {
-                if (confirm('Voulez-vous vraiment retirer cet article du panier ?')) {
-                    submitForm();
-                }
+        // Suppression directe sans confirmation
+        window.deleteCartItem = function(button) {
+            const form = button.closest('form');
+            if (form) {
+                form.submit();
             }
-        }
+        };
     });
 </script>
 @endpush
