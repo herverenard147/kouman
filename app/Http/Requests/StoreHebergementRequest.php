@@ -113,7 +113,7 @@ class StoreHebergementRequest extends FormRequest
             'telephones.*.numero.required' => 'Le numéro de téléphone est requis.',
             'telephones.*.numero.phone' => 'Le numéro de téléphone doit être valide pour la Côte d’Ivoire, la France ou les États-Unis.',
             'telephones.*.numero.max' => 'Le numéro de téléphone ne doit pas dépasser 20 caractères.',
-            
+
             'stock.required' => 'Le stock est requis.',
             'stock.integer' => 'Le stock doit être un nombre entier.',
             'stock.min' => 'Le stock doit être au moins 0.',

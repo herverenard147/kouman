@@ -113,7 +113,7 @@ class HebergementController extends Controller
             foreach ($request->prixSaisonniers as $prix) {
                 if ($prix['dateDebut'] && $prix['dateFin'] && $prix['prixParNuit']) {
                     PrixHebergement::create([
-                        'idHebergement' => $hebergement->idHebergement,
+                        'idHebergement' => $hebergement->id,
                         'dateDebut' => $prix['dateDebut'],
                         'dateFin' => $prix['dateFin'],
                         'prixParNuit' => $prix['prixParNuit'],
@@ -215,7 +215,6 @@ class HebergementController extends Controller
             'description' => $validated['description'],
             'prixParNuit' => $validated['prixParNuit'],
             'devise' => $validated['devise'],
-            // 'numeroDeTel' => $validated['numeroDeTel'],
             'idPolitiqueAnnulation' => $validated['idPolitiqueAnnulation'],
             'nombreChambres' => $validated['nombreChambres'],
             'nombreSallesDeBain' => $validated['nombreSallesDeBain'],
