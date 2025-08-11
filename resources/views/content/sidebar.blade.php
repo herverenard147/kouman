@@ -82,7 +82,7 @@
                 'title' => 'Utilisateur',
                 'items' => [
                     ['label' => 'Profil', 'route' => 'partenaire.profile'],
-                    ['label' => 'Modifier mes informations', 'route' => 'partenaire.profile-setting'],
+                    ['label' => 'Modifier mes informations', 'route' => 'partenaire.profile.edit'],
                     // ['label' => 'Changer mot de passe', 'route' => 'partenaire.change-password'],
                 ]
             ])
