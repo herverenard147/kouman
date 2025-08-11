@@ -2,35 +2,30 @@
 @section('title', 'Nouveau mot de passe')
 
 @section('content')
-<section class="md:h-screen py-36 flex items-center justify-center">
-    <div class="max-w-md w-full bg-white p-6 rounded shadow">
-        <h2 class="text-2xl font-bold mb-6">Créer un nouveau mot de passe</h2>
-
+<section class="py-36 flex items-center justify-center">
+    <div class="bg-white dark:bg-slate-900 p-6 rounded shadow-md max-w-md w-full">
+        <h2 class="text-xl font-bold mb-4">Nouveau mot de passe</h2>
         @if($errors->any())
-            <div class="bg-red-100 text-red-800 p-3 rounded mb-4">
+            <div class="bg-red-100 text-red-800 px-4 py-2 rounded mb-4">
                 <ul>
-                    @foreach($errors->all() as $error)
-                        <li>- {{ $error }}</li>
+                    @foreach($errors->all() as $e)
+                        <li>{{ $e }}</li>
                     @endforeach
                 </ul>
             </div>
         @endif
-
-        <form method="POST" action="{{ route('password.store') }}">
+        <form action="{{ route('password.update') }}" method="POST">
             @csrf
-
             <input type="hidden" name="token" value="{{ $token }}">
             <input type="hidden" name="email" value="{{ $email }}">
 
-            <label for="password" class="block mb-2 font-medium">Nouveau mot de passe</label>
-            <input id="password" type="password" name="password" required class="form-input w-full mb-4" autocomplete="new-password">
+            <label>Nouveau mot de passe :</label>
+            <input type="password" name="password" class="form-input w-full mb-4" required>
 
-            <label for="password_confirmation" class="block mb-2 font-medium">Confirmer le nouveau mot de passe</label>
-            <input id="password_confirmation" type="password" name="password_confirmation" required class="form-input w-full mb-6" autocomplete="new-password">
+            <label>Confirmer le mot de passe :</label>
+            <input type="password" name="password_confirmation" class="form-input w-full mb-4" required>
 
-            <button type="submit" class="btn bg-green-600 hover:bg-green-700 text-white rounded w-full py-2">
-                Réinitialiser le mot de passe
-            </button>
+            <button type="submit" class="btn bg-green-600 text-white w-full">Réinitialiser</button>
         </form>
     </div>
 </section>

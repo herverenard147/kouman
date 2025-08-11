@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Commande;
+use App\Models\CommandeProduit;
+use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
@@ -64,11 +67,9 @@ class CheckoutController extends Controller
             if (!empty($pid)) {
                 $selects = ['id', 'nom_entreprise', 'email', 'type', 'adresse', 'siteWeb', 'statut'];
 
-                // colonne téléphone : "telephone" ou "téléphone" ?
                 if (Schema::hasColumn('partenaires', 'telephone')) {
                     $selects[] = 'telephone';
                 } elseif (Schema::hasColumn('partenaires', 'téléphone')) {
-                    // citer la colonne avec accent et l'aliaser en "telephone"
                     $selects[] = DB::raw('`téléphone` as telephone');
                 }
 
@@ -79,7 +80,7 @@ class CheckoutController extends Controller
             }
 
             $lines[] = [
-                'id'         => $line['id'] ?? null,
+                'id'         => $line['product_id'] ?? null,
                 'name'       => $line['name'] ?? '',
                 'image'      => $line['image'] ?? null,
                 'categorie'  => $line['categorie'] ?? null,
@@ -90,7 +91,7 @@ class CheckoutController extends Controller
                     'id'        => $partner->id,
                     'nom'       => $partner->nom_entreprise,
                     'email'     => $partner->email ?? null,
-                    'telephone' => $partner->telephone ?? null, // marche dans les deux cas grâce à l’alias
+                    'telephone' => $partner->telephone ?? null,
                     'adresse'   => $partner->adresse ?? null,
                     'site_web'  => $partner->siteWeb ?? null,
                     'type'      => $partner->type ?? null,
@@ -99,30 +100,81 @@ class CheckoutController extends Controller
             ];
         }
 
-        // 4) Construire l'objet "commande" en session (pour la page de confirmation)
-        $order = [
-            'ref'            => 'CMD-' . now()->format('Ymd-His') . '-' . rand(1000, 9999),
-            'created_at'     => now()->toDateTimeString(),
-            'customer'       => [
-                'name'    => $data['name'],
-                'phone'   => $data['phone'],
-                'address' => $data['address'],
-                'country' => $data['country'],
-                'notes'   => $data['notes'] ?? null,
-            ],
-            'payment_method' => $data['payment_method'],
-            'lines'          => $lines,
-            'total'          => $total,
-            'shipping'       => 0,
-            'grand_total'    => $total,
-        ];
+        // 4) Récupérer le client connecté
+        $client = Auth::guard('client')->user();
 
+        // 5) Transaction pour créer commande, produits et mettre à jour stock
+        DB::transaction(function () use ($data, $lines, $total, $client, &$order) {
+            $order = [
+                'ref'            => 'CMD-' . now()->format('Ymd-His') . '-' . rand(1000, 9999),
+                'created_at'     => now()->toDateTimeString(),
+                'customer'       => [
+                    'name'    => $data['name'],
+                    'phone'   => $data['phone'],
+                    'address' => $data['address'],
+                    'country' => $data['country'],
+                    'notes'   => $data['notes'] ?? null,
+                ],
+                'payment_method' => $data['payment_method'],
+                'lines'          => $lines,
+                'total'          => $total,
+                'shipping'       => 0,
+                'grand_total'    => $total,
+            ];
+
+            $commande = Commande::create([
+                'ref'            => $order['ref'],
+                'name'           => $data['name'],
+                'phone'          => $data['phone'],
+                'address'        => $data['address'],
+                'country'        => $data['country'],
+                'notes'          => $data['notes'] ?? null,
+                'payment_method' => $data['payment_method'],
+                'total'          => $total,
+                'shipping'       => 0,
+                'grand_total'    => $total,
+                'client_id'      => $client->id,
+            ]);
+
+            foreach ($lines as $line) {
+                CommandeProduit::create([
+                    'commande_id'   => $commande->id,
+                    'product_id'    => $line['id'],
+                    'name'          => $line['name'],
+                    'image'         => $line['image'],
+                    'categorie'     => $line['categorie'],
+                    'partenaire_id' => $line['partenaire']['id'] ?? null,
+                    'quantity'      => $line['quantity'],
+                    'price'         => $line['price'],
+                    'subtotal'      => $line['subtotal'],
+                ]);
+
+                // Mise à jour du stock selon la catégorie
+                $productId = $line['id'];
+                $quantityOrdered = $line['quantity'];
+                $categorie = $line['categorie'];
+
+                switch ($categorie) {
+                    case 'vol':
+                        DB::table('vols')->where('id', $productId)->decrement('placesDisponibles', $quantityOrdered);
+                        break;
+                    case 'hebergement':
+                        DB::table('hebergements')->where('id', $productId)->decrement('stock', $quantityOrdered);
+                        break;
+                    case 'excursion':
+                        DB::table('excursions')->where('id', $productId)->decrement('stock', $quantityOrdered);
+                        break;
+                    case 'evenement':
+                        DB::table('evenements')->where('id', $productId)->decrement('stock', $quantityOrdered);
+                        break;
+                }
+            }
+        });
+
+        // 6) Stocker la commande en session pour confirmation
         session(['last_order' => $order]);
 
-        // ⚠️ NE PAS vider le panier ici si tu veux le vider "après la confirmation".
-        // session()->forget('cart');
-
-        // 5) Rediriger vers la page de confirmation
+        // 7) Redirection vers confirmation (ne vide pas le panier ici)
         return redirect()->route('client.checkout.confirmation');
     }
 
@@ -137,7 +189,7 @@ class CheckoutController extends Controller
             return redirect()->route('client.checkout')->with('error', 'Aucune commande à afficher.');
         }
 
-        // 🔥 Vider le panier APRÈS confirmation
+        // Vider le panier APRÈS confirmation
         session()->forget('cart');
 
         return view('client.checkout.confirmation', compact('order'));

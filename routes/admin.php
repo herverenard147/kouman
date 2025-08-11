@@ -14,7 +14,7 @@ Route::middleware(['web', 'auth:admin'])->prefix('admin')->group(function () {
 Route::middleware(['guest:web'])->prefix('admin')->group(function () {
     // Auth invité
     Route::get('forgot-password', [PasswordResetLinkAdminController::class, 'create'])->name('password.request');
-    Route::post('forgot-password', [PasswordResetLinkAdminController::class, 'store'])->name('password.email');
+    Route::post('forgot-password', [PasswordResetLinkAdminController::class, 'sendResetLinkEmail'])->name('password.email');
     Route::get('reset-password/{token}', [NewPasswordAdminController::class, 'create'])->name('password.reset');
     Route::post('reset-password', [NewPasswordAdminController::class, 'store'])->name('password.store');
 

@@ -4,6 +4,7 @@ $fpage = 'foot1';
 @endphp
 
 @extends('client.base.style.base')
+
 @section('title', 'Profil partenaire')
 
 @section('content')
@@ -27,128 +28,124 @@ $fpage = 'foot1';
     </div>
 </div>
 <!-- End Hero -->
-<section class="max-w-4xl mx-auto py-12">
-    <h2 class="text-2xl font-bold mb-6">Mon Profil Partenaire</h2>
+<div class="min-h-screen flex items-center justify-center py-16 px-4 bg-gray-100 dark:bg-slate-900">
+    <div class="max-w-6xl w-full bg-white dark:bg-slate-900 rounded-lg shadow-xl p-8">
+        <h1 class="text-4xl font-extrabold mb-10 text-black dark:text-white border-b-4 border-green-600 pb-2 text-center">
+            Mon profil partenaire
+        </h1>
 
-    <div class="bg-white dark:bg-slate-900 shadow rounded-xl p-6 space-y-4">
-        <!-- Photo -->
-        <div class="flex items-center gap-4">
-            @if($partenaire->image)
-            <img src="{{ asset('imageDes/uploads/'.$partenaire->image) }}" class="w-24 h-24 rounded-full object-cover" alt="Profil">
-            @else
-            <div class="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center">
-                <i data-feather="user"></i>
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Colonne gauche -->
+            <div class="md:w-1/3 bg-green-50 dark:bg-slate-800 rounded-lg p-6 shadow-md flex flex-col items-center">
+                @if($partenaire->image)
+                    <img src="{{ asset('imageDes/uploads/'.$partenaire->image) }}" alt="Photo de profil" 
+                         class="w-40 h-40 rounded-full object-cover shadow-lg mb-4 border-4 border-green-600">
+                @else
+                    <div class="w-40 h-40 rounded-full bg-gray-200 flex items-center justify-center shadow-lg mb-4 border-4 border-green-600">
+                        <i data-feather="user" class="w-12 h-12 text-gray-500"></i>
+                    </div>
+                @endif
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white mb-1">{{ $partenaire->nom_entreprise }}</h2>
+                <p class="text-green-600 font-medium mb-4">{{ $partenaire->type }}</p>
+
+                <ul class="w-full space-y-3 text-gray-700 dark:text-gray-300">
+                    <li><strong>Email :</strong> {{ $partenaire->email }}</li>
+                    <li><strong>Téléphone :</strong> {{ $partenaire->téléphone }}</li>
+                    <li><strong>Adresse :</strong> {{ $partenaire->adresse }}</li>
+                    <li><strong>Site Web :</strong> 
+                        @if($partenaire->siteWeb)
+                            <a href="{{ $partenaire->siteWeb }}" target="_blank" class="text-green-600 underline">
+                                {{ $partenaire->siteWeb }}
+                            </a>
+                        @else
+                            Non renseigné
+                        @endif
+                    </li>
+                    <li><strong>Statut :</strong> {{ $partenaire->statut }}</li>
+                    <li><strong>Date d’inscription :</strong> {{ $partenaire->created_at->format('d/m/Y') }}</li>
+                </ul>
             </div>
-            @endif
-            <div>
-                <h3 class="text-xl font-semibold">{{ $partenaire->nom_entreprise }}</h3>
-                <p class="text-gray-500">{{ $partenaire->email }}</p>
+
+            <!-- Colonne droite -->
+            <div class="md:w-2/3 bg-gray-50 dark:bg-slate-800 rounded-lg p-6 shadow-md">
+                <h3 class="text-2xl font-semibold text-black dark:text-white mb-4">
+                    Bienvenue sur votre espace partenaire
+                </h3>
+                <p class="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed">
+                    Gérez vos informations personnelles, votre sécurité et vos préférences.
+                </p>
+
+                <div class="flex flex-wrap gap-4">
+                    <a href="{{ route('partenaire.profile.edit') }}" 
+                       class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded shadow transition">
+                        Modifier mon profil
+                    </a>
+                    <a href="#changer-mdp" 
+                       class="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-3 px-6 rounded shadow transition">
+                        Changer mon mot de passe
+                    </a>
+                    <form action="{{ route('partenaire.account.delete') }}" method="POST" 
+                          onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer définitivement votre compte ?');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" 
+                                class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded shadow transition">
+                            Supprimer mon compte
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Bloc Changement de mot de passe -->
+                <div id="changer-mdp" class="mt-8 pt-6 border-t">
+                    <h3 class="text-xl font-semibold mb-4">Sécurité du compte</h3>
+
+                    @if(session('password_success'))
+                        <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">
+                            {{ session('password_success') }}
+                        </div>
+                    @endif
+
+                    @if(session('password_error'))
+                        <div class="mb-4 p-4 bg-red-100 text-red-800 rounded">
+                            {{ session('password_error') }}
+                        </div>
+                    @endif
+
+                    @if($errors->any())
+                        <div class="mb-4 p-4 bg-red-100 text-red-800 rounded">
+                            <ul class="list-disc pl-5">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form action="{{ route('partenaire.password.update') }}" method="POST" class="space-y-4 max-w-xl">
+                        @csrf
+                        @method('PUT')
+
+                        <div>
+                            <label class="block font-medium">Mot de passe actuel</label>
+                            <input type="password" name="current_password" class="form-input w-full" required>
+                        </div>
+                        <div>
+                            <label class="block font-medium">Nouveau mot de passe</label>
+                            <input type="password" name="new_password" class="form-input w-full" required>
+                        </div>
+                        <div>
+                            <label class="block font-medium">Confirmer le nouveau mot de passe</label>
+                            <input type="password" name="new_password_confirmation" class="form-input w-full" required>
+                        </div>
+
+                        <button type="submit" 
+                                class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
+                            Mettre à jour le mot de passe
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-                <label class="font-semibold">Nom entreprise :</label>
-                <p>{{ $partenaire->nom_entreprise }}</p>
-            </div>
-            <div>
-                <label class="font-semibold">Email :</label>
-                <p>{{ $partenaire->email }}</p>
-            </div>
-            <div>
-                <label class="font-semibold">Téléphone :</label>
-                <p>{{ $partenaire->téléphone }}</p>
-            </div>
-            <div>
-                <label class="font-semibold">Adresse :</label>
-                <p>{{ $partenaire->adresse }}</p>
-            </div>
-            <div>
-                <label class="font-semibold">Site Web :</label>
-                <p>{{ $partenaire->siteWeb }}</p>
-            </div>
-            <div>
-                <label class="font-semibold">Type :</label>
-                <p>{{ $partenaire->type }}</p>
-            </div>
-            <div>
-                <label class="font-semibold">Statut :</label>
-                <p>{{ $partenaire->statut }}</p>
-            </div>
-            <div>
-                <label class="font-semibold">Date d’inscription :</label>
-                <p>{{ $partenaire->created_at->format('d/m/Y') }}</p>
-            </div>
-        </div>
-
-        <a href="{{ route('partenaire.profile.edit') }}" class="mt-6 inline-block bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg">
-            Modifier mon profil
-        </a>
     </div>
-    <div class="mt-12 border-t pt-6">
-        <h3 class="text-xl font-semibold mb-4">Sécurité du compte</h3>
-
-        @if(session('password_success'))
-        <div class="mb-4 p-4 bg-green-100 text-green-800 rounded">
-            {{ session('password_success') }}
-        </div>
-        @endif
-
-        @if(session('password_error'))
-        <div class="mb-4 p-4 bg-red-100 text-red-800 rounded">
-            {{ session('password_error') }}
-        </div>
-        @endif
-
-        @if($errors->any())
-        <div class="mb-4 p-4 bg-red-100 text-red-800 rounded">
-            <ul class="list-disc pl-5">
-                @foreach($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-
-        <form action="{{ route('partenaire.password.update') }}" method="POST" class="space-y-4 max-w-xl">
-            @csrf
-            @method('PUT')
-
-            <div>
-                <label class="block font-medium">Mot de passe actuel</label>
-                <input type="password" name="current_password" class="form-input w-full" required>
-            </div>
-            <div>
-                <label class="block font-medium">Nouveau mot de passe</label>
-                <input type="password" name="new_password" class="form-input w-full" required>
-            </div>
-            <div>
-                <label class="block font-medium">Confirmer le nouveau mot de passe</label>
-                <input type="password" name="new_password_confirmation" class="form-input w-full" required>
-            </div>
-
-            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">
-                Mettre à jour le mot de passe
-            </button>
-        </form>
-    </div>
-
-
-    <!-- Bloc : Supprimer le compte -->
-    <div class="mt-12 border-t pt-6">
-        <h3 class="text-xl font-semibold text-red-600 mb-4">Clôturer mon compte</h3>
-        <p class="text-gray-600 mb-4">Cette action est <strong>irréversible</strong>. Toutes vos données seront supprimées définitivement.</p>
-
-        <form action="{{ route('partenaire.account.delete') }}" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer définitivement votre compte ?');">
-            @csrf
-            @method('DELETE')
-
-            <button type="submit" class="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded">
-                Supprimer mon compte
-            </button>
-        </form>
-    </div>
-
-</section>
-
+</div>
 @endsection

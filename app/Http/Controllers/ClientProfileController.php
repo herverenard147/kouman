@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Order;
 
 class ClientProfileController extends Controller
 {
@@ -12,6 +13,17 @@ class ClientProfileController extends Controller
     {
         $client = Auth::guard('client')->user();
         return view('client.profile-setting', compact('client'));
+    }
+
+    public function ordersHistory()
+    {
+        $user = auth('client')->user();
+
+        $orders = Order::where('client_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        return view('client.profile.orders_history', compact('orders'));
     }
 
     public function update(Request $request)

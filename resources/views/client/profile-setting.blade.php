@@ -29,7 +29,6 @@ $fpage = 'foot1';
 </div>
 <!-- End Hero -->
 <div class="min-h-screen bg-white dark:bg-slate-900 dark:from-slate-900 dark:to-slate-800 py-12 px-4 sm:px-6 lg:px-8">
-
     <div class="max-w-7xl mx-auto">
         <div class="grid lg:grid-cols-12 gap-8">
             <!-- Colonne de gauche - Profil -->
@@ -55,9 +54,13 @@ $fpage = 'foot1';
                                             <!-- Delete Icon (Top Right) -->
                                             @if (Auth::user()->photo_profil)
                                             <button type="button" onclick="openDeleteModal()" class="relative top-1 right-1 bg-white rounded-full p-1 hover:bg-red-500 hover:text-white transition">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-red-500 hover:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    class="h-4 w-4 text-red-500 hover:text-red-700 cursor-pointer"
+                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M1 7h22M9 3h6a1 1 0 011 1v2H8V4a1 1 0 011-1z" />
                                                 </svg>
+
                                             </button>
                                             @endif
                                             <div class="relative h-32 w-32 rounded-full ring-4 ring-white dark:ring-slate-700 shadow-lg overflow-hidden z-10">
@@ -65,13 +68,13 @@ $fpage = 'foot1';
                                                 <img
                                                     id="profile-image"
                                                     class="h-full w-full object-cover"
-                                                    src="{{ Auth::user()->photo_profil
-                    ? asset('imageDes/uploads/clients/profils/' . Auth::user()->photo_profil)
-                    : asset('/images/client/userdefault.webp') }}"
+                                                    src="{{ Auth::user()->photo_profil 
+                    ? asset('/imageDes/uploads/clients/profils/' . Auth::user()->photo_profil) 
+                    : asset('/images/client/logouser2.png') }}"
                                                     alt="Photo de profil">
 
                                                 <!-- Upload Overlay -->
-                                                <label for="pro-img" class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
+                                                <label for="pro-img" class="absolute inset-0 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -91,20 +94,44 @@ $fpage = 'foot1';
                                 </div>
                             </div>
 
-                            <div id="delete-Modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                                <div class="bg-white rounded-lg p-6 w-full max-w-md">
-                                    <h3 class="text-lg font-semibold mb-4">Confirmer la suppression</h3>
-                                    <p class="text-gray-600 mb-6">Êtes-vous sûr de vouloir supprimer la photo ? Cette action est irréversible.</p>
+                            <!-- Modal Suppression -->
+                            <div id="delete-Modal"
+                                class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center hidden z-50">
+
+                                <div class="bg-white rounded-2xl shadow-2xl p-6 w-full max-w-md transform transition-all scale-100">
+
+                                    <!-- Titre -->
+                                    <h3 class="text-xl font-bold mb-3 text-gray-800">Confirmer la suppression</h3>
+
+                                    <!-- Texte -->
+                                    <p class="text-gray-600 mb-6 leading-relaxed">
+                                        Êtes-vous sûr de vouloir supprimer la photo ?
+                                        <span class="font-semibold text-red-600">Cette action est irréversible.</span>
+                                    </p>
+
+                                    <!-- Formulaire -->
                                     <form action="{{ route('profile.deletePhoto') }}" method="POST">
                                         @csrf
                                         @method('DELETE')
-                                        <div class="flex justify-end space-x-4">
-                                            <button type="button" id="close-delete-modal" class="btn bg-gray-500 hover:bg-gray-600 text-white rounded-md px-4 py-2">Annuler</button>
-                                            <button type="submit" class="btn bg-red-600 hover:bg-red-700 text-white rounded-md px-4 py-2">Supprimer</button>
+
+                                        <div class="flex justify-end gap-3">
+                                            <button
+                                                type="button"
+                                                onclick="closeDeleteModal()"
+                                                class="px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white rounded-md shadow-sm transition">
+                                                Annuler
+                                            </button>
+
+                                            <button
+                                                type="submit"
+                                                class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md shadow-sm transition">
+                                                Supprimer
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
+
 
                             <div class="mt-6 text-center">
                                 <h3 class="text-2xl font-bold text-gray-900 dark:text-white">
@@ -147,6 +174,11 @@ $fpage = 'foot1';
                             </svg>
                             Zone dangereuse
                         </a>
+
+                        <a href="{{ route('client.profile.ordersHistory') }}" class="block px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                            Voir mon historique de commandes
+                        </a>
+
                     </nav>
                 </div>
             </div>
@@ -479,7 +511,7 @@ $fpage = 'foot1';
     }
 
     function closeDeleteModal() {
-        document.getElementById('deleteModal').classList.add('hidden');
+        document.getElementById('delete-Modal').classList.add('hidden');
     }
 </script>
 
