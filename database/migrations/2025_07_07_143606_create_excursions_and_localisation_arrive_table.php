@@ -11,6 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('localisation_arrive', function (Blueprint $table) {
+            $table->id();
+            $table->string('ville', 100);
+            $table->string('pays', 100);
+            $table->string('codePostal', 20)->nullable();
+            $table->string('adresse', 255)->nullable();
+            $table->string('longitude', 255)->nullable();
+            $table->string('latitude', 255)->nullable();
+            $table->timestamps();
+        });
+
         Schema::create('excursions', function (Blueprint $table) {
             $table->id();
             $table->string('titre', 150); // Augmenté à 150 pour plus de flexibilité
@@ -20,7 +31,6 @@ return new class extends Migration
             $table->decimal('duree', 5, 2); // Durée en heures avec précision (ex. 2.5)
             $table->integer('capacite_max')->unsigned()->default(1); // Capacité maximale
             $table->foreignId('partenaire_id')->constrained('partenaires')->onDelete('cascade');
-            $table->text('itineraire')->nullable();
             $table->string('nom_guide', 150)->nullable();
             $table->text('langues')->nullable(); // tu peux aussi utiliser ->json() si tu préfères
             $table->enum('recurrence', ['ponctuelle', 'quotidienne', 'hebdomadaire', 'mensuelle'])->default('ponctuelle');
@@ -31,6 +41,11 @@ return new class extends Migration
             $table->foreignId('localisation_id')
                 ->nullable()
                 ->constrained('localisations')
+                ->onDelete('set null');
+
+            $table->foreignId('localisation_idA')
+                ->nullable()
+                ->constrained('localisation_arrive', 'id')
                 ->onDelete('set null');
 
             $table->enum('statut', ['brouillon', 'active', 'complete', 'annulee'])->default('brouillon');

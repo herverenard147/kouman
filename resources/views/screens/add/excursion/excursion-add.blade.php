@@ -39,7 +39,6 @@
             @endif
 
             <form action="{{ route('partenaire.add.excursion.store') }}" method="POST" enctype="multipart/form-data">
-            {{-- <form action=""> --}}
                 @csrf
                 <div class="w-full md:w-3/4 mx-auto">
                     <div class="grid md:grid-cols-1 grid-cols-1 gap-6 mt-6">
@@ -74,12 +73,6 @@
                                     <input name="titre" id="titre" type="text" class="form-input mt-2 @error('titre') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" placeholder="Titre de l'excursion" value="{{ old('titre') }}" required>
                                     @error('titre') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
-                                <!-- Itinéraire -->
-                                <div class="col-span-12">
-                                    <label for="itineraire" class="font-medium text-slate-900 dark:text-white">Itinéraire :</label>
-                                    <textarea name="itineraire" id="itineraire" class="form-input mt-2 @error('itineraire') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" rows="3" placeholder="Décrivez l’itinéraire prévu">{{ old('itineraire') }}</textarea>
-                                    @error('itineraire') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                                </div>
 
                                 <!-- Nom du guide -->
                                 <div class="col-span-6">
@@ -90,21 +83,27 @@
 
                                 <!-- Langues parlées -->
                                 <div class="col-span-6">
-                                    <label for="langues" class="font-medium text-slate-900 dark:text-white">Langues parlées :</label>
-                                    {{-- <input name="langues" id="langues" type="text" class="form-input mt-2 @error('langues') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('langues') }}" placeholder="Ex : Français, Anglais"> --}}
-                                    <select name="langues" id="langues" class="form-select mt-2 w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('langues') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
-                                        {{-- <option value="1" selected>Français</option> --}}
+                                    <label for="langues" class="font-semibold text-slate-900 dark:text-white mb-2 inline-block">Langues parlées :</label>
+
+                                    <select id="langues"
+                                            class="form-select mt-2 w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('langues') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+                                        <option value="">-- Choisir une/plusieurs langue(s) --</option>
                                         @foreach($langues as $langue)
-                                            <option value="{{ $langue->id + 1 }}" {{ old('langues') == $langue->id + 1 ? 'selected' : '' }}>{{ $langue->nom }}</option>
+                                            <option value="{{ $langue->id }}">{{ $langue->nom }}</option>
                                         @endforeach
                                     </select>
-                                    @error('langues') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+
+                                    <!-- Input caché qui sera envoyé au backend -->
+                                    <input type="hidden" name="langues" id="langues_input">
+
+                                    <!-- Affichage dynamique des langues choisies -->
+                                    <div id="langues_list" class="mt-4 flex flex-wrap gap-3"></div>
                                 </div>
 
                                 <!-- Récurrence -->
                                 <div class="col-span-6">
                                     <label for="recurrence" class="font-medium text-slate-900 dark:text-white">Fréquence :</label>
-                                    <select name="recurrence" id="recurrence" class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('recurrence') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+                                    <select name="recurrence" id="recurrence" class="form-select mt-2 w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('recurrence') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
                                         @foreach(['ponctuelle', 'quotidienne', 'hebdomadaire', 'mensuelle'] as $freq)
                                             <option value="{{ $freq }}" {{ old('recurrence') == $freq ? 'selected' : '' }}>
                                                 {{ ucfirst($freq) }}
@@ -124,7 +123,7 @@
                                 <!-- Conditions d’annulation -->
                                 <div class="col-span-6">
                                     <label for="idPolitiqueAnnulation" class="font-medium text-slate-900 dark:text-white">Politique d'annulation:</label>
-                                    <select name="idPolitiqueAnnulation" id="idPolitiqueAnnulation" class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('idPolitiqueAnnulation') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+                                    <select name="idPolitiqueAnnulation" id="idPolitiqueAnnulation" class="form-select mt-2 w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('idPolitiqueAnnulation') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
                                         <option value="" selected>Aucune</option>
                                         @foreach($politiques as $politique)
                                             <option value="{{ $politique->id }}" {{ old('idPolitiqueAnnulation') == $politique->id ? 'selected' : '' }}>{{ $politique->nom }}</option>
@@ -138,7 +137,13 @@
                                 <!-- Moyens de paiement -->
                                 <div class="col-span-6">
                                     <label for="moyens_paiement" class="font-medium text-slate-900 dark:text-white">Moyens de paiement acceptés :</label>
-                                    <input name="moyens_paiement" id="moyens_paiement" type="text" class="form-input mt-2 @error('moyens_paiement') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('moyens_paiement') }}" placeholder="Ex : Orange Money, Visa, Cash">
+                                    <select id="moyens_paiement"
+                                            class="form-select mt-2 w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('moyens_paiement') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+                                        <option value="" selected>Aucune</option>
+                                        @foreach($moyensPaiements as $moyensPaiement)
+                                            <option value="{{ $moyensPaiement->id }}" {{ old('moyens_paiement') == $moyensPaiement->id ? 'selected' : '' }}>{{ $moyensPaiement->nom }}</option>
+                                        @endforeach
+                                    </select>
                                     @error('moyens_paiement') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
@@ -178,7 +183,7 @@
 
                                 <div class="col-span-6">
                                     <label for="devise" class="font-medium text-slate-900 dark:text-white">Devise :</label>
-                                    <select name="devise" id="devise" class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('devise') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
+                                    <select name="devise" id="devise" class="form-select mt-2 w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('devise') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
                                         @foreach(['CFA', 'EUR', 'USD', 'GBP', 'CAD', 'AUD'] as $dev)
                                             <option value="{{ $dev }}" {{ old('devise') == $dev ? 'selected' : '' }}>{{ $dev }}</option>
                                         @endforeach
@@ -194,53 +199,58 @@
                                 </div>
 
                                 <!-- Localisation -->
-                                <div class="col-span-6"><label for="ville" class="font-medium text-slate-900 dark:text-white">Ville :</label>
-                                    <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white"  value="{{ old('ville') }}" readonly>
-                                    @error('ville') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                                </div>
 
-                                <div class="col-span-6"><label for="pays" class="font-medium text-slate-900 dark:text-white">Pays :</label>
-                                    <input name="pays" id="pays" type="text" class="form-input mt-2 @error('pays') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('pays') }}" readonly>
-                                    @error('pays') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                <div class="col-span-6">
+                                    <label for="depart_adresse" class="font-medium text-slate-900 dark:text-white">Adresse (point de départ) :</label>
+                                    <input name="depart_adresse" id="depart_adresse" type="text" class="form-input mt-2 @error('depart_adresse') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('depart_adresse') }}" required readonly>
+                                    @error('depart_adresse') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="col-span-6">
-                                    <label for="adresse" class="font-medium text-slate-900 dark:text-white">Adresse (point de départ) :</label>
-                                    <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('adresse') }}" readonly>
-                                    @error('adresse') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                    <label for="arrive_adresse" class="font-medium text-slate-900 dark:text-white">Adresse (point d'arrivée) :</label>
+                                    <input name="arrive_adresse" id="arrive_adresse" type="text" class="form-input mt-2 @error('arrive_adresse') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('arrive_adresse') }}" required readonly>
+                                    @error('arrive_adresse') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
-                                <div class="col-span-3">
-                                    <label for="latitude" class="font-medium text-slate-900 dark:text-white">Latitude :</label>
-                                    <input name="latitude" id="latitude" type="number" step="0.000001" class="form-input mt-2 @error('latitude') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('latitude') }}" required readonly>
-                                    @error('latitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                <!-- Bouton de depart -->
+                                <div class="col-span-6">
+                                    <button type="button" onclick="openMapPopup('depart')" class="btn bg-green-600 text-white rounded-md px-4 py-2 mt-2">
+                                        Ajouter le point de départ
+                                    </button>
                                 </div>
 
-                                <div class="col-span-3">
-                                    <label for="longitude" class="font-medium text-slate-900 dark:text-white">Longitude :</label>
-                                    <input name="longitude" id="longitude" type="number" step="0.000001" class="form-input mt-2 @error('longitude') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('longitude') }}" required readonly>
-                                    @error('longitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
-                                </div>
-
-                                <!-- Bouton Carte -->
-                                <div class="col-span-12">
-                                    <button type="button" onclick="openMapPopup()" class="btn bg-green-600 text-white rounded-md px-4 py-2 mt-2">
-                                        Ajouter ma localisation
+                                <!-- Bouton d'arrivée -->
+                                <div class="col-span-6">
+                                    <button type="button" onclick="openMapPopup('arrive')" class="btn bg-green-600 text-white rounded-md px-4 py-2 mt-2">
+                                        Ajouter le point d'arrivée
                                     </button>
                                 </div>
 
                                 <!-- Équipements -->
                                 <div class="col-span-12">
-                                    <label class="font-medium text-slate-900 dark:text-white">Équipements inclus :</label>
-                                    <div class="mt-2">
-                                        @foreach($equipements as $equipement)
-                                            <label class="inline-flex items-center mr-4">
-                                                <input type="checkbox" name="equipements[]" value="{{ $equipement->idEquipement }}" class="form-checkbox @error('equipements') border-red-500 @enderror text-green-600 bg-gray-100 dark:bg-slate-700 border-gray-300 dark:border-gray-600 focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-slate-800" {{ in_array($equipement->idEquipement, old('equipements', [])) ? 'checked' : '' }}>
-                                                <span class="ml-2 text-slate-900 dark:text-white">{{ $equipement->nom }}</span>
-                                            </label>
-                                        @endforeach
+                                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white">Équipements :</label>
+                                    <div id="equipements-container">
+                                        <div class="grid grid-cols-12 gap-2 mb-2">
+                                            <div class="col-span-8">
+                                                <input name="equipements[0][nom]" type="text"
+                                                    class="form-input @error('equipements.0.nom') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600"
+                                                    placeholder="Ex: Climatisation"
+                                                    value="{{ old('equipements.0.nom') }}">
+                                            </div>
+                                            <div class="col-span-3">
+                                                <input name="equipements[0][quantite]" type="number" min="1"
+                                                    class="form-input @error('equipements.0.quantite') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600"
+                                                    placeholder="Quantité"
+                                                    value="{{ old('equipements.0.quantite') }}">
+                                            </div>
+                                        </div>
                                     </div>
+                                    <button type="button" id="add-equipement"
+                                        class="btn bg-white text-gray-800 border border-gray-300 hover:bg-gray-100 rounded-md mt-2">
+                                        Ajouter un équipement
+                                    </button>
                                 </div>
+
                                 <!-- Téléphones -->
                                 <div class="col-span-12">
                                     <label class="font-semibold block mb-2 text-slate-900 dark:text-white">Numéros de téléphone :</label>
@@ -268,13 +278,95 @@
                         </div>
                     </div>
                 </div>
+                {{-- <div class="col-span-6"><label for="ville" class="font-medium text-slate-900 dark:text-white">Ville :</label> --}}
+                                    <input name="depart_ville" id="depart_ville" type="text" class="hidden form-input mt-2 @error('depart_ville') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white"  value="{{ old('depart_ville') }}" readonly>
+                                    {{-- @error('ville') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror --}}
+                                {{-- </div> --}}
+
+                                {{-- <div class="col-span-6"><label for="pays" class="font-medium text-slate-900 dark:text-white">Pays :</label> --}}
+                                    <input name="depart_pays" id="depart_pays" type="text" class=" hidden form-input mt-2 @error('depart_pays') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('depart_pays') }}" readonly>
+                                    {{-- @error('pays') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror --}}
+                                {{-- </div> --}}
+
+                                {{-- <div class="col-span-3"> --}}
+                                    {{-- <label for="latitude" class="font-medium text-slate-900 dark:text-white">Latitude :</label> --}}
+                                    <input name="depart_latitude" id="depart_latitude" type="number" step="0.000001" class="hidden form-input mt-2 @error('depart_latitude') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('depart_latitude') }}" readonly>
+                                    {{-- @error('latitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror --}}
+                                {{-- </div> --}}
+
+                                {{-- <div class="col-span-3"> --}}
+                                    {{-- <label for="longitude" class="font-medium text-slate-900 dark:text-white">Longitude :</label> --}}
+                                    <input name="depart_longitude" id="depart_longitude" type="number" step="0.000001" class="hidden form-input mt-2 @error('depart_longitude') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('depart_longitude') }}" readonly>
+                                    {{-- @error('longitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror --}}
+                                {{-- </div> --}}
+
+                                {{-- <div class="col-span-6"><label for="ville" class="font-medium text-slate-900 dark:text-white">Ville :</label> --}}
+                                    <input name="arrive_ville" id="arrive_ville" type="text" class="hidden form-input mt-2 @error('arrive_ville') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white"  value="{{ old('ville') }}" readonly>
+                                    {{-- @error('ville') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror --}}
+                                {{-- </div> --}}
+
+                                {{-- <div class="col-span-6"><label for="pays" class="font-medium text-slate-900 dark:text-white">Pays :</label> --}}
+                                    <input name="arrive_pays" id="arrive_pays" type="text" class=" hidden form-input mt-2 @error('arrive_pays') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('pays') }}" readonly>
+                                    {{-- @error('pays') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror --}}
+                                {{-- </div> --}}
+
+                                {{-- <div class="col-span-3"> --}}
+                                    {{-- <label for="latitude" class="font-medium text-slate-900 dark:text-white">Latitude :</label> --}}
+                                    <input name="arrive_latitude" id="arrive_latitude" type="number" step="0.000001" class="hidden form-input mt-2 @error('arrive_latitude') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('latitude') }}" readonly>
+                                    {{-- @error('latitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror --}}
+                                {{-- </div> --}}
+
+                                {{-- <div class="col-span-3"> --}}
+                                    {{-- <label for="longitude" class="font-medium text-slate-900 dark:text-white">Longitude :</label> --}}
+                                    <input name="arrive_longitude" id="arrive_longitude" type="number" step="0.000001" class="hidden form-input mt-2 @error('arrive_longitude') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('longitude') }}" readonly>
+                                    {{-- @error('longitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror --}}
+                                {{-- </div> --}}
             </form>
         </div>
     </div>
 </div>
 
+
 @push('scripts')
     <script>
+
+    // LANGUES
+    const selectLangues = document.getElementById("langues");
+    const hiddenInput = document.getElementById("langues_input");
+    const listContainer = document.getElementById("langues_list");
+
+
+        let languesSelectionnees = [];
+    selectLangues.addEventListener("change", function () {
+        const selectedId = this.value;
+        const selectedText = this.options[this.selectedIndex].text;
+
+        if (selectedId && !languesSelectionnees.includes(selectedId)) {
+            languesSelectionnees.push(selectedId);
+
+            // Mettre à jour l'input caché avec les IDs séparés par des virgules
+            hiddenInput.value = languesSelectionnees.join(",");
+
+            // Créer un élément visuel pour la langue
+            const langDiv = document.createElement("div");
+            langDiv.classList.add("px-3", "py-1", "bg-blue-100", "text-blue-800", "rounded", "flex", "items-center", "gap-2");
+            langDiv.innerHTML = `${selectedText} <span class="cursor-pointer text-red-500">&times;</span>`;
+
+            // Gérer la suppression d'une langue
+            langDiv.querySelector("span").addEventListener("click", function () {
+                languesSelectionnees = languesSelectionnees.filter(id => id !== selectedId);
+                hiddenInput.value = languesSelectionnees.join(",");
+                langDiv.remove();
+            });
+
+            listContainer.appendChild(langDiv);
+        }
+
+        // Réinitialiser la sélection
+        this.value = "";
+    });
+
+
     const selectedFiles = [];
     const maxImages = 10;
     const maxSize = 10 * 1024 * 1024; // 10MB
@@ -416,6 +508,43 @@
         }
     }
 
+    let equipementIndex = 1;
+
+    document.getElementById('add-equipement').addEventListener('click', function () {
+        const container = document.getElementById('equipements-container');
+
+        const newBlock = document.createElement('div');
+        newBlock.className = 'grid grid-cols-12 gap-2 mb-2';
+        newBlock.innerHTML = `
+            <div class="col-span-8">
+                <input name="equipements[${equipementIndex}][nom]" type="text"
+                    class="form-input bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600"
+                    placeholder="Ex: Climatisation">
+            </div>
+            <div class="col-span-3">
+                <input name="equipements[${equipementIndex}][quantite]" type="number" min="1"
+                    class="form-input bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600"
+                    placeholder="Quantité">
+            </div>
+            <div class="col-span-1">
+                <button type="button" class="remove-block btn text-red-600 border border-red-300 hover:bg-red-50 rounded-md px-2 py-1 w-full">
+                    Retirer
+                </button>
+            </div>
+        `;
+
+        container.appendChild(newBlock);
+        equipementIndex++;
+    });
+
+    // Suppression dynamique
+    document.getElementById('equipements-container').addEventListener('click', function (e) {
+        if (e.target.classList.contains('remove-block')) {
+            e.target.closest('.grid').remove();
+        }
+    });
+
+
     // Validation côté client
     document.querySelector('form').addEventListener('submit', function (e) {
         const errors = [];
@@ -470,33 +599,33 @@
 
     let telephoneIndex = 1;
 
-        document.getElementById('add-telephone').addEventListener('click', function () {
-            const container = document.getElementById('telephones-container');
+    document.getElementById('add-telephone').addEventListener('click', function () {
+        const container = document.getElementById('telephones-container');
 
-            const newBlock = document.createElement('div');
-            newBlock.className = 'grid grid-cols-12 gap-2 mb-2';
-            newBlock.innerHTML = `
-                <div class="md:col-span-4 col-span-12">
-                    <input name="telephones[${telephoneIndex}][numero]" type="text" class="form-input" placeholder="+2250700000000">
-                </div>
-                <div class="md:col-span-3 col-span-4">
-                    <button type="button" class="remove-block btn text-red-600 border border-red-300 hover:bg-red-50 rounded-md px-2 py-1 w-full">
-                        Retirer
-                    </button>
-                </div>
-            `;
+        const newBlock = document.createElement('div');
+        newBlock.className = 'grid grid-cols-12 gap-2 mb-2';
+        newBlock.innerHTML = `
+            <div class="md:col-span-4 col-span-12">
+                <input name="telephones[${telephoneIndex}][numero]" type="text" class="form-input" placeholder="+2250700000000">
+            </div>
+            <div class="md:col-span-3 col-span-4">
+                <button type="button" class="remove-block btn text-red-600 border border-red-300 hover:bg-red-50 rounded-md px-2 py-1 w-full">
+                    Retirer
+                </button>
+            </div>
+        `;
 
-            container.appendChild(newBlock);
-            telephoneIndex++;
-        });
+        container.appendChild(newBlock);
+        telephoneIndex++;
+    });
 
-        document.addEventListener('click', function (e) {
-            if (e.target && e.target.classList.contains('remove-block')) {
-                e.target.closest('.grid').remove();
-            }
-        });
+    document.addEventListener('click', function (e) {
+        if (e.target && e.target.classList.contains('remove-block')) {
+            e.target.closest('.grid').remove();
+        }
+    });
 
-    function openMapPopup() {
+    function openMapPopup(prefix) {
         const width = 600;
         const height = 500;
         const left = (screen.width / 2) - (width / 2);
@@ -507,37 +636,39 @@
             "Localisation",
             `width=${width},height=${height},top=${top},left=${left}`
         );
+        // window.addEventListener('message', function (event) {
+        //     if (event.origin !== window.location.origin) return;
+
+        //     const { latitude, longitude, adresse, ville, pays } = event.data;
+
+        //     console.log(" Données reçues :", event.data); // 👀 ici tu verras tout
+
+        //     // Assure-toi que latitude/longitude sont bien définies
+        //     if (latitude !== undefined && longitude !== undefined) {
+        //         document.getElementById('latitude').value = latitude;
+        //         document.getElementById('longitude').value = longitude;
+        //     }
+
+        //     if (adresse) document.getElementById('adresse').value = adresse;
+        //     if (ville) document.getElementById('ville').value = ville;
+        //     if (pays) document.getElementById('pays').value = pays;
+        // });
         window.addEventListener('message', function (event) {
             if (event.origin !== window.location.origin) return;
 
             const { latitude, longitude, adresse, ville, pays } = event.data;
 
-            console.log(" Données reçues :", event.data); // 👀 ici tu verras tout
+            console.log("Données reçues :", event.data);
 
-            // Assure-toi que latitude/longitude sont bien définies
             if (latitude !== undefined && longitude !== undefined) {
-                document.getElementById('latitude').value = latitude;
-                document.getElementById('longitude').value = longitude;
+                document.getElementById(prefix + '_latitude').value = latitude;
+                document.getElementById(prefix + '_longitude').value = longitude;
             }
 
-            if (adresse) document.getElementById('adresse').value = adresse;
-            if (ville) document.getElementById('ville').value = ville;
-            if (pays) document.getElementById('pays').value = pays;
-        });
-
-        // Recevoir la position depuis la popup
-        // window.addEventListener('message', function (event) {
-        //     if (event.origin !== window.location.origin) return;
-        //     if (!event.data || event.data.from !== 'localisation-popup') return;
-
-        //     const { latitude, longitude, adresse, ville, pays } = event.data;
-
-        //     document.getElementById('latitude').value = latitude;
-        //     document.getElementById('longitude').value = longitude;
-        //     if (adresse) document.getElementById('adresse').value = adresse;
-        //     if (ville) document.getElementById('ville').value = ville;
-        //     if (pays) document.getElementById('pays').value = pays;
-        // });
+            if (adresse) document.getElementById(prefix + '_adresse').value = adresse;
+            if (ville) document.getElementById(prefix + '_ville').value = ville;
+            if (pays) document.getElementById(prefix + '_pays').value = pays;
+         }, { once: true });
     }
     </script>
 @endpush
