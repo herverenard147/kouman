@@ -213,7 +213,6 @@ $fpage = 'foot1';
                 @include('client.base.components.listing.listing-grid', ['items' => $items, 'asSlides' => true])
             </div>
         </div>
-
     </div>
 
     <div class="container relative lg:mt-24 mt-16">
