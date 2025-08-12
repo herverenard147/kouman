@@ -7,8 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class ImageExcursion extends Model
 {
     protected $table = 'images_excursions';
-    protected $primaryKey = 'idImage';
-    protected $fillable = ['idExcursion', 'url', 'estPrincipale'];
+    protected $fillable = [
+        'idExcursion',
+        'url',
+        'estPrincipale'
+    ];
 
     public function excursion()
     {

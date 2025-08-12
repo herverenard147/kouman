@@ -4,12 +4,15 @@
         <div class="flex items-center space-x-1">
             <a href="{{route('client.index')}}" class="xl:hidden block me-2">
                 {{-- Si ces images doivent changer en mode sombre, tu auras besoin de logique JS ou de deux images différentes --}}
-                <img src="{{ asset('client/assets/images/logoG.ico') }}" class="md:hidden block" alt="">
+                <img src="{{ asset('client/assets/images/logoG.ico') }}" class="md:hidden block" alt="Afrique Évasion">
                 <span class="md:block hidden">
-                    <img src=" {{ asset('client/assets/images/logoG.ico') }}" class="inline-block" alt="">
-                    <img src=" {{ asset('client/assets/images/logoG.ico') }}" class="hidden" alt="">
+                    <img src=" {{ asset('client/assets/images/logoG.ico') }}" class=" h-5" alt="Afrique Évasion">
+                    <img src=" {{ asset('client/assets/images/logoG.ico') }}" class="hidden" alt="Afrique Évasion">
                 </span>
             </a>
+            {{-- <a href="{{ route('client.index') }}" class="block max-[1179px]:block min-[1182px]:hidden me-2">
+                <img src="{{ asset('client/assets/images/logoG.ico') }}" alt="Afrique Évasion" class="h-8">
+            </a> --}}
             {{-- Adaptation des couleurs du bouton --}}
             <a id="close-sidebar" class="size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-[20px] text-center bg-gray-50 hover:bg-gray-100 border border-gray-100 text-slate-900
                 dark:bg-slate-800 dark:hover:bg-slate-700 dark:border-slate-700 dark:text-white rounded-md" href="javascript:void(0)">

@@ -18,7 +18,7 @@
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-6 mt-6">
 
 
-                @include('screens.add.Hebergement.hebergement-list', ['hebergements' => $hebergements])
+                @include('screens.add.hebergement.hebergement-list', ['hebergements' => $hebergements])
             </div>
             @if (! $hebergements)
                 <div class="grid md:grid-cols-12 grid-cols-1 mt-6">

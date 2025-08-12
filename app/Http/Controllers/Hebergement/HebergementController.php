@@ -15,6 +15,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreHebergementRequest;
 use App\Http\Requests\UpdateHebergementRequest;
 use App\Models\FamilleTypeHebergements;
+use App\Models\MoyenPaiement;
 use Illuminate\Support\Facades\Storage;
 
 class HebergementController extends Controller
@@ -40,9 +41,10 @@ class HebergementController extends Controller
     {
         $familles = FamilleTypeHebergements::with('types')->get();
         $equipements = Equipement::all();
+        $moyensPaiement = MoyenPaiement::all();
         $politiques = PolitiquesAnnulation::all();
         // dd($familles, $equipements, $politiques);
-        return view('screens.add.Hebergement.hebergement-add', compact('familles', 'equipements', 'politiques'));
+        return view('screens.add.Hebergement.hebergement-add', compact('familles', 'equipements', 'moyensPaiement', 'politiques'));
     }
 
     /**

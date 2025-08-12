@@ -9,7 +9,7 @@
                 <h5 class="text-xl font-semibold text-slate-900 dark:text-white">Bonjour, {{ $user->nom_entreprise }}</h5>
                 {{-- Modifié: text-slate-400 -> text-gray-600 pour un meilleur contraste en mode clair --}}
                 {{-- Modifié: dark:text-slate-400 -> dark:text-gray-300 pour un meilleur contraste en mode sombre --}}
-                <h6 class="text-gray-600 dark:text-gray-300">Ravi de vous revoir !</h6>
+                {{-- <h6 class="text-gray-600 dark:text-gray-300">Ravi de vous revoir !</h6> --}}
             </div>
         </div>
 
