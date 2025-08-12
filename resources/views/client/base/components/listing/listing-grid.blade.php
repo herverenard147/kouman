@@ -20,7 +20,7 @@
     @include('client.base.components.listing._card', ['item' => $item])
 </div>
 @empty
-<div class="px-2">
+<div class="px-2 flex items-center justify-center h-full">
     <p class="text-center text-slate-500">Aucune offre disponible.</p>
 </div>
 @endforelse
@@ -41,7 +41,7 @@
       </div>
     @empty
       <div class="col-span-full p-6 rounded-lg border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-slate-600">
-        Aucun résultat ne correspond à vos filtres.
+        Aucune offre pour le moment.
       </div>
     @endforelse
   </div>

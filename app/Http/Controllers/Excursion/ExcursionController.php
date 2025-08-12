@@ -6,9 +6,11 @@ namespace App\Http\Controllers\Excursion;
 use App\Models\Equipement;
 use App\Models\Excursion;
 use App\Models\ImageExcursion;
+use App\Models\Langue;
 use App\Models\Localisation;
 use App\Models\ExcursionDate;
 use App\Models\Localisations;
+use App\Models\MoyenPaiement;
 use App\Models\PolitiquesAnnulation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -36,12 +38,14 @@ class ExcursionController extends Controller
     public function createExcursion()
     {
         $equipements = Equipement::whereIn('type', ['excursion', 'inclus', 'optionnel'])->orWhereNull('type')->get();
-        $localisations = Localisations::all();
         $politiques = PolitiquesAnnulation::all();
+        $moyensPaiement = MoyenPaiement::all();
+        $langues = Langue::all();
         return view('screens.add.excursion.excursion-add', compact(
             'equipements',
-            'localisations',
-            'politiques'
+            'politiques',
+            'langues',
+            'moyensPaiement'
         ));
     }
 

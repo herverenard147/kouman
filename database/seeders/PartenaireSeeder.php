@@ -14,17 +14,17 @@ class PartenaireSeeder extends Seeder
         $partenaires = [
             [
                 'nom_entreprise' => 'Société Soleil', 'email' => 'contact@soleil.com', 'type' => 'hotel',
-                'téléphone' => '+2250701010101', 'adresse' => 'Abidjan', 'siteWeb' => 'https://soleil.com',
+                'telephone' => '+2250701010101', 'adresse' => 'Abidjan', 'siteWeb' => 'https://soleil.com',
                 'statut' => 'actif', 'password' => bcrypt('password'), 'remember_token' => Str::random(10)
             ],
             [
                 'nom_entreprise' => 'Voyage Express', 'email' => 'info@voyagexpress.com', 'type' => 'agence_voyage',
-                'téléphone' => '+2250505050505', 'adresse' => 'Yamoussoukro', 'siteWeb' => 'https://voyagexpress.com',
+                'telephone' => '+2250505050505', 'adresse' => 'Yamoussoukro', 'siteWeb' => 'https://voyagexpress.com',
                 'statut' => 'actif', 'password' => bcrypt('password'), 'remember_token' => Str::random(10)
             ],
             [
                 'nom_entreprise' => 'Noom', 'email' => 'info@noom.com', 'type' => 'residence',
-                'téléphone' => '+2250505050506', 'adresse' => 'Yamoussoukro', 'siteWeb' => 'https://noom.com',
+                'telephone' => '+2250505050506', 'adresse' => 'Yamoussoukro', 'siteWeb' => 'https://noom.com',
                 'statut' => 'actif', 'password' => bcrypt('password'), 'remember_token' => Str::random(10)
             ],
         ];

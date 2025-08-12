@@ -11,7 +11,7 @@
 
                 <img
                     src="{{ $imagePrincipale ? asset('imageDes/uploads/' . $imagePrincipale->url) : asset('images/no-image.png') }}"
-                    alt="Image de {{ $excursion->nom }} à {{ $excursion->localisation->ville ?? 'N/A' }}"
+                    alt="Image de {{ $excursion->titre }} à {{ $excursion->localisation->ville ?? 'N/A' }}"
                     class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                 >
 

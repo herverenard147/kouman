@@ -59,10 +59,11 @@ class LoginClientRequest extends FormRequest
             'email' => $this->string('email'),
             'password' => $this->string('password'),
         ];
-        $test = Auth::guard('client')->attempt($credentials, $this->boolean('remember'));
+        $client = Auth::guard('client')->attempt($credentials, $this->boolean('remember'));
+        $partenaire = Auth::guard('partenaire')->attempt($credentials, $this->boolean('remember'));
         // dd(Auth::guard('client'));
 
-        if (! $test) {
+        if (! $client && ! $partenaire) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
