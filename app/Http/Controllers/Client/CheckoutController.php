@@ -69,8 +69,8 @@ class CheckoutController extends Controller
 
                 if (Schema::hasColumn('partenaires', 'telephone')) {
                     $selects[] = 'telephone';
-                } elseif (Schema::hasColumn('partenaires', 'téléphone')) {
-                    $selects[] = DB::raw('`téléphone` as telephone');
+                } elseif (Schema::hasColumn('partenaires', 'telephone')) {
+                    $selects[] = DB::raw('`telephone` as telephone');
                 }
 
                 $partner = DB::table('partenaires')

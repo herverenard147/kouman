@@ -15,9 +15,9 @@
                     class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                 >
 
-                <!-- Badge pour le type d'hébergement -->
+                <!-- Badge pour le type d'excursion -->
                 <span class="absolute top-2 left-2 bg-green-600 text-white text-xs font-semibold px-2 py-1 rounded">
-                    {{ $excursion->type->nomType ?? 'Hébergement' }}
+                    Excursion
                 </span>
 
                 <!-- Bouton favoris -->
@@ -40,7 +40,7 @@
                         {{-- href="{{ route('partenaire.excursion-detail.show', ['id' => $excursion->id]) }}" --}}
                         class="text-lg font-semibold text-gray-800 hover:text-green-600 transition-colors duration-200"
                     >
-                        {{ $excursion->nom }}
+                        {{ $excursion->titre }}
                     </a>
                     <p class="text-sm text-gray-500 mt-1">
                         {{ $excursion->localisation->ville ?? 'N/A' }}, {{ $excursion->localisation->pays ?? 'N/A' }}

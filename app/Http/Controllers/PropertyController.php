@@ -385,7 +385,7 @@ class PropertyController extends Controller
         return [
             'idPartenaire'   => $id,
             'partenaireNom'  => $p->nom_entreprise ?? null,
-            'partenaireTel'  => $p->téléphone     ?? null, // colonne avec accent
+            'partenaireTel'  => $p->telephone     ?? null, // colonne avec accent
             'partenaireMail' => $p->email         ?? null,
             'partenaireSite' => $p->siteWeb       ?? null,
         ];

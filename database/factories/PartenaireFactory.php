@@ -17,7 +17,7 @@ class PartenaireFactory extends Factory
             'nom_entreprise' => $this->faker->company(),
             'email' => $this->faker->unique()->safeEmail(),
             'type' => $this->faker->randomElement(['hotel', 'agence_voyage', 'compagnie_aerienne', 'residence']),
-            'téléphone' => $this->faker->phoneNumber(),
+            'telephone' => $this->faker->phoneNumber(),
             'adresse' => $this->faker->address(),
             'siteWeb' => $this->faker->url(),
             'statut' => 'actif',

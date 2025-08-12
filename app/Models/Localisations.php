@@ -22,4 +22,8 @@ class Localisations extends Model
     {
         return $this->hasMany(Hebergement::class, 'idLocalisation');
     }
+    public function excursions()
+    {
+        return $this->hasMany(Excursion::class, 'localisation_id');
+    }
 }

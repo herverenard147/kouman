@@ -102,7 +102,7 @@ class HebergementController extends Controller
             }
 
             foreach ($newImages as $index => $image) {
-                $path = $image->store('hebergements', 'public');
+                $path = $image->store('client/profils', 'public');
                 $images = ImagesHebergement::create([
                     'idHebergement' => $hebergement->id,
                     'url' => $path,

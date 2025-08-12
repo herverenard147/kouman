@@ -6,13 +6,8 @@
                 {{-- Si ces images doivent changer en mode sombre, tu auras besoin de logique JS ou de deux images différentes --}}
                 <img src="{{ asset('client/assets/images/logoG.ico') }}" class="md:hidden block" alt="Afrique Évasion">
                 <span class="md:block hidden">
-<<<<<<< HEAD
-                    <img src="{{ asset('client/assets/images/logoG.ico') }}" class="inline-block" alt="">
-                    <img src="{{ asset('client/assets/images/logoG.ico') }}" class="hidden" alt="">
-=======
                     <img src=" {{ asset('client/assets/images/logoG.ico') }}" class=" h-5" alt="Afrique Évasion">
                     <img src=" {{ asset('client/assets/images/logoG.ico') }}" class="hidden" alt="Afrique Évasion">
->>>>>>> 05c874d964e3b52f4e3c8b4394fd99be9cb7cfcd
                 </span>
             </a>
             {{-- <a href="{{ route('client.index') }}" class="block max-[1179px]:block min-[1182px]:hidden me-2">
@@ -56,7 +51,7 @@
                                     <i class="mdi mdi-view-dashboard me-2"></i> Tableau de bord
                                 </a>
                             </li>
-                            
+
                             <li class="border-t border-gray-200 dark:border-gray-700 my-2"></li>
                             <li>
                                 <form action="{{ route('admin.logout') }}" method="POST">

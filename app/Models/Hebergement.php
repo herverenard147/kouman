@@ -71,7 +71,7 @@ class Hebergement extends Model
 
     public function equipements()
     {
-        return $this->belongsToMany(Equipement::class, 'hebergement_equipements', 'idHebergement', 'idEquipement')
+        return $this->belongsToMany(Equipement::class, 'hebergement_equipements', foreignPivotKey: 'idHebergement', 'idEquipement')
                     ->using(HebergementEquipement::class);
     }
 

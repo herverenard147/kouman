@@ -36,45 +36,45 @@
 
         {{-- ====================== Hébergements ====================== --}}
         @if(($item['categorie'] ?? '') === 'hebergement')
-        <ul class="py-4 border-y border-slate-100 dark:border-slate-800 flex items-center gap-4 text-sm">
-            <li class="flex items-center gap-2"><i class="uil uil-bed-double text-xl text-green-600"></i><span>{{ $item['beds'] ?? '-' }}</span></li>
-            <li class="flex items-center gap-2"><i class="uil uil-bath text-xl text-green-600"></i><span>{{ $item['baths'] ?? '-' }}</span></li>
-            <li class="flex items-center gap-2"><i class="uil uil-users-alt text-xl text-green-600"></i><span>{{ $item['capaciteMax'] ?? '-' }}</span></li>
-        </ul>
-        @if(!empty($item['noteMoyenne']))
-        <div class="mt-2 flex items-center gap-1 text-yellow-500">
-            <i class="uil uil-star text-xl"></i><span class="font-semibold">{{ $item['noteMoyenne'] }}/5</span>
-        </div>
-        @endif
+            <ul class="py-4 border-y border-slate-100 dark:border-slate-800 flex items-center gap-4 text-sm">
+                <li class="flex items-center gap-2"><i class="uil uil-bed-double text-xl text-green-600"></i><span>{{ $item['beds'] ?? '-' }}</span></li>
+                <li class="flex items-center gap-2"><i class="uil uil-bath text-xl text-green-600"></i><span>{{ $item['baths'] ?? '-' }}</span></li>
+                <li class="flex items-center gap-2"><i class="uil uil-users-alt text-xl text-green-600"></i><span>{{ $item['capaciteMax'] ?? '-' }}</span></li>
+            </ul>
+            @if(!empty($item['noteMoyenne']))
+                <div class="mt-2 flex items-center gap-1 text-yellow-500">
+                    <i class="uil uil-star text-xl"></i><span class="font-semibold">{{ $item['noteMoyenne'] }}/5</span>
+                </div>
+            @endif
         @endif
 
         {{-- ====================== Vols ====================== --}}
         @if(($item['categorie'] ?? '') === 'vol')
-        <ul class="py-4 border-y border-slate-100 dark:border-slate-800 flex flex-wrap items-center gap-4 text-sm">
-            <li class="flex items-center gap-2"><i class="uil uil-plane-departure text-xl text-green-600"></i><span>{{ $item['depart'] ?? '-' }} <span class="text-slate-400">→</span> {{ $item['arrivee'] ?? '-' }}</span></li>
-            <li class="flex items-center gap-2"><i class="uil uil-building text-xl text-green-600"></i><span>{{ $item['compagnie'] ?? '-' }} @if(!empty($item['numeroVol'])) • {{ $item['numeroVol'] }} @endif</span></li>
-            @if(!empty($item['dateDepart']) || !empty($item['dateArrivee']))
-            <li class="flex items-center gap-2"><i class="uil uil-schedule text-xl text-green-600"></i>
-                <span>{{ $item['dateDepart'] ?? '' }} @if(!empty($item['dateArrivee'])) <span class="text-slate-400">→</span> {{ $item['dateArrivee'] }} @endif</span>
-            </li>
-            @endif
-        </ul>
+            <ul class="py-4 border-y border-slate-100 dark:border-slate-800 flex flex-wrap items-center gap-4 text-sm">
+                <li class="flex items-center gap-2"><i class="uil uil-plane-departure text-xl text-green-600"></i><span>{{ $item['depart'] ?? '-' }} <span class="text-slate-400">→</span> {{ $item['arrivee'] ?? '-' }}</span></li>
+                <li class="flex items-center gap-2"><i class="uil uil-building text-xl text-green-600"></i><span>{{ $item['compagnie'] ?? '-' }} @if(!empty($item['numeroVol'])) • {{ $item['numeroVol'] }} @endif</span></li>
+                @if(!empty($item['dateDepart']) || !empty($item['dateArrivee']))
+                <li class="flex items-center gap-2"><i class="uil uil-schedule text-xl text-green-600"></i>
+                    <span>{{ $item['dateDepart'] ?? '' }} @if(!empty($item['dateArrivee'])) <span class="text-slate-400">→</span> {{ $item['dateArrivee'] }} @endif</span>
+                </li>
+                @endif
+            </ul>
         @endif
 
         {{-- ====================== Excursions ====================== --}}
         @if(($item['categorie'] ?? '') === 'excursion')
-        <ul class="py-4 border-y border-slate-100 dark:border-slate-800 flex flex-col gap-2 text-sm">
-            @php $d = $item['duree'] ?? null; @endphp
-            <li class="flex items-center gap-2"><i class="uil uil-clock text-xl text-green-600"></i>
-                <span>@if($d !== null) {{ $d }} {{ $d > 1 ? 'heures' : 'heure' }} @else - @endif</span>
-            </li>
-            @if(!empty($item['capaciteMax']))<li class="flex items-center gap-2"><i class="uil uil-users-alt text-xl text-green-600"></i><span>{{ $item['capaciteMax'] }} <span class="text-slate-500">pers.</span></span></li>@endif
-            @if(!empty($item['ageMinimum']))<li class="flex items-center gap-2"><i class="uil uil-user text-xl text-green-600"></i><span>Âge min. : {{ $item['ageMinimum'] }} ans</span></li>@endif
-            @if(!empty($item['itineraire']))
-            @php $itin = strip_tags($item['itineraire']); $itinShort = mb_strlen($itin) > 100 ? mb_substr($itin, 0, 100).'…' : $itin; @endphp
-            <li class="flex items-center gap-2"><i class="uil uil-map-marker text-xl text-green-600"></i><span title="{{ $itin }}">{{ $itinShort }}</span></li>
-            @endif
-        </ul>
+            <ul class="py-4 border-y border-slate-100 dark:border-slate-800 flex flex-col gap-2 text-sm">
+                @php $d = $item['duree'] ?? null; @endphp
+                <li class="flex items-center gap-2"><i class="uil uil-clock text-xl text-green-600"></i>
+                    <span>@if($d !== null) {{ $d }} {{ $d > 1 ? 'heures' : 'heure' }} @else - @endif</span>
+                </li>
+                @if(!empty($item['capaciteMax']))<li class="flex items-center gap-2"><i class="uil uil-users-alt text-xl text-green-600"></i><span>{{ $item['capaciteMax'] }} <span class="text-slate-500">pers.</span></span></li>@endif
+                @if(!empty($item['ageMinimum']))<li class="flex items-center gap-2"><i class="uil uil-user text-xl text-green-600"></i><span>Âge min. : {{ $item['ageMinimum'] }} ans</span></li>@endif
+                @if(!empty($item['itineraire']))
+                @php $itin = strip_tags($item['itineraire']); $itinShort = mb_strlen($itin) > 100 ? mb_substr($itin, 0, 100).'…' : $itin; @endphp
+                <li class="flex items-center gap-2"><i class="uil uil-map-marker text-xl text-green-600"></i><span title="{{ $itin }}">{{ $itinShort }}</span></li>
+                @endif
+            </ul>
         @endif
 
         {{-- ====================== Événements ====================== --}}
