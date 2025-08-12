@@ -91,7 +91,13 @@
                                 <!-- Langues parlées -->
                                 <div class="col-span-6">
                                     <label for="langues" class="font-medium text-slate-900 dark:text-white">Langues parlées :</label>
-                                    <input name="langues" id="langues" type="text" class="form-input mt-2 @error('langues') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('langues') }}" placeholder="Ex : Français, Anglais">
+                                    {{-- <input name="langues" id="langues" type="text" class="form-input mt-2 @error('langues') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('langues') }}" placeholder="Ex : Français, Anglais"> --}}
+                                    <select name="langues" id="langues" class="form-select mt-2 w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('langues') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+                                        {{-- <option value="1" selected>Français</option> --}}
+                                        @foreach($langues as $langue)
+                                            <option value="{{ $langue->id + 1 }}" {{ old('langues') == $langue->id + 1 ? 'selected' : '' }}>{{ $langue->nom }}</option>
+                                        @endforeach
+                                    </select>
                                     @error('langues') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
