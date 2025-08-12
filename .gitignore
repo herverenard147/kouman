@@ -32,3 +32,4 @@ Thumbs.db
 yarn-error.log
 public/index.php
 public/.htaccess
+/tests

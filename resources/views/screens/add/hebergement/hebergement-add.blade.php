@@ -126,7 +126,7 @@
 
                                 <div class="md:col-span-4 col-span-12">
                                     <label for="devise" class="font-medium text-slate-900 dark:text-white">Devise <strong>*</strong>:</label>
-                                    <select name="devise" id="devise" class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('devise') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
+                                    <select name="devise" id="devise" class="form-select mt-2 w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('devise') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
                                         <option value="CFA" {{ old('devise') == 'CFA' ? 'selected' : '' }}>CFA (CFA)</option>
                                         <option value="EUR" {{ old('devise') == 'EUR' ? 'selected' : '' }}>EUR (€)</option>
                                         <option value="USD" {{ old('devise') == 'USD' ? 'selected' : '' }}>USD ($)</option>
@@ -141,7 +141,7 @@
 
                                 <div class="md:col-span-4 col-span-12">
                                     <label for="idPolitiqueAnnulation" class="font-medium text-slate-900 dark:text-white">Politique d'annulation:</label>
-                                    <select name="idPolitiqueAnnulation" id="idPolitiqueAnnulation" class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('idPolitiqueAnnulation') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+                                    <select name="idPolitiqueAnnulation" id="idPolitiqueAnnulation" class="form-select mt-2 w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('idPolitiqueAnnulation') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
                                         <option value="" selected>Aucune</option>
                                         @foreach($politiques as $politique)
                                             <option value="{{ $politique->id }}" {{ old('idPolitiqueAnnulation') == $politique->id ? 'selected' : '' }}>{{ $politique->nom }}</option>
