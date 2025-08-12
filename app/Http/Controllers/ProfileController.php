@@ -47,18 +47,19 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         if ($request->hasFile('profile-image')) {
-            // Supprimer l'ancienne image si elle existe
-            if ($user->photo_profil && Storage::disk('public')->exists('clients/profils/' . $user->photo_profil)) {
-                Storage::disk('public')->delete('clients/profils/' . $user->photo_profil);
+            if ($user->photo_profil && Storage::disk('public')->exists($user->photo_profil)) {
+                Storage::disk('public')->delete($user->photo_profil);
             }
 
             // Enregistrer la nouvelle image
             $file = $request->file('profile-image');
             $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            $path = 'clients/profils/' . $filename;
+
             $file->storeAs('clients/profils', $filename, 'public');
 
-            // Mettre à jour le profil utilisateur
-            $user->photo_profil = $filename;
+            // Mettre à jour le profil utilisateur avec le chemin complet
+            $user->photo_profil = $path;
             $user->save();
         }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Excursion;
 
 
 use App\Models\Equipement;
+use App\Models\EquipementExcursion;
 use App\Models\Excursion;
 use App\Models\ImageExcursion;
 use App\Models\Langue;
@@ -29,11 +30,12 @@ class ExcursionController extends Controller
 
      public function index()
     {
-        $excursions = Excursion::with(['partenaire', 'localisation', 'avisClients'])->latest()->get();
-        $serviceIds = $excursions->flatMap(function ($excursion) {
-            return $excursion->avisClients->pluck('service_id');
-        })->unique()->values();
-        return view('screens.add.excursion.excursion-list', compact('excursions'));
+        $excursions = Excursion::with(['partenaire', 'localisation', 'avis'])->paginate(6);
+        // $serviceIds = $excursions->flatMap(function ($excursion) {
+        //     return $excursion->avis->pluck('idExcursion');
+        // })->unique()->values();
+        dd($excursions);
+        return view('screens.add.excursion.excursion', compact('excursions'));
     }
 
     public function createExcursion()
@@ -53,6 +55,7 @@ class ExcursionController extends Controller
 
     public function storeExcursion(Request $request)
     {
+        // dd($request->all());
         $partenaire = Auth::guard('partenaire')->user();
 
         $validated = $request->validate([
@@ -63,12 +66,7 @@ class ExcursionController extends Controller
             'description' => 'nullable|string',
             'date' => 'required|date|after_or_equal:today',
             'heure_debut' => [
-                'nullable', 'date_format:H:i',
-                function ($attribute, $value, $fail) use ($request) {
-                    if ($request->date === now()->toDateString() && $value < now()->format('H:i')) {
-                        $fail("L'heure de début doit être postérieure à l'heure actuelle pour une excursion aujourd'hui.");
-                    }
-                },
+                'required', 'date_format:H:i',
             ],
             'duree' => 'required|numeric|min:0.5|max:24',
             'prix' => 'required|numeric|min:0',
@@ -89,9 +87,9 @@ class ExcursionController extends Controller
             'arrive_latitude' => 'nullable|string|max:255',
             'arrive_longitude' => 'nullable|string|max:255',
 
-            'equipements' => 'nullable|array',
-            'equipements.*' => 'exists:equipements,id',
-            'images.*' => 'nullable|image|mimes:jpeg,png|max:10240',
+            // 'equipements' => 'nullable|array',
+            'equipements.*.nom' => 'required|string|max:255',
+            'images.*' => 'required|image|mimes:jpeg,png|max:10240',
             'itineraire' => 'nullable|string',
             'nom_guide' => 'nullable|string|max:150',
             'langues' => 'nullable|string',
@@ -102,6 +100,7 @@ class ExcursionController extends Controller
             'paiements' => 'nullable|array',
             'paiements.*' => 'string|max:50',
             'moyens_paiement' => 'nullable|string',
+            'telephones.*.numero' => ['required', 'phone:CI,FR,US', 'distinct', 'max:20'],
         ]);
 
         $excursion = Excursion::create([
@@ -122,6 +121,18 @@ class ExcursionController extends Controller
             'moyens_paiement' => $request->filled('paiements') ? implode(',', $request->paiements) : null,
         ]);
 
+        foreach ($request->input('telephones', []) as $telData) {
+            $excursion->telephones()->create([
+                'numero' => $telData['numero']
+            ]);
+        }
+
+        foreach ($request->input('equipements', []) as $equipData) {
+            $excursion->equipements()->create([
+                'nom' => $equipData['nom']
+            ]);
+        }
+
         $localisationData = array_filter([
             'ville' => $request->depart_ville,
             'pays' => $request->depart_pays,
@@ -131,12 +142,12 @@ class ExcursionController extends Controller
             'longitude' => $request->depart_longitude,
         ]);
         if (!empty($localisationData)) {
-            $localisation = Localisations::create($localisationData);
-            $excursion->localisation_idD = $localisation->idLocalisation;
+            $localisation = $excursion->localisation()->create($localisationData);
+            $excursion->localisation_id = $localisation->idLocalisation;
             $excursion->save();
         }
 
-        $localisationData = array_filter([
+        $localisationData1 = array_filter([
             'ville' => $request->arrive_ville,
             'pays' => $request->arrive_pays,
             'adresse' => $request->arrive_adresse,
@@ -144,8 +155,8 @@ class ExcursionController extends Controller
             'latitude' => $request->arrive_latitude,
             'longitude' => $request->arrive_longitude,
         ]);
-        if (!empty($localisationData)) {
-            $localisation = LocalisationArrives::create($localisationData);
+        if (!empty($localisationData1)) {
+            $localisation = $excursion->localisationArrivee()->create($localisationData1);
             $excursion->localisation_idA = $localisation->idLocalisation;
             $excursion->save();
         }
@@ -157,9 +168,14 @@ class ExcursionController extends Controller
             'places_disponibles' => $request->capacite_max,
         ]);
 
-        if ($request->equipements) {
-            $excursion->equipements()->attach($request->equipements);
-        }
+        // EquipementExcursion::create([
+        //     'idExcursion' => $excursion->id,
+        //     'nom' => $request->equipement_id,
+        // ]);
+
+        // if ($request->equipements) {
+        //     $excursion->equipements()->attach($request->equipements);
+        // }
 
         if ($request->hasFile('images')) {
             $newImages = $request->file('images');
