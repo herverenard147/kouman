@@ -69,7 +69,7 @@ $fpage = 'foot1';
                                                     id="profile-image"
                                                     class="h-full w-full object-cover"
                                                     src="{{ Auth::user()->photo_profil
-                    ? asset('/imageDes/uploads/' . Auth::user()->photo_profil)
+                    ? asset('/imageDes/uploads' . Auth::user()->photo_profil)
                     : asset('/images/client/logouser2.png') }}"
                                                     alt="Photo de profil">
 
