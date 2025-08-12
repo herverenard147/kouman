@@ -25,13 +25,7 @@
                 <h6 class="text-lg font-semibold text-slate-900 dark:text-white">Partenaires inscrits</h6>
                 <p class="mt-2 text-2xl font-bold text-green-600">{{ $stats['partners_count'] ?? 0 }}</p>
                 <a href="{{ route('admin.partners.index') }}" class="text-sm text-blue-500 hover:underline">Gérer les partenaires</a>
-            </div>
-
-            <div class="p-6 bg-white dark:bg-slate-800 rounded-md shadow">
-                <h6 class="text-lg font-semibold text-slate-900 dark:text-white">Commandes totales</h6>
-                <p class="mt-2 text-2xl font-bold text-green-600">{{ $stats['orders_count'] ?? 0 }}</p>
-                <a href="{{ route('admin.orders.index') }}" class="text-sm text-blue-500 hover:underline">Voir les commandes</a>
-            </div>
+            </div>          
         </div>
 
         {{-- Liens rapides CRUD --}}

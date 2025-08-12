@@ -52,7 +52,7 @@ Route::middleware(['web', 'auth:admin'])->prefix('admin')->group(function () {
 | URL d’accès volontairement non évidente
 |--------------------------------------------------------------------------
 */
-$secretAdminPath = 'panel-super-secret-492f93a9';
+$secretAdminPath = 'panelAdmin';
 
 Route::middleware(['guest:web'])->prefix($secretAdminPath)->group(function () {
     Route::get('/login', [AuthenticatedAdminController::class, 'create'])->name('admin.auth.login');
