@@ -18,8 +18,8 @@ class LocalisationArrives extends Model
         'latitude',
     ];
 
-    public function hebergements()
+    public function excursions()
     {
-        return $this->hasMany(Hebergement::class, 'idLocalisation');
+        return $this->hasMany(Excursion::class, 'localisation_idA');
     }
 }

@@ -12,6 +12,7 @@ class ClientProfileController extends Controller
     public function edit()
     {
         $client = Auth::guard('client')->user();
+        // dd($client); // Debugging line, remove in production
         return view('client.profile-setting', compact('client'));
     }
 
@@ -28,6 +29,7 @@ class ClientProfileController extends Controller
 
     public function update(Request $request)
     {
+        // dd($request->all()); // Debugging line, remove in production
         $client = Auth::guard('client')->user();
 
         $validated = $request->validate([
@@ -36,12 +38,39 @@ class ClientProfileController extends Controller
             'email' => 'required|email|unique:clients,email,' . $client->id,
             'profession' => 'nullable|string|max:255',
             'description' => 'nullable|string',
-            'telephone' => 'nullable|string|max:20',
+            'telephone' => 'nullable|string|max:20|unique:clients,telephone,' . $client->id,
             'url' => 'nullable|url',
+            'adresse' => 'nullable|string',
+            'ville' => 'nullable|string',
             'genre' => 'nullable|in:homme,femme,autre',
             'langue_preferee' => 'nullable|in:fr,en,es',
             'code_postal' => 'nullable|string|max:20',  // tu peux ajuster max selon besoin
             'pays' => 'nullable|string|max:255',
+        ], [
+            'prenom.required' => 'Le prénom est obligatoire.',
+            'prenom.max' => 'Le prénom ne doit pas dépasser :max caractères.',
+
+            'nom.required' => 'Le nom est obligatoire.',
+            'nom.max' => 'Le nom ne doit pas dépasser :max caractères.',
+
+            'email.required' => 'L’adresse email est obligatoire.',
+            'email.email' => 'L’adresse email doit être valide.',
+            'email.unique' => 'Cette adresse email est déjà utilisée.',
+
+            'profession.max' => 'La profession ne doit pas dépasser :max caractères.',
+
+            'telephone.unique' => 'Ce numéro de téléphone est déjà utilisé.',
+            'telephone.max' => 'Le numéro de téléphone ne doit pas dépasser :max caractères.',
+
+            'url.url' => 'Le site web doit être une URL valide.',
+
+            'genre.in' => 'Le genre doit être "homme", "femme" ou "autre".',
+
+            'langue_preferee.in' => 'La langue préférée doit être "fr", "en" ou "es".',
+
+            'code_postal.max' => 'Le code postal ne doit pas dépasser :max caractères.',
+
+            'pays.max' => 'Le nom du pays ne doit pas dépasser :max caractères.',
         ]);
 
         $client->update($validated);

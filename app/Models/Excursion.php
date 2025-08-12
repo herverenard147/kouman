@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Excursion extends Model
 {
     protected $table = 'excursions';
-    protected $primaryKey = 'id';
     protected $fillable = [
         'titre',
         'description',
@@ -16,7 +15,7 @@ class Excursion extends Model
         'devise',
         'capacite_max',
         'partenaire_id',
-        'localisation_idD',
+        'localisation_id',
         'localisation_idA',
         'statut',
         'stock',
@@ -43,6 +42,11 @@ class Excursion extends Model
         return $this->belongsTo(Localisations::class, 'localisation_id', 'id');
     }
 
+    public function localisationArrivee()
+    {
+        return $this->belongsTo(LocalisationArrives::class, 'localisation_idA', 'id');
+    }
+
     public function dates()
     {
         return $this->hasMany(ExcursionDate::class, 'idExcursion', 'id');
@@ -50,9 +54,9 @@ class Excursion extends Model
 
     public function equipements()
     {
-        return $this->belongsToMany(Equipement::class, 'equipements_excursions', 'idExcursion', 'id');
+        return $this->hasMany(EquipementExcursion::class,  'idExcursion', 'id');
     }
-    public function telephone()
+    public function telephones()
     {
         return $this->morphMany(Telephone::class, 'phoneable');
     }
@@ -69,7 +73,7 @@ class Excursion extends Model
 
     public function avis()
     {
-        return $this->hasMany(AvisClient::class);
+        return $this->hasMany(Avis::class, 'idExcursion', 'id');
     }
 
 }

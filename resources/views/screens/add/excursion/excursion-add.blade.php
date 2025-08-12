@@ -86,7 +86,7 @@
                                     <label for="langues" class="font-semibold text-slate-900 dark:text-white mb-2 inline-block">Langues parlées :</label>
 
                                     <select id="langues"
-                                            class="form-select mt-2 w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('langues') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+                                            class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('langues') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
                                         <option value="">-- Choisir une/plusieurs langue(s) --</option>
                                         @foreach($langues as $langue)
                                             <option value="{{ $langue->id }}">{{ $langue->nom }}</option>
@@ -116,7 +116,7 @@
                                 <!-- Âge minimum -->
                                 <div class="col-span-6">
                                     <label for="age_minimum" class="font-medium text-slate-900 dark:text-white">Âge minimum requis :</label>
-                                    <input name="age_minimum" id="age_minimum" type="number" min="0" class="form-input mt-2 @error('age_minimum') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('age_minimum', 0) }}">
+                                    <input name="age_minimum" id="age_minimum" type="number" min="10" class="form-input mt-2 @error('age_minimum') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('age_minimum', 10) }}">
                                     @error('age_minimum') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
@@ -227,21 +227,16 @@
                                 </div>
 
                                 <!-- Équipements -->
+
                                 <div class="col-span-12">
                                     <label class="font-semibold block mb-2 text-slate-900 dark:text-white">Équipements :</label>
                                     <div id="equipements-container">
                                         <div class="grid grid-cols-12 gap-2 mb-2">
-                                            <div class="col-span-8">
+                                            <div class="col-span-4">
                                                 <input name="equipements[0][nom]" type="text"
                                                     class="form-input @error('equipements.0.nom') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600"
                                                     placeholder="Ex: Climatisation"
                                                     value="{{ old('equipements.0.nom') }}">
-                                            </div>
-                                            <div class="col-span-3">
-                                                <input name="equipements[0][quantite]" type="number" min="1"
-                                                    class="form-input @error('equipements.0.quantite') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600"
-                                                    placeholder="Quantité"
-                                                    value="{{ old('equipements.0.quantite') }}">
                                             </div>
                                         </div>
                                     </div>
@@ -301,24 +296,24 @@
                                 {{-- </div> --}}
 
                                 {{-- <div class="col-span-6"><label for="ville" class="font-medium text-slate-900 dark:text-white">Ville :</label> --}}
-                                    <input name="arrive_ville" id="arrive_ville" type="text" class="hidden form-input mt-2 @error('arrive_ville') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white"  value="{{ old('ville') }}" readonly>
+                                    <input name="arrive_ville" id="arrive_ville" type="text" class="hidden form-input mt-2 @error('arrive_ville') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white"  value="{{ old('arrive_ville') }}" readonly>
                                     {{-- @error('ville') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror --}}
                                 {{-- </div> --}}
 
                                 {{-- <div class="col-span-6"><label for="pays" class="font-medium text-slate-900 dark:text-white">Pays :</label> --}}
-                                    <input name="arrive_pays" id="arrive_pays" type="text" class=" hidden form-input mt-2 @error('arrive_pays') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('pays') }}" readonly>
+                                    <input name="arrive_pays" id="arrive_pays" type="text" class=" hidden form-input mt-2 @error('arrive_pays') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('arrive_pays') }}" readonly>
                                     {{-- @error('pays') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror --}}
                                 {{-- </div> --}}
 
                                 {{-- <div class="col-span-3"> --}}
                                     {{-- <label for="latitude" class="font-medium text-slate-900 dark:text-white">Latitude :</label> --}}
-                                    <input name="arrive_latitude" id="arrive_latitude" type="number" step="0.000001" class="hidden form-input mt-2 @error('arrive_latitude') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('latitude') }}" readonly>
+                                    <input name="arrive_latitude" id="arrive_latitude" type="number" step="0.000001" class="hidden form-input mt-2 @error('arrive_latitude') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('arrive_latitude') }}" readonly>
                                     {{-- @error('latitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror --}}
                                 {{-- </div> --}}
 
                                 {{-- <div class="col-span-3"> --}}
                                     {{-- <label for="longitude" class="font-medium text-slate-900 dark:text-white">Longitude :</label> --}}
-                                    <input name="arrive_longitude" id="arrive_longitude" type="number" step="0.000001" class="hidden form-input mt-2 @error('arrive_longitude') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('longitude') }}" readonly>
+                                    <input name="arrive_longitude" id="arrive_longitude" type="number" step="0.000001" class="hidden form-input mt-2 @error('arrive_longitude') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('arrive_longitude') }}" readonly>
                                     {{-- @error('longitude') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror --}}
                                 {{-- </div> --}}
             </form>
@@ -516,26 +511,21 @@
         const newBlock = document.createElement('div');
         newBlock.className = 'grid grid-cols-12 gap-2 mb-2';
         newBlock.innerHTML = `
-            <div class="col-span-8">
+            <div class="col-span-4">
                 <input name="equipements[${equipementIndex}][nom]" type="text"
                     class="form-input bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600"
                     placeholder="Ex: Climatisation">
             </div>
-            <div class="col-span-3">
-                <input name="equipements[${equipementIndex}][quantite]" type="number" min="1"
-                    class="form-input bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600"
-                    placeholder="Quantité">
-            </div>
-            <div class="col-span-1">
+            <div class="col-span-2">
                 <button type="button" class="remove-block btn text-red-600 border border-red-300 hover:bg-red-50 rounded-md px-2 py-1 w-full">
                     Retirer
                 </button>
             </div>
         `;
-
         container.appendChild(newBlock);
         equipementIndex++;
     });
+
 
     // Suppression dynamique
     document.getElementById('equipements-container').addEventListener('click', function (e) {

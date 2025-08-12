@@ -25,7 +25,7 @@ class MailContact extends Controller
         try {
             // dd(Mail::to('teamw@afriqueévasion.com'));
             // Envoi de l'email
-            Mail::to('teamw@afriqueévasion.com')->send(new envoyerMessage($validated));
+            Mail::to('contact@afriqueévasion.com')->send(new envoyerMessage($validated));
 
             return back()->with('success', 'Votre message a été envoyé avec succès.');
         } catch (Exception $e) {

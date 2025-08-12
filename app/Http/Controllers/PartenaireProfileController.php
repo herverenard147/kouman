@@ -19,17 +19,15 @@ class PartenaireProfileController extends Controller
         $partenaire = Auth::guard('partenaire')->user();
 
         $validated = $request->validate([
-            'prenom' => 'required|string|max:255',
-            'nom' => 'required|string|max:255',
-            'email' => 'required|email|unique:partenaires,email,' . $partenaire->id,
-            'profession' => 'nullable|string|max:255',
-            'description' => 'nullable|string',
-            'telephone' => 'nullable|string|max:20',
-            'url' => 'nullable|url',
-            'genre' => 'nullable|in:homme,femme,autre',
-            'langue_preferee' => 'nullable|in:fr,en,es',
-            'code_postal' => 'nullable|string|max:20',  // tu peux ajuster max selon besoin
-            'pays' => 'nullable|string|max:255',
+            'nom_entreprise' => ['required', 'string', 'max:255', 'unique:partenaires,nom_entreprise'],
+            'email' => ['required', 'string', 'email', 'max:100', 'unique:partenaires,email'],
+            'telephone' => ['required', 'phone:CI,FR,US', 'max:20', 'unique:partenaires,telephone'],
+            'adresse' => ['required', 'string', 'max:200'],
+            'siteWeb' => ['nullable', 'url', 'max:100', 'unique:partenaires,siteWeb'],
+            'AcceptT&C' => ['required', 'accepted'],
+            // Tu peux décommenter si nécessaire :
+            // 'statut' => ['required', 'string', 'max:100'],
+            'photo_profil' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
         ]);
 
         $partenaire->update($validated);
