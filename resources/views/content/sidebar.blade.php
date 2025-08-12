@@ -2,8 +2,12 @@
 <nav id="sidebar" class="sidebar-wrapper sidebar-dark">
     <div class="sidebar-content">
         <div class="sidebar-brand">
-            <a href="{{route('client.index')}}"><img src="{{ asset('client/assets/images/logoG.ico') }}" alt="Afrique évasion"></a>
+            <a href="{{ route('client.index') }}"><img src="{{ asset('client/assets/images/logoG.ico') }}" alt="Afrique évasion"></a>
         </div>
+
+        @php
+            $partenaire = Auth::guard('partenaire')->user();
+        @endphp
 
         <ul class="sidebar-menu border-t border-white/10" data-simplebar style="height: calc(100% - 70px);">
             {{-- Tableau de bord --}}
@@ -21,7 +25,7 @@
             </li>
 
             {{-- Hebergement / Résidence --}}
-            @if(Auth::guard('partenaire')->user()->type === 'residence')
+            @if($partenaire && $partenaire->type === 'residence')
                 @include('base.components.sidebar.section', [
                     'icon' => 'mdi mdi-file-document-outline',
                     'title' => 'Hebergement',
@@ -32,9 +36,8 @@
                 ])
             @endif
 
-
             {{-- Chambre / Hotel --}}
-            @if(Auth::guard('partenaire')->user()->type === 'hotel')
+            @if($partenaire && $partenaire->type === 'hotel')
                 @include('base.components.sidebar.section', [
                     'icon' => 'mdi mdi-file-document-outline',
                     'title' => 'Chambre',
@@ -46,7 +49,7 @@
             @endif
 
             {{-- Événement et Excursion (Résidence, Hôtel, Événementiel) --}}
-            @if(in_array(Auth::guard('partenaire')->user()->type, ['residence', 'hotel', 'evenementiel']))
+            @if($partenaire && in_array($partenaire->type, ['residence', 'hotel', 'evenementiel']))
                 @include('base.components.sidebar.section', [
                     'icon' => 'mdi mdi-file-document-outline',
                     'title' => 'Evenement',
@@ -67,7 +70,7 @@
             @endif
 
             {{-- Vol (Agence de voyage + Compagnie aérienne) --}}
-            @if(in_array(Auth::guard('partenaire')->user()->type, ['agence_voyage', 'compagnie_aerienne']))
+            @if($partenaire && in_array($partenaire->type, ['agence_voyage', 'compagnie_aerienne']))
                 @include('base.components.sidebar.section', [
                     'icon' => 'mdi mdi-file-document-outline',
                     'title' => 'Vol',
@@ -79,7 +82,7 @@
             @endif
 
             {{-- Excursion pour Agence de voyage --}}
-            @if(Auth::guard('partenaire')->user()->type === 'agence_voyage')
+            @if($partenaire && $partenaire->type === 'agence_voyage')
                 @include('base.components.sidebar.section', [
                     'icon' => 'mdi mdi-file-document-outline',
                     'title' => 'Excursion',
@@ -112,8 +115,6 @@
     </div>
 </nav>
 <!-- sidebar-wrapper  -->
-
-
 
 <!-- JavaScript to handle the active class -->
 <script>

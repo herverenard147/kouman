@@ -14,7 +14,7 @@
                     class="max-w-[400px] w-full m-auto p-6 bg-white dark:bg-slate-900 shadow-md dark:shadow-gray-700 rounded-md">
                     <a href="{{route('client.auth.login')}}"><img src="{{asset('client/assets/images/logoG.ico')}}" class="mx-auto"
                             alt=""></a>
-                    <h5 class="my-6 text-xl font-semibold">Se Connecter</h5>
+                    <h5 class="my-6 text-xl font-semibold">Se Connecter en tant que Admin</h5>
                     @if(session('success'))
                         <div class="bg-green-100 text-green-800 px-4 py-2 rounded mb-4">
                             {{ session('success') }}
@@ -89,14 +89,6 @@
                             <div class="mb-4">
                                 <button type="submit"
                                     class="btn bg-green-600 hover:bg-green-700 text-white rounded-md w-full">Connexion</button>
-                            </div>
-
-                            <div class="text-center">
-                                <span class="text-slate-400 me-2">Vous n'avez pas de compte ?</span> <a href="{{route('client.auth.signup')}}"
-                                    class="text-black dark:text-white font-bold">S'inscrire</a>
-                            </div>
-                            <div class="text-center">
-                                <span class="text-slate-400 me-2">Êtes vous un partenaire ?</span> <a href="{{route('partenaire.login')}}" class="text-black dark:text-white font-bold">Connectez-vous ici</a>
                             </div>
                         </div>
                     </form>
