@@ -9,6 +9,7 @@ use App\Models\ImageExcursion;
 use App\Models\Langue;
 use App\Models\Localisation;
 use App\Models\ExcursionDate;
+use App\Models\LocalisationArrives;
 use App\Models\Localisations;
 use App\Models\MoyenPaiement;
 use App\Models\PolitiquesAnnulation;
@@ -39,13 +40,13 @@ class ExcursionController extends Controller
     {
         $equipements = Equipement::whereIn('type', ['excursion', 'inclus', 'optionnel'])->orWhereNull('type')->get();
         $politiques = PolitiquesAnnulation::all();
-        $moyensPaiement = MoyenPaiement::all();
+        $moyensPaiements = MoyenPaiement::all();
         $langues = Langue::all();
         return view('screens.add.excursion.excursion-add', compact(
             'equipements',
             'politiques',
             'langues',
-            'moyensPaiement'
+            'moyensPaiements'
         ));
     }
 
@@ -73,9 +74,21 @@ class ExcursionController extends Controller
             'prix' => 'required|numeric|min:0',
             'devise' => 'required|in:CFA,EUR,USD,GBP,CAD,AUD',
             'capacite_max' => 'required|integer|min:1',
-            'ville' => 'nullable|string|max:255',
-            'pays' => 'nullable|string|max:255',
-            'adresse' => 'nullable|string|max:255',
+
+            'depart_ville' => 'nullable|string|max:255',
+            'depart_pays' => 'nullable|string|max:255',
+            'depart_adresse' => 'required|string|max:255',
+            'depart_codePostal' => 'nullable|string|max:20',
+            'depart_latitude' => 'nullable|string|max:255',
+            'depart_longitude' => 'nullable|string|max:255',
+
+            'arrive_ville' => 'nullable|string|max:255',
+            'arrive_pays' => 'nullable|string|max:255',
+            'arrive_adresse' => 'required|string|max:255',
+            'arrive_codePostal' => 'nullable|string|max:20',
+            'arrive_latitude' => 'nullable|string|max:255',
+            'arrive_longitude' => 'nullable|string|max:255',
+
             'equipements' => 'nullable|array',
             'equipements.*' => 'exists:equipements,id',
             'images.*' => 'nullable|image|mimes:jpeg,png|max:10240',
@@ -110,13 +123,30 @@ class ExcursionController extends Controller
         ]);
 
         $localisationData = array_filter([
-            'ville' => $request->ville,
-            'pays' => $request->pays,
-            'adresse' => $request->adresse,
+            'ville' => $request->depart_ville,
+            'pays' => $request->depart_pays,
+            'adresse' => $request->depart_adresse,
+            'codePostal' => $request->depart_codePostal,
+            'latitude' => $request->depart_latitude,
+            'longitude' => $request->depart_longitude,
         ]);
         if (!empty($localisationData)) {
             $localisation = Localisations::create($localisationData);
-            $excursion->localisation_id = $localisation->idLocalisation;
+            $excursion->localisation_idD = $localisation->idLocalisation;
+            $excursion->save();
+        }
+
+        $localisationData = array_filter([
+            'ville' => $request->arrive_ville,
+            'pays' => $request->arrive_pays,
+            'adresse' => $request->arrive_adresse,
+            'codePostal' => $request->arrive_codePostal,
+            'latitude' => $request->arrive_latitude,
+            'longitude' => $request->arrive_longitude,
+        ]);
+        if (!empty($localisationData)) {
+            $localisation = LocalisationArrives::create($localisationData);
+            $excursion->localisation_idA = $localisation->idLocalisation;
             $excursion->save();
         }
 

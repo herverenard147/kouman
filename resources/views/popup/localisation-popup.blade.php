@@ -63,7 +63,7 @@
 
     <div class="footer-bar">
         <div class="text-sm text-gray-700">
-            Lat: <span id="lat">–</span>, Lng: <span id="lng">–</span><br>
+            Latitude: <span id="lat">–</span>, Longitude: <span id="lng">–</span><br>
             <span id="reverseAddress" class="text-xs text-gray-500">Adresse : —</span>
         </div>
         <div>
@@ -124,7 +124,6 @@
         function validerPosition() {
             const pos = marker.getLatLng();
             window.opener.postMessage({
-                from: 'localisation-popup',
                 latitude: pos.lat,
                 longitude: pos.lng,
                 adresse: currentAddress.adresse,

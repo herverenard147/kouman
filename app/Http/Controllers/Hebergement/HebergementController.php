@@ -29,7 +29,7 @@ class HebergementController extends Controller
         ->with('imagePrincipale', 'images', 'type', 'localisation', 'avis') // ajoute les relations nécessaires
         ->paginate(6); // nombre d'éléments par page
         // dd($hebergements);
-        return view('screens.add.Hebergement.hebergement', compact('hebergements'));
+        return view('screens.add.hebergement.hebergement', compact('hebergements'));
         // return response()->file(resource_path('views/screens/add/Hebergement/hebergement.blade.php'));
 
     }
@@ -44,7 +44,7 @@ class HebergementController extends Controller
         $moyensPaiement = MoyenPaiement::all();
         $politiques = PolitiquesAnnulation::all();
         // dd($familles, $equipements, $politiques);
-        return view('screens.add.Hebergement.hebergement-add', compact('familles', 'equipements', 'moyensPaiement', 'politiques'));
+        return view('screens.add.hebergement.hebergement-add', compact('familles', 'equipements', 'moyensPaiement', 'politiques'));
     }
 
     /**
@@ -148,7 +148,7 @@ class HebergementController extends Controller
             ->where('idPartenaire', $partenaireId)
             ->findOrFail($id);
 
-            return view('screens.add.Hebergement.hebergement-detail', compact('hebergement'));
+            return view('screens.add.hebergement.hebergement-detail', compact('hebergement'));
         } catch (\Exception $e) {
             dd($e->getMessage(), $e->getTraceAsString());
         }
@@ -178,7 +178,7 @@ class HebergementController extends Controller
         $equipements = Equipement::all();
         $politiques = PolitiquesAnnulation::all();
         // dd($hebergement, $familles, $equipements, $politiques);
-        return view('screens.add.Hebergement.hebergement-update', compact('hebergement', 'familles', 'equipements', 'politiques'));
+        return view('screens.add.hebergement.hebergement-update', compact('hebergement', 'familles', 'equipements', 'politiques'));
     }
 
     /**
