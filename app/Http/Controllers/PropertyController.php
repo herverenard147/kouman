@@ -87,7 +87,7 @@ class PropertyController extends Controller
         // --- Excursions ---
         if ($categorie === '' || $categorie === 'excursion') {
             $rows = DB::table('excursions')
-                ->select('id', 'titre', 'prix', 'devise', 'duree', 'capacite_max', 'itineraire', 'age_minimum', 'partenaire_id', 'stock')
+                ->select('id', 'titre', 'prix', 'devise', 'duree', 'capacite_max', 'age_minimum', 'partenaire_id', 'stock')
                 ->where('statut', 'active') // uniquement active
                 ->when($search !== '', fn($q) => $q->where('titre', 'like', "%{$search}%"))
                 ->when(!is_null($prixMin), fn($q) => $q->where('prix', '>=', $prixMin))
@@ -104,7 +104,6 @@ class PropertyController extends Controller
                     'categorie'    => 'excursion',
                     'duree'        => is_numeric($r->duree) ? (int)$r->duree : null,
                     'capaciteMax'  => $r->capacite_max,
-                    'itineraire'   => $r->itineraire,
                     'ageMinimum'   => $r->age_minimum,
                     'idPartenaire' => $r->partenaire_id,
                     'stock'        => $r->stock ?? null,
@@ -380,7 +379,7 @@ class PropertyController extends Controller
         }
 
         $p = DB::table('partenaires')
-            ->select('nom_entreprise', 'téléphone', 'email', 'siteWeb')
+            ->select('nom_entreprise', 'telephone', 'email', 'siteWeb')
             ->where('id', $id)
             ->first();
         return [

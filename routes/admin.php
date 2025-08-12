@@ -7,60 +7,69 @@ use App\Http\Controllers\Auth\Client\NewPasswordAdminController;
 use App\Http\Controllers\Auth\Client\PasswordResetLinkAdminController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\PartnerController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\OrderController;
 
 /*
 |--------------------------------------------------------------------------
 | Routes sécurisées après connexion admin
 |--------------------------------------------------------------------------
 */
-Route::middleware(['web', 'auth:admin'])->prefix('admin')->group(function () {
-    // Dashboard
-    Route::get('/dashboard', [AdministrateurController::class, 'index'])->name('admin.dashboard');
-    
-    // Logout
-    Route::post('/logout', [AuthenticatedAdminController::class, 'destroy'])->name('admin.logout');
 
-    // CRUD Clients
-    Route::resource('clients', ClientController::class)->names([
-        'index' => 'admin.clients.index',
-        'create' => 'admin.clients.create',
-        'store' => 'admin.clients.store',
-        'show' => 'admin.clients.show',
-        'edit' => 'admin.clients.edit',
-        'update' => 'admin.clients.update',
-        'destroy' => 'admin.clients.destroy',
-    ]);
+Route::middleware(['web', 'auth:admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        // Dashboard
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    // CRUD Partenaires
-    Route::resource('partners', PartnerController::class)->names([
-        'index' => 'admin.partners.index',
-        'create' => 'admin.partners.create',
-        'store' => 'admin.partners.store',
-        'show' => 'admin.partners.show',
-        'edit' => 'admin.partners.edit',
-        'update' => 'admin.partners.update',
-        'destroy' => 'admin.partners.destroy',
-    ]);
+        // Logout
+        Route::post('/logout', [AuthenticatedAdminController::class, 'destroy'])
+            ->name('logout');
 
-    // Activités (dernieres actions)
-    Route::get('activities', [AdministrateurController::class, 'activities'])->name('admin.activities.index');
-});
+        // CRUD Clients
+        Route::resource('clients', ClientController::class);
+
+        // CRUD Partenaires
+        Route::resource('partners', PartnerController::class);
+
+        // Activités récentes
+        Route::get('activities', [AdministrateurController::class, 'activities'])
+            ->name('activities.index');
+
+         Route::get('clients/{id}/orders', [ClientController::class, 'orders'])->name('clients.orders');
+         Route::get('partners/{id}/orders', [PartnerController::class, 'orders'])->name('partners.orders');
+         Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+
+    });
 
 /*
 |--------------------------------------------------------------------------
 | Routes pour l’authentification admin
-| URL d’accès volontairement non évidente
+| URL volontairement non évidente
 |--------------------------------------------------------------------------
 */
 $secretAdminPath = 'panelAdmin-492f93a9';
 
-Route::middleware(['guest:web'])->prefix($secretAdminPath)->group(function () {
-    Route::get('/login', [AuthenticatedAdminController::class, 'create'])->name('admin.auth.login');
-    Route::post('/login', [AuthenticatedAdminController::class, 'store'])->name('admin.auth.login.store');
+Route::middleware(['guest:web'])
+    ->prefix($secretAdminPath)
+    ->name('admin.')
+    ->group(function () {
+        // Login
+        Route::get('/login', [AuthenticatedAdminController::class, 'create'])
+            ->name('auth.login');
+        Route::post('/login', [AuthenticatedAdminController::class, 'store'])
+            ->name('auth.login.store');
 
-    Route::get('/forgot-password', [PasswordResetLinkAdminController::class, 'create'])->name('admin.password.request');
-    Route::post('/forgot-password', [PasswordResetLinkAdminController::class, 'sendResetLinkEmail'])->name('admin.password.email');
+        // Mot de passe oublié
+        Route::get('/forgot-password', [PasswordResetLinkAdminController::class, 'create'])
+            ->name('password.request');
+        Route::post('/forgot-password', [PasswordResetLinkAdminController::class, 'sendResetLinkEmail'])
+            ->name('password.email');
 
-    Route::get('/reset-password/{token}', [NewPasswordAdminController::class, 'create'])->name('admin.password.reset');
-    Route::post('/reset-password', [NewPasswordAdminController::class, 'store'])->name('admin.password.store');
-});
+        // Réinitialisation du mot de passe
+        Route::get('/reset-password/{token}', [NewPasswordAdminController::class, 'create'])
+            ->name('password.reset');
+        Route::post('/reset-password', [NewPasswordAdminController::class, 'store'])
+            ->name('password.store');
+    });

@@ -65,6 +65,12 @@ class Partenaire extends Authenticatable implements MustVerifyEmail, Authenticat
         return $this->hasMany(Excursion::class);
     }
 
+    public function commandeProduits()
+    {
+        return $this->hasMany(CommandeProduit::class);
+    }
+
+
     public function evenements()
     {
         return $this->hasMany(Evenement::class);
