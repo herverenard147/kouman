@@ -1,143 +1,89 @@
 @extends('layout.base')
-@section('title', 'Tableau de bord')
+@section('title', 'Tableau de bord Administrateur')
 
 @section('content')
 <div class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen">
     <div class="layout-specing">
         <div class="flex justify-between items-center">
             <div>
-                <h5 class="text-xl font-semibold text-slate-900 dark:text-white">Bonjour, {{ $user->nom_entreprise }}</h5>
-                {{-- Modifié: text-slate-400 -> text-gray-600 pour un meilleur contraste en mode clair --}}
-                {{-- Modifié: dark:text-slate-400 -> dark:text-gray-300 pour un meilleur contraste en mode sombre --}}
-                <h6 class="text-gray-600 dark:text-gray-300">Ravi de vous revoir !</h6>
+                <h5 class="text-xl font-semibold text-slate-900 dark:text-white">
+                    Bonjour, {{ $admin->nom }}
+                </h5>
+                <h6 class="text-gray-600 dark:text-gray-300">Bienvenue sur votre espace administrateur</h6>
             </div>
         </div>
 
-        <div class="grid xl:grid-cols-5 md:grid-cols-3 grid-cols-1 mt-6 gap-6">
-            @include('base.components.dashboard.total-properties', [
-                'properties' => $properties,
-            ])
-        </div>
-
-        <div class="grid lg:grid-cols-12 grid-cols-1 mt-6 gap-6">
-            <div class="lg:col-span-8">
-                <div class="relative overflow-hidden rounded-md shadow bg-white dark:bg-slate-800">
-                    {{-- Modifié: border-gray-100 -> border-gray-200 pour une meilleure visibilité en mode clair --}}
-                    <div class="p-6 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
-                        <h6 class="text-lg font-semibold text-slate-900 dark:text-white">Analyse des revenus</h6>
-
-                        <div class="position-relative w-48">
-                            <select
-                                id="yearchart"
-                                class="form-select form-input w-full py-2 h-10 rounded border border-gray-300 dark:border-gray-600
-                                       bg-white dark:bg-slate-800 text-slate-900 dark:text-white
-                                       focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600"
-                            >
-                                <option value="Y" selected>Annuel</option>
-                                <option value="M">Mensuel</option>
-                                <option value="W">Hebdomadaire</option>
-                                <option value="T">Aujourd'hui</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div id="mainchart" class="apex-chart px-4 pb-6"></div>
-                </div>
+        {{-- Cartes de statistiques --}}
+        <div class="grid xl:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-6 gap-6">
+            <div class="p-6 bg-white dark:bg-slate-800 rounded-md shadow">
+                <h6 class="text-lg font-semibold text-slate-900 dark:text-white">Utilisateurs clients</h6>
+                <p class="mt-2 text-2xl font-bold text-green-600">{{ $stats['clients_count'] ?? 0 }}</p>
+                <a href="{{ route('admin.clients.index') }}" class="text-sm text-blue-500 hover:underline">Gérer les clients</a>
             </div>
 
-            <div class="lg:col-span-4">
-                <div class="relative overflow-hidden rounded-md shadow bg-white dark:bg-slate-800">
-                    {{-- Modifié: border-gray-100 -> border-gray-200 pour une meilleure visibilité en mode clair --}}
-                    <div class="p-6 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
-                        <h6 class="text-lg font-semibold text-slate-900 dark:text-white">Données de ventes</h6>
+            <div class="p-6 bg-white dark:bg-slate-800 rounded-md shadow">
+                <h6 class="text-lg font-semibold text-slate-900 dark:text-white">Partenaires inscrits</h6>
+                <p class="mt-2 text-2xl font-bold text-green-600">{{ $stats['partners_count'] ?? 0 }}</p>
+                <a href="{{ route('admin.partners.index') }}" class="text-sm text-blue-500 hover:underline">Gérer les partenaires</a>
+            </div>
 
-                        <div class="position-relative w-48">
-                            <select
-                                id="yearchart-sales"
-                                class="form-select form-input w-full py-2 h-10 rounded border border-gray-300 dark:border-gray-600
-                                       bg-white dark:bg-slate-800 text-slate-900 dark:text-white
-                                       focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-green-600"
-                            >
-                                <option value="Y" selected>Annuel</option>
-                                <option value="M">Mensuel</option>
-                                <option value="W">Hebdomadaire</option>
-                                <option value="T">Aujourd'hui</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="p-6">
-                        @include('base.components.dashboard.sales-data')
-                    </div>
-                </div>
+            <div class="p-6 bg-white dark:bg-slate-800 rounded-md shadow">
+                <h6 class="text-lg font-semibold text-slate-900 dark:text-white">Commandes totales</h6>
+                <p class="mt-2 text-2xl font-bold text-green-600">{{ $stats['orders_count'] ?? 0 }}</p>
+                <a href="{{ route('admin.orders.index') }}" class="text-sm text-blue-500 hover:underline">Voir les commandes</a>
             </div>
         </div>
 
-        <div class="grid lg:grid-cols-12 grid-cols-1 mt-6 gap-6">
-            <div class="xl:col-span-3 lg:col-span-6 order-1">
-                <div class="relative overflow-hidden rounded-md shadow bg-white dark:bg-slate-800">
-                    {{-- Modifié: border-gray-100 -> border-gray-200 pour une meilleure visibilité en mode clair --}}
-                    <div class="p-6 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
-                        <h6 class="text-lg font-semibold text-slate-900 dark:text-white">Carte des zones</h6>
-                        {{-- Modifié: text-slate-400 -> text-gray-600 et dark:text-slate-400 -> dark:text-gray-300 --}}
-                        <span class="text-gray-600 dark:text-gray-300">Dernière mise à jour il y a 5 jours</span>
-                    </div>
-
-                    <div class="p-6">
-                        <div id="map" class="w-full h-[236px]"></div>
-                    </div>
-                </div>
+        {{-- Liens rapides CRUD --}}
+        <div class="mt-8 grid md:grid-cols-2 gap-6">
+            <div class="p-6 bg-white dark:bg-slate-800 rounded-md shadow">
+                <h6 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">Gestion Clients</h6>
+                <ul class="list-disc list-inside text-slate-700 dark:text-gray-300">
+                    <li><a href="{{ route('admin.clients.create') }}" class="text-blue-500 hover:underline">Ajouter un client</a></li>
+                    <li><a href="{{ route('admin.clients.index') }}" class="text-blue-500 hover:underline">Liste des clients</a></li>
+                </ul>
             </div>
 
-            <div class="xl:col-span-6 lg:col-span-12 xl:order-2 order-3">
-                <div class="relative overflow-hidden rounded-md shadow bg-white dark:bg-slate-800">
-                    {{-- Modifié: border-gray-100 -> border-gray-200 pour une meilleure visibilité en mode clair --}}
-                    <div class="p-6 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
-                        <h6 class="text-lg font-semibold text-slate-900 dark:text-white">Transactions récentes</h6>
-
-                        {{-- Modifié: text-slate-400 -> text-gray-600 et dark:text-slate-400 -> dark:text-green-400 --}}
-                        <a href="" class="btn btn-link font-normal text-gray-600 dark:text-green-400 hover:text-green-600 after:bg-green-600 transition duration-500">
-                            Voir les commandes <i class="mdi mdi-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-
-                    <div class="relative overflow-x-auto block w-full xl:max-h-[284px] max-h-[350px]" data-simplebar>
-                        <table class="w-full text-start">
-                            <thead class="text-base">
-                                <tr>
-                                    <th class="text-start font-semibold text-[15px] px-4 py-3"></th>
-                                    <th class="text-start font-semibold text-[15px] px-4 py-3 min-w-[140px] text-slate-900 dark:text-white">Date</th>
-                                    <th class="text-start font-semibold text-[15px] px-4 py-3 min-w-[120px] text-slate-900 dark:text-white">Nom</th>
-                                    <th class="text-start font-semibold text-[15px] px-4 py-3 text-slate-900 dark:text-white">Prix</th>
-                                    <th class="text-start font-semibold text-[15px] px-4 py-3 min-w-[40px] text-slate-900 dark:text-white">Type</th>
-                                    <th class="text-end font-semibold text-[15px] px-4 py-3 min-w-[70px] text-slate-900 dark:text-white">Statut</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @include('base.components.dashboard.recent-transections')
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="xl:col-span-3 lg:col-span-6 xl:order-3 order-2">
-                <div class="relative overflow-hidden rounded-md shadow bg-white dark:bg-slate-800">
-                    {{-- Modifié: border-gray-100 -> border-gray-200 pour une meilleure visibilité en mode clair --}}
-                    <div class="p-6 flex items-center justify-between border-b border-gray-200 dark:border-gray-700">
-                        <h6 class="text-lg font-semibold text-slate-900 dark:text-white">Meilleures propriétés</h6>
-
-                        {{-- Modifié: text-slate-400 -> text-gray-600 et dark:text-slate-400 -> dark:text-green-400 --}}
-                        <a href="" class="btn btn-link font-normal text-gray-600 dark:text-green-400 hover:text-green-600 after:bg-green-600 transition duration-500">
-                            Voir plus <i class="mdi mdi-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-
-                    <div class="relative overflow-x-auto block w-full max-h-[284px] p-6" data-simplebar>
-                        @include('base.components.dashboard.top-properties')
-                    </div>
-                </div>
+            <div class="p-6 bg-white dark:bg-slate-800 rounded-md shadow">
+                <h6 class="text-lg font-semibold text-slate-900 dark:text-white mb-4">Gestion Partenaires</h6>
+                <ul class="list-disc list-inside text-slate-700 dark:text-gray-300">
+                    <li><a href="{{ route('admin.partners.create') }}" class="text-blue-500 hover:underline">Ajouter un partenaire</a></li>
+                    <li><a href="{{ route('admin.partners.index') }}" class="text-blue-500 hover:underline">Liste des partenaires</a></li>
+                </ul>
             </div>
         </div>
+
+        {{-- Tableau des dernières activités --}}
+        <div class="mt-8 bg-white dark:bg-slate-800 rounded-md shadow overflow-hidden">
+            <div class="p-6 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                <h6 class="text-lg font-semibold text-slate-900 dark:text-white">Dernières activités</h6>
+                <a href="{{ route('admin.activities.index') }}" class="text-sm text-blue-500 hover:underline">Voir tout</a>
+            </div>
+            <div class="overflow-x-auto max-h-64">
+                <table class="w-full text-start">
+                    <thead class="text-base">
+                        <tr>
+                            <th class="px-4 py-3 text-slate-900 dark:text-white">Date</th>
+                            <th class="px-4 py-3 text-slate-900 dark:text-white">Utilisateur</th>
+                            <th class="px-4 py-3 text-slate-900 dark:text-white">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse($activities ?? [] as $activity)
+                            <tr class="border-t border-gray-200 dark:border-gray-700">
+                                <td class="px-4 py-3 text-gray-600 dark:text-gray-300">{{ $activity->created_at->format('d/m/Y H:i') }}</td>
+                                <td class="px-4 py-3 text-gray-600 dark:text-gray-300">{{ $activity->user->name ?? 'N/A' }}</td>
+                                <td class="px-4 py-3 text-gray-600 dark:text-gray-300">{{ $activity->description }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="3" class="px-4 py-3 text-center text-gray-500">Aucune activité récente</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
+    </div>
 </div>
 @endsection
