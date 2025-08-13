@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('url', 255);
             $table->boolean('estPrincipale')->default(false);
-            $table->foreignId('idChambre')->constrained('Chambres')->onDelete('cascade');
+            $table->foreignId('idChambre')->constrained('chambres')->onDelete('cascade');
             $table->timestamps();
         });
     }
