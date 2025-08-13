@@ -351,7 +351,7 @@ class PropertyController extends Controller
             default:
                 abort(404);
         }
-
+        // dd($item); // Pour déboguer, à retirer en prod
         return view('client.property-detail-two', compact('item'));
     }
 

@@ -201,32 +201,39 @@ $fpage = 'foot1';
 
                                 {{-- Stock ou places disponibles --}}
                                 @php
-                                $cat = $item['categorie'] ?? '';
+                                    $cat = $item['categorie'] ?? '';
                                 @endphp
 
                                 @if($cat === 'vol' && isset($item['placesDisponibles']))
-                                <li class="flex justify-between">
-                                    <span class="text-slate-400">Places restantes</span>
-                                    <span class="font-medium text-green-600">
-                                        {{ $item['placesDisponibles'] > 0 ? $item['placesDisponibles'] : 'Complet' }}
-                                    </span>
-                                </li>
-                                @elseif(in_array($cat, ['hebergement', 'excursion', 'evenement']) && isset($item['stock']))
-                                <li class="flex justify-between">
-                                    <span class="text-slate-400">Disponibilité</span>
-                                    <span class="font-medium {{ $item['stock'] > 0 ? 'text-green-600' : 'text-red-600' }}">
-                                        {{ $item['stock'] > 0 ? $item['stock'].' disponible(s)' : 'Complet' }}
-                                    </span>
-                                </li>
+                                    <li class="flex justify-between">
+                                        <span class="text-slate-400">Places restantes</span>
+                                        <span class="font-medium text-green-600">
+                                            {{ $item['placesDisponibles'] > 0 ? $item['placesDisponibles'] : 'Complet' }}
+                                        </span>
+                                    </li>
+                                @elseif(in_array($cat, ['hebergement', 'evenement']) && isset($item['stock']))
+                                    <li class="flex justify-between">
+                                        <span class="text-slate-400">Disponibilité</span>
+                                        <span class="font-medium {{ $item['stock'] > 0 ? 'text-green-600' : 'text-red-600' }}">
+                                            {{ $item['stock'] > 0 ? $item['stock'].' disponible(s)' : 'Complet' }}
+                                        </span>
+                                    </li>
+                                @elseif(in_array($cat, ['excursion']) && isset($item['stock']))
+                                    <li class="flex justify-between">
+                                        <span class="text-slate-400">Disponibilité</span>
+                                        <span class="font-medium {{ $item['capaciteMax'] > 0 ? 'text-green-600' : 'text-red-600' }}">
+                                            {{ $item['capaciteMax'] > 0 ? $item['capaciteMax'].' disponible(s)' : 'Complet' }}
+                                        </span>
+                                    </li>
                                 @endif
 
                                 {{-- ================== AJOUT : Infos Partenaire ================== --}}
                                 @php
-                                $idPartenaireCtx = $item['idPartenaire'] ?? request('idPartenaire');
-                                $nomPartenaire = $item['partenaireNom'] ?? null;
-                                $telPartenaire = $item['partenaireTel'] ?? null;
-                                $mailPartenaire = $item['partenaireMail'] ?? null;
-                                $sitePartenaire = $item['partenaireSite'] ?? null;
+                                    $idPartenaireCtx = $item['idPartenaire'] ?? request('idPartenaire');
+                                    $nomPartenaire = $item['partenaireNom'] ?? null;
+                                    $telPartenaire = $item['partenaireTel'] ?? null;
+                                    $mailPartenaire = $item['partenaireMail'] ?? null;
+                                    $sitePartenaire = $item['partenaireSite'] ?? null;
                                 @endphp
 
                                 @if($nomPartenaire || $idPartenaireCtx)
@@ -272,13 +279,16 @@ $fpage = 'foot1';
                         $categorie = strtolower($item['categorie'] ?? '');
                         $stock = isset($item['stock']) ? (int) $item['stock'] : null;
                         $places = isset($item['placesDisponibles']) ? (int) $item['placesDisponibles'] : null;
+                        $capaciteMax = isset($item['capaciteMax']) ? (int) $item['capaciteMax'] : null;
 
                         $isAvailable = true;
 
                         if ($categorie === 'vol') {
-                        $isAvailable = $places !== null && $places > 0;
-                        } elseif (in_array($categorie, ['hebergement', 'excursion', 'evenement'])) {
-                        $isAvailable = $stock !== null && $stock > 0;
+                            $isAvailable = $places !== null && $places > 0;
+                        } elseif (in_array($categorie, ['hebergement', 'evenement'])) {
+                            $isAvailable = $stock !== null && $stock > 0;
+                        } elseif (in_array($categorie, ['excursion'])) {
+                            $isAvailable = $capaciteMax !== null && $capaciteMax > 0;
                         }
                         @endphp
 
@@ -296,7 +306,7 @@ $fpage = 'foot1';
 
                                     <button type="submit"
                                         class="w-full px-3 py-2 rounded text-white text-sm shadow text-center
-                       {{ $isAvailable ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-400 cursor-not-allowed' }}"
+                                            {{ $isAvailable ? 'bg-green-600 hover:bg-green-700' : 'bg-gray-400 cursor-not-allowed' }}"
                                         {{ $isAvailable ? '' : 'disabled' }}>
                                         {{ $isAvailable ? 'Ajouter au panier' : 'Indisponible' }}
                                     </button>
