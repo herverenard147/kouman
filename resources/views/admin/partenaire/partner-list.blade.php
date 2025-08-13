@@ -25,7 +25,7 @@
 
                 {{-- Photo --}}
                 <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4 border-2 border-gray-200 dark:border-gray-700">
-                    <img src="{{ $partner->photo ? asset('storage/'.$partner->photo) : asset('images/default-avatar.png') }}"
+                    <img src="{{'/imageDes/uploads/' . $partner->photo_profil ? asset('/imageDes/uploads/'. $partner->photo_profil) : asset('images/client/logouser2.png') }}"
                          alt="{{ $partner->nom_entreprise }}"
                          class="w-full h-full object-cover">
                 </div>
