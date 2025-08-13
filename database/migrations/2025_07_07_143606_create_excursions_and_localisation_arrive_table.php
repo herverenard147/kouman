@@ -48,7 +48,7 @@ return new class extends Migration
                 ->constrained('localisation_arrive', 'id')
                 ->onDelete('set null');
 
-            $table->enum('statut', ['brouillon', 'active', 'complete', 'annulee'])->default('brouillon');
+            $table->enum('statut', ['brouillon', 'active', 'annulee'])->default('active');
             $table->timestamps();
         });
     }

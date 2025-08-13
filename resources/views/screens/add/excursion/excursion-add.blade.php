@@ -227,7 +227,17 @@
                                         Ajouter le point d'arrivée
                                     </button>
                                 </div>
-
+                                {{-- Statut --}}
+                                <div class="col-span-6">
+                                    <label for="moyens_paiement" class="font-medium text-slate-900 dark:text-white">Moyens de paiement acceptés :</label>
+                                    <select id="moyens_paiement"
+                                            class="form-select mt-2 w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('moyens_paiement') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+                                        <option value="active" selected>Active</option>
+                                        <option value="annulee">Annulée</option>
+                                        <option value="brouillon">Brouillon</option>
+                                    </select>
+                                    @error('moyens_paiement') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                                </div>
                                 <!-- Équipements -->
 
                                 <div class="col-span-12">
