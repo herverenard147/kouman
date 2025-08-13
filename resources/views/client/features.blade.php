@@ -39,7 +39,7 @@
             <div class="grid grid-cols-1 pb-8 text-center">
                 <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">Ce que disent nos clients</h3>
 
-                <p class="text-slate-400 max-w-xl mx-auto">Une excellente plateforme pour acheter, vendre et louer vos biens sans agent ni commission.</p>
+                <p class="text-slate-400 max-w-xl mx-auto">Une excellente plateforme pour vendre et louer vos biens sans agent ni commission.</p>
             </div><!-- fin grid -->
 
             <div class="flex justify-center relative mt-16">

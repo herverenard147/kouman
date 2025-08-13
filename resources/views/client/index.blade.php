@@ -22,7 +22,7 @@ $fpage = 'foot1';
                     parfait(e) pour vous
                 </h1>
                 <p class="text-white/70 text-xl max-w-xl">
-                    Une excellente plateforme pour acheter, vendre et louer vos biens sans intermédiaire ni commission.
+                    Une excellente plateforme pour vendre et louer vos biens sans intermédiaire ni commission.
                 </p>
 
                 <div class="mt-4">

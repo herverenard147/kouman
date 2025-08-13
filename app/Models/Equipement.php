@@ -17,4 +17,10 @@ class Equipement extends Model
         return $this->belongsToMany(Hebergement::class, 'hebergement_equipements', 'idEquipement', 'idHebergement')
                     ->using(HebergementEquipement::class);
     }
+
+    public function chambres()
+    {
+        return $this->belongsToMany(Chambre::class, 'equipements_chambres', 'idEquipement', 'idChambre')
+                    ->using(EquipementChambre::class);
+    }
 }

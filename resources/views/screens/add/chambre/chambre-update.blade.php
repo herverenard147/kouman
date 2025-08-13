@@ -695,7 +695,7 @@
             const top = (screen.height / 2) - (height / 2);
 
             const mapWindow = window.open(
-                "/partenaire/popup-localisation", // à créer dans Laravel
+                "/partenaire/localisation-popup-chambre", // à créer dans Laravel
                 "Localisation",
                 `width=${width},height=${height},top=${top},left=${left}`
             );

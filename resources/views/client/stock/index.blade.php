@@ -19,7 +19,7 @@
                                     <h1 class="font-bold text-white lg:leading-normal leading-normal text-4xl lg:text-5xl mb-6">
                                         Une façon simple de trouver votre <br> propriété de rêve</h1>
                                     <p class="text-white/70 text-xl max-w-xl mx-auto">
-                                        Une excellente plateforme pour acheter, vendre et louer vos biens sans aucun agent ni commission.
+                                        Une excellente plateforme pour vendre et louer vos biens sans aucun agent ni commission.
                                     </p>
                                     <div class="mt-6">
                                         <a href="" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md">Voir plus</a>
@@ -39,7 +39,7 @@
                                     <h1 class="font-bold text-white lg:leading-normal leading-normal text-4xl lg:text-5xl mb-6">
                                         Nous vous aidons à trouver <br> la maison idéale</h1>
                                     <p class="text-white/70 text-xl max-w-xl mx-auto">
-                                        Une excellente plateforme pour acheter, vendre et louer vos biens sans aucun agent ni commission.
+                                        Une excellente plateforme pour vendre et louer vos biens sans aucun agent ni commission.
                                     </p>
                                     <div class="mt-6">
                                         <a href="" class="btn bg-green-600 hover:bg-green-700 text-white rounded-md">Voir plus</a>
@@ -155,7 +155,7 @@
                 <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">Comment ça marche</h3>
 
                 <p class="text-slate-400 max-w-xl mx-auto">
-                    Une excellente plateforme pour acheter, vendre et louer vos biens sans aucun agent ni commission.
+                    Une excellente plateforme pour vendre et louer vos biens sans aucun agent ni commission.
                 </p>
             </div><!--end grid-->
 
@@ -172,7 +172,7 @@
                 <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">Propriétés en vedette</h3>
 
                 <p class="text-slate-400 max-w-xl mx-auto">
-                    Une excellente plateforme pour acheter, vendre et louer vos biens sans aucun agent ni commission.
+                    Une excellente plateforme pour vendre et louer vos biens sans aucun agent ni commission.
                 </p>
             </div><!--end grid-->
 
@@ -200,7 +200,7 @@
                 <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">Plus de 10 000 utilisateurs nous font confiance</h3>
 
                 <p class="text-slate-400 max-w-xl mx-auto">
-                    Une excellente plateforme pour acheter, vendre et louer vos biens sans aucun agent ni commission.
+                    Une excellente plateforme pour vendre et louer vos biens sans aucun agent ni commission.
                 </p>
             </div><!--end grid-->
 
@@ -217,7 +217,7 @@
                 <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">Rencontrez l'équipe des agents</h3>
 
                 <p class="text-slate-400 max-w-xl mx-auto">
-                    Une excellente plateforme pour acheter, vendre et louer vos biens sans aucun agent ni commission.
+                    Une excellente plateforme pour vendre et louer vos biens sans aucun agent ni commission.
                 </p>
             </div><!--end grid-->
 
@@ -234,7 +234,7 @@
                 <h3 class="mb-4 md:text-3xl md:leading-normal text-2xl leading-normal font-semibold">Ce que disent nos clients</h3>
 
                 <p class="text-slate-400 max-w-xl mx-auto">
-                    Une excellente plateforme pour acheter, vendre et louer vos biens sans aucun agent ni commission.
+                    Une excellente plateforme pour vendre et louer vos biens sans aucun agent ni commission.
                 </p>
             </div><!--end grid-->
 

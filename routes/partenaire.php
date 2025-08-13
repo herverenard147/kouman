@@ -111,7 +111,7 @@ Route::middleware(['auth:partenaire'])
             Route::delete('delette/{id}', [ChambreController::class, 'destroy'])->name('partenaire.chambre.destroy');
             // Route::delete('images-hebergement/{id}', [ImageHebergementController::class, 'destroy']);
         });
-        
+
         Route::group(['prefix' => 'excursion'], function () {
 
             Route::get('/', [ExcursionController::class, 'index'])->name('partenaire.excursion');
@@ -160,4 +160,7 @@ Route::middleware(['auth:partenaire'])
         Route::get('/localisation-popup', function () {
             return view('popup.localisation-popup'); // le fichier où se trouve ton script
         })->name('partenaire.localisation.popup');
+        Route::get('/localisation-popup-chambre', function () {
+            return view('popup.localisation-popup-chambre');
+        })->name('popup.localisation');
     });

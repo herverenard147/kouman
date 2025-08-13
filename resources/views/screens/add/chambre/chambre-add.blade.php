@@ -66,92 +66,86 @@
                         {{-- Section Détails de l'hébergement --}}
                         <div class="rounded-md shadow p-6 bg-white dark:bg-slate-800 h-fit">
                             <div class="grid grid-cols-12 gap-5">
-                                <div class="col-span-12">
-                                    <label for="nom" class="font-medium text-slate-900 dark:text-white">Nom <strong>*</strong>:</label>
-                                    <input name="nom" id="nom" type="text" class="form-input mt-2 @error('nom') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Nom de l'hébergement" value="{{ old('nom') }}" required>
-                                    @error('nom')
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white" for="numero">Numéro / Nom de la chambre <strong>*</strong>:</label>
+                                    <input type="text" name="numero" id="numero" value="{{ old('numero') }}"
+                                        class="form-input w-full border border-gray-300 dark:border-gray-600 rounded-md p-2
+                                        @error('numero') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
+                                    @error('numero')
                                         <span class="text-red-600 text-sm">{{ $message }}</span>
                                     @enderror
+
                                 </div>
 
                                 <div class="md:col-span-6 col-span-12">
-                                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white" for="familyType">Famille d'hébergement <strong>*</strong>:</label>
-                                    <select name="familyType" id="familyType" class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('familyType') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
-                                        <option value="" disabled {{ old('familyType') ? '' : 'selected' }}>-- Sélectionner une famille --</option>
-                                        @foreach($familles as $famille)
-                                            <option value="{{ $famille->id }}" {{ old('familyType') == $famille->id ? 'selected' : '' }}>{{ $famille->nomFamille }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('familyType')
-                                        <span class="text-red-600 text-sm">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="md:col-span-6 col-span-12">
-                                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white" for="idType">Type d'hébergement <strong>*</strong>:</label>
-                                    <select name="idType" id="typePartenaire" class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('idType') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
-                                        <option value="" disabled {{ old('idType') ? '' : 'selected' }}>-- Sélectionner un type --</option>
-                                    </select>
-                                    @error('idType')
-                                        <span class="text-red-600 text-sm">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-span-12">
-                                    <label for="description" class="font-medium text-slate-900 dark:text-white">Description <strong>*</strong>:</label>
-                                    <textarea name="description" id="description" rows="5" class="form-input mt-2 @error('description') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Décrivez votre hébergement..." required>{{ old('description') }}</textarea>
+                                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white" for="description">Description :</label>
+                                    <textarea name="description" id="description" rows="3"
+                                        class="form-textarea w-full border border-gray-300 dark:border-gray-600 rounded-md p-2
+                                        @error('description') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">{{ old('description') }}</textarea>
                                     @error('description')
                                         <span class="text-red-600 text-sm">{{ $message }}</span>
                                     @enderror
                                 </div>
 
-                                <div class="md:col-span-4 col-span-12">
-                                    <label for="prixParNuit" class="font-medium text-slate-900 dark:text-white">Prix par nuit <strong>*</strong>:</label>
-                                    <div class="form-icon relative mt-2">
-                                        <i class="bi bi-currency-dollar absolute top-2 start-4 text-green-600"></i>
-                                        <input name="prixParNuit" id="prixParNuit" type="number" step="0.01" class="form-input ps-11 @error('prixParNuit') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="0.00" value="{{ old('prixParNuit') }}" required>
-                                    </div>
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white" for="prixParNuit">Prix par nuit <strong>*</strong>:</label>
+                                    <input type="number" step="0.01" name="prixParNuit" id="prixParNuit" value="{{ old('prixParNuit') }}"
+                                        class="form-input w-full border border-gray-300 dark:border-gray-600 rounded-md p-2
+                                        @error('prixParNuit') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
                                     @error('prixParNuit')
                                         <span class="text-red-600 text-sm">{{ $message }}</span>
                                     @enderror
                                 </div>
 
-                                <div class="md:col-span-4 col-span-12">
-                                    <label for="stock" class="font-medium text-slate-900 dark:text-white">Stock <strong>*</strong>:</label>
-                                    <input name="stock" id="stock" type="number" step="0.000001" class="form-input mt-2 @error('stock') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Stock" value="{{ old('stock', '') }}" required>
-                                    @error('stock')
-                                        <span class="text-red-600 text-sm">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="md:col-span-4 col-span-12">
-                                    <label for="devise" class="font-medium text-slate-900 dark:text-white">Devise <strong>*</strong>:</label>
-                                    <select name="devise" id="devise" class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('devise') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
-                                        <option value="CFA" {{ old('devise') == 'CFA' ? 'selected' : '' }}>CFA (CFA)</option>
-                                        <option value="EUR" {{ old('devise') == 'EUR' ? 'selected' : '' }}>EUR (€)</option>
-                                        <option value="USD" {{ old('devise') == 'USD' ? 'selected' : '' }}>USD ($)</option>
-                                        <option value="GBP" {{ old('devise') == 'GBP' ? 'selected' : '' }}>GBP (£)</option>
-                                        <option value="CAD" {{ old('devise') == 'CAD' ? 'selected' : '' }}>CAD (C$)</option>
-                                        <option value="AUD" {{ old('devise') == 'AUD' ? 'selected' : '' }}>AUD (A$)</option>
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white" for="devise">Devise <strong>*</strong>:</label>
+                                    <select name="devise" id="devise"
+                                        class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2
+                                        @error('devise') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
+                                        <option value="" disabled {{ old('devise') ? '' : 'selected' }}>-- Sélectionner une devise --</option>
+                                        <option value="XOF" {{ old('devise') == 'XOF' ? 'selected' : '' }}>Franc CFA (XOF)</option>
+                                        <option value="EUR" {{ old('devise') == 'EUR' ? 'selected' : '' }}>Euro (EUR)</option>
+                                        <option value="USD" {{ old('devise') == 'USD' ? 'selected' : '' }}>Dollar (USD)</option>
                                     </select>
                                     @error('devise')
                                         <span class="text-red-600 text-sm">{{ $message }}</span>
                                     @enderror
                                 </div>
 
-                                <div class="md:col-span-4 col-span-12">
-                                    <label for="idPolitiqueAnnulation" class="font-medium text-slate-900 dark:text-white">Politique d'annulation:</label>
-                                    <select name="idPolitiqueAnnulation" id="idPolitiqueAnnulation" class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('idPolitiqueAnnulation') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
-                                        <option value="" selected>Aucune</option>
-                                        @foreach($politiques as $politique)
-                                            <option value="{{ $politique->id }}" {{ old('idPolitiqueAnnulation') == $politique->id ? 'selected' : '' }}>{{ $politique->nom }}</option>
-                                        @endforeach
-                                    </select>
-                                    @error('idPolitiqueAnnulation')
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white" for="stock">Stock / Nombre disponible <strong>*</strong>:</label>
+                                    <input type="number" name="stock" id="stock" value="{{ old('stock') }}"
+                                        class="form-input w-full border border-gray-300 dark:border-gray-600 rounded-md p-2
+                                        @error('stock') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
+                                    @error('stock')
                                         <span class="text-red-600 text-sm">{{ $message }}</span>
                                     @enderror
                                 </div>
 
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white" for="capaciteMax">Capacité maximale <strong>*</strong>:</label>
+                                    <input type="number" name="capaciteMax" id="capaciteMax" value="{{ old('capaciteMax') }}"
+                                        class="form-input w-full border border-gray-300 dark:border-gray-600 rounded-md p-2
+                                        @error('capaciteMax') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
+                                    @error('capaciteMax')
+                                        <span class="text-red-600 text-sm">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white" for="idTypeChambre">Type de chambre <strong>*</strong>:</label>
+                                    <select name="idTypeChambre" id="idTypeChambre"
+                                        class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2
+                                        @error('idTypeChambre') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
+                                        <option value="" disabled {{ old('idTypeChambre') ? '' : 'selected' }}>-- Sélectionner un type --</option>
+                                        @foreach($typesChambres as $type)
+                                            <option value="{{ $type->id }}" {{ old('idTypeChambre') == $type->id ? 'selected' : '' }}>{{ $type->nomType }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('idTypeChambre')
+                                        <span class="text-red-600 text-sm">{{ $message }}</span>
+                                    @enderror
+                                </div>
                                 <div class="md:col-span-4 col-span-12">
                                     <label for="ville" class="font-medium text-slate-900 dark:text-white">Ville <strong>*</strong>:</label>
                                     <input name="ville" id="ville" type="text" class="form-input mt-2 @error('ville') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Ville" value="{{ old('ville') }}" required readonly>
@@ -197,129 +191,21 @@
                                     </button>
                                 </div>
 
-                                <div class="md:col-span-4 col-span-12">
-                                    <label for="codePostal" class="font-medium text-slate-900 dark:text-white">Code postal :</label>
-                                    <input name="codePostal" id="codePostal" type="text" class="form-input mt-2 @error('codePostal') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Code postal" value="{{ old('codePostal') }}">
-                                    @error('codePostal')
-                                        <span class="text-red-600 text-sm">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="md:col-span-4 col-span-12">
-                                    <label for="nombreSallesDeBain" class="font-medium text-slate-900 dark:text-white">Nombre de salles de bain <strong>*</strong>:</label>
-                                    <input name="nombreSallesDeBain" id="nombreSallesDeBain" type="number" class="form-input mt-2 @error('nombreSallesDeBain') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="0" value="{{ old('nombreSallesDeBain') }}" required>
-                                    @error('nombreSallesDeBain')
-                                        <span class="text-red-600 text-sm">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="md:col-span-4 col-span-12">
-                                    <label for="nombreChambres" class="font-medium text-slate-900 dark:text-white">Nombre de chambres <strong>*</strong>:</label>
-                                    <div class="form-icon relative mt-2">
-                                        <i class="bi bi-door-open absolute top-3 start-4 text-green-600"></i>
-                                        <input name="nombreChambres" id="nombreChambres" type="number" class="form-input ps-11 @error('nombreChambres') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="0" value="{{ old('nombreChambres') }}" required>
-                                    </div>
-                                    @error('nombreChambres')
-                                        <span class="text-red-600 text-sm">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="md:col-span-4 col-span-12">
-                                    <label for="capaciteMax" class="font-medium text-slate-900 dark:text-white">Capacité maximum <strong>*</strong>:</label>
-                                    <div class="form-icon relative mt-2">
-                                        <i class="bi bi-person absolute top-3 start-4 text-green-600"></i>
-                                        <input name="capaciteMax" id="capaciteMax" type="number" class="form-input ps-11 @error('capaciteMax') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="1" value="{{ old('capaciteMax') }}" required>
-                                    </div>
-                                    @error('capaciteMax')
-                                        <span class="text-red-600 text-sm">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="md:col-span-4 col-span-12">
-                                    <label for="heureArrivee" class="font-medium text-slate-900 dark:text-white">Heure de check-in :</label>
-                                    <input name="heureArrivee" id="heureArrivee" type="time" class="form-input mt-2 @error('heureArrivee') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" value="{{ old('heureArrivee') }}">
-                                    @error('heureArrivee')
-                                        <span class="text-red-600 text-sm">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="md:col-span-4 col-span-12">
-                                    <label for="heureDepart" class="font-medium text-slate-900 dark:text-white">Heure de check-out :</label>
-                                    <input name="heureDepart" id="heureDepart" type="time" class="form-input mt-2 @error('heureDepart') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" value="{{ old('heureDepart') }}">
-                                    @error('heureDepart')
-                                        <span class="text-red-600 text-sm">{{ $message }}</span>
-                                    @enderror
-                                </div>
-
-                                <div class="col-span-12">
-                                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white">Équipements :</label>
-                                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                                        @foreach($equipements as $equipement)
-                                            <div class="flex items-center">
-                                                <input type="checkbox" name="equipements[]" id="equipement_{{ $equipement->id }}" value="{{ $equipement->id }}" class="form-checkbox @error('equipements') border-red-500 @enderror text-green-600 bg-gray-100 dark:bg-slate-700 border-gray-300 dark:border-gray-600 focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-slate-800">
-                                                <label for="equipement_{{ $equipement->id }}" class="ms-2 text-slate-900 dark:text-white">{{ $equipement->nom }}</label>
-                                            </div>
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white" for="idPolitiqueAnnulation">Politique d'annulation :</label>
+                                    <select name="idPolitiqueAnnulation" id="idPolitiqueAnnulation"
+                                        class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2
+                                        @error('idPolitiqueAnnulation') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+                                        <option value="" disabled {{ old('idPolitiqueAnnulation') ? '' : 'selected' }}>-- Sélectionner une politique --</option>
+                                        @foreach($politiquesAnnulation as $politique)
+                                            <option value="{{ $politique->id }}" {{ old('idPolitiqueAnnulation') == $politique->id ? 'selected' : '' }}>{{ $politique->nom }}</option>
                                         @endforeach
-                                    </div>
-                                    @error('equipements')
+                                    </select>
+                                    @error('idPolitiqueAnnulation')
                                         <span class="text-red-600 text-sm">{{ $message }}</span>
                                     @enderror
                                 </div>
 
-                                <div class="col-span-12">
-                                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white">Numéros de téléphone :</label>
-                                    <div id="telephones-container">
-                                        <div class="grid grid-cols-12 gap-2 mb-2">
-                                            <div class="md:col-span-4 col-span-4">
-                                                <input name="telephones[0][numero]" type="text" class="form-input @error('telephones.0.numero') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="+2250700000000" value="{{ old('telephones.0.numero') }}">
-                                                @error('telephones.0.numero')
-                                                    <span class="text-red-600 text-sm">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                            {{-- If you had a remove button here for the first one, it would go here --}}
-                                        </div>
-                                    </div>
-                                    @error('telephones.*.numero')
-                                        <span class="text-red-600 text-sm">{{ $message }}</span>
-                                    @enderror
-                                    <button type="button" id="add-telephone" class="btn bg-white dark:bg-slate-700 text-gray-800 dark:text-white border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-slate-600 rounded-md mt-2">
-                                        Ajouter un numéro
-                                    </button>
-                                </div>
-
-
-                                <div class="col-span-12">
-                                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white">Prix saisonniers (optionnel) :</label>
-                                    <div id="prix-saisonniers-container">
-                                        <div class="grid grid-cols-12 gap-2 mb-2">
-                                            <div class="md:col-span-4 col-span-12">
-                                                <label class="font-semibold block mb-2 text-slate-900 dark:text-white">Date de début :</label>
-                                                <input name="prixSaisonniers[0][dateDebut]" type="date" class="form-input @error('prixSaisonniers.0.dateDebut') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Date de début" value="{{ old('prixSaisonniers.0.dateDebut') }}">
-                                                @error('prixSaisonniers.0.dateDebut')
-                                                    <span class="text-red-600 text-sm">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                            <div class="md:col-span-4 col-span-12">
-                                                <label class="font-semibold block mb-2 text-slate-900 dark:text-white">Date de fin:</label>
-                                                <input type="date" name="prixSaisonniers[0][dateFin]" class="form-input @error('prixSaisonniers.0.dateFin') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Date de fin" value="{{ old('prixSaisonniers.0.dateFin') }}">
-                                                @error('prixSaisonniers.0.dateFin')
-                                                    <span class="text-red-600 text-sm">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                            <div class="md:col-span-4 col-span-12">
-                                                <label class="font-semibold block mb-2 text-slate-900 dark:text-white">Prix par nuit :</label>
-                                                <input type="number" step="0.01" name="prixSaisonniers[0][prixParNuit]" class="form-input @error('prixSaisonniers.0.prixParNuit') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white border-gray-300 dark:border-gray-600" placeholder="Prix par nuit" value="{{ old('prixSaisonniers.0.prixParNuit') }}">
-                                                @error('prixSaisonniers.0.prixParNuit')
-                                                    <span class="text-red-600 text-sm">{{ $message }}</span>
-                                                @enderror
-                                            </div>
-                                            {{-- If you had a remove button here for the first one, it would go here --}}
-                                        </div>
-                                    </div>
-                                    <button type="button" id="add-prix-saison" class="btn bg-white dark:bg-slate-700 text-gray-800 dark:text-white border border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-slate-600 rounded-md mt-2">
-                                        Ajouter une période
-                                    </button>
-                                </div>
                                 <div class="col-span-12">
                                    <p class="font-medium mb-4 text-slate-900 dark:text-white"> <strong>NB:</strong>  Tous les champs avec <strong>(*)</strong> sont obligatoires.</p>
                                 </div>
@@ -580,7 +466,7 @@
             const top = (screen.height / 2) - (height / 2);
 
             const mapWindow = window.open(
-                "/partenaire/popup-localisation", // à créer dans Laravel
+                "/partenaire/localisation-popup-chambre", // à créer dans Laravel
                 "Localisation",
                 `width=${width},height=${height},top=${top},left=${left}`
             );

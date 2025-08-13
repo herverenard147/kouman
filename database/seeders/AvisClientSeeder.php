@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\AvisClient;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -22,7 +21,7 @@ class AvisClientSeeder extends Seeder
         ];
 
         foreach ($avisClients as $avis) {
-            AvisClient::create(array_merge($avis, ['created_at' => now(), 'updated_at' => now()]));
+            // AvisClient::create(array_merge($avis, ['created_at' => now(), 'updated_at' => now()]));
         }
     }
 }

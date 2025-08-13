@@ -34,7 +34,7 @@
                             <a href="#" class="text-[22px] focus:outline-none">
                                 <img src="{{ asset('client/assets/images/logoG.ico') }}" alt="">
                             </a>
-                            <p class="mt-6 text-gray-300">Une excellente plateforme pour acheter, vendre et louer vos biens sans agent ni commission.</p>
+                            <p class="mt-6 text-gray-300">Une excellente plateforme pour vendre et louer vos biens sans agent ni commission.</p>
                         </div><!-- fin colonne -->
 
                         <div class="lg:col-span-2 md:col-span-4">

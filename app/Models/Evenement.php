@@ -22,22 +22,22 @@ class Evenement extends Model
 
     public function images()
     {
-        return $this->hasMany(ImageEvenement::class, 'idEvenement', 'idEvenement');
+        return $this->hasMany(ImageEvenement::class, 'idEvenement');
     }
 
     public function partenaire()
     {
-        return $this->belongsTo(Partenaire::class, 'partenaire_id', 'idPartenaire');
+        return $this->belongsTo(Partenaire::class, 'partenaire_id');
     }
 
     public function localisation()
     {
-        return $this->belongsTo(Localisations::class, 'localisation_id', 'idLocalisation');
+        return $this->belongsTo(Localisations::class, 'localisation_id');
     }
 
     public function dates()
     {
-        return $this->hasMany(EvenementDate::class, 'idEvenement', 'idEvenement');
+        return $this->hasMany(EvenementDate::class, 'idEvenement');
     }
 
     public function equipements()

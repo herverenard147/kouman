@@ -50,17 +50,11 @@ class Client extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Commande::class);
     }
 
-
-
     public function avis()
     {
         return $this->hasMany(Avis::class, 'client_id');
     }
 
-    public function avisClient()
-    {
-        return $this->hasMany(AvisClient::class, 'client_id');
-    }
 
     public function notifications()
     {
