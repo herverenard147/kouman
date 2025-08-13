@@ -79,12 +79,27 @@ class ClientController extends Controller
 
     public function destroy($id)
     {
-        // Suppression
+        $client = Client::findOrFail($id);
+
+        // Supprimer la photo de profil si elle existe
+        if ($client->photo_profil && Storage::exists($client->photo_profil)) {
+            Storage::delete($client->photo_profil);
+        }
+
+        // Supprimer le client
+        $client->delete();
+
+        return redirect()->route('admin.clients.index')
+            ->with('success', 'Client supprimé avec succès.');
     }
+
 
     public function orders($id)
     {
-        $client = Client::with('commandes.produits')->findOrFail($id);
-        return view('admin.client.orders', compact('client'));
+        $client = Client::findOrFail($id);
+
+        $commandes = $client->commandes()->with('produits')->orderBy('created_at', 'desc')->paginate(10);
+
+        return view('admin.client.orders', compact('client', 'commandes'));
     }
 }

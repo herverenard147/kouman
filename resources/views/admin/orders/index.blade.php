@@ -2,23 +2,31 @@
 @section('title', 'Toutes les commandes')
 
 @section('content')
-<div class="min-h-screen bg-gray-100 dark:bg-gray-900 pt-16 pb-12">
-    <div class="container mx-auto px-6 max-w-7xl py-16">
-        <header class="mb-8">
-            <h1 class="text-4xl font-extrabold dark:text-black">
-                Toutes les commandes
-            </h1>
-            <hr class="mt-3 border-gray-300 dark:border-gray-700" />
-        </header>
+<div class="container-fluid relative px-3 bg-white dark:bg-slate-900 min-h-screen pt-16 pb-12">
+    <div class="container mx-auto px-4 max-w-7xl py-16">
+        {{-- En-tête avec titre + fil d'Ariane --}}
+        <div class="md:flex justify-between items-center mb-8">
+            <h5 class="text-lg font-semibold text-slate-900 dark:text-white">Toutes les commandes</h5>
+
+            <ul class="tracking-[0.5px] inline-block sm:mt-0 mt-3">
+                <li class="inline-block capitalize text-[16px] font-medium duration-500 text-slate-700 dark:text-gray-300 hover:text-green-600">
+                    <a href="{{ route('admin.dashboard') }}">Afrique évasion</a>
+                </li>
+                <li class="inline-block text-base mx-0.5 ltr:rotate-0 rtl:rotate-180 text-gray-500 dark:text-gray-400">
+                    <i class="mdi mdi-chevron-right"></i>
+                </li>
+                <li class="inline-block capitalize text-[16px] font-medium text-green-600" aria-current="page">Toutes les commandes</li>
+            </ul>
+        </div>
 
         @if($commandes->isEmpty())
-        <div class="max-w-md mx-auto p-6 bg-red-100 text-red-800 rounded-md shadow-md text-center">
+        <div class="max-w-md mx-auto p-6 bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-400 rounded-md shadow-md text-center">
             <p class="text-lg font-medium">Aucune commande trouvée.</p>
         </div>
         @else
         <div class="overflow-x-auto rounded-lg shadow border border-gray-300 dark:border-gray-700">
             <table class="min-w-full table-auto border-collapse text-gray-800 dark:text-gray-200">
-                <thead class="bg-gray-200 dark:bg-gray-800 text-left">
+                <thead class="bg-gray-200 dark:bg-slate-800 text-left">
                     <tr>
                         <th class="px-4 py-3 border-b border-gray-300 dark:border-gray-700">Référence</th>
                         <th class="px-4 py-3 border-b border-gray-300 dark:border-gray-700">Date</th>
@@ -36,15 +44,15 @@
                         <td class="px-4 py-3 border-b border-gray-300 dark:border-gray-700">
                             @if($commande->client)
                             <a href="{{ route('admin.clients.orders', $commande->client->id) }}"
-                                class="font-semibold text-blue-600 hover:underline">
+                                class="font-semibold text-blue-600 dark:text-blue-400 hover:underline">
                                 {{ $commande->client->nom ?? 'Nom non renseigné' }} {{ $commande->client->prenom ?? '' }}
                             </a>
                             <br>
-                            <a href="mailto:{{ $commande->client->email ?? '' }}" class="text-blue-600 hover:underline">
+                            <a href="mailto:{{ $commande->client->email ?? '' }}" class="text-blue-600 dark:text-blue-400 hover:underline">
                                 {{ $commande->client->email ?? 'Email non renseigné' }}
                             </a>
                             @else
-                            <span class="italic text-gray-500">Client non trouvé</span>
+                            <span class="italic text-gray-500 dark:text-gray-400">Client non trouvé</span>
                             @endif
                         </td>
 
@@ -55,7 +63,7 @@
                                 @endphp
                                 @foreach($partenaires as $partenaire)
                                 <a href="{{ route('admin.partners.orders', $partenaire->id) }}"
-                                    class="italic text-blue-600 hover:underline">
+                                    class="italic text-blue-600 dark:text-blue-400 hover:underline">
                                     {{ $partenaire->nom_entreprise ?? 'Nom non renseigné' }}
                                 </a>
                                 @endforeach
