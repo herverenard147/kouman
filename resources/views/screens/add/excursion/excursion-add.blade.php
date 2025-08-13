@@ -86,6 +86,8 @@
                                     <label for="langues" class="font-semibold text-slate-900 dark:text-white mb-2 inline-block">Langues parlées :</label>
 
                                     <select id="langues"
+                                    name="langues[]"
+                                    multiple
                                             class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('langues') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
                                         <option value="">-- Choisir une/plusieurs langue(s) --</option>
                                         @foreach($langues as $langue)
