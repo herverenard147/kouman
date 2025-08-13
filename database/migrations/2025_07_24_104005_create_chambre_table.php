@@ -16,7 +16,7 @@ return new class extends Migration
              $table->string('numero', 50); // Numéro ou nom de la chambre
             $table->text('description')->nullable();
             $table->decimal('prixParNuit', 10, 2)->nullable();
-            $table->string('devise', 10)->default('XOF');
+            $table->string('devise', 10)->default('CFA');
             $table->integer('stock')->default(1);
             $table->integer('capaciteMax')->default(1);
             $table->integer('nombreLits')->default(1);
