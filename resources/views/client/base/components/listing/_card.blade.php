@@ -91,12 +91,15 @@
         $categorie = strtolower($item['categorie'] ?? '');
         $stock = isset($item['stock']) ? (int) $item['stock'] : null;
         $places = isset($item['placesDisponibles']) ? (int) $item['placesDisponibles'] : null;
+        $capaciteMax = isset($item['capaciteMax']) ? (int) $item['capaciteMax'] : null;
 
         $isAvailable = true;
         if ($categorie === 'vol') {
         $isAvailable = $places !== null && $places > 0;
-        } elseif (in_array($categorie, ['hebergement', 'excursion', 'evenement'])) {
-        $isAvailable = $stock !== null && $stock > 0;
+        }  elseif (in_array($categorie, ['hebergement', 'evenement'])) {
+            $isAvailable = $stock !== null && $stock > 0;
+        } elseif (in_array($categorie, ['excursion'])) {
+            $isAvailable = $capaciteMax !== null && $capaciteMax > 0;
         }
         @endphp
 

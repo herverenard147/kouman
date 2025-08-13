@@ -327,13 +327,156 @@
 @push('scripts')
     <script>
 
+
+    // const selectedFiles = [];
+    // const maxImages = 10;
+    // const maxSize = 10 * 1024 * 1024; // 10MB
+    // const previewBox = document.getElementById('preview-box');
+    // const inputFile = document.getElementById('input-file');
+    // const errorContainer = document.getElementById('image-errors');
+
+    // function handleImageChange() {
+    //     const newFiles = Array.from(inputFile.files);
+    //     const currentCount = selectedFiles.length;
+    //     const errors = [];
+
+    //     // Valider chaque fichier individuellement
+    //     const validFiles = newFiles.filter(file => {
+    //         if (selectedFiles.some(f => f.name === file.name && f.size === file.size)) {
+    //             errors.push(`Le fichier "${file.name}" est déjà sélectionné.`);
+    //             return false;
+    //         }
+    //         if (!['image/jpeg', 'image/png'].includes(file.type)) {
+    //             errors.push(`Le fichier "${file.name}" doit être au format JPG ou PNG.`);
+    //             return false;
+    //         }
+    //         if (file.size > maxSize) {
+    //             errors.push(`Le fichier "${file.name}" dépasse la taille maximale de 10MB.`);
+    //             return false;
+    //         }
+    //         return true;
+    //     });
+
+    //     // Vérifier la limite totale
+    //     if (currentCount + validFiles.length > maxImages) {
+    //         const allowedCount = maxImages - currentCount;
+    //         if (allowedCount > 0) {
+    //             validFiles.splice(allowedCount);
+    //             errors.push(`Seules les ${allowedCount} premières images valides ont été ajoutées (limite de ${maxImages} images).`);
+    //         } else {
+    //             errors.push(`La limite de ${maxImages} images est atteinte.`);
+    //             validFiles.length = 0;
+    //         }
+    //     }
+
+    //     // Afficher les erreurs
+    //     displayErrors(errors);
+
+    //     // Ajouter les fichiers valides
+    //     validFiles.forEach(file => {
+    //         selectedFiles.push(file);
+    //         addImageToPreview(file);
+    //     });
+
+    //     updateInputFiles();
+    //     inputFile.value = '';
+    // }
+
+    // function addImageToPreview(file) {
+    //     if (selectedFiles.length === 1 && previewBox.children.length === 0) {
+    //         previewBox.innerHTML = '';
+    //     }
+
+    //     const wrapper = document.createElement('div');
+    //     wrapper.className = 'relative rounded border border-gray-300 p-1 bg-white shadow max-w-[150px] image-preview';
+    //     wrapper.dataset.index = selectedFiles.length - 1;
+
+    //     const deleteBtn = document.createElement('button');
+    //     deleteBtn.innerHTML = '✕';
+    //     deleteBtn.className = 'absolute top-1 left-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600';
+    //     deleteBtn.type = 'button';
+
+    //     const img = document.createElement('img');
+    //     img.className = 'w-full h-auto object-cover rounded';
+    //     img.src = URL.createObjectURL(file);
+    //     img.onload = () => URL.revokeObjectURL(img.src);
+
+    //     if (selectedFiles.length === 1 && previewBox.children.length === 0) {
+    //         const principalBadge = document.createElement('span');
+    //         principalBadge.className = 'absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded principal-badge';
+    //         principalBadge.textContent = 'Principale';
+    //         wrapper.appendChild(principalBadge);
+    //     }
+
+    //     wrapper.appendChild(deleteBtn);
+    //     wrapper.appendChild(img);
+    //     previewBox.appendChild(wrapper);
+
+    //     deleteBtn.addEventListener('click', () => {
+    //         const index = parseInt(wrapper.dataset.index);
+    //         selectedFiles.splice(index, 1);
+    //         wrapper.remove();
+
+    //         updatePreviewIndices();
+    //         updatePrincipalBadge();
+
+    //         if (selectedFiles.length === 0 && previewBox.children.length === 0) {
+    //             previewBox.innerHTML = 'Supports JPG et PNG. Taille max : 10MB.';
+    //         }
+
+    //         updateInputFiles();
+    //     });
+
+    //     updatePrincipalBadge();
+    // }
+
+    // function updatePreviewIndices() {
+    //     const wrappers = previewBox.querySelectorAll('.image-preview');
+    //     wrappers.forEach((wrapper, index) => {
+    //         wrapper.dataset.index = index;
+    //     });
+    // }
+
+    // function updatePrincipalBadge() {
+    //     previewBox.querySelectorAll('.principal-badge').forEach(badge => badge.remove());
+    //     const firstWrapper = previewBox.querySelector('.image-preview');
+    //     if (firstWrapper) {
+    //         const principalBadge = document.createElement('span');
+    //         principalBadge.className = 'absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded principal-badge';
+    //         principalBadge.textContent = 'Principale';
+    //         firstWrapper.appendChild(principalBadge);
+    //     }
+    // }
+
+    // function updateInputFiles() {
+    //     const dataTransfer = new DataTransfer();
+    //     selectedFiles.forEach(file => dataTransfer.items.add(file));
+    //     inputFile.files = dataTransfer.files;
+    //     console.log('Input files updated:', inputFile.files);
+    // }
+
+    // function displayErrors(errors) {
+    //     errorContainer.innerHTML = '';
+    //     if (errors.length > 0) {
+    //         const ul = document.createElement('ul');
+    //         ul.className = 'list-disc pl-5';
+    //         errors.forEach(error => {
+    //             const li = document.createElement('li');
+    //             li.textContent = error;
+    //             ul.appendChild(li);
+    //         });
+    //         errorContainer.appendChild(ul);
+    //     }
+    // }
+
     // LANGUES
+
     const selectLangues = document.getElementById("langues");
     const hiddenInput = document.getElementById("langues_input");
     const listContainer = document.getElementById("langues_list");
 
 
-        let languesSelectionnees = [];
+    let languesSelectionnees = [];
     selectLangues.addEventListener("change", function () {
         const selectedId = this.value;
         const selectedText = this.options[this.selectedIndex].text;
@@ -364,146 +507,123 @@
     });
 
 
-    const selectedFiles = [];
-    const maxImages = 10;
-    const maxSize = 10 * 1024 * 1024; // 10MB
-    const previewBox = document.getElementById('preview-box');
-    const inputFile = document.getElementById('input-file');
-    const errorContainer = document.getElementById('image-errors');
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('form-hebergement');
+        const inputFile = document.getElementById('input-file');
+        const previewBox = document.getElementById('preview-box');
+        const errorContainer = document.getElementById('image-errors');
 
-    function handleImageChange() {
-        const newFiles = Array.from(inputFile.files);
-        const currentCount = selectedFiles.length;
-        const errors = [];
+        const maxImages = 10;
+        const maxSize = 10 * 1024 * 1024;
+        let selectedFiles = [];
 
-        // Valider chaque fichier individuellement
-        const validFiles = newFiles.filter(file => {
-            if (selectedFiles.some(f => f.name === file.name && f.size === file.size)) {
-                errors.push(`Le fichier "${file.name}" est déjà sélectionné.`);
-                return false;
-            }
-            if (!['image/jpeg', 'image/png'].includes(file.type)) {
-                errors.push(`Le fichier "${file.name}" doit être au format JPG ou PNG.`);
-                return false;
-            }
-            if (file.size > maxSize) {
-                errors.push(`Le fichier "${file.name}" dépasse la taille maximale de 10MB.`);
-                return false;
-            }
-            return true;
+        inputFile.addEventListener('change', handleImageChange);
+        form.addEventListener('submit', function (e) {
+            injectFilesToForm();
         });
 
-        // Vérifier la limite totale
-        if (currentCount + validFiles.length > maxImages) {
-            const allowedCount = maxImages - currentCount;
-            if (allowedCount > 0) {
-                validFiles.splice(allowedCount);
-                errors.push(`Seules les ${allowedCount} premières images valides ont été ajoutées (limite de ${maxImages} images).`);
-            } else {
-                errors.push(`La limite de ${maxImages} images est atteinte.`);
-                validFiles.length = 0;
-            }
-        }
+        function handleImageChange(e) {
+            const files = Array.from(e.target.files);
+            const errors = [];
+            const validFiles = [];
 
-        // Afficher les erreurs
-        displayErrors(errors);
-
-        // Ajouter les fichiers valides
-        validFiles.forEach(file => {
-            selectedFiles.push(file);
-            addImageToPreview(file);
-        });
-
-        updateInputFiles();
-        inputFile.value = '';
-    }
-
-    function addImageToPreview(file) {
-        if (selectedFiles.length === 1 && previewBox.children.length === 0) {
-            previewBox.innerHTML = '';
-        }
-
-        const wrapper = document.createElement('div');
-        wrapper.className = 'relative rounded border border-gray-300 p-1 bg-white shadow max-w-[150px] image-preview';
-        wrapper.dataset.index = selectedFiles.length - 1;
-
-        const deleteBtn = document.createElement('button');
-        deleteBtn.innerHTML = '✕';
-        deleteBtn.className = 'absolute top-1 left-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600';
-        deleteBtn.type = 'button';
-
-        const img = document.createElement('img');
-        img.className = 'w-full h-auto object-cover rounded';
-        img.src = URL.createObjectURL(file);
-        img.onload = () => URL.revokeObjectURL(img.src);
-
-        if (selectedFiles.length === 1 && previewBox.children.length === 0) {
-            const principalBadge = document.createElement('span');
-            principalBadge.className = 'absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded principal-badge';
-            principalBadge.textContent = 'Principale';
-            wrapper.appendChild(principalBadge);
-        }
-
-        wrapper.appendChild(deleteBtn);
-        wrapper.appendChild(img);
-        previewBox.appendChild(wrapper);
-
-        deleteBtn.addEventListener('click', () => {
-            const index = parseInt(wrapper.dataset.index);
-            selectedFiles.splice(index, 1);
-            wrapper.remove();
-
-            updatePreviewIndices();
-            updatePrincipalBadge();
-
-            if (selectedFiles.length === 0 && previewBox.children.length === 0) {
-                previewBox.innerHTML = 'Supports JPG et PNG. Taille max : 10MB.';
+            if (selectedFiles.length + files.length > maxImages) {
+                errors.push(`Vous ne pouvez pas ajouter plus de ${maxImages} images.`);
             }
 
-            updateInputFiles();
-        });
+            for (let file of files) {
+                if (!['image/jpeg', 'image/png', 'image/jpg', 'image/mp4'].includes(file.type)) {
+                    errors.push(`"${file.name}" n'est pas une image valide (JPG/PNG/MP4).`);
+                    continue;
+                }
 
-        updatePrincipalBadge();
-    }
+                if (file.size > maxSize) {
+                    errors.push(`"${file.name}" dépasse 10MB.`);
+                    continue;
+                }
 
-    function updatePreviewIndices() {
-        const wrappers = previewBox.querySelectorAll('.image-preview');
-        wrappers.forEach((wrapper, index) => {
-            wrapper.dataset.index = index;
-        });
-    }
+                if (selectedFiles.find(f => f.name === file.name && f.size === file.size)) {
+                    errors.push(`"${file.name}" est déjà sélectionné.`);
+                    continue;
+                }
 
-    function updatePrincipalBadge() {
-        previewBox.querySelectorAll('.principal-badge').forEach(badge => badge.remove());
-        const firstWrapper = previewBox.querySelector('.image-preview');
-        if (firstWrapper) {
-            const principalBadge = document.createElement('span');
-            principalBadge.className = 'absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded principal-badge';
-            principalBadge.textContent = 'Principale';
-            firstWrapper.appendChild(principalBadge);
-        }
-    }
+                validFiles.push(file);
+            }
 
-    function updateInputFiles() {
-        const dataTransfer = new DataTransfer();
-        selectedFiles.forEach(file => dataTransfer.items.add(file));
-        inputFile.files = dataTransfer.files;
-        console.log('Input files updated:', inputFile.files);
-    }
+            if (errors.length > 0) {
+                displayErrors(errors);
+            }
 
-    function displayErrors(errors) {
-        errorContainer.innerHTML = '';
-        if (errors.length > 0) {
-            const ul = document.createElement('ul');
-            ul.className = 'list-disc pl-5';
-            errors.forEach(error => {
-                const li = document.createElement('li');
-                li.textContent = error;
-                ul.appendChild(li);
+            validFiles.forEach((file, index) => {
+                selectedFiles.push(file);
+                addPreview(file, selectedFiles.length - 1);
             });
-            errorContainer.appendChild(ul);
         }
-    }
+
+        function addPreview(file, index) {
+            if (selectedFiles.length === 1 && previewBox.innerHTML.includes('Supports JPG et PNG')) {
+                previewBox.innerHTML = '';
+            }
+
+            const wrapper = document.createElement('div');
+            wrapper.className = 'relative rounded border border-gray-300 dark:border-gray-600 p-1 bg-white dark:bg-slate-700 shadow max-w-[150px] image-preview';
+            wrapper.dataset.index = index;
+
+            const img = document.createElement('img');
+            img.className = 'w-full h-auto object-cover rounded';
+            img.src = URL.createObjectURL(file);
+            img.onload = () => URL.revokeObjectURL(img.src);
+
+            const deleteBtn = document.createElement('button');
+            deleteBtn.innerHTML = '✕';
+            deleteBtn.className = 'absolute top-1 left-1 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600';
+            deleteBtn.type = 'button';
+            deleteBtn.addEventListener('click', () => {
+                selectedFiles.splice(index, 1);
+                wrapper.remove();
+                refreshPreviews();
+            });
+
+            wrapper.appendChild(deleteBtn);
+            wrapper.appendChild(img);
+
+            if (index === 0) {
+                const badge = document.createElement('span');
+                badge.className = 'absolute bottom-0 left-0 bg-green-600 text-white text-xs px-2 py-1 rounded principal-badge';
+                badge.textContent = 'Principale';
+                wrapper.appendChild(badge);
+            }
+
+            previewBox.appendChild(wrapper);
+        }
+
+        function refreshPreviews() {
+            previewBox.innerHTML = '';
+            selectedFiles.forEach((file, i) => {
+                addPreview(file, i);
+            });
+
+            if (selectedFiles.length === 0) {
+                previewBox.innerHTML = '<p class="text-slate-400 dark:text-gray-300">Supports JPG et PNG. Taille max : 10MB.</p>';
+            }
+        }
+
+        function displayErrors(errors) {
+            errorContainer.innerHTML = '';
+            errors.forEach(msg => {
+                const li = document.createElement('div');
+                li.textContent = msg;
+                errorContainer.appendChild(li);
+            });
+        }
+
+        function injectFilesToForm() {
+            const dataTransfer = new DataTransfer();
+            selectedFiles.forEach(file => dataTransfer.items.add(file));
+            inputFile.files = dataTransfer.files;
+        }
+    });
+
 
     let equipementIndex = 1;
 

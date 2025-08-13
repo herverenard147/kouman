@@ -55,7 +55,7 @@ class ExcursionController extends Controller
 
     public function storeExcursion(Request $request)
     {
-        dd($request->allFiles());
+        // dd($request->allFiles());
         $partenaire = Auth::guard('partenaire')->user();
         if ($request->filled('langues') && is_string($request->langues)) {
             $request->merge([
@@ -196,7 +196,7 @@ class ExcursionController extends Controller
             'latitude' => $request->arrive_latitude,
             'longitude' => $request->arrive_longitude,
         ]))) {
-            $localisationArrivee = Localisations::create([
+            $localisationArrivee = LocalisationArrives::create([
                 'ville' => $request->arrive_ville,
                 'pays' => $request->arrive_pays,
                 'adresse' => $request->arrive_adresse,
@@ -222,8 +222,8 @@ class ExcursionController extends Controller
             'age_minimum' => $request->age_minimum ?? 0,
             'conditions' => $request->conditions,
             'moyens_paiement' => $request->moyens_paiement,
-            'localisation_id' => $localisationDepart ? $localisationDepart->idLocalisation : null,
-            'localisation_idA' => $localisationArrivee ? $localisationArrivee->idLocalisation : null,
+            'localisation_id' => $localisationDepart ? $localisationDepart->id : null,
+            'localisation_idA' => $localisationArrivee ? $localisationArrivee->id : null,
         ]);
 
         if ($request->filled('langues')) {
