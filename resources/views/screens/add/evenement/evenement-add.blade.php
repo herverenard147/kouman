@@ -6,7 +6,7 @@
     <div class="container-fluid relative px-3">
         <div class="layout-specing">
                 <div class="md:flex justify-between items-center">
-                    <h5 class="text-lg font-semibold text-slate-900 dark:text-white">Ajouter une nouvelle excursion</h5>
+                    <h5 class="text-lg font-semibold text-slate-900 dark:text-white">Ajouter un nouveau evenement</h5>
 
                     <ul class="tracking-[0.5px] inline-block sm:mt-0 mt-3">
                         {{-- Lien de fil d'Ariane normal: S'adapte au mode sombre --}}
@@ -152,21 +152,6 @@
                                     <label for="adresse" class="font-medium text-slate-900 dark:text-white">Adresse :</label>
                                     <input name="adresse" id="adresse" type="text" class="form-input mt-2 @error('adresse') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" value="{{ old('adresse') }}" disabled>
                                     @error('adresse')
-                                        <span class="text-red-600 text-sm">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <!-- Équipements -->
-                                <div class="col-span-12">
-                                    <label class="font-medium text-slate-900 dark:text-white">Équipements inclus :</label>
-                                    <div class="mt-2">
-                                        @foreach(\App\Models\Equipement::whereIn('type', ['evenement', 'inclus', 'optionnel'])->orWhereNull('type')->get() as $equipement)
-                                            <label class="inline-flex items-center mr-4">
-                                                <input type="checkbox" name="equipements[]" value="{{ $equipement->idEquipement }}" class="form-checkbox @error('equipements') border-red-500 @enderror text-green-600 bg-gray-100 dark:bg-slate-700 border-gray-300 dark:border-gray-600 focus:ring-green-500 dark:focus:ring-green-600 dark:ring-offset-slate-800" {{ in_array($equipement->idEquipement, old('equipements', [])) ? 'checked' : '' }}>
-                                                <span class="ml-2 text-slate-900 dark:text-white">{{ $equipement->nom }} {{ $equipement->type ? "({$equipement->type})" : '' }}</span>
-                                            </label>
-                                        @endforeach
-                                    </div>
-                                    @error('equipements')
                                         <span class="text-red-600 text-sm">{{ $message }}</span>
                                     @enderror
                                 </div>

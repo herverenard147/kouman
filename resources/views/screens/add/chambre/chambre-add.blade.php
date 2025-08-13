@@ -103,7 +103,7 @@
                                         class="form-select w-full border border-gray-300 dark:border-gray-600 rounded-md p-2
                                         @error('devise') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
                                         <option value="" disabled {{ old('devise') ? '' : 'selected' }}>-- Sélectionner une devise --</option>
-                                        <option value="XOF" {{ old('devise') == 'XOF' ? 'selected' : '' }}>Franc CFA (XOF)</option>
+                                        <option value="CFA" {{ old('devise') == 'CFA' ? 'selected' : '' }}>Franc CFA (CFA)</option>
                                         <option value="EUR" {{ old('devise') == 'EUR' ? 'selected' : '' }}>Euro (EUR)</option>
                                         <option value="USD" {{ old('devise') == 'USD' ? 'selected' : '' }}>Dollar (USD)</option>
                                     </select>
@@ -118,6 +118,16 @@
                                         class="form-input w-full border border-gray-300 dark:border-gray-600 rounded-md p-2
                                         @error('stock') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
                                     @error('stock')
+                                        <span class="text-red-600 text-sm">{{ $message }}</span>
+                                    @enderror
+                                </div>
+
+                                <div class="md:col-span-6 col-span-12">
+                                    <label class="font-semibold block mb-2 text-slate-900 dark:text-white" for="nombreLits">Nombre de lit <strong>*</strong>:</label>
+                                    <input type="number" name="nombreLits" id="nombreLits" value="{{ old('nombreLits') }}"
+                                        class="form-input w-full border border-gray-300 dark:border-gray-600 rounded-md p-2
+                                        @error('nombreLits') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white" required>
+                                    @error('nombreLits')
                                         <span class="text-red-600 text-sm">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -204,6 +214,17 @@
                                     @error('idPolitiqueAnnulation')
                                         <span class="text-red-600 text-sm">{{ $message }}</span>
                                     @enderror
+                                </div>
+                                {{-- Statut --}}
+                                <div class="col-span-6">
+                                    <label for="statut" class="font-medium text-slate-900 dark:text-white">Statut :</label>
+                                    <select id="statut"
+                                            class="form-select mt-2 w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('statut') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
+                                        <option value="active" selected>Active</option>
+                                        <option value="annulee">Annulée</option>
+                                        <option value="brouillon">Brouillon</option>
+                                    </select>
+                                    @error('statut') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                                 </div>
 
                                 <div class="col-span-12">

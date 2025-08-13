@@ -40,10 +40,6 @@ class Evenement extends Model
         return $this->hasMany(EvenementDate::class, 'idEvenement');
     }
 
-    public function equipements()
-    {
-        return $this->belongsToMany(Equipement::class, 'equipements_evenements', 'idEvenement', 'idEquipement');
-    }
     public function telephones()
     {
         return $this->morphMany(Telephone::class, 'phoneable');

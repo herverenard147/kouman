@@ -19,8 +19,8 @@ return new class extends Migration
             $table->decimal('prix', 10, 2);
             $table->string('devise', 3);
             $table->integer('capacite_max')->unsigned()->default(1);
-            
-            $table->enum('statut', ['brouillon', 'actif', 'complet', 'annule'])->default('brouillon');
+
+            $table->enum('statut', ['brouillon', 'actif', 'annule'])->default('brouillon');
             $table->timestamps();
         });
     }
