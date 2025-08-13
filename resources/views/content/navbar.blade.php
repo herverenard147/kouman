@@ -41,8 +41,7 @@
                 <li class="dropdown inline-block relative">
                     <button data-dropdown-toggle="dropdown" class="dropdown-toggle size-8 inline-flex items-center justify-center tracking-wide align-middle duration-500 text-[20px] text-center bg-gray-50 hover:bg-gray-100 border border-gray-100 text-slate-900
                         dark:bg-slate-800 dark:hover:bg-slate-700 dark:border-slate-700 dark:text-white rounded-md" type="button">
-                        <span class="me-2">{{ $admin->nom }}</span>
-                        <img src="{{ asset('images/admin-avatar.png') }}" class="rounded-md size-8" alt="Admin Avatar">
+                        <img src="{{ asset('images/client/logouser2.png') }}" class="rounded-md size-8" alt="Admin Avatar">
                     </button>
                     <div class="dropdown-menu absolute end-0 m-0 mt-4 z-10 w-44 rounded-md overflow-hidden bg-white shadow hidden dark:bg-slate-800" onclick="event.stopPropagation();">
                         <ul class="py-2 text-start">
