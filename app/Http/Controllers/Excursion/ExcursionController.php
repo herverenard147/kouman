@@ -34,7 +34,7 @@ class ExcursionController extends Controller
         // $serviceIds = $excursions->flatMap(function ($excursion) {
         //     return $excursion->avis->pluck('idExcursion');
         // })->unique()->values();
-        dd($excursions);
+        // dd($excursions);
         return view('screens.add.excursion.excursion', compact('excursions'));
     }
 
@@ -55,9 +55,13 @@ class ExcursionController extends Controller
 
     public function storeExcursion(Request $request)
     {
-        // dd($request->all());
+        dd($request->allFiles());
         $partenaire = Auth::guard('partenaire')->user();
-
+        if ($request->filled('langues') && is_string($request->langues)) {
+            $request->merge([
+                'langues' => explode(',', $request->langues),
+            ]);
+        }
         $validated = $request->validate([
             'titre' => [
                 'required', 'string', 'max:150',
@@ -92,8 +96,10 @@ class ExcursionController extends Controller
             'images.*' => 'required|image|mimes:jpeg,png|max:10240',
             'itineraire' => 'nullable|string',
             'nom_guide' => 'nullable|string|max:150',
-            'langues' => 'nullable|string',
-            'langues.*' => 'string|max:50',
+
+            // Validation pour un tableau d'IDs de langues
+            'langues' => 'nullable|array',
+            'langues.*' => 'exists:langues,id',
             'recurrence' => 'nullable|in:ponctuelle,quotidienne,hebdomadaire,mensuelle',
             'age_minimum' => 'nullable|integer|min:0',
             'conditions' => 'nullable|string',
@@ -101,7 +107,104 @@ class ExcursionController extends Controller
             'paiements.*' => 'string|max:50',
             'moyens_paiement' => 'nullable|string',
             'telephones.*.numero' => ['required', 'phone:CI,FR,US', 'distinct', 'max:20'],
+        ],
+[
+            'titre.required' => 'Le titre est obligatoire.',
+            'titre.string' => 'Le titre doit être une chaîne de caractères.',
+            'titre.max' => 'Le titre ne doit pas dépasser 150 caractères.',
+            'titre.unique' => 'Ce titre existe déjà pour ce partenaire.',
+
+            'date.required' => 'La date est obligatoire.',
+            'date.date' => 'La date doit être une date valide.',
+            'date.after_or_equal' => 'La date doit être aujourd’hui ou ultérieure.',
+
+            'heure_debut.required' => 'L’heure de début est obligatoire.',
+            'heure_debut.date_format' => 'L’heure doit être au format HH:MM.',
+
+            'duree.required' => 'La durée est obligatoire.',
+            'duree.numeric' => 'La durée doit être un nombre.',
+            'duree.min' => 'La durée minimale est de 0,5 heure.',
+            'duree.max' => 'La durée maximale est de 24 heures.',
+
+            'prix.required' => 'Le prix est obligatoire.',
+            'prix.numeric' => 'Le prix doit être un nombre.',
+            'prix.min' => 'Le prix doit être supérieur ou égal à 0.',
+
+            'devise.required' => 'La devise est obligatoire.',
+            'devise.in' => 'La devise doit être CFA, EUR, USD, GBP, CAD ou AUD.',
+
+            'capacite_max.required' => 'La capacité maximale est obligatoire.',
+            'capacite_max.integer' => 'La capacité maximale doit être un entier.',
+            'capacite_max.min' => 'La capacité minimale est de 1.',
+
+            'depart_adresse.required' => 'L’adresse de départ est obligatoire.',
+            'arrive_adresse.required' => 'L’adresse d’arrivée est obligatoire.',
+
+            'equipements.*.nom.required' => 'Le nom de chaque équipement est obligatoire.',
+            'equipements.*.nom.string' => 'Le nom de l’équipement doit être une chaîne de caractères.',
+            'equipements.*.nom.max' => 'Le nom de l’équipement ne doit pas dépasser 255 caractères.',
+
+            'images.*.required' => 'Chaque image est obligatoire.',
+            'images.*.image' => 'Le fichier doit être une image.',
+            'images.*.mimes' => 'L’image doit être au format jpeg ou png.',
+            'images.*.max' => 'Chaque image ne doit pas dépasser 10 Mo.',
+
+            'langues.array' => 'Les langues doivent être envoyées sous forme de tableau.',
+            'langues.*.exists' => 'La langue sélectionnée est invalide.',
+
+            'recurrence.in' => 'La récurrence doit être ponctuelle, quotidienne, hebdomadaire ou mensuelle.',
+
+            'age_minimum.integer' => 'L’âge minimum doit être un entier.',
+            'age_minimum.min' => 'L’âge minimum ne peut pas être négatif.',
+
+            'paiements.array' => 'Les paiements doivent être envoyés sous forme de tableau.',
+            'paiements.*.string' => 'Chaque mode de paiement doit être une chaîne de caractères.',
+            'paiements.*.max' => 'Chaque mode de paiement ne doit pas dépasser 50 caractères.',
+
+            'telephones.*.numero.required' => 'Chaque numéro de téléphone est obligatoire.',
+            'telephones.*.numero.phone' => 'Le numéro de téléphone doit être valide pour CI, FR ou US.',
+            'telephones.*.numero.distinct' => 'Chaque numéro de téléphone doit être unique.',
+            'telephones.*.numero.max' => 'Chaque numéro de téléphone ne doit pas dépasser 20 caractères.',
         ]);
+
+        $localisationDepart = null;
+        if (!empty(array_filter([
+            'ville' => $request->depart_ville,
+            'pays' => $request->depart_pays,
+            'adresse' => $request->depart_adresse,
+            'codePostal' => $request->depart_codePostal,
+            'latitude' => $request->depart_latitude,
+            'longitude' => $request->depart_longitude,
+        ]))) {
+            $localisationDepart = Localisations::create([
+                'ville' => $request->depart_ville,
+                'pays' => $request->depart_pays,
+                'adresse' => $request->depart_adresse,
+                'codePostal' => $request->depart_codePostal,
+                'latitude' => $request->depart_latitude,
+                'longitude' => $request->depart_longitude,
+            ]);
+        }
+
+        // 2. Création localisation arrivée
+        $localisationArrivee = null;
+        if (!empty(array_filter([
+            'ville' => $request->arrive_ville,
+            'pays' => $request->arrive_pays,
+            'adresse' => $request->arrive_adresse,
+            'codePostal' => $request->arrive_codePostal,
+            'latitude' => $request->arrive_latitude,
+            'longitude' => $request->arrive_longitude,
+        ]))) {
+            $localisationArrivee = Localisations::create([
+                'ville' => $request->arrive_ville,
+                'pays' => $request->arrive_pays,
+                'adresse' => $request->arrive_adresse,
+                'codePostal' => $request->arrive_codePostal,
+                'latitude' => $request->arrive_latitude,
+                'longitude' => $request->arrive_longitude,
+            ]);
+        }
 
         $excursion = Excursion::create([
             'titre' => $validated['titre'],
@@ -114,12 +217,18 @@ class ExcursionController extends Controller
             'statut' => 'brouillon',
             'itineraire' => $request->itineraire,
             'nom_guide' => $request->nom_guide,
-            'langues' => $request->filled('langues') ? implode(',', $request->langues) : null,
+            // 'langues' => $request->filled('langues') ? implode(',', $request->langues) : 'français',
             'recurrence' => $request->recurrence ?? 'ponctuelle',
             'age_minimum' => $request->age_minimum ?? 0,
             'conditions' => $request->conditions,
-            'moyens_paiement' => $request->filled('paiements') ? implode(',', $request->paiements) : null,
+            'moyens_paiement' => $request->moyens_paiement,
+            'localisation_id' => $localisationDepart ? $localisationDepart->idLocalisation : null,
+            'localisation_idA' => $localisationArrivee ? $localisationArrivee->idLocalisation : null,
         ]);
+
+        if ($request->filled('langues')) {
+            $excursion->langues()->sync($request->langues);
+        }
 
         foreach ($request->input('telephones', []) as $telData) {
             $excursion->telephones()->create([
@@ -133,33 +242,33 @@ class ExcursionController extends Controller
             ]);
         }
 
-        $localisationData = array_filter([
-            'ville' => $request->depart_ville,
-            'pays' => $request->depart_pays,
-            'adresse' => $request->depart_adresse,
-            'codePostal' => $request->depart_codePostal,
-            'latitude' => $request->depart_latitude,
-            'longitude' => $request->depart_longitude,
-        ]);
-        if (!empty($localisationData)) {
-            $localisation = $excursion->localisation()->create($localisationData);
-            $excursion->localisation_id = $localisation->idLocalisation;
-            $excursion->save();
-        }
+        // $localisationData = array_filter([
+        //     'ville' => $request->depart_ville,
+        //     'pays' => $request->depart_pays,
+        //     'adresse' => $request->depart_adresse,
+        //     'codePostal' => $request->depart_codePostal,
+        //     'latitude' => $request->depart_latitude,
+        //     'longitude' => $request->depart_longitude,
+        // ]);
+        // if (!empty($localisationData)) {
+        //     $localisation = $excursion->localisation()->create($localisationData);
+        //     $excursion->localisation_id = $localisation->idLocalisation;
 
-        $localisationData1 = array_filter([
-            'ville' => $request->arrive_ville,
-            'pays' => $request->arrive_pays,
-            'adresse' => $request->arrive_adresse,
-            'codePostal' => $request->arrive_codePostal,
-            'latitude' => $request->arrive_latitude,
-            'longitude' => $request->arrive_longitude,
-        ]);
-        if (!empty($localisationData1)) {
-            $localisation = $excursion->localisationArrivee()->create($localisationData1);
-            $excursion->localisation_idA = $localisation->idLocalisation;
-            $excursion->save();
-        }
+        // }
+
+        // $localisationData1 = array_filter([
+        //     'ville' => $request->arrive_ville,
+        //     'pays' => $request->arrive_pays,
+        //     'adresse' => $request->arrive_adresse,
+        //     'codePostal' => $request->arrive_codePostal,
+        //     'latitude' => $request->arrive_latitude,
+        //     'longitude' => $request->arrive_longitude,
+        // ]);
+        // if (!empty($localisationData1)) {
+        //     $localisation = $excursion->localisationArrivee()->create($localisationData1);
+        //     $excursion->localisation_idA = $localisation->idLocalisation;
+        // }
+        // $excursion->save();
 
         ExcursionDate::create([
             'idExcursion' => $excursion->id,

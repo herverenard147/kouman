@@ -7,6 +7,7 @@
 
         @php
             $partenaire = Auth::guard('partenaire')->user();
+            $admin = Auth::guard('admin')->user();
         @endphp
 
         <ul class="sidebar-menu border-t border-white/10" data-simplebar style="height: calc(100% - 70px);">

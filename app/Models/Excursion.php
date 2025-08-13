@@ -63,8 +63,10 @@ class Excursion extends Model
 
     public function langues()
     {
-        return $this->belongsToMany(Langue::class, 'excursion_langue');
+        return $this->belongsToMany(Langue::class, 'excursion_langue', 'excursion_id', 'langue_id');
     }
+
+
 
     public function moyensPaiement()
     {
