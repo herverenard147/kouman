@@ -11,9 +11,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Client extends Authenticatable implements MustVerifyEmail
 {
-        use Notifiable, HasFactory;
+    use Notifiable, HasFactory;
 
-     protected $fillable = [
+    protected $fillable = [
         'nom',
         'prenom',
         'email',
@@ -44,6 +44,13 @@ class Client extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Reservation::class);
     }
+
+    public function commandes()
+    {
+        return $this->hasMany(Commande::class);
+    }
+
+
 
     public function avis()
     {

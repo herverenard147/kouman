@@ -74,14 +74,14 @@ $fpage = 'foot1';
                                                 <div class="flex items-center">
                                                     <div class="ml-4">
                                                         <div class="text-base font-semibold text-gray-900 dark:text-white">{{ $produit->name }}</div>
-                                                        <div class="text-xs text-gray-500 mt-1">Catégorie: {{ ucfirst($produit->categorie) }}</div>
+                                                        <div class="text-xs text-white mt-1">Catégorie: {{ ucfirst($produit->categorie) }}</div>
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td class="px-4 py-3">{{ ucfirst($produit->categorie) }}</td>
-                                            <td class="px-4 py-3">{{ $produit->quantity }}</td>
-                                            <td class="px-4 py-3">{{ number_format($produit->price, 2, ',', ' ') }} FCFA</td>
-                                            <td class="px-4 py-3 font-semibold">{{ number_format($produit->subtotal, 2, ',', ' ') }} FCFA</td>
+                                            <td class="px-4 py-3 text-white">{{ ucfirst($produit->categorie) }}</td>
+                                            <td class="px-4 py-3 text-white">{{ $produit->quantity }}</td>
+                                            <td class="px-4 py-3 text-white">{{ number_format($produit->price, 2, ',', ' ') }} FCFA</td>
+                                            <td class="px-4 py-3 font-semibold text-white">{{ number_format($produit->subtotal, 2, ',', ' ') }} FCFA</td>
                                         </tr>
                                         @endforeach
                                     </tbody>
