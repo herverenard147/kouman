@@ -12,6 +12,7 @@ class ClientController extends Controller
     public function index()
     {
         $clients = Client::all();
+        // dd($clients); // Pour déboguer et vérifier les données récupérées
         return view('admin.client.client-list', compact('clients'));
     }
 
@@ -80,7 +81,7 @@ class ClientController extends Controller
     {
         // Suppression
     }
-    
+
     public function orders($id)
     {
         $client = Client::with('commandes.produits')->findOrFail($id);

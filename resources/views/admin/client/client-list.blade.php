@@ -22,11 +22,12 @@
 
                 {{-- Photo --}}
                 <div class="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4 border-2 border-gray-200 dark:border-gray-700">
-                    <img src="{{ $client->photo ? asset('storage/'.$client->photo) : asset('images/default-avatar.png') }}"
+                    <img 
+                    src="{{ '/imageDes/uploads/' . $client->photo_profil ? asset('/imageDes/uploads/'. $client->photo_profil) : asset('images/default-avatar.png') }}"
                          alt="{{ $client->nom }} {{ $client->prenom }}"
                          class="w-full h-full object-cover">
                 </div>
-
+                
                 {{-- Nom --}}
                 <h2 class="text-lg font-semibold text-gray-800 dark:text-white text-center">
                     {{ $client->nom }} {{ $client->prenom }}
