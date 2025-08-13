@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('disponibilites', function (Blueprint $table) {
+        Schema::create('image_chambres', function (Blueprint $table) {
             $table->id();
-            $table->date('dateDebut');
-            $table->date('dateFin');
-            $table->boolean('estDisponible')->default(true);
-            $table->foreignId('idHebergement')->nullable()->constrained('hebergements')->onDelete('cascade');
+            $table->string('url', 255);
+            $table->boolean('estPrincipale')->default(false);
+            $table->foreignId('idChambre')->constrained('Chambres')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('disponibilites');
+        Schema::dropIfExists('image_chambres');
     }
 };

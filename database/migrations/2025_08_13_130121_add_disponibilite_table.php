@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('images', function (Blueprint $table) {
-            $table->id();
-            $table->text('url');
-            $table->enum('type_service', ['hebergement','vol','excursion','evenement']);
-            $table->unsignedBigInteger('service_id');
-            $table->timestamps();
-        });
+        Schema::table('disponibilites', function (Blueprint $table) {
+            $table->foreignId('idChambre')->nullable()->constrained('chambres')->onDelete('cascade');
 
+        });
     }
 
     /**
@@ -26,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('images');
+        //
     }
 };

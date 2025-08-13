@@ -10,6 +10,7 @@ class Avis extends Model
     protected $fillable = [
         'idHebergement',
         'idClient',
+        'idChambre',
         'idExcursion',
         'note',
         'commentaire',
