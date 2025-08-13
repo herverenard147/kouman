@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Partenaire;
 use App\Models\Commande;
 use App\Models\CommandeProduit;
+use Illuminate\Support\Facades\Storage;
 
 class PartnerController extends Controller
 {
@@ -54,13 +55,26 @@ class PartnerController extends Controller
             'adresse' => 'nullable|string|max:255',
             'siteWeb' => 'nullable|url|max:255',
             'statut' => 'nullable|string|max:50',
-            // 'photo_profil' => gérer upload fichier si besoin
+            'photo_profil' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
+
+        // Gestion upload photo
+        if ($request->hasFile('photo_profil')) {
+            // Supprimer ancienne photo si besoin
+            if ($partner->photo_profil && Storage::exists($partner->photo_profil)) {
+                Storage::delete($partner->photo_profil);
+            }
+
+            $path = $request->file('photo_profil')->store('partners/photos', 'public');
+            $validated['photo_profil'] = $path;
+        }
 
         $partner->update($validated);
 
-        return redirect()->route('admin.partners.index')->with('success', 'Partenaire mis à jour avec succès.');
+        return redirect()->route('admin.partners.edit', $partner->id)
+            ->with('success', 'Partenaire mis à jour avec succès.');
     }
+
     public function destroy($id)
     {
         $partner = Partenaire::findOrFail($id);
@@ -78,10 +92,12 @@ class PartnerController extends Controller
             ->pluck('commande_id')
             ->unique();
 
-        // Charger les commandes avec leurs produits
-        $commandes = Commande::whereIn('id', $commandeIds)->with('produits')->get();
+        // Charger les commandes avec leurs produits ET pagination
+        $commandes = Commande::whereIn('id', $commandeIds)
+            ->with('produits')
+            ->orderBy('created_at', 'desc')  // optionnel mais conseillé pour tri
+            ->paginate(10);
 
-        // Passer $commandes à la vue aussi !
         return view('admin.partenaire.orders', compact('partner', 'commandes'));
     }
 }
