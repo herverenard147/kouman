@@ -34,8 +34,8 @@ class EvenementController extends Controller
 
     public function createEvenement()
     {
-        $equipements = Equipement::all();
-        return view('screens.add.evenement.evenement-add', compact('equipements'));
+        // $equipements = Equipement::all();
+        return view('screens.add.evenement.evenement-add');
     }
 
    public function storeEvenement(Request $request)
@@ -68,8 +68,6 @@ class EvenementController extends Controller
             'ville' => 'nullable|string|max:255',
             'pays' => 'nullable|string|max:255',
             'adresse' => 'nullable|string|max:255',
-            'equipements' => 'nullable|array',
-            'equipements.*' => 'exists:equipements,id',
             'telephones.*.numero' => 'nullable|string|max:20',
             'images.*' => 'nullable|image|mimes:jpeg,png|max:10240',
         ]);
@@ -118,10 +116,6 @@ class EvenementController extends Controller
             ]);
         }
 
-        // Équipements
-        if ($request->has('equipements')) {
-            $evenement->equipements()->attach($request->equipements);
-        }
 
         // Images
         if ($request->hasFile('images')) {
