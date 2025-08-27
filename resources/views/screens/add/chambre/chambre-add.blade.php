@@ -218,7 +218,7 @@
                                 {{-- Statut --}}
                                 <div class="col-span-6">
                                     <label for="statut" class="font-medium text-slate-900 dark:text-white">Statut :</label>
-                                    <select id="statut"
+                                    <select id="statut" name="statut"
                                             class="form-select mt-2 w-full border border-gray-300 dark:border-gray-600 rounded-md p-2 @error('statut') border-red-500 @enderror bg-white dark:bg-slate-700 text-slate-900 dark:text-white">
                                         <option value="active" selected>Active</option>
                                         <option value="annulee">Annulée</option>
