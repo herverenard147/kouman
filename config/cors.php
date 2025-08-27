@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_origins' => ['https://xn--afriquevasion-hhb.com/'],
 
     'allowed_origins_patterns' => [],
 
