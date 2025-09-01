@@ -13,16 +13,18 @@ return new class extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('nom', 100);
+            $table->string('name', 100);
             $table->string('email', 100)->unique();
             $table->string('password', 255);
-            $table->string('prenom')->nullable();
-            $table->string('telephone', 20)->nullable();
+            $table->string('identityNumber', 255)->nullable()->unique();
+            $table->string('phone', 20)->nullable();
+            $table->date('birthDate')->nullable();
+            $table->boolean('acceptTerms')->nullable();
+
             $table->string('adresse')->nullable();
             $table->string('ville')->nullable();
             $table->string('pays')->nullable();
             $table->string('code_postal', 20)->nullable();
-            $table->date('date_naissance')->nullable();
             $table->enum('genre', ['homme', 'femme', 'autre'])->nullable();
             $table->string('photo_profil')->nullable();
             $table->string('langue_preferee', 10)->default('fr');

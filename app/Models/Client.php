@@ -2,32 +2,36 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens; // pour Sanctum
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
 class Client extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, HasFactory;
+    use Notifiable, HasFactory, HasApiTokens;
 
     protected $fillable = [
-        'nom',
-        'prenom',
+        'name',
+        // 'prenom',
         'email',
         'password',
-        'telephone',
-        'adresse',
-        'ville',
-        'pays',
-        'code_postal',
-        'date_naissance',
-        'genre',
-        'photo_profil',
-        'langue_preferee',
-        'newsletter',
+        'phone',
+        // 'adresse',
+        // 'ville',
+        // 'pays',
+        // 'code_postal',
+        // 'date_naissance',
+        // 'genre',
+        // 'photo_profil',
+        // 'langue_preferee',
+        // 'newsletter',
+        'birthdate',
+        'identityNumber',
+        'acceptTerms',
         'email_verified_at',
         'remember_token'
     ];

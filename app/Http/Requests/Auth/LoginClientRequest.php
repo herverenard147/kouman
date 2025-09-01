@@ -51,27 +51,41 @@ class LoginClientRequest extends FormRequest
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function authenticate(): void
+    public function authenticate(): array
     {
+
         $this->ensureIsNotRateLimited();
 
         $credentials = [
             'email' => $this->string('email'),
             'password' => $this->string('password'),
         ];
+
         $client = Auth::guard('client')->attempt($credentials, $this->boolean('remember'));
         $partenaire = Auth::guard('partenaire')->attempt($credentials, $this->boolean('remember'));
+        if ($client) {
+            RateLimiter::clear($this->throttleKey());
+            return[
+                'user' => Auth::guard('client')->user(),
+                'userType' => 'client',
+            ];
+        }
+        elseif ($partenaire) {
+            RateLimiter::clear($this->throttleKey());
+            return [
+                'user' => Auth::guard('partenaire')->user(),
+                'userType' => 'partenaire',
+            ];
+        }
         // dd(Auth::guard('client'));
 
-        if (! $client && ! $partenaire) {
+        else {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([
-                'email' => 'Les informations d\'identification sont incorrectes. N\'êtes vous pas partenaire ?',
+                'email' => 'Email/Mot de passe incorrect',
             ]);
         }
-
-        RateLimiter::clear($this->throttleKey());
     }
 
     /**

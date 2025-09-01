@@ -4,7 +4,7 @@
 @section('content')
 
 <section class="min-h-screen flex items-center py-10 px-4 bg-[url('{{ asset('images/01.jpg') }}')] bg-no-repeat bg-center bg-cover relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent z-2"></div>
 
     <div class="relative z-10 w-full max-w-2xl">
         <div class="bg-white dark:bg-slate-900 shadow-md rounded-lg px-8 py-10">
