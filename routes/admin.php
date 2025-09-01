@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdministrateurController;
 use App\Http\Controllers\Auth\Admin\AuthenticatedAdminController;
-use App\Http\Controllers\Auth\Client\NewPasswordAdminController;
+use App\Http\Controllers\Auth\Admin\NewPasswordAdminController;
 use App\Http\Controllers\Auth\Client\PasswordResetLinkAdminController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\PartnerController;

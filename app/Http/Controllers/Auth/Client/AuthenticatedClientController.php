@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\Auth\LoginClientRequest;
+use Illuminate\Database\Eloquent\Casts\Json;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Validation\ValidationException;
 
 class AuthenticatedClientController extends Controller
 {
@@ -29,26 +33,68 @@ class AuthenticatedClientController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginClientRequest $request): RedirectResponse
+    public function store(LoginClientRequest $request): JsonResponse
     {
-        $request->authenticate();
+        try {
+            $authResult = $request->authenticate();
 
-        $request->session()->regenerate();
+    logger($authResult);
+            // $request->session()->regenerate();
 
-        return redirect()->intended(route('client.index', absolute: false));
+            $user = $authResult['user'];
+            $userType = $authResult['userType'];
+
+            // Génération d’un token (via Sanctum par ex.)
+            $token = $user->createToken($userType . '-token')->plainTextToken;
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Connexion réussie',
+                'user' => $user,
+                'token' => $token,
+                'user_type' => $userType
+            ], 200);
+
+        } catch (ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Identifiants invalides',
+                'errors' => $e->errors(),
+            ], 422);
+        } catch (\Exception $e) {
+            Log::error('Erreur connexion client', ['exception' => $e]);
+            return response()->json([
+                'success' => false,
+                'message' => 'Erreur serveur',
+                'error' => $e->getMessage(),
+            ], 500);
+        }
     }
 
     /**
      * Destroy an authenticated session.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Request $request): JsonResponse
     {
-        Auth::guard('client')->logout();
+        $guards = ['client', 'partenaire', 'admin'];
+        $loggedOut = null;
+
+        foreach ($guards as $guard) {
+            if (Auth::guard($guard)->check()) {
+                Auth::guard($guard)->logout();
+                $loggedOut = $guard;
+            }
+        }
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return response()->json([
+            'status' => 'success',
+            'message' => $loggedOut 
+                ? ucfirst($loggedOut) . ' déconnecté avec succès.'
+                : 'Aucun utilisateur connecté.',
+            'guard' => $loggedOut,
+        ]);
     }
 }
